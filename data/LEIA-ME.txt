@@ -1,0 +1,1 @@
+GeoJSON oficial ainda não foi incorporado ao pacote. Baixe a malha municipal da CONDEPE/FIDEM pelo link indicado no README e salve como municipios-pe.geojson nesta pasta. Nenhuma geometria municipal foi simulada.

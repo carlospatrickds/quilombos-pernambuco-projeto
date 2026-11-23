@@ -1,0 +1,11 @@
+{
+  "_instrucoes": "Modelo de dados. Não contém estatísticas reais. Substituir somente após validação e citar fonte/ano.",
+  "2600000": {
+    "populationTotal": null,
+    "populationQuilombola": null,
+    "communities": [],
+    "history": "",
+    "photos": [],
+    "sourceNote": "Inserir fonte, tabela, ano, link e observações metodológicas."
+  }
+}

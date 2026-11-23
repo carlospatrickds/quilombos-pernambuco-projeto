@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17120f">
+  <title>Quilombos de Pernambuco | Atlas territorial</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/mapa.css" rel="stylesheet">
+  <link href="css/painel.css" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Quilombos de Pernambuco, início">
+        <span class="brand-mark">Q</span>
+        <span><small>ATLAS TERRITORIAL</small><strong>Quilombos de Pernambuco</strong></span>
+      </a>
+      <div class="topbar-meta"><span class="status-dot"></span> Protótipo interativo</div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="intro-copy">
+          <p class="eyebrow">TERRITÓRIO · MEMÓRIA · IDENTIDADE · RESISTÊNCIA</p>
+          <h1>Pernambuco, território de<br><em>histórias e resistências.</em></h1>
+          <p class="lead">Explore os municípios pernambucanos e conheça a presença, a história e a memória das comunidades quilombolas.</p>
+        </div>
+        <div class="state-stat">
+          <span class="stat-label">PERNAMBUCO · CENSO 2022</span>
+          <strong>78.864</strong>
+          <span>pessoas quilombolas</span>
+          <small>Fonte: IBGE · Censo Demográfico 2022</small>
+        </div>
+      </section>
+
+      <section class="explorer">
+        <div class="map-toolbar">
+          <div>
+            <span class="section-kicker">MAPA INTERATIVO</span>
+            <h2>Municípios de Pernambuco</h2>
+          </div>
+          <div class="map-actions">
+            <label class="search-box" for="municipio-search">
+              <span aria-hidden="true">⌕</span>
+              <input id="municipio-search" type="search" placeholder="Buscar município..." autocomplete="off">
+            </label>
+            <button id="reset-view" class="icon-button" type="button" title="Reiniciar visualização" aria-label="Reiniciar visualização">↺</button>
+          </div>
+        </div>
+
+        <div class="map-stage">
+          <div id="map" role="application" aria-label="Mapa tridimensional dos municípios de Pernambuco"></div>
+          <div class="map-overlay top-left"><span class="live-dot"></span> MALHA MUNICIPAL OFICIAL</div>
+          <div class="map-overlay bottom-left">Selecione um município para explorar</div>
+          <div class="map-compass" aria-hidden="true"><span>N</span><b>↑</b></div>
+          <div id="map-loading" class="map-loading">
+            <div class="loader"></div>
+            <strong>Preparando o território</strong>
+            <span>Carregando a malha municipal...</span>
+          </div>
+          <div id="map-error" class="map-error" hidden>
+            <strong>Não foi possível carregar a malha automaticamente.</strong>
+            <p>Verifique sua conexão ou siga as instruções do README para baixar o GeoJSON e salvá-lo em <code>data/</code>.</p>
+            <button id="retry-load" class="button button-outline" type="button">Tentar novamente</button>
+          </div>
+        </div>
+        <div class="map-footer">
+          <div class="legend"><span class="legend-swatch"></span> Município</div>
+          <div class="legend"><span class="legend-swatch selected"></span> Município selecionado</div>
+          <p>Arraste para mover · Role para aproximar · Clique para selecionar</p>
+        </div>
+      </section>
+
+      <section class="editorial-note">
+        <span class="note-symbol">✳</span>
+        <p><strong>Um território, muitas histórias.</strong> Este mapa é uma ferramenta de exploração. Os dados municipais e os registros comunitários serão incorporados progressivamente, sempre com indicação de fonte e ano.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>QUILOMBOS DE PERNAMBUCO</span>
+      <span>Produto educacional · Protótipo em desenvolvimento</span>
+    </footer>
+  </div>
+
+  <div id="panel-backdrop" class="panel-backdrop" hidden></div>
+  <aside id="municipio-panel" class="municipio-panel" aria-labelledby="panel-title" aria-hidden="true">
+    <button id="panel-close" class="panel-close" type="button" aria-label="Fechar painel">×</button>
+    <div class="panel-cover">
+      <span class="panel-kicker">TERRITÓRIO QUILOMBOLA</span>
+      <div class="cover-decoration">PE</div>
+    </div>
+    <div class="panel-content">
+      <p id="panel-region" class="panel-region">PERNAMBUCO</p>
+      <h2 id="panel-title">Nome do município</h2>
+      <p id="panel-code" class="panel-code">Código IBGE: —</p>
+
+      <div class="data-grid">
+        <article class="data-card">
+          <span>População municipal</span>
+          <strong id="population-total">A verificar</strong>
+          <small>Censo 2022 · IBGE</small>
+        </article>
+        <article class="data-card">
+          <span>População quilombola</span>
+          <strong id="population-quilombola">A verificar</strong>
+          <small>Censo 2022 · IBGE</small>
+        </article>
+        <article class="data-card data-card-wide">
+          <span>Participação quilombola</span>
+          <strong id="population-share">A verificar</strong>
+          <small>Percentual da população municipal</small>
+        </article>
+      </div>
+
+      <section class="panel-section">
+        <div class="section-heading"><span>01</span><h3>Comunidades quilombolas</h3></div>
+        <p id="communities-copy">As comunidades vinculadas a este município serão apresentadas aqui após validação das fontes.</p>
+        <div id="community-tags" class="community-tags"><span class="tag pending">Informações em levantamento</span></div>
+      </section>
+
+      <section class="panel-section">
+        <div class="section-heading"><span>02</span><h3>História, memória e resistência</h3></div>
+        <p id="history-copy">Este espaço reunirá informações sobre a formação histórica, a organização social, os vínculos territoriais, as práticas culturais e as formas de resistência das comunidades quilombolas locais.</p>
+      </section>
+
+      <section class="panel-section">
+        <div class="section-heading"><span>03</span><h3>Imagens e registros</h3></div>
+        <div id="gallery" class="gallery">
+          <div class="gallery-empty"><span>▧</span><p>Fotografias, documentos e registros da comunidade serão adicionados nesta seção.</p></div>
+        </div>
+      </section>
+
+      <div class="source-note">
+        <strong>Sobre os dados</strong>
+        <p id="source-copy">A malha territorial identifica os limites municipais. Indicadores demográficos e informações comunitárias dependem de bases próprias e serão exibidos somente após validação.</p>
+      </div>
+    </div>
+  </aside>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
