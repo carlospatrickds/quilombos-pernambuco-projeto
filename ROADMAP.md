@@ -13,7 +13,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 | Fase | Entrega | Situação |
 |---|---|---|
 | 0 | Estrutura modular, mapa 3D, painel municipal, busca/autocomplete e GitHub Pages | Concluída funcionalmente |
-| 1 | População total municipal — Censo 2022 | Próxima |
+| 1 | População total municipal — Censo 2022 | Concluída — base integrada e conferida |
 | 2 | População quilombola municipal — Censo 2022 | Pendente |
 | 3 | Percentual quilombola por município e validação estatística | Pendente |
 | 4 | Cadastro de comunidades quilombolas por município | Pendente |
@@ -45,20 +45,20 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 
 ## Fase 1 — População total municipal (Censo 2022)
 
-**Status: próxima etapa.**
+**Status: concluída — integração inicial em 24/11/2026.**
 
 Tarefas:
-- [ ] Obter a tabela 4709 do SIDRA ou arquivo municipal equivalente.
-- [ ] Registrar arquivo original, URL e data de consulta.
-- [ ] Filtrar Pernambuco e separar Fernando de Noronha dos 184 municípios.
-- [ ] Validar os códigos IBGE de sete dígitos.
-- [ ] Conferir os valores com a fonte CONDEPE/FIDEM, série `sidra_censo_2022`.
-- [ ] Registrar divergências, ausências e notas metodológicas.
-- [ ] Gerar arquivo JSON municipal tratado.
-- [ ] Integrar o valor à ficha do município.
-- [ ] Exibir fonte, tabela, ano de referência e data de consulta.
+- [x] Obter a série municipal do Observatório de Pernambuco, cuja fonte original é o IBGE Censo 2022 / SIDRA 4709.
+- [x] Registrar URL, tabela, variável, ano, data de consulta e última carga da fonte.
+- [x] Integrar 184 municípios e manter Fernando de Noronha (distrito estadual) separado.
+- [x] Validar 184 códigos IBGE distintos de sete dígitos.
+- [x] Conferir soma municipal + Fernando de Noronha com o total estadual divulgado pelo IBGE.
+- [x] Registrar recorte territorial e nota sobre a inclusão de Fernando de Noronha na série de 185 localidades.
+- [x] Gerar módulo JavaScript `data/populacao-municipal-censo-2022.js`.
+- [x] Integrar a população total ao painel lateral municipal.
+- [x] Registrar fonte, tabela, variável, ano de referência e data de consulta no conjunto de dados e no painel.
 
-**Critério de aceite:** 184 municípios com correspondência validada; nenhum valor presumido; totais e divergências documentados.
+**Critério de aceite:** atendido na integração inicial. Foram integrados 184 municípios (9.055.764 habitantes). Fernando de Noronha (3.167) foi separado. A soma (9.058.931) confere com o total estadual IBGE 2022. Arquivo: `data/populacao-municipal-censo-2022.js`. Recomenda-se manter futura conferência direta linha a linha com a API SIDRA antes de congelar a versão de produção.
 
 Fontes:
 - IBGE SIDRA tabela 4709: https://sidra.ibge.gov.br/tabela/4709
