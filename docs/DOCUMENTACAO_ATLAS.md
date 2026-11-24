@@ -236,3 +236,7 @@ O usuário constatou que o limite anterior permitia aproximação até aproximad
 
 ### Revisão de navegação e perspectiva — 24/11/2026
 A pedido do usuário, a visualização inicial e a reinicialização passam a ser planas (2D): `pitch: 0` e `bearing: 0`. Os limites de zoom foram redefinidos considerando o sentido dos controles MapLibre: o botão **menos (−)** afasta e deve parar próximo da escala de 100 km (`minZoom: 5.2`); o botão **mais (+)** aproxima e deve parar próximo de 20 km (`maxZoom: 7.5`). Os níveis são calibração inicial baseada nas capturas de tela e devem ser conferidos na barra de escala do dispositivo; a escala varia com a dimensão do contêiner e a latitude. A ficha de município também respeita os mesmos limites.
+
+
+### Correção de cache e calibração final do zoom — 24/11/2026
+A captura ainda indicava 3 km, incompatível com o limite esperado. A configuração anterior não estava refletindo a alteração na tela, possivelmente por cache dos módulos. Foram acrescentados identificadores de versão às URLs de `app.js`, `mapa.js` e `config.js` para forçar o navegador a carregar a cadeia atualizada. `minZoom` foi ajustado para 4.2 (afastamento pretendido: 100 km) e `maxZoom` mantido em 7.5 (aproximação pretendida: 20 km). Perspectiva padrão 2D: pitch 0°, bearing 0°. Validar a escala efetiva após o deploy; não presumir conclusão antes do teste.
