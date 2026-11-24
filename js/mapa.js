@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js';
+import { CONFIG } from './config.js?v=20261124-zoomfix2';
 import { normalizeCollection } from './data.js';
 import { openMunicipality } from './panel.js';
 
