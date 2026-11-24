@@ -1,4 +1,4 @@
-import { MUNICIPAL_DATA, } from './data.js';
+import { MUNICIPAL_DATA } from './data.js';
 import { DATA_STATUS } from './config.js';
 
 const $ = (selector) => document.querySelector(selector);
@@ -62,8 +62,11 @@ export function openMunicipality(feature) {
     $('#gallery').innerHTML = '<div class="gallery-empty"><span>▧</span><p>Fotografias, documentos e registros serão adicionados após seleção e autorização das fontes.</p></div>';
   }
 
+  const populationSource = data.populationTotalSource;
   $('#source-copy').textContent = data.sourceNote ||
-    'A geometria vem da Malha Municipal de Pernambuco (CONDEPE/FIDEM, edição 2025, versão 3). Indicadores demográficos e informações comunitárias ainda não foram conectados.';
+    (populationSource
+      ? `População municipal: IBGE, Censo Demográfico 2022, SIDRA tabela 4709, variável 93. Dados organizados pela CONDEPE/FIDEM. Consulta: 24/11/2026. População quilombola e informações comunitárias ainda serão integradas. Geometria: malha municipal, edição 2025.`
+      : 'A geometria vem da Malha Municipal de Pernambuco. Indicadores demográficos e informações comunitárias ainda não foram conectados.');
   backdrop.hidden = false;
   requestAnimationFrame(() => panel.classList.add('open'));
   panel.setAttribute('aria-hidden', 'false');
