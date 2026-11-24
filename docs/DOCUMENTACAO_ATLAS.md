@@ -1,0 +1,184 @@
+# Documentação de continuidade — Atlas Territorial Quilombos de Pernambuco
+
+**Versão:** 1.0  
+**Data de atualização:** 24/11/2026  
+**Repositório:** https://github.com/carlospatrickds/quilombos-pernambuco-projeto  
+**Publicação:** https://carlospatrickds.github.io/quilombos-pernambuco-projeto/
+
+## 1. Objetivo
+
+Desenvolver um atlas territorial interativo dos municípios de Pernambuco, com foco na presença, história, memória e identidade das comunidades quilombolas. O mapa municipal em 3D é a interface de exploração; os dados estatísticos, registros comunitários, referências históricas e imagens devem ser apresentados com fonte, ano de referência e data de consulta.
+
+O atlas é um produto educacional em desenvolvimento. Não substitui cadastros oficiais, processos de certificação, reconhecimento ou titulação.
+
+## 2. Estado atual do projeto
+
+### Concluído / funcional
+- Aplicação web modular em HTML, CSS e JavaScript.
+- Mapa vetorial com MapLibre GL JS.
+- Malha municipal de Pernambuco carregada em GeoJSON.
+- Identificação dos municípios por código geográfico IBGE e associação com nomes oficiais via API de Localidades do IBGE.
+- Extrusão 3D dos polígonos e destaque/elevação do município selecionado.
+- Painel lateral municipal com campos demográficos, comunidades, história e galeria.
+- Busca municipal com sugestões/autocomplete por trecho do nome.
+- Identidade visual editorial alinhada ao e-book: Fraunces + DM Sans; tons de areia, marrom avermelhado, marrom intenso e terracota.
+- Publicação pelo GitHub Pages.
+- Campos sem dados permanecem como “A verificar”; não preencher com números presumidos.
+
+### Em desenvolvimento / não concluído
+- Importação e validação dos dados municipais de população total do Censo 2022.
+- Importação e validação da população quilombola por município.
+- Cálculo e apresentação dos percentuais.
+- Registro estruturado de fontes por indicador.
+- Cadastro validado de comunidades por município.
+- Situação de certificação, reconhecimento territorial, processo de regularização e titulação.
+- Conteúdo histórico/editorial por município e comunidade.
+- Fotografias, documentos e registros com crédito, contexto e autorização de uso.
+- Testes completos de acessibilidade, responsividade, desempenho e qualidade dos dados.
+
+## 3. Princípios editoriais e de dados
+
+1. Toda informação factual deve indicar instituição responsável, título da fonte, ano/período de referência, data de consulta e URL.
+2. Não misturar ano de referência com data de consulta ou data de atualização da base.
+3. Não misturar população total do Censo 2022 com estimativas populacionais de anos posteriores sem apresentar claramente a diferença.
+4. Não confundir população quilombola residente no município com população residente dentro de territórios quilombolas oficialmente delimitados.
+5. Não confundir comunidade certificada pela Fundação Cultural Palmares com território identificado, delimitado, reconhecido ou titulado pelo INCRA.
+6. Não presumir que toda comunidade se localiza integralmente em um único município; registrar casos intermunicipais e limites da fonte.
+7. Não inventar comunidades, quantitativos, narrativas, imagens, autoria ou créditos.
+8. Ausência de dado deve ser indicada como “não localizado”, “não disponível na fonte consultada” ou “em validação”, conforme o caso — não como zero.
+9. Dados e cartografia devem ser versionados, com data de extração e nota sobre eventuais revisões.
+10. O conteúdo histórico deve ser contextualizado e revisado; não reduzir a experiência quilombola ao período escravista ou a uma representação rural homogênea.
+
+## 4. Base estatística — desenho metodológico
+
+### 4.1 População municipal total
+- **Fonte primária:** IBGE, Censo Demográfico 2022, SIDRA, tabela 4709 — população residente.
+- **Fonte estadual de apoio/organização:** Observatório de Pernambuco, CONDEPE/FIDEM, fonte `sidra_censo_2022`.
+- **Unidade:** pessoas.
+- **Período de referência:** 2022.
+- **Cobertura divulgada pela CONDEPE/FIDEM:** 185 localidades, incluindo municípios e Fernando de Noronha.
+- **Consulta deste documento:** 24/11/2026.
+- **Última carga indicada na página consultada:** 21/11/2026.
+- **Links:**
+  - https://sidra.ibge.gov.br/tabela/4709
+  - https://www.cf.pe.gov.br/observatorio/fontes/sidra_censo_2022
+
+A tabela 4709 e a série da CONDEPE/FIDEM devem ser confrontadas antes da incorporação. Para a camada municipal, filtrar apenas os 184 municípios de Pernambuco e manter Fernando de Noronha separado, sem tratá-lo como município.
+
+### 4.2 População quilombola
+- **Fonte primária:** IBGE, Censo Demográfico 2022, SIDRA, tabela 9578 — população residente, total e quilombola, por localização do domicílio.
+- **Unidade:** pessoas.
+- **Período de referência:** 2022.
+- **Recorte necessário:** Pernambuco, municípios, população quilombola total do município.
+- **Consulta deste documento:** 24/11/2026.
+- **Links:**
+  - https://sidra.ibge.gov.br/tabela/9578
+  - https://www.ibge.gov.br/brasil-quilombola/
+  - https://www.ibge.gov.br/estatisticas/sociais/populacao/22827-censo-demografico-2022.html
+
+A tabela 9578 também discrimina localização em/fora de territórios quilombolas oficialmente delimitados. Para o indicador “população quilombola do município”, somar as categorias de localização somente após confirmar no dicionário da tabela que são categorias mutuamente exclusivas e exaustivas. Preservar também os subtotais “em territórios” e “fora de territórios” como variáveis distintas, quando disponíveis. Não usar o total estadual como substituto de valores municipais.
+
+### 4.3 Percentual de participação quilombola
+Calcular apenas quando os dois valores do mesmo município e do mesmo período estiverem validados:
+
+`participacao_quilombola = (populacao_quilombola_total / populacao_municipal_total) * 100`
+
+- Usar o total de pessoas quilombolas residentes no município no numerador.
+- Usar a população residente total do município no denominador.
+- Armazenar valor sem arredondamento excessivo; exibir, por exemplo, duas casas decimais.
+- Se um dos dados estiver ausente ou não comparável, exibir “A verificar”, não zero.
+
+### 4.4 Controle de qualidade
+Antes de publicar:
+- validar os 184 códigos IBGE municipais;
+- conferir duplicidades e municípios sem correspondência;
+- conferir valores nulos, supressões e categorias;
+- verificar se a soma municipal é compatível com o total estadual publicado, respeitando diferenças de cobertura e eventuais notas metodológicas;
+- comparar os valores de população total com a fonte CONDEPE/FIDEM;
+- registrar divergências e não as corrigir silenciosamente;
+- salvar arquivo original baixado e arquivo tratado, com data, fonte e procedimento de transformação.
+
+## 5. Estrutura de dados recomendada
+
+A geometria municipal deve permanecer separada dos indicadores. A chave de integração é o código IBGE de sete dígitos.
+
+Estrutura lógica sugerida para cada município:
+
+```json
+{
+  "2607208": {
+    "municipality": "Ipojuca",
+    "ibge_code": "2607208",
+    "reference_year": 2022,
+    "population_total": null,
+    "population_quilombola_total": null,
+    "population_quilombola_in_delimited_territories": null,
+    "population_quilombola_outside_delimited_territories": null,
+    "quilombola_share_percent": null,
+    "communities": [],
+    "history": [],
+    "photos": [],
+    "sources": []
+  }
+}
+```
+
+Cada elemento em `sources` deve conter pelo menos: instituição, título, tabela/documento, URL, ano de referência, data de consulta, data de atualização/publicação se disponível, observação metodológica e indicador sustentado.
+
+## 6. Fontes institucionais para as próximas camadas
+
+### Fundação Cultural Palmares — certificação
+A FCP informa que emite certidões de autodefinição e mantém cadastro geral de comunidades certificadas. A própria FCP esclarece que a certificação respeita a autodefinição; não é uma avaliação externa de quem pode ou não ser quilombola. A lista deve ser consultada e datada no momento da extração.
+- Página: https://www.gov.br/palmares/pt-br/departamentos/protecao-preservacao-e-articulacao/certificacao-quilombola
+- Dados abertos: https://www.gov.br/palmares/pt-br/acesso-a-informacao/dados-abertos
+
+### INCRA — regularização territorial
+O INCRA conduz a política federal de identificação, reconhecimento, delimitação, desintrusão e titulação de territórios quilombolas. Processos e etapas devem ser apresentados como situação administrativa, sem confundir abertura de processo, RTID, portaria, decreto e título.
+- Página: https://www.gov.br/incra/pt-br/assuntos/governanca-fundiaria/quilombolas
+- Quadro geral e processos: https://www.gov.br/incra/pt-br/assuntos/governanca-fundiaria/quilombolas/andamento-processos
+
+### IBGE — conceito e distribuição
+O IBGE explica que a identificação censitária de pessoas quilombolas decorre de autodeclaração e distingue residência dentro e fora de territórios oficialmente delimitados.
+- Página: https://www.ibge.gov.br/brasil-quilombola/
+- Publicação: https://www.ibge.gov.br/biblioteca/visualizacao/periodicos/3104/cd_2022_quilombolas.pdf
+
+## 7. Cartografia e limites de interpretação
+
+- Fonte cartográfica primária atualmente configurada: API de Malhas do IBGE, unidade da Federação 26, recorte municipal.
+- Fonte alternativa configurada: CONDEPE/FIDEM, Malha Municipal de Pernambuco, edição 2025, versão 3.
+- GeoJSON local opcional: `data/municipios-pe.geojson`.
+- API de nomes municipais: API de Localidades do IBGE.
+- Código geográfico IBGE é a chave de associação entre feição e ficha.
+
+**Atenção temporal:** malha municipal 2025 e dados do Censo 2022 possuem referências temporais diferentes. Para análises que dependam de comparabilidade estrita com a geografia censitária, verificar e utilizar a malha de referência do Censo 2022. Não afirmar que a geometria 2025 é a malha censitária 2022.
+
+A população municipal é um indicador estatístico agregado. Não deve ser representada como se delimitasse a extensão física de uma comunidade ou território quilombola. Uma camada futura de territórios quilombolas exige geometrias oficiais próprias e metadados de situação fundiária.
+
+## 8. Identidade visual aprovada
+
+Referência aprovada pelo responsável pelo projeto em 24/11/2026:
+- Fundo cartográfico areia claro.
+- Municípios em marrom terroso.
+- Divisas municipais finas, claras e discretas.
+- Elevação 3D moderada.
+- Município selecionado em laranja queimado.
+- Linguagem editorial cultural contemporânea.
+- Tipografia: Fraunces para títulos e DM Sans para interface/textos funcionais.
+- Paleta editorial do e-book: #783F32, #3D2500, terracota, areia/off-white e grafite #292B28.
+
+A captura de tela aprovada pelo responsável é a referência visual para futuras alterações. Não modificar cores, espessuras, enquadramento ou relevo sem comparar com essa referência e validar no navegador.
+
+## 9. Regras de manutenção e publicação
+
+- Desenvolver em módulos separados: HTML, CSS, JavaScript e dados.
+- Não incorporar estatísticas diretamente ao GeoJSON.
+- Manter arquivos-fonte e dados tratados identificáveis.
+- Testar localmente com servidor HTTP antes de publicar.
+- Verificar o GitHub Pages após cada alteração.
+- Usar `Ctrl + F5` para descartar cache durante testes.
+- Registrar commits com mensagens que descrevam a alteração.
+- Não declarar uma funcionalidade concluída antes de testá-la no site publicado.
+
+## 10. Histórico desta documentação
+
+- **24/11/2026:** consolidação do estado do protótipo, definição da próxima etapa demográfica, registro das fontes iniciais e do roteiro de desenvolvimento.
