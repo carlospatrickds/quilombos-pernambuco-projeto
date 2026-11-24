@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "title": "Amostra piloto — população quilombola municipal",
+    "referenceYear": 2022,
+    "status": "provisional_for_integration_test",
+    "source": "Diagnósticos Situacionais Municipais — Governo de Pernambuco/SEASS, indicadores identificados como Censo 2022/IBGE",
+    "consultedAt": "2026-11-24",
+    "note": "Amostra de quatro municípios para teste de estrutura. Não substitui a extração integral da tabela SIDRA 9578. Os documentos municipais consultados não fornecem nesta extração a divisão entre residentes dentro e fora de territórios quilombolas.",
+    "stateReference": {
+      "uf": "PE",
+      "populationQuilombola": 78864,
+      "source": "IBGE, publicação Censo Demográfico 2022 — Quilombolas, análise dos resultados, p. 81",
+      "url": "https://www.ibge.gov.br/biblioteca/visualizacao/periodicos/3104/cd_2022_quilombolas.pdf",
+      "status": "reference_for_validation_not_sum_of_sample"
+    },
+    "sampleSum": 1980,
+    "municipalitiesInSample": 4
+  },
+  "municipalities": {
+    "2611606": {
+      "name": "Recife",
+      "populationQuilombola": 118,
+      "sourceUrl": "https://www.sigas.pe.gov.br/files/12182024114829-recife.18.12.24.pdf",
+      "sourceTitle": "Diagnóstico Situacional 2024 — Recife, versão 18/12/2024"
+    },
+    "2607208": {
+      "name": "Ipojuca",
+      "populationQuilombola": 823,
+      "sourceUrl": "https://www.sigas.pe.gov.br/files/06272025115503-ipojuca.26.06.25.pdf",
+      "sourceTitle": "Diagnóstico Situacional 2025 — Ipojuca, versão junho/2025"
+    },
+    "2604106": {
+      "name": "Caruaru",
+      "populationQuilombola": 142,
+      "sourceUrl": "https://www.sigas.pe.gov.br/wp-content/uploads/2026/04/Caruaru_24_abril_26.pdf",
+      "sourceTitle": "Diagnóstico Situacional 2026 — Caruaru, versão março/2026"
+    },
+    "2611101": {
+      "name": "Petrolina",
+      "populationQuilombola": 897,
+      "sourceUrl": "https://www.sigas.pe.gov.br/wp-content/uploads/2026/01/Petrolina_30_dezembro_25.pdf",
+      "sourceTitle": "Diagnóstico Situacional 2025 — Petrolina, versão dezembro/2025"
+    }
+  }
+}
