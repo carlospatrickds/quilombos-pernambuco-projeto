@@ -188,6 +188,11 @@ Referência aprovada pelo responsável pelo projeto em 24/11/2026:
 
 A captura de tela aprovada pelo responsável é a referência visual para futuras alterações. Não modificar cores, espessuras, enquadramento ou relevo sem comparar com essa referência e validar no navegador.
 
+
+## 8.1 Limite de aproximação do mapa
+
+Em 24/11/2026 foi definido limite de zoom máximo `8.2` no MapLibre GL JS, aplicado tanto à navegação manual quanto ao enquadramento automático do município selecionado. O objetivo é impedir aproximações excessivas que retirem a referência visual do território pernambucano e dificultem a seleção de municípios vizinhos. A escala física em quilômetros varia conforme a largura da tela e a latitude; portanto, o limite 8.2 é um parâmetro de zoom, não uma distância fixa de 50 km. Ajustar somente após teste visual em celular e desktop.
+
 ## 9. Regras de manutenção e publicação
 
 - Desenvolver em módulos separados: HTML, CSS, JavaScript e dados.
