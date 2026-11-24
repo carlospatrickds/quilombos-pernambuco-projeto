@@ -183,17 +183,38 @@ export function bindMapInteractions(map, geojson) {
   });
 
   const search = document.querySelector('#municipio-search');
-  search.addEventListener('keydown', event => {
-    if (event.key !== 'Enter') return;
-    const feature = getFeatureByName(geojson, search.value);
-    if (feature) selectFeature(feature);
-    else {
-      search.setCustomValidity('Município não localizado na malha carregada.');
-      search.reportValidity();
-      search.addEventListener('input', () => search.setCustomValidity(''), { once: true });
-    }
+  const suggestions = document.querySelector('#search-suggestions');
+  let matches = [];
+  let active = -1;
+  function showSuggestions(value) {
+    const q=value.trim().toLocaleLowerCase('pt-BR');
+    suggestions.innerHTML='';
+    if(!q){suggestions.hidden=true;matches=[];return;}
+    matches=geojson.features.filter(f=>(f.properties._app_name||'').toLocaleLowerCase('pt-BR').includes(q))
+      .sort((x,y)=>x.properties._app_name.localeCompare(y.properties._app_name,'pt-BR')).slice(0,10);
+    active=-1;
+    if(!matches.length){const empty=document.createElement('div');empty.className='search-empty';empty.textContent='Nenhum município encontrado.';suggestions.append(empty);}
+    matches.forEach((feature,index)=>{
+      const btn=document.createElement('button');btn.type='button';btn.className='search-suggestion';btn.setAttribute('role','option');
+      const name=document.createElement('span');name.textContent=feature.properties._app_name;
+      const code=document.createElement('small');code.textContent='Código IBGE: '+feature.properties._app_code;
+      btn.append(name,code);btn.addEventListener('click',()=>{search.value=feature.properties._app_name;suggestions.hidden=true;selectFeature(feature);});
+      suggestions.append(btn);
+    });
+    suggestions.hidden=false;
+  }
+  search.addEventListener('input',()=>showSuggestions(search.value));
+  search.addEventListener('keydown',event=>{
+    if(suggestions.hidden){if(event.key==='Enter'){const f=getFeatureByName(geojson,search.value);if(f)selectFeature(f);}return;}
+    const options=[...suggestions.querySelectorAll('.search-suggestion')];
+    if(event.key==='ArrowDown'){event.preventDefault();active=Math.min(active+1,options.length-1);}
+    else if(event.key==='ArrowUp'){event.preventDefault();active=Math.max(active-1,0);}
+    else if(event.key==='Enter'){event.preventDefault();if(matches[active]){search.value=matches[active].properties._app_name;suggestions.hidden=true;selectFeature(matches[active]);}else if(matches.length===1){search.value=matches[0].properties._app_name;suggestions.hidden=true;selectFeature(matches[0]);}}
+    else if(event.key==='Escape'){suggestions.hidden=true;return;}
+    options.forEach((o,i)=>o.setAttribute('aria-selected',String(i===active)));
   });
-
+  document.addEventListener('click',event=>{if(!event.target.closest('.search-wrap'))suggestions.hidden=true;});
+  
   document.querySelector('#reset-view').addEventListener('click', () => {
     if (selectedId !== null) map.setFeatureState({ source: SOURCE_ID, id: selectedId }, { selected: false });
     selectedId = null;
