@@ -12,7 +12,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 
 | Fase | Entrega | Situação |
 |---|---|---|
-| 0 | Estrutura modular, mapa 3D, painel municipal, busca/autocomplete e GitHub Pages | Concluída funcionalmente |
+| 0 | Estrutura modular, mapa 2D padrão, painel municipal, busca/autocomplete e GitHub Pages | Concluída funcionalmente — zoom aceito em celular; observação de cache/escala no desktop fica para revisão posterior |
 | 1 | População total municipal — Censo 2022 | Concluída — base integrada e conferida |
 | 2 | População quilombola municipal — Censo 2022 | Integrada ao painel — auditoria e percentuais em continuidade |
 | 3 | Percentual quilombola por município e validação estatística | Pendente |
@@ -22,7 +22,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 | 7 | História, memória e referências documentais por comunidade/município | Pendente |
 | 8 | Fotografias, documentos e registros com crédito e autorização | Pendente |
 | 9 | Recursos didáticos e experiências de exploração para professores | Pendente |
-| 10 | Acessibilidade, responsividade, desempenho, auditoria e publicação estável | Pendente |
+| 10 | Acessibilidade, responsividade, desempenho, auditoria e publicação estável | Pendente — inclui revisão posterior da escala/cache no desktop |
 
 ---
 
@@ -31,7 +31,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 **Status: concluída funcionalmente.**
 
 - [x] Estrutura HTML, CSS e JavaScript separados.
-- [x] Mapa municipal 3D em MapLibre GL JS.
+- [x] Mapa municipal em MapLibre GL JS, com visualização plana (2D) por padrão.
 - [x] Geometria municipal em GeoJSON.
 - [x] Associação de nomes por código IBGE.
 - [x] Seleção com destaque e elevação do município.
@@ -39,9 +39,11 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 - [x] Busca com autocomplete por trecho do nome.
 - [x] Identidade visual editorial alinhada ao e-book.
 - [x] Publicação pelo GitHub Pages.
+- [x] Limites de navegação configurados para aproximadamente 20 km de aproximação e 100 km de afastamento; comportamento considerado aceitável no celular.
+- [ ] Revisar posteriormente a discrepância de escala/cache observada no computador.
 - [x] Campos sem informação apresentados como pendentes.
 
-**Critério de aceite:** mapa e painel funcionam no endereço publicado; seleção, busca e retorno ao enquadramento geral são testados no navegador.
+**Critério de aceite:** mapa e painel funcionam no endereço publicado; seleção, busca e retorno ao enquadramento geral são testados no navegador. A navegação foi aceita pelo responsável no celular. A diferença observada no desktop (escala/possível cache) fica registrada para revisão na fase de qualidade, sem bloquear o avanço.
 
 ## Fase 1 — População total municipal (Censo 2022)
 
