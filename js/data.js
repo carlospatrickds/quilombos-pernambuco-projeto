@@ -1,4 +1,5 @@
 import { POPULATION_TOTAL_2022, POPULATION_SOURCE_2022 } from '../data/populacao-municipal-censo-2022.js';
+import { QUILOMBOLA_2022, QUILOMBOLA_SOURCE_2022 } from '../data/populacao-quilombola-censo-2022.js';
 
 // Camada de dados municipais. Os atributos da malha são normalizados
 // para uma estrutura estável, independentemente do nome original do campo.
@@ -39,10 +40,17 @@ export function normalizeCollection(collection) {
 // Dados editoriais separados da geometria. A estrutura está pronta para
 // receber dados validados, sem misturar estatísticas com a malha cartográfica.
 export const MUNICIPAL_DATA = Object.fromEntries(
-  Object.entries(POPULATION_TOTAL_2022).map(([code, row]) => [code, {
-    populationTotal: row.populationTotal,
-    populationTotalSource: POPULATION_SOURCE_2022
-  }])
+  Object.entries(POPULATION_TOTAL_2022).map(([code, row]) => {
+    const [populationQuilombola = 0, populationQuilombolaInside = 0, populationQuilombolaOutside = 0] = QUILOMBOLA_2022[code] || [];
+    return [code, {
+      populationTotal: row.populationTotal,
+      populationTotalSource: POPULATION_SOURCE_2022,
+      populationQuilombola,
+      populationQuilombolaInside,
+      populationQuilombolaOutside,
+      populationQuilombolaSource: QUILOMBOLA_SOURCE_2022
+    }];
+  })
 );
 
 /* Estrutura editorial a complementar por município:
