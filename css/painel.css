@@ -14,6 +14,9 @@
 .panel-code { color:#776A5B; font-size:10px; margin:8px 0 22px; }
 .data-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
 .data-card { padding:14px; background:#F3EBDD; border:1px solid rgba(222,194,164,.1); min-height:93px; }
+.data-card strong { overflow-wrap:anywhere; }
+.data-card span { min-height:2.8em; }
+@media(max-width:360px) { .data-grid { grid-template-columns:1fr; } .data-card-wide { grid-column:auto; } }
 .data-card span { display:block; color:#aa9a89; font-size:10px; line-height:1.4; }
 .data-card strong { display:block; color:#783F32; font:22px Georgia,serif; margin:7px 0 3px; }
 .data-card small { color:#806C57; font-size:9px; }
