@@ -12,7 +12,7 @@ export const CONFIG = {
   extrusion: { base: 0, normal: 28, selected: 180 },
   colors: {
     fill: '#B78B62',
-    line: '#8D7057',
+    line: '#5A3828',
     selected: '#A85D43',
     background: '#E9DDCB'
   }
