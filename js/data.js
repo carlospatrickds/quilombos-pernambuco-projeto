@@ -1,3 +1,5 @@
+import { POPULATION_TOTAL_2022, POPULATION_SOURCE_2022 } from '../data/populacao-municipal-censo-2022.js';
+
 // Camada de dados municipais. Os atributos da malha são normalizados
 // para uma estrutura estável, independentemente do nome original do campo.
 const NAME_KEYS = ['NM_MUN','nm_mun','NM_MUNICIP','NM_MUNICIPIO','nome','Nome','municipio','MUNICIPIO','name','NAME'];
@@ -36,7 +38,15 @@ export function normalizeCollection(collection) {
 
 // Dados editoriais separados da geometria. A estrutura está pronta para
 // receber dados validados, sem misturar estatísticas com a malha cartográfica.
-export const MUNICIPAL_DATA = {
+export const MUNICIPAL_DATA = Object.fromEntries(
+  Object.entries(POPULATION_TOTAL_2022).map(([code, row]) => [code, {
+    populationTotal: row.populationTotal,
+    populationTotalSource: POPULATION_SOURCE_2022
+  }])
+);
+
+/* Estrutura editorial a complementar por município:
+export const MUNICIPAL_EDITORIAL_DATA = {
   // Exemplo de estrutura futura:
   // "2600000": {
   //   populationTotal: 0, populationQuilombola: 0,
@@ -44,3 +54,4 @@ export const MUNICIPAL_DATA = {
   //   sources: [{label:"IBGE Censo 2022", url:"...", year:2022}]
   // }
 };
+*/
