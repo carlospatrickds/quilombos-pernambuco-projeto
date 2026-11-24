@@ -64,6 +64,19 @@ A revisão visual de 24/11/2026 definiu que os textos dos cartões demográficos
 
 Ajuste implementado em `css/painel.css` após avaliação do usuário em capturas reais de celular. Essa diretriz deve ser mantida em futuras alterações do painel.
 
+
+## 3.2 Limites de escala, zoom e restauração da perspectiva 3D
+
+Diretriz definida em 24/11/2026 a partir da avaliação visual do usuário:
+- Afastamento máximo: escala de referência aproximada de **100 km** na barra cartográfica.
+- Aproximação máxima: escala de referência aproximada de **10 km** na barra cartográfica.
+- A escala intermediária de 50 km foi considerada legível e funcional; 20 km ainda deve permitir aproximação adicional até cerca de 10 km.
+- Parâmetros iniciais do MapLibre: `minZoom: 7.2` e `maxZoom: 10.6`.
+- Inclinação padrão: `pitch: 75`; orientação: `bearing: -8`.
+- O botão de reinicialização deve limpar a seleção e restaurar enquadramento de Pernambuco, inclinação e orientação padrão.
+
+**Nota técnica:** a leitura em quilômetros da barra de escala depende da latitude, da largura disponível do mapa e do dispositivo. Os níveis 7.2 e 10.6 são parâmetros iniciais calibrados pela referência visual enviada; devem ser testados em desktop e celular. Não tratar 100 km e 10 km como distâncias geográficas fixas entre os limites do mapa.
+
 ## 4. Base estatística — desenho metodológico
 
 ### 4.1 População municipal total
