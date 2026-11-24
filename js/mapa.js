@@ -66,6 +66,7 @@ export function createMap() {
     },
     center: CONFIG.center,
     zoom: CONFIG.zoom,
+    minZoom: CONFIG.minZoom,
     maxZoom: CONFIG.maxZoom,
     pitch: CONFIG.pitch,
     bearing: CONFIG.bearing,
@@ -140,7 +141,10 @@ export function addMunicipalLayer(map, geojson) {
     map.fitBounds(bounds, {
       padding: { top: 65, right: 65, bottom: 65, left: 65 },
       duration: 0,
-      maxZoom: CONFIG.maxZoom
+      maxZoom: CONFIG.maxZoom,
+      minZoom: CONFIG.minZoom,
+      pitch: CONFIG.pitch,
+      bearing: CONFIG.bearing
     });
   }
 }
@@ -165,7 +169,7 @@ export function bindMapInteractions(map, geojson) {
       else coords.forEach(walk);
     };
     walk(feature.geometry.coordinates);
-    map.fitBounds(bounds, { padding: { top: 70, bottom: 70, left: 70, right: 440 }, duration: 850, maxZoom: CONFIG.maxZoom });
+    map.fitBounds(bounds, { padding: { top: 70, bottom: 70, left: 70, right: 440 }, duration: 850, maxZoom: CONFIG.maxZoom, minZoom: CONFIG.minZoom, pitch: CONFIG.pitch, bearing: CONFIG.bearing });
     // Aguarda o início da transição de elevação antes de abrir a ficha.
     window.setTimeout(() => openMunicipality(feature), 180);
   }
@@ -240,7 +244,8 @@ export function bindMapInteractions(map, geojson) {
         pitch: CONFIG.pitch,
         bearing: CONFIG.bearing,
         duration: 900,
-        maxZoom: 7.2
+        minZoom: CONFIG.minZoom,
+        maxZoom: CONFIG.maxZoom
       });
     }
   });
