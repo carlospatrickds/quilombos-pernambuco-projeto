@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js?v=20261124-zoomfix2';
+import { CONFIG } from './config.js?v=20261124-mobile200';
 import { normalizeCollection } from './data.js';
 import { openMunicipality } from './panel.js';
 
@@ -56,7 +56,12 @@ export async function loadMunicipalities() {
   }
 }
 
+function getDeviceMinZoom() {
+  return window.matchMedia('(max-width: 700px)').matches ? CONFIG.mobileMinZoom : CONFIG.minZoom;
+}
+
 export function createMap() {
+  const deviceMinZoom = getDeviceMinZoom();
   const map = new maplibregl.Map({
     container: 'map',
     style: {
@@ -66,7 +71,7 @@ export function createMap() {
     },
     center: CONFIG.center,
     zoom: CONFIG.zoom,
-    minZoom: CONFIG.minZoom,
+    minZoom: deviceMinZoom,
     maxZoom: CONFIG.maxZoom,
     pitch: CONFIG.pitch,
     bearing: CONFIG.bearing,
@@ -74,10 +79,10 @@ export function createMap() {
     attributionControl: true
   });
   // Reforça o limite mínimo também pela API, evitando que ajustes de enquadramento o contornem.
-  map.setMinZoom(CONFIG.minZoom);
+  map.setMinZoom(deviceMinZoom);
   map.setMaxZoom(CONFIG.maxZoom);
   map.on('load', () => {
-    map.setMinZoom(CONFIG.minZoom);
+    map.setMinZoom(getDeviceMinZoom());
     map.setMaxZoom(CONFIG.maxZoom);
   });
   map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
@@ -149,7 +154,7 @@ export function addMunicipalLayer(map, geojson) {
       padding: { top: 65, right: 65, bottom: 65, left: 65 },
       duration: 0,
       maxZoom: CONFIG.maxZoom,
-      minZoom: CONFIG.minZoom,
+      minZoom: getDeviceMinZoom(),
       pitch: CONFIG.pitch,
       bearing: CONFIG.bearing
     });
@@ -176,7 +181,7 @@ export function bindMapInteractions(map, geojson) {
       else coords.forEach(walk);
     };
     walk(feature.geometry.coordinates);
-    map.fitBounds(bounds, { padding: { top: 70, bottom: 70, left: 70, right: 440 }, duration: 850, maxZoom: CONFIG.maxZoom, minZoom: CONFIG.minZoom, pitch: CONFIG.pitch, bearing: CONFIG.bearing });
+    map.fitBounds(bounds, { padding: { top: 70, bottom: 70, left: 70, right: 440 }, duration: 850, maxZoom: CONFIG.maxZoom, minZoom: getDeviceMinZoom(), pitch: CONFIG.pitch, bearing: CONFIG.bearing });
     // Aguarda o início da transição de elevação antes de abrir a ficha.
     window.setTimeout(() => openMunicipality(feature), 180);
   }
@@ -251,10 +256,10 @@ export function bindMapInteractions(map, geojson) {
         pitch: CONFIG.pitch,
         bearing: CONFIG.bearing,
         duration: 900,
-        minZoom: CONFIG.minZoom,
+        minZoom: getDeviceMinZoom(),
         maxZoom: CONFIG.maxZoom
       });
-      map.setMinZoom(CONFIG.minZoom);
+      map.setMinZoom(getDeviceMinZoom());
       map.setMaxZoom(CONFIG.maxZoom);
     }
   });
