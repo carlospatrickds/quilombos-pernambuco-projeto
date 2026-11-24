@@ -1,25 +1,26 @@
-.map-stage { height:min(66vh,650px); min-height:390px; position:relative; overflow:hidden; background:radial-gradient(ellipse at 50% 48%, #34271f 0%, #211914 55%, #17120f 100%); border:1px solid rgba(222,194,164,.10); }
+.map-stage { height:min(66vh,650px); min-height:390px; position:relative; overflow:hidden; background:radial-gradient(ellipse at 50% 48%, #E9DDCB 0%, #F3EBDD 55%, #F3EBDD 100%); border:1px solid rgba(61,37,0,.16); }
 #map { position:absolute; inset:0; }
 .maplibregl-ctrl-group { background:#211a16!important; border:1px solid rgba(222,194,164,.2)!important; border-radius:2px!important; }
 .maplibregl-ctrl-group button { filter:invert(.8) sepia(.2); }
 .maplibregl-ctrl-attrib { background:rgba(23,18,15,.8)!important; color:#958577!important; }
 .maplibregl-ctrl-attrib a { color:#c79b7d!important; }
-.map-overlay { position:absolute; z-index:2; pointer-events:none; color:#c6b5a3; background:rgba(23,18,15,.72); border:1px solid rgba(222,194,164,.14); padding:8px 11px; font-size:9px; letter-spacing:1.1px; backdrop-filter:blur(8px); }
+.map-overlay { position:absolute; z-index:2; pointer-events:none; color:#5C4A38; background:rgba(251,248,241,.88); border:1px solid rgba(222,194,164,.14); padding:8px 11px; font-size:9px; letter-spacing:1.1px; backdrop-filter:blur(8px); }
 .top-left { top:14px; left:14px; }
 .bottom-left { bottom:14px; left:14px; text-transform:none; letter-spacing:.2px; font-size:11px; }
 .live-dot { width:6px; height:6px; }
-.map-compass { position:absolute; z-index:2; top:14px; right:16px; display:flex; flex-direction:column; align-items:center; color:#b8a591; font:10px Georgia,serif; }
+.map-compass { position:absolute; z-index:2; top:14px; right:16px; display:flex; flex-direction:column; align-items:center; color:#783F32; font:10px Georgia,serif; }
 .map-compass b { font-size:19px; font-weight:400; }
-.map-footer { display:flex; align-items:center; flex-wrap:wrap; gap:17px; padding:13px 2px 0; color:#948578; font-size:10px; }
+.map-footer { display:flex; align-items:center; flex-wrap:wrap; gap:17px; padding:13px 2px 0; color:#705F4B; font-size:10px; }
 .legend { display:flex; align-items:center; gap:7px; }
 .legend-swatch { width:12px; height:12px; display:inline-block; background:#79614e; border:1px solid #b18b6d; }
 .legend-swatch.selected { background:#c57b5b; border-color:#f0c19a; }
-.map-footer p { margin:0 0 0 auto; color:#75685d; }
-.map-loading,.map-error { position:absolute; z-index:5; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:rgba(23,18,15,.91); text-align:center; padding:24px; color:#d8c7b5; }
+.map-footer p { margin:0 0 0 auto; color:#806C57; }
+.map-loading,.map-error { position:absolute; z-index:5; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:rgba(243,235,221,.94); text-align:center; padding:24px; color:#3D2500; }
 .map-loading strong,.map-error strong { font:20px Georgia,serif; }
-.map-loading span,.map-error p { color:#9f8e7d; font-size:12px; line-height:1.6; max-width:390px; }
+.map-loading span,.map-error p { color:#705F4B; font-size:12px; line-height:1.6; max-width:390px; }
 .map-loading[hidden], .map-error[hidden] { display:none !important; }
-.loader { width:30px; height:30px; border:2px solid rgba(209,139,104,.2); border-top-color:#d18b68; border-radius:50%; animation:spin .8s linear infinite; }
+.loader { width:30px; height:30px; border:2px solid rgba(209,139,104,.2); border-top-color:#A85D43; border-radius:50%; animation:spin .8s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 .maplibregl-canvas { outline:none; }
 @media(max-width:720px) { .map-stage { min-height:430px; height:62vh; } .map-footer p { width:100%; margin:0; } }
+.maplibregl-ctrl-group{background:#FBF8F1!important;border:1px solid rgba(61,37,0,.22)!important}.maplibregl-ctrl-group button{filter:none!important}.maplibregl-ctrl-attrib{background:rgba(251,248,241,.9)!important;color:#705F4B!important}.maplibregl-ctrl-attrib a{color:#783F32!important}
