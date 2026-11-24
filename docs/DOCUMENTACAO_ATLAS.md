@@ -240,3 +240,7 @@ A pedido do usuário, a visualização inicial e a reinicialização passam a se
 
 ### Correção de cache e calibração final do zoom — 24/11/2026
 A captura ainda indicava 3 km, incompatível com o limite esperado. A configuração anterior não estava refletindo a alteração na tela, possivelmente por cache dos módulos. Foram acrescentados identificadores de versão às URLs de `app.js`, `mapa.js` e `config.js` para forçar o navegador a carregar a cadeia atualizada. `minZoom` foi ajustado para 4.2 (afastamento pretendido: 100 km) e `maxZoom` mantido em 7.5 (aproximação pretendida: 20 km). Perspectiva padrão 2D: pitch 0°, bearing 0°. Validar a escala efetiva após o deploy; não presumir conclusão antes do teste.
+
+
+### Aceite da navegação e encerramento da etapa — 24/11/2026
+O responsável pelo projeto informou que, após testar no celular, o comportamento do mapa está aceitável e autorizou avançar para a próxima etapa. A configuração desejada permanece: visualização inicial plana (2D), aproximação limitada a aproximadamente 20 km pelo botão (+) e afastamento limitado a aproximadamente 100 km pelo botão (−). Foi observada discrepância no computador, possivelmente relacionada a cache ou renderização, mas ela não bloqueia o avanço neste momento. A revisão em desktop fica registrada como pendência da fase de qualidade/responsividade (Fase 10). Não declarar que o comportamento desktop foi validado.
