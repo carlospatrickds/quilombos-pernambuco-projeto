@@ -1,5 +1,5 @@
 import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions } from './mapa.js?v=20261124-zoomfix2';
-import { initPanel, closePanel } from './panel.js';
+import { initPanel, closePanel } from './panel.js?v=20261125-vignette';
 
 const loading = document.querySelector('#map-loading');
 const error = document.querySelector('#map-error');
