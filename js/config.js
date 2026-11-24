@@ -11,10 +11,10 @@ export const CONFIG = {
   bearing: -8,
   extrusion: { base: 0, normal: 28, selected: 180 },
   colors: {
-    fill: '#78614f',
-    line: '#c1a58b',
-    selected: '#c67c5b',
-    background: '#211914'
+    fill: '#B78B62',
+    line: '#8D7057',
+    selected: '#A85D43',
+    background: '#E9DDCB'
   }
 };
 
