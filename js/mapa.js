@@ -197,6 +197,23 @@ export function bindMapInteractions(map, geojson) {
   document.querySelector('#reset-view').addEventListener('click', () => {
     if (selectedId !== null) map.setFeatureState({ source: SOURCE_ID, id: selectedId }, { selected: false });
     selectedId = null;
-    map.flyTo({ center: CONFIG.center, zoom: CONFIG.zoom, pitch: CONFIG.pitch, bearing: CONFIG.bearing, duration: 900 });
+
+    // Reenquadra a malha completa, independentemente do município selecionado.
+    const bounds = new maplibregl.LngLatBounds();
+    const extendCoordinates = coords => {
+      if (typeof coords[0] === 'number') bounds.extend(coords);
+      else coords.forEach(extendCoordinates);
+    };
+    geojson.features.forEach(feature => extendCoordinates(feature.geometry.coordinates));
+
+    if (!bounds.isEmpty()) {
+      map.fitBounds(bounds, {
+        padding: { top: 65, right: 65, bottom: 65, left: 65 },
+        pitch: CONFIG.pitch,
+        bearing: CONFIG.bearing,
+        duration: 900,
+        maxZoom: 7.2
+      });
+    }
   });
 }
