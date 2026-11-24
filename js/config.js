@@ -7,8 +7,9 @@ export const CONFIG = {
   localGeojsonUrl: './data/municipios-pe.geojson',
   center: [-37.9, -8.25],
   zoom: 7.2,
-  minZoom: 4.2, // Limite de afastamento: escala aproximada de 100 km.
-  maxZoom: 7.5, // Limite de aproximação: escala aproximada de 20 km.
+  minZoom: 4.2, // Desktop: afastamento máximo aproximado de 100 km.
+  mobileMinZoom: 3.2, // Celular: afastamento máximo aproximado de 200 km.
+  maxZoom: 7.5, // Aproximação máxima aproximada de 20 km em todos os dispositivos.
   pitch: 0, // Visualização padrão plana (2D).
   bearing: 0,
   extrusion: { base: 0, normal: 28, selected: 180 },
