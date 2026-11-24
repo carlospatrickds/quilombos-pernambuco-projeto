@@ -33,9 +33,9 @@ A página oficial **O Brasil Quilombola**, do IBGE, também disponibiliza distri
 | 60027 | Em territórios quilombolas |
 | 60028 | Fora de territórios quilombolas |
 
-## Extração reprodutível
+## Extração e integração
 
-Foi incluído o script `scripts/extrair_populacao_quilombola.py`, que consulta a API do IBGE diretamente, exige cobertura dos 184 municípios e interrompe a gravação se houver ausência de dados essenciais. A saída esperada é `data/populacao-quilombola-censo-2022.json`.
+A base foi obtida do CSV exportado pelo responsável pelo projeto diretamente da tabela 9578 do SIDRA e integrada em `data/populacao-quilombola-censo-2022.js`. A estrutura contém os 184 municípios pernambucanos, vinculados pelo código IBGE, com total, dentro e fora de territórios. O script `scripts/extrair_populacao_quilombola.py` permanece como alternativa para extração automatizada futura via API, mas não foi a origem do arquivo atualmente integrado.
 
 ### Como executar no Windows PowerShell
 
@@ -51,9 +51,9 @@ O script usa apenas a biblioteca padrão do Python. Não depende de pacotes adic
 
 1. O total municipal é o valor da categoria 32776.
 2. As categorias 60027 e 60028 representam, respectivamente, pessoas em e fora de territórios quilombolas oficialmente delimitados.
-3. A soma dentro + fora deve ser confrontada com o total. Divergências são registradas e não corrigidas automaticamente.
-4. Percentuais publicados pelo IBGE são preservados. Não se substitui valor ausente por zero.
-5. Município sem valor disponível não deve ser rotulado como município sem população quilombola.
+3. A soma dentro + fora deve ser confrontada com o total. Quando o IBGE inibir um ou ambos os recortes com `X`, manter o total municipal e exibir “Não divulgado” no recorte protegido.
+4. Traço (`-`) na variável de contagem foi tratado como zero de ocorrência; `X` foi tratado como dado inibido, nunca como zero.
+5. Município com recorte inibido não deve ser rotulado como município sem população quilombola.
 6. População quilombola, comunidade certificada pela Fundação Cultural Palmares e território quilombola reconhecido/delimitado são conceitos e registros distintos.
 7. A população quilombola não deve ser inferida a partir de certificações, titulações, nomes de comunidades ou estimativas locais.
 
@@ -69,11 +69,13 @@ O script usa apenas a biblioteca padrão do Python. Não depende de pacotes adic
 
 ## Situação em 24/11/2026
 
-**Em andamento — fonte e estrutura confirmadas; extração municipal ainda não validada.** A consulta aos metadados da tabela 9578 confirmou que ela contém os quatro indicadores descritos, a classificação 2661 com as três categorias (total, em e fora de territórios quilombolas) e abrangência municipal N6. O painel oficial do IBGE também apresenta distribuição espacial municipal. O endpoint registrado no script é uma consulta proposta e ainda precisa ser executado e confrontado com o SIDRA antes de ser considerado validado. Nenhum número municipal foi publicado no Atlas.
+**Base municipal integrada ao painel.** O CSV exportado da tabela 9578 foi lido e estruturado para os 184 municípios de Pernambuco. O agregado estadual confere exatamente com a linha UF da própria tabela: total de **78.864**, sendo **6.769** residentes em territórios quilombolas e **72.095** fora de territórios.
 
-### Referência do total estadual
+Os municípios Correntes (código 2604700) e Terra Nova (código 2615201) apresentam população quilombola total (2 e 51, respectivamente), mas a tabela informa `X` para os dois recortes de localização. O `X` é preservado como dado inibido e aparece no painel como “Não divulgado”; não é convertido em zero. Traços (`-`) na tabela foram tratados como ausência de ocorrência na contagem e representados como zero no conjunto municipal.
 
-A captura do painel oficial do IBGE consultada em 24/11/2026 pelo responsável pelo projeto mostra **78.864 pessoas quilombolas em Pernambuco**. Uma publicação anterior baseada nos primeiros resultados do Censo registra 78.827. Esses valores não devem ser misturados: a diferença deve ser tratada como possível atualização/revisão da divulgação e a extração municipal deverá ser confrontada com a versão efetivamente retornada pela tabela 9578 na data da consulta. O valor de 78.864 fica registrado como referência visual do painel atual, ainda sujeito à conferência com o agregado estadual da API.
+A soma dos valores municipais não inibidos dos recortes dentro/fora não reproduz os totais estaduais porque os valores de Correntes e Terra Nova estão protegidos: a diferença agregada é 20 pessoas no recorte “dentro” e 33 no recorte “fora”, totalizando as 53 pessoas desses dois municípios.
+
+A soma dos totais quilombolas dos 184 municípios confere com 78.864. A auditoria dos percentuais municipais e a conferência visual da interface permanecem como etapas seguintes.
 
 ## Referências
 
