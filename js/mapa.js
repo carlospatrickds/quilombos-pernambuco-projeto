@@ -104,7 +104,7 @@ export function addMunicipalLayer(map, geojson) {
     id: 'municipios-lines-halo', type: 'line', source: SOURCE_ID,
     paint: {
       'line-color': '#F3EBDD',
-      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 5.5, 6, 7, 8, 8.5, 10, 10],
+      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 2.75, 6, 3.5, 8, 4.25, 10, 5],
       'line-opacity': 1,
       'line-blur': 0
     }
@@ -113,7 +113,7 @@ export function addMunicipalLayer(map, geojson) {
     id: LINE_ID, type: 'line', source: SOURCE_ID,
     paint: {
       'line-color': '#3D2500',
-      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 3.6, 6, 4.8, 8, 6, 10, 7],
+      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 1.8, 6, 2.4, 8, 3, 10, 3.5],
       'line-opacity': 1,
       'line-blur': 0
     }
