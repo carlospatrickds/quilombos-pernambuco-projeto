@@ -9,7 +9,7 @@ export const CONFIG = {
   zoom: 6.1,
   pitch: 55,
   bearing: -8,
-  extrusion: { base: 0, normal: 7, selected: 135 },
+  extrusion: { base: 0, normal: 28, selected: 180 },
   colors: {
     fill: '#78614f',
     line: '#c1a58b',

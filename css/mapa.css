@@ -18,7 +18,7 @@
 .map-loading,.map-error { position:absolute; z-index:5; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:rgba(23,18,15,.91); text-align:center; padding:24px; color:#d8c7b5; }
 .map-loading strong,.map-error strong { font:20px Georgia,serif; }
 .map-loading span,.map-error p { color:#9f8e7d; font-size:12px; line-height:1.6; max-width:390px; }
-.map-error[hidden] { display:none; }
+.map-loading[hidden], .map-error[hidden] { display:none !important; }
 .loader { width:30px; height:30px; border:2px solid rgba(209,139,104,.2); border-top-color:#d18b68; border-radius:50%; animation:spin .8s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 .maplibregl-canvas { outline:none; }

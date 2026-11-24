@@ -121,3 +121,20 @@ MapLibre GL JS 4.7.1, carregada por CDN. O projeto não utiliza framework ou bui
 - Corrigida a regra CSS do estado `hidden` do carregador, que podia permanecer sobre o mapa mesmo após a carga dos 185 polígonos.
 - O mapa agora calcula os limites do GeoJSON e enquadra automaticamente todo o território de Pernambuco.
 - Reforçada discretamente a extrusão padrão para tornar o relevo perceptível em escala estadual.
+
+
+## Publicar no GitHub Pages
+
+1. Envie a pasta inteira `quilombos-pernambuco` para a raiz do repositório (o arquivo `index.html` precisa ficar na raiz publicada).
+2. No GitHub, abra **Settings → Pages**.
+3. Em **Build and deployment**, selecione **Deploy from a branch**.
+4. Escolha a branch `main` e a pasta `/ (root)`; salve.
+5. Aguarde o GitHub informar o endereço publicado.
+
+O projeto usa caminhos relativos (`./css`, `./js`, `./data`), adequados a um site de projeto no formato `https://usuario.github.io/nome-do-repositorio/`. Não renomeie nem mova isoladamente as pastas `css`, `js` e `data`.
+
+Se abrir no GitHub o código-fonte do repositório, isso não é o site publicado. Use o endereço exibido em **Settings → Pages**. Para diagnosticar o endereço público específico, é necessário conferir a URL do repositório e a URL do Pages.
+
+## Nomes dos municípios
+
+O GeoJSON da API de Malhas do IBGE fornece o atributo `codarea` (geocódigo), que identifica o polígono. O aplicativo consulta também a API de Localidades do IBGE e associa o nome oficial pelo código de sete dígitos. Os rótulos aparecem ao aproximar o mapa para evitar sobreposição de 184 nomes em uma visão estadual; o nome também aparece na ficha ao selecionar a área.

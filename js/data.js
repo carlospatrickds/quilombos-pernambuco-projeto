@@ -17,10 +17,10 @@ export function normalizeFeature(feature, index) {
   const code = firstValue(props, CODE_KEYS);
   return {
     ...feature,
-    id: String(code ?? index + 1),
+    id: String(code ?? index + 1).padStart(7, '0'),
     properties: {
       ...props,
-      _app_id: String(code ?? index + 1),
+      _app_id: String(code ?? index + 1).padStart(7, '0'),
       _app_name: String(name),
       _app_code: code ? String(code) : 'Não identificado'
     }

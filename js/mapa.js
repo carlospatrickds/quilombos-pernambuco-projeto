@@ -14,17 +14,45 @@ async function fetchGeoJSON(url) {
   return normalizeCollection(data);
 }
 
+async function attachMunicipalityNames(collection) {
+  const url = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/26/municipios';
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`API de localidades do IBGE respondeu HTTP ${response.status}`);
+  const municipalities = await response.json();
+  const namesByCode = new Map(municipalities.map(item => [String(item.id).padStart(7, '0'), item.nome]));
+
+  collection.features = collection.features.map(feature => {
+    const code = String(feature.properties._app_code || feature.properties._app_id).padStart(7, '0');
+    const officialName = namesByCode.get(code);
+    feature.properties._app_code = code;
+    feature.properties._app_id = code;
+    feature.id = code;
+    feature.properties._app_name = officialName || feature.properties._app_name || 'Fernando de Noronha / área especial';
+    return feature;
+  });
+  return collection;
+}
+
 export async function loadMunicipalities() {
+  let collection;
   try {
-    return await fetchGeoJSON(CONFIG.localGeojsonUrl);
+    collection = await fetchGeoJSON(CONFIG.localGeojsonUrl);
   } catch (localError) {
     console.info('GeoJSON local indisponível; consultando a API oficial do IBGE.', localError);
   }
+  if (!collection) {
+    try {
+      collection = await fetchGeoJSON(CONFIG.geojsonUrl);
+    } catch (ibgeError) {
+      console.warn('API de malhas do IBGE indisponível; tentando a malha estadual CONDEPE/FIDEM.', ibgeError);
+      collection = await fetchGeoJSON(CONFIG.fallbackGeojsonUrl);
+    }
+  }
   try {
-    return await fetchGeoJSON(CONFIG.geojsonUrl);
-  } catch (ibgeError) {
-    console.warn('API de malhas do IBGE indisponível; tentando a malha estadual CONDEPE/FIDEM.', ibgeError);
-    return await fetchGeoJSON(CONFIG.fallbackGeojsonUrl);
+    return await attachMunicipalityNames(collection);
+  } catch (nameError) {
+    console.warn('Não foi possível consultar os nomes oficiais no serviço de Localidades do IBGE.', nameError);
+    return collection;
   }
 }
 
@@ -74,7 +102,40 @@ export function addMunicipalLayer(map, geojson) {
     id: LINE_ID, type: 'line', source: SOURCE_ID,
     paint: { 'line-color': CONFIG.colors.line, 'line-width': 0.8, 'line-opacity': 0.75 }
   });
-  map.setLight({ anchor: 'viewport', color: '#fff0dc', intensity: 0.38, position: [1.2, 160, 70] });
+  map.addLayer({
+    id: 'municipios-labels', type: 'symbol', source: SOURCE_ID,
+    minzoom: 7.1,
+    layout: {
+      'text-field': ['get', '_app_name'],
+      'text-font': ['Open Sans Regular'],
+      'text-size': ['interpolate', ['linear'], ['zoom'], 7, 8, 9, 11],
+      'text-max-width': 8,
+      'text-allow-overlap': false,
+      'text-ignore-placement': false
+    },
+    paint: {
+      'text-color': '#f0dfca',
+      'text-halo-color': '#211914',
+      'text-halo-width': 1.4,
+      'text-opacity': 0.95
+    }
+  });
+  map.setLight({ anchor: 'viewport', color: '#fff0dc', intensity: 0.48, position: [1.2, 160, 70] });
+
+  // Enquadra todo o território de Pernambuco automaticamente.
+  const bounds = new maplibregl.LngLatBounds();
+  const extendCoordinates = (coordinates) => {
+    if (typeof coordinates[0] === 'number') bounds.extend(coordinates);
+    else coordinates.forEach(extendCoordinates);
+  };
+  geojson.features.forEach(feature => extendCoordinates(feature.geometry.coordinates));
+  if (!bounds.isEmpty()) {
+    map.fitBounds(bounds, {
+      padding: { top: 65, right: 65, bottom: 65, left: 65 },
+      duration: 0,
+      maxZoom: 7.2
+    });
+  }
 }
 
 function getFeatureByName(geojson, value) {
