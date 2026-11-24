@@ -52,6 +52,11 @@ O atlas é um produto educacional em desenvolvimento. Não substitui cadastros o
 ## 4. Base estatística — desenho metodológico
 
 ### 4.1 População municipal total
+- **Status em 24/11/2026:** base integrada para os 184 municípios; dados apresentados no painel municipal.
+- **Arquivo no projeto:** `data/populacao-municipal-censo-2022.js`.
+- **Total dos 184 municípios:** 9.055.764 pessoas.
+- **Fernando de Noronha:** 3.167 pessoas; mantido fora da camada municipal por ser distrito estadual.
+- **Conferência:** 9.055.764 + 3.167 = 9.058.931, total estadual publicado pelo IBGE para 2022.
 - **Fonte primária:** IBGE, Censo Demográfico 2022, SIDRA, tabela 4709 — população residente.
 - **Fonte estadual de apoio/organização:** Observatório de Pernambuco, CONDEPE/FIDEM, fonte `sidra_censo_2022`.
 - **Unidade:** pessoas.
@@ -63,7 +68,7 @@ O atlas é um produto educacional em desenvolvimento. Não substitui cadastros o
   - https://sidra.ibge.gov.br/tabela/4709
   - https://www.cf.pe.gov.br/observatorio/fontes/sidra_censo_2022
 
-A tabela 4709 e a série da CONDEPE/FIDEM devem ser confrontadas antes da incorporação. Para a camada municipal, filtrar apenas os 184 municípios de Pernambuco e manter Fernando de Noronha separado, sem tratá-lo como município.
+A série municipal foi incorporada a partir da tabela por localidade da CONDEPE/FIDEM, que identifica o IBGE como fonte original. Os 184 registros foram associados por código IBGE. Fernando de Noronha foi separado, pois a própria fonte informa que a tabela inclui o distrito estadual além dos 184 municípios. A soma dos 184 municípios (9.055.764) com Fernando de Noronha (3.167) confere com o total estadual do IBGE (9.058.931). A conferência aritmética não substitui futura comparação linha a linha com a extração direta do SIDRA.
 
 ### 4.2 População quilombola
 - **Fonte primária:** IBGE, Censo Demográfico 2022, SIDRA, tabela 9578 — população residente, total e quilombola, por localização do domicílio.
