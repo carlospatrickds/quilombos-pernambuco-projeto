@@ -10,7 +10,8 @@ Protótipo modular de mapa municipal 3D com estética cartográfica elevada e fu
 - Município selecionado elevado e destacado.
 - Painel lateral com ficha territorial.
 - Busca por nome do município.
-- Estrutura separada para dados demográficos, comunidades, textos e fotografias.
+- População municipal do Censo 2022 integrada para os 184 municípios, por código IBGE.
+- Estrutura separada para dados quilombolas, comunidades, textos e fotografias.
 - Campos sem dados exibem “A verificar”; nenhum valor municipal foi inventado.
 
 ## Fonte cartográfica
@@ -84,7 +85,7 @@ quilombos-pernambuco/
 
 ## Como adicionar dados municipais
 
-Os dados ficam separados da geometria. Edite `js/data.js` e preencha `MUNICIPAL_DATA` com a chave do código IBGE:
+Os dados ficam separados da geometria. A população municipal de 2022 está em `data/populacao-municipal-censo-2022.js` e é conectada por `js/data.js`. Os dados quilombolas e editoriais serão incorporados usando a chave do código IBGE:
 
 ```js
 export const MUNICIPAL_DATA = {
@@ -106,7 +107,7 @@ Não use os zeros do exemplo como dado real. Informe números apenas quando a fo
 ## Próximas etapas recomendadas
 
 1. Confirmar o esquema de atributos do GeoJSON após o download.
-2. Integrar tabelas municipais de população total e população quilombola do Censo 2022.
+2. Integrar e validar a população quilombola municipal do Censo 2022 (tabela SIDRA 9578).
 3. Construir uma base revisada de comunidades quilombolas por município, distinguindo certificação, reconhecimento e titulação.
 4. Inserir fotografias com autorização, crédito e legenda.
 5. Acrescentar fontes e referências em cada ficha.
