@@ -5,6 +5,61 @@ const $ = (selector) => document.querySelector(selector);
 const panel = $('#municipio-panel');
 const backdrop = $('#panel-backdrop');
 
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function renderMunicipalityVignette(feature) {
+  const host = $('#municipality-vignette');
+  host.replaceChildren();
+  const geometry = feature?.geometry;
+  if (!geometry || !['Polygon', 'MultiPolygon'].includes(geometry.type)) return;
+
+  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+  const positions = [];
+  const collect = value => {
+    if (Array.isArray(value) && typeof value[0] === 'number' && typeof value[1] === 'number') positions.push(value);
+    else if (Array.isArray(value)) value.forEach(collect);
+  };
+  collect(geometry.coordinates);
+  if (!positions.length) return;
+
+  const xs = positions.map(point => point[0]);
+  const ys = positions.map(point => point[1]);
+  const minX = Math.min(...xs), maxX = Math.max(...xs);
+  const minY = Math.min(...ys), maxY = Math.max(...ys);
+  const width = Math.max(maxX - minX, 1e-9);
+  const height = Math.max(maxY - minY, 1e-9);
+  const pad = 9, viewWidth = 220, viewHeight = 130;
+  const scale = Math.min((viewWidth - pad * 2) / width, (viewHeight - pad * 2) / height);
+  const drawnWidth = width * scale, drawnHeight = height * scale;
+  const offsetX = (viewWidth - drawnWidth) / 2;
+  const offsetY = (viewHeight - drawnHeight) / 2;
+
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${viewWidth} ${viewHeight}`);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', `Contorno cartográfico do município de ${feature.properties?._app_name || 'selecionado'}`);
+  svg.classList.add('municipality-vignette-svg');
+
+  polygons.forEach(polygon => {
+    polygon.forEach(ring => {
+      const commands = ring.map((point, index) => {
+        const x = offsetX + (point[0] - minX) * scale;
+        const y = viewHeight - (offsetY + (point[1] - minY) * scale);
+        return `${index === 0 ? 'M' : 'L'} ${x.toFixed(2)} ${y.toFixed(2)}`;
+      });
+      if (commands.length) {
+        commands.push('Z');
+        const path = document.createElementNS(SVG_NS, 'path');
+        path.setAttribute('d', commands.join(' '));
+        path.setAttribute('class', 'municipality-vignette-shape');
+        svg.append(path);
+      }
+    });
+  });
+  host.append(svg);
+}
+
 function formatNumber(value) {
   if (value === null) return 'Não divulgado';
   if (value === undefined || value === '') return 'A verificar';
@@ -17,6 +72,7 @@ export function openMunicipality(feature) {
   const name = p._app_name || 'Município';
   const data = MUNICIPAL_DATA[id] || {};
 
+  renderMunicipalityVignette(feature);
   $('#panel-title').textContent = name;
   $('#panel-code').textContent = `Código IBGE: ${p._app_code || 'A confirmar'}`;
   $('#population-total').textContent = formatNumber(data.populationTotal);
