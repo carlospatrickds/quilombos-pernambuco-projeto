@@ -14,7 +14,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 |---|---|---|
 | 0 | Estrutura modular, mapa 3D, painel municipal, busca/autocomplete e GitHub Pages | Concluída funcionalmente |
 | 1 | População total municipal — Censo 2022 | Concluída — base integrada e conferida |
-| 2 | População quilombola municipal — Censo 2022 | Em andamento — tabela e recortes confirmados; extração pendente |
+| 2 | População quilombola municipal — Censo 2022 | Integrada ao painel — auditoria e percentuais em continuidade |
 | 3 | Percentual quilombola por município e validação estatística | Pendente |
 | 4 | Cadastro de comunidades quilombolas por município | Pendente |
 | 5 | Situação de certificação e regularização territorial | Pendente |
@@ -69,14 +69,15 @@ Fontes:
 Tarefas:
 - [x] Identificar a tabela 9578 do SIDRA como fonte principal para população total e quilombola por município.
 - [x] Confirmar metadados das quatro variáveis, classificação 2661 e abrangência municipal N6.
-- [ ] Extrair os dados de Pernambuco por município.
-- [ ] Preservar população quilombola total e, quando disponíveis, os recortes em/fora de territórios oficialmente delimitados.
-- [ ] Verificar se as categorias podem ser somadas sem dupla contagem.
-- [ ] Conferir o total estadual e registrar diferenças de publicação/versão.
-- [ ] Integrar a base com os códigos IBGE.
-- [ ] Apresentar fonte, ano e data de consulta na ficha.
+- [x] Extrair os dados do CSV oficial SIDRA 9578 enviado pelo responsável pelo projeto.
+- [x] Integrar 184 municípios por código IBGE.
+- [x] Preservar população quilombola total e recortes dentro/fora.
+- [x] Tratar X como dado inibido, exibindo “Não divulgado”, nunca zero.
+- [x] Conferir total estadual de 78.864; dentro 6.769; fora 72.095.
+- [x] Conectar os campos à ficha municipal e registrar fonte, ano e consulta.
+- [ ] Auditar percentuais municipais e a correspondência linha a linha com o arquivo bruto.
 
-**Situação em 24/11/2026:** fonte e estrutura confirmadas; endpoint de extração ainda não executado/validado. O painel oficial IBGE consultado pelo responsável pelo projeto apresenta 78.864 pessoas quilombolas em Pernambuco; publicação anterior dos primeiros resultados registra 78.827. A diferença será verificada contra a versão efetiva da tabela SIDRA na extração.
+**Situação em 24/11/2026:** base municipal extraída do CSV exportado da tabela 9578 e integrada ao painel. O agregado estadual confere: total 78.864; em territórios 6.769; fora de territórios 72.095. Correntes (2 pessoas) e Terra Nova (51 pessoas) têm total publicado, mas os recortes dentro/fora aparecem como X (dado inibido). A auditoria dos percentuais e a validação final da interface permanecem em andamento.
 
 **Critério de aceite:** valor municipal reproduzível a partir da tabela oficial, com recorte e método explicitados.
 
