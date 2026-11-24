@@ -13,7 +13,7 @@ export const CONFIG = {
   colors: {
     fill: '#B78B62',
     line: '#3D2500',
-    selected: '#A85D43',
+    selected: '#D66A32',
     background: '#E9DDCB'
   }
 };
