@@ -232,3 +232,7 @@ Após teste do usuário, o limite mínimo foi ajustado de `7.2` para `6.2` para 
 
 ### Correção da aproximação excessiva — 24/11/2026
 O usuário constatou que o limite anterior permitia aproximação até aproximadamente 5 km, abaixo do desejado. Reduzido `maxZoom` de `10.6` para `9.6` (redução de um nível de zoom, equivalente aproximadamente a dobrar a largura da escala: 5 km → 10 km). Mantido `minZoom: 6.2` para o afastamento pretendido de aproximadamente 100 km. Não alterar novamente os dois limites em conjunto: `minZoom` controla o afastamento máximo; `maxZoom` controla a aproximação máxima.
+
+
+### Revisão de navegação e perspectiva — 24/11/2026
+A pedido do usuário, a visualização inicial e a reinicialização passam a ser planas (2D): `pitch: 0` e `bearing: 0`. Os limites de zoom foram redefinidos considerando o sentido dos controles MapLibre: o botão **menos (−)** afasta e deve parar próximo da escala de 100 km (`minZoom: 5.2`); o botão **mais (+)** aproxima e deve parar próximo de 20 km (`maxZoom: 7.5`). Os níveis são calibração inicial baseada nas capturas de tela e devem ser conferidos na barra de escala do dispositivo; a escala varia com a dimensão do contêiner e a latitude. A ficha de município também respeita os mesmos limites.
