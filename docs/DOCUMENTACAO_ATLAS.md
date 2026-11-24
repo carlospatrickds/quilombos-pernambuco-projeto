@@ -49,6 +49,21 @@ O atlas é um produto educacional em desenvolvimento. Não substitui cadastros o
 9. Dados e cartografia devem ser versionados, com data de extração e nota sobre eventuais revisões.
 10. O conteúdo histórico deve ser contextualizado e revisado; não reduzir a experiência quilombola ao período escravista ou a uma representação rural homogênea.
 
+
+## 3.1 Diretriz de contraste e legibilidade do painel municipal
+
+A revisão visual de 24/11/2026 definiu que os textos dos cartões demográficos devem usar contraste alto sobre o fundo areia, aproximando-se do marrom escuro da paleta editorial. Evitar tons bege, areia ou marrom claro em textos informativos, especialmente em telas móveis.
+
+- Fundo dos cartões: areia quente `#F1E5D3`.
+- Rótulos dos indicadores: marrom intenso `#3D2500`.
+- Valores numéricos: marrom avermelhado `#783F32`.
+- Textos auxiliares e códigos: marrom escuro `#4F3C28`.
+- Texto descritivo: grafite amarronzado `#3D342B`.
+- Rótulos com tamanho mínimo de 12 px e peso semibold; textos auxiliares com 11 px ou mais.
+- Não reduzir contraste em nome de uma aparência suave; a prioridade é leitura confortável e acessibilidade.
+
+Ajuste implementado em `css/painel.css` após avaliação do usuário em capturas reais de celular. Essa diretriz deve ser mantida em futuras alterações do painel.
+
 ## 4. Base estatística — desenho metodológico
 
 ### 4.1 População municipal total
