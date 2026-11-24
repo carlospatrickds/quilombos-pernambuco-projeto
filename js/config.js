@@ -7,6 +7,7 @@ export const CONFIG = {
   localGeojsonUrl: './data/municipios-pe.geojson',
   center: [-37.9, -8.25],
   zoom: 6.1,
+  maxZoom: 8.2, // Limita a aproximação para preservar o contexto territorial e a seleção dos municípios.
   pitch: 75, // Inclinação aumentada em 20 graus em relação à configuração anterior.
   bearing: -8,
   extrusion: { base: 0, normal: 28, selected: 180 },
