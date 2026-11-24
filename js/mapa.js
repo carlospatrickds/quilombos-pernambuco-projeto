@@ -100,7 +100,12 @@ export function addMunicipalLayer(map, geojson) {
   });
   map.addLayer({
     id: LINE_ID, type: 'line', source: SOURCE_ID,
-    paint: { 'line-color': CONFIG.colors.line, 'line-width': 0.8, 'line-opacity': 0.75 }
+    paint: {
+      'line-color': CONFIG.colors.line,
+      'line-width': ['interpolate', ['linear'], ['zoom'], 5, 1.15, 7, 1.45, 10, 1.8],
+      'line-opacity': 0.96,
+      'line-blur': 0
+    }
   });
   map.addLayer({
     id: 'municipios-labels', type: 'symbol', source: SOURCE_ID,
