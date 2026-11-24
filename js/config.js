@@ -7,7 +7,7 @@ export const CONFIG = {
   localGeojsonUrl: './data/municipios-pe.geojson',
   center: [-37.9, -8.25],
   zoom: 6.1,
-  pitch: 55,
+  pitch: 75, // Inclinação aumentada em 20 graus em relação à configuração anterior.
   bearing: -8,
   extrusion: { base: 0, normal: 28, selected: 180 },
   colors: {
