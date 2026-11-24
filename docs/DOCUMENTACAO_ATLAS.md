@@ -244,3 +244,7 @@ A captura ainda indicava 3 km, incompatível com o limite esperado. A configura�
 
 ### Aceite da navegação e encerramento da etapa — 24/11/2026
 O responsável pelo projeto informou que, após testar no celular, o comportamento do mapa está aceitável e autorizou avançar para a próxima etapa. A configuração desejada permanece: visualização inicial plana (2D), aproximação limitada a aproximadamente 20 km pelo botão (+) e afastamento limitado a aproximadamente 100 km pelo botão (−). Foi observada discrepância no computador, possivelmente relacionada a cache ou renderização, mas ela não bloqueia o avanço neste momento. A revisão em desktop fica registrada como pendência da fase de qualidade/responsividade (Fase 10). Não declarar que o comportamento desktop foi validado.
+
+
+### Ajuste responsivo do afastamento máximo — 24/11/2026
+A pedido do responsável, o afastamento máximo no celular foi ampliado de aproximadamente 100 km para aproximadamente 200 km, pois a área útil da tela é menor. A configuração agora diferencia dispositivos por largura de viewport: desktop `minZoom: 4.2` (alvo ~100 km), celular até 700 px `mobileMinZoom: 3.2` (alvo ~200 km). O limite de aproximação permanece `maxZoom: 7.5` (alvo ~20 km) em ambos. A seleção de município, enquadramento automático e botão de reinicialização usam o limite correspondente ao dispositivo. O mapa permanece 2D por padrão. Escalas em km são aproximadas e devem ser conferidas em cada viewport.
