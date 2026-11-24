@@ -8,7 +8,7 @@ export const CONFIG = {
   center: [-37.9, -8.25],
   zoom: 7.2,
   minZoom: 6.2, // Afastamento máximo aproximado: escala de 100 km.
-  maxZoom: 10.6, // Aproximação máxima aproximada: escala de 10 km.
+  maxZoom: 9.6, // Aproximação máxima aproximada: escala de 10 km.
   pitch: 75, // Inclinação padrão restaurada pelo botão de reinicialização.
   bearing: -8,
   extrusion: { base: 0, normal: 28, selected: 180 },
