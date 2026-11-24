@@ -57,6 +57,10 @@ O script usa apenas a biblioteca padrão do Python. Não depende de pacotes adic
 6. População quilombola, comunidade certificada pela Fundação Cultural Palmares e território quilombola reconhecido/delimitado são conceitos e registros distintos.
 7. A população quilombola não deve ser inferida a partir de certificações, titulações, nomes de comunidades ou estimativas locais.
 
+## Diretriz visual do painel
+
+Os indicadores demográficos devem manter alto contraste: rótulos em `#3D2500`, valores em `#783F32`, textos auxiliares em `#4F3C28` e fundo dos cartões em `#F1E5D3`. Evitar tipografia em bege claro ou tons apagados. Diretriz registrada em 24/11/2026 após avaliação em dispositivo móvel.
+
 ## Critérios de aceite
 
 - 184 municípios identificados por código IBGE.
