@@ -138,3 +138,10 @@ Se abrir no GitHub o código-fonte do repositório, isso não é o site publicad
 ## Nomes dos municípios
 
 O GeoJSON da API de Malhas do IBGE fornece o atributo `codarea` (geocódigo), que identifica o polígono. O aplicativo consulta também a API de Localidades do IBGE e associa o nome oficial pelo código de sete dígitos. Os rótulos aparecem ao aproximar o mapa para evitar sobreposição de 184 nomes em uma visão estadual; o nome também aparece na ficha ao selecionar a área.
+
+
+## Documentação e roadmap do projeto
+
+A documentação consolidada de escopo, fontes, metodologia, estado atual e regras de dados está em [docs/DOCUMENTACAO_ATLAS.md](docs/DOCUMENTACAO_ATLAS.md). O planejamento por fases, tarefas e critérios de aceite está em [ROADMAP.md](ROADMAP.md).
+
+Última consolidação documental: 24/11/2026.
