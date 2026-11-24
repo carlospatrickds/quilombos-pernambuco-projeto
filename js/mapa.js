@@ -73,6 +73,13 @@ export function createMap() {
     antialias: true,
     attributionControl: true
   });
+  // Reforça o limite mínimo também pela API, evitando que ajustes de enquadramento o contornem.
+  map.setMinZoom(CONFIG.minZoom);
+  map.setMaxZoom(CONFIG.maxZoom);
+  map.on('load', () => {
+    map.setMinZoom(CONFIG.minZoom);
+    map.setMaxZoom(CONFIG.maxZoom);
+  });
   map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
   map.addControl(new maplibregl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-right');
   return map;
@@ -247,6 +254,8 @@ export function bindMapInteractions(map, geojson) {
         minZoom: CONFIG.minZoom,
         maxZoom: CONFIG.maxZoom
       });
+      map.setMinZoom(CONFIG.minZoom);
+      map.setMaxZoom(CONFIG.maxZoom);
     }
   });
 }
