@@ -39,7 +39,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 - [x] Busca com autocomplete por trecho do nome.
 - [x] Identidade visual editorial alinhada ao e-book.
 - [x] Publicação pelo GitHub Pages.
-- [x] Limites de navegação configurados para aproximadamente 20 km de aproximação e 100 km de afastamento; comportamento considerado aceitável no celular.
+- [x] Limites responsivos: aproximadamente 20 km de aproximação em todos os dispositivos; afastamento de aproximadamente 100 km no desktop e 200 km no celular.
 - [ ] Revisar posteriormente a discrepância de escala/cache observada no computador.
 - [x] Campos sem informação apresentados como pendentes.
 
