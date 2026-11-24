@@ -20,6 +20,8 @@ export function openMunicipality(feature) {
   $('#panel-code').textContent = `Código IBGE: ${p._app_code || 'A confirmar'}`;
   $('#population-total').textContent = formatNumber(data.populationTotal);
   $('#population-quilombola').textContent = formatNumber(data.populationQuilombola);
+  $('#population-quilombola-inside').textContent = formatNumber(data.populationQuilombolaInside);
+  $('#population-quilombola-outside').textContent = formatNumber(data.populationQuilombolaOutside);
 
   const share = (Number.isFinite(data.populationTotal) && data.populationTotal > 0 &&
     Number.isFinite(data.populationQuilombola))
@@ -65,7 +67,7 @@ export function openMunicipality(feature) {
   const populationSource = data.populationTotalSource;
   $('#source-copy').textContent = data.sourceNote ||
     (populationSource
-      ? `População municipal: IBGE, Censo Demográfico 2022, SIDRA tabela 4709, variável 93. Dados organizados pela CONDEPE/FIDEM. Consulta: 24/11/2026. População quilombola e informações comunitárias ainda serão integradas. Geometria: malha municipal, edição 2025.`
+      ? `População municipal: IBGE, Censo Demográfico 2022, SIDRA tabela 4709, variável 93. Dados organizados pela CONDEPE/FIDEM. Consulta: 24/11/2026. População quilombola total e recortes de residentes dentro e fora de territórios oficialmente delimitados serão apresentados após validação municipal. Geometria: malha municipal, edição 2025.`
       : 'A geometria vem da Malha Municipal de Pernambuco. Indicadores demográficos e informações comunitárias ainda não foram conectados.');
   backdrop.hidden = false;
   requestAnimationFrame(() => panel.classList.add('open'));
