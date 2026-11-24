@@ -228,3 +228,7 @@ A captura de teste mostrou que o mapa ainda permitia afastamento até escala de 
 
 ### Ajuste fino do afastamento máximo (24/11/2026)
 Após teste do usuário, o limite mínimo foi ajustado de `7.2` para `6.2` para permitir um nível adicional de afastamento, visando retornar à escala aproximada de 100 km (em vez de parar em 50 km). O zoom inicial permanece em `7.2`, e o limite de aproximação permanece em `10.6`. Validar a escala real no dispositivo após publicação.
+
+
+### Correção da aproximação excessiva — 24/11/2026
+O usuário constatou que o limite anterior permitia aproximação até aproximadamente 5 km, abaixo do desejado. Reduzido `maxZoom` de `10.6` para `9.6` (redução de um nível de zoom, equivalente aproximadamente a dobrar a largura da escala: 5 km → 10 km). Mantido `minZoom: 6.2` para o afastamento pretendido de aproximadamente 100 km. Não alterar novamente os dois limites em conjunto: `minZoom` controla o afastamento máximo; `maxZoom` controla a aproximação máxima.
