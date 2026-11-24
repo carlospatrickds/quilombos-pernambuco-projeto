@@ -76,7 +76,7 @@ def main():
     municipalities = {}
     for row in rows[1:]:
         code = str(row.get("D1C", "")).strip()
-        if not re.fullmatch(r"26\\d{5}", code):
+        if not re.fullmatch(r"26\d{5}", code):
             continue
         variable = str(row.get("D2C", "")).strip()
         location = str(row.get("D4C", "")).strip()
@@ -102,8 +102,9 @@ def main():
         if not item["name"]:
             missing.append(f"{code}: nome ausente")
         for location in LOCATIONS.values():
-            if "populationQuilombola" not in item[location]:
-                missing.append(f"{code}: população quilombola ausente em {location}")
+            for field in ("populationTotal", "populationQuilombola"):
+                if item[location].get(field) is None:
+                    missing.append(f"{code}: {field} ausente em {location}")
     if missing:
         raise SystemExit(
             "Há valores ausentes na extração; nenhum arquivo foi gravado:\n"
@@ -152,7 +153,7 @@ def main():
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
-        json.dumps(result, ensure_ascii=False, indent=2) + "\\n",
+        json.dumps(result, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8"
     )
     print(f"Extração concluída: {len(municipalities)} municípios.")
