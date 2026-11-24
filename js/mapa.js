@@ -102,8 +102,8 @@ export function addMunicipalLayer(map, geojson) {
     id: LINE_ID, type: 'line', source: SOURCE_ID,
     paint: {
       'line-color': CONFIG.colors.line,
-      'line-width': ['interpolate', ['linear'], ['zoom'], 5, 1.15, 7, 1.45, 10, 1.8],
-      'line-opacity': 0.96,
+      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 2.8, 6, 3.8, 8, 5.2, 10, 6.2],
+      'line-opacity': 1,
       'line-blur': 0
     }
   });
