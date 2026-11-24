@@ -224,3 +224,7 @@ Em 24/11/2026 foi definido limite de zoom máximo `8.2` no MapLibre GL JS, aplic
 
 ### Correção adicional — reforço dos limites de zoom (24/11/2026)
 A captura de teste mostrou que o mapa ainda permitia afastamento até escala de 1.000 km. O código foi corrigido para aplicar `setMinZoom(7.2)` e `setMaxZoom(10.6)` diretamente na instância do mapa, tanto na criação quanto após o evento `load` e na reinicialização. O resultado precisa ser novamente validado no site publicado, pois a escala exibida depende também do dispositivo e do tamanho do contêiner.
+
+
+### Ajuste fino do afastamento máximo (24/11/2026)
+Após teste do usuário, o limite mínimo foi ajustado de `7.2` para `6.2` para permitir um nível adicional de afastamento, visando retornar à escala aproximada de 100 km (em vez de parar em 50 km). O zoom inicial permanece em `7.2`, e o limite de aproximação permanece em `10.6`. Validar a escala real no dispositivo após publicação.
