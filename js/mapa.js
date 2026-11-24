@@ -98,11 +98,22 @@ export function addMunicipalLayer(map, geojson) {
       'fill-extrusion-vertical-gradient': true
     }
   });
+  // Contorno cartográfico reforçado: camada de halo + traço principal.
+  // As duas camadas ficam acima das extrusões para preservar a leitura das divisas.
+  map.addLayer({
+    id: 'municipios-lines-halo', type: 'line', source: SOURCE_ID,
+    paint: {
+      'line-color': '#F3EBDD',
+      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 5.5, 6, 7, 8, 8.5, 10, 10],
+      'line-opacity': 1,
+      'line-blur': 0
+    }
+  });
   map.addLayer({
     id: LINE_ID, type: 'line', source: SOURCE_ID,
     paint: {
-      'line-color': CONFIG.colors.line,
-      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 2.8, 6, 3.8, 8, 5.2, 10, 6.2],
+      'line-color': '#3D2500',
+      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 3.6, 6, 4.8, 8, 6, 10, 7],
       'line-opacity': 1,
       'line-blur': 0
     }
