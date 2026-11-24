@@ -114,3 +114,10 @@ Não use os zeros do exemplo como dado real. Informe números apenas quando a fo
 ## Bibliotecas
 
 MapLibre GL JS 4.7.1, carregada por CDN. O projeto não utiliza framework ou build step nesta fase.
+
+
+## Ajustes de visualização — revisão 1
+
+- Corrigida a regra CSS do estado `hidden` do carregador, que podia permanecer sobre o mapa mesmo após a carga dos 185 polígonos.
+- O mapa agora calcula os limites do GeoJSON e enquadra automaticamente todo o território de Pernambuco.
+- Reforçada discretamente a extrusão padrão para tornar o relevo perceptível em escala estadual.
