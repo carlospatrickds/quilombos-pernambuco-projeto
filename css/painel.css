@@ -36,3 +36,30 @@
 .source-note strong { color:#783F32; font:14px Georgia,serif; }
 .source-note p { color:#3D342B; font-size:12px; line-height:1.65; margin:6px 0 0; }
 @media(max-width:480px) { .panel-content { padding:20px 18px 30px; } .panel-content h2 { font-size:28px; } }
+/* Vinheta cartográfica vetorial do município selecionado no cabeçalho do painel. */
+.municipality-vignette {
+  position:absolute;
+  inset:8px 18px 30px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  z-index:0;
+}
+.municipality-vignette-svg {
+  display:block;
+  width:min(100%, 330px);
+  height:100%;
+  overflow:visible;
+}
+.municipality-vignette-shape {
+  fill:#D66A32;
+  fill-opacity:.92;
+  stroke:#F3EBDD;
+  stroke-width:1.1;
+  stroke-opacity:.72;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+.panel-kicker { z-index:1; }
+.cover-decoration { z-index:0; }
