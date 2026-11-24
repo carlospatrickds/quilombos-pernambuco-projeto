@@ -6,9 +6,10 @@ export const CONFIG = {
   fallbackGeojsonUrl: 'https://www.cf.pe.gov.br/downloads/malha-municipal/2025-v3/malha-pe-2025-v3.geojson',
   localGeojsonUrl: './data/municipios-pe.geojson',
   center: [-37.9, -8.25],
-  zoom: 6.1,
-  maxZoom: 8.2, // Limita a aproximação para preservar o contexto territorial e a seleção dos municípios.
-  pitch: 75, // Inclinação aumentada em 20 graus em relação à configuração anterior.
+  zoom: 7.2,
+  minZoom: 7.2, // Afastamento máximo aproximado: escala de 100 km.
+  maxZoom: 10.6, // Aproximação máxima aproximada: escala de 10 km.
+  pitch: 75, // Inclinação padrão restaurada pelo botão de reinicialização.
   bearing: -8,
   extrusion: { base: 0, normal: 28, selected: 180 },
   colors: {
