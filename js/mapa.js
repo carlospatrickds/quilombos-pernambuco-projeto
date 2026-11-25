@@ -217,16 +217,17 @@ export function addPernambucoNortheastOverlay(map, geojson) {
 
 export function setNortheastPeMode(map, mode) {
   const subregions=mode==='subregioes';
+  const visible=mode==='off'?'none':'visible';
   ['ne-pe-municipios-fill','ne-pe-municipios-lines','ne-pe-outline'].forEach(id=>{
-    if(map.getLayer(id))map.setLayoutProperty(id,'visibility',id==='ne-pe-municipios-lines'&&!subregions?'visible':id==='ne-pe-outline'?'visible':'visible');
+    if(map.getLayer(id))map.setLayoutProperty(id,'visibility',visible);
   });
-  if(map.getLayer('ne-pe-municipios-lines'))map.setLayoutProperty('ne-pe-municipios-lines','visibility',subregions?'none':'visible');
+  if(map.getLayer('ne-pe-municipios-lines'))map.setLayoutProperty('ne-pe-municipios-lines','visibility',mode==='off'||subregions?'none':'visible');
   const hint=document.querySelector('#map-selection-hint');
-  if(hint)hint.textContent=subregions?'Selecione uma sub-região de Pernambuco para obter dados':'Selecione um município de Pernambuco para obter dados';
+  if(hint&&mode!=='off')hint.textContent=subregions?'Selecione uma sub-região de Pernambuco para obter dados':'Selecione um município de Pernambuco para obter dados';
   const mesh=document.querySelector('#map-mesh-label');
-  if(mesh)mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL DE PERNAMBUCO';
+  if(mesh&&mode!=='off')mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL DE PERNAMBUCO';
   const legend=document.querySelector('#mesoregion-legend');
-  if(legend)legend.style.display='flex';
+  if(legend)legend.style.display=mode==='off'?'none':'flex';
 }
 
 // Legenda com quantitativos reais; as divisas municipais permanecem finas e discretas.
