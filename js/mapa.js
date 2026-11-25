@@ -330,6 +330,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
   let hoveredId = null;
   let hoverPopup = null;
   const getMode = options.getMode || (() => 'municipios');
+  const isTooltipEnabled = options.isTooltipEnabled || (() => true);
 
   function selectFeature(feature) {
     // Recursos retornados por queryRenderedFeatures podem não trazer a geometria
@@ -390,9 +391,13 @@ export function bindMapInteractions(map, geojson, options = {}) {
     if (id !== selectedId) map.setFeatureState({ source: SOURCE_ID, id }, { hover: true });
   });
   map.on('mousemove', FILL_ID, event => {
+    if (!isTooltipEnabled()) {
+      if (hoverPopup) { hoverPopup.remove(); hoverPopup = null; }
+      return;
+    }
     const feature=event.features?.[0];if(!feature)return;
     const label=getMode()==='subregioes'?(feature.properties._mesoregion||'Mesorregião não identificada'):(feature.properties._app_name||'Município');
-    if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:false,closeOnClick:false,offset:12,className:'map-hover-tooltip'});
+    if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:false,closeOnClick:false,offset:52,className:'map-hover-tooltip'});
     hoverPopup.setLngLat(event.lngLat).setText(label).addTo(map);
   });
   map.on('mouseleave',FILL_ID,()=>{if(hoverPopup){hoverPopup.remove();hoverPopup=null;}});
