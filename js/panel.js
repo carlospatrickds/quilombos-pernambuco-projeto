@@ -209,7 +209,7 @@ export function openMunicipality(feature) {
 
   const agresteRecord = getAgresteMunicipalityCommunityCount(name);
   if (agresteRecord) {
-    $('#communities-copy').textContent = 'O levantamento acadêmico de referência contabiliza ' + agresteRecord.count + ' comunidades para este município (' + agresteRecord.subregion + '). A tabela consultada apresenta o quantitativo, mas não discrimina os nomes individuais das comunidades nem informa, individualmente, certificação pela FCP, processo no INCRA ou titulação territorial. Essas situações permanecem 'A verificar'.';
+    $('#communities-copy').textContent = 'O levantamento acadêmico de referência contabiliza ' + agresteRecord.count + ' comunidades para este município (' + agresteRecord.subregion + '). A tabela consultada apresenta o quantitativo, mas não discrimina os nomes individuais das comunidades nem informa, individualmente, certificação pela FCP, processo no INCRA ou titulação territorial. Essas situações permanecem "A verificar".';
     $('#community-tags').replaceChildren();
     const countTag = document.createElement('span');
     countTag.className = 'tag';
