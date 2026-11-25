@@ -9,7 +9,7 @@ const REGIONAL_DATA = {
 const number = value => new Intl.NumberFormat('pt-BR').format(value);
 const percent = value => `${value.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})}%`;
 
-export function initRegionalDashboard() {
+export function initRegionalDashboard(onRegionChange = () => {}) {
   const tabs = [...document.querySelectorAll('.regional-tab')];
   const panel = document.querySelector('#regional-panel');
   if (!tabs.length || !panel) return;
@@ -34,6 +34,7 @@ export function initRegionalDashboard() {
     document.querySelector('#regional-share-note').textContent = `Percentual calculado sobre a população residente de ${data.label}`;
     document.querySelector('#regional-method').textContent =
       'A classificação “fora de territórios” indica residência fora dos territórios quilombolas oficialmente delimitados pelo IBGE; não significa ausência de identidade ou pertencimento quilombola.';
+    onRegionChange(key);
   }
 
   tabs.forEach((tab, index) => {
