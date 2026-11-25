@@ -14,7 +14,7 @@ export const CONFIG = {
   bearing: 0,
   extrusion: { base: 0, normal: 28, selected: 180 },
   colors: {
-    fill: '#916D50',
+    fill: '#783F32',
     line: '#3D2500',
     selected: '#D66A32',
     background: '#E9DDCB'
