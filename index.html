@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
-  <link href="css/style.css?v=20261125-contraste-destaque" rel="stylesheet">
+  <link href="css/style.css?v=20261125-camada-comunidades" rel="stylesheet">
   <link href="css/mapa.css?v=20261125-area-mapa-compacta" rel="stylesheet">
   <link href="css/painel.css?v=20261125-numeros-verdes-v2" rel="stylesheet">
 </head>
@@ -143,6 +143,7 @@
           </div>
           <div class="map-actions">
             <div class="map-mode-toggle" id="pernambuco-map-mode" role="group" aria-label="Visualização do mapa de Pernambuco" hidden><button type="button" class="map-mode-button" data-map-mode="municipios" aria-pressed="false">Municípios</button><button type="button" class="map-mode-button active" data-map-mode="subregioes" aria-pressed="true">Sub-regiões</button></div>
+            <div class="map-mode-toggle community-layer-control" id="community-layer-control" hidden><span class="community-layer-label">Comunidades quilombolas</span><button type="button" class="map-mode-button" id="community-layer-toggle" aria-pressed="false">Mostrar comunidades</button></div>
             <div class="map-mode-toggle" id="brazil-map-mode" role="group" aria-label="Modo de visualização do mapa do Brasil" hidden><button type="button" class="map-mode-button active" data-map-mode="regioes" aria-pressed="true">Regiões</button><button type="button" class="map-mode-button" data-map-mode="estados" aria-pressed="false">Estados</button></div>
             <div class="search-wrap"><label class="search-box" for="municipio-search">
               <span aria-hidden="true">⌕</span>
@@ -173,6 +174,7 @@
           <div class="legend"><span class="legend-swatch selected"></span> Município selecionado</div>
           <p>Arraste para mover · Role para aproximar · Clique para selecionar</p>
         </div>
+        <div id="community-layer-note" class="community-layer-note" hidden>Em terracota: municípios com quantitativos registrados no levantamento acadêmico da UFPE (pesquisa 2022/2023; publicação 2024). Nos demais municípios, os dados desta camada ainda não foram validados — isso não significa ausência de comunidades. <a href="https://www.ufpe.br/documents/3310313/5819053/PPC_LICENCIATURA%2BEEQ.%2BVERSA~O%2B28.02.2025.1.pdf/2ecab147-23ff-4e59-9678-b8272cc2e1ee" target="_blank" rel="noopener">Consultar fonte</a>.</div>
       </section>
 
       <section class="editorial-note">
@@ -255,6 +257,6 @@
   </aside>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script type="module" src="js/app.js?v=20261125-tooltip-pernambuco"></script>
+  <script type="module" src="js/app.js?v=20261125-camada-comunidades"></script>
 </body>
 </html>
