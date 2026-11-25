@@ -1,25 +1,9 @@
+import { REGIONAL_CENSUS_2022 } from '../data/dados-gerais-censo-2022.js';
+
 const REGIONAL_DATA = {
-  brasil: {
-    label: 'Brasil',
-    quilombola: 1330186,
-    resident: 203080756,
-    inside: 167769,
-    outside: 1162417
-  },
-  nordeste: {
-    label: 'Nordeste',
-    quilombola: 906337,
-    resident: 54658515,
-    inside: 89521,
-    outside: 816816
-  },
-  pernambuco: {
-    label: 'Pernambuco',
-    quilombola: 78864,
-    resident: 9058931,
-    inside: 6769,
-    outside: 72095
-  }
+  brasil: { label: 'Brasil', quilombola: REGIONAL_CENSUS_2022.brasil.quilombolaTotal, resident: REGIONAL_CENSUS_2022.brasil.populationTotal, inside: REGIONAL_CENSUS_2022.brasil.quilombolaInside, outside: REGIONAL_CENSUS_2022.brasil.quilombolaOutside },
+  nordeste: { label: 'Nordeste', quilombola: REGIONAL_CENSUS_2022.nordeste.quilombolaTotal, resident: REGIONAL_CENSUS_2022.nordeste.populationTotal, inside: REGIONAL_CENSUS_2022.nordeste.quilombolaInside, outside: REGIONAL_CENSUS_2022.nordeste.quilombolaOutside },
+  pernambuco: { label: 'Pernambuco', quilombola: REGIONAL_CENSUS_2022.pernambuco.quilombolaTotal, resident: REGIONAL_CENSUS_2022.pernambuco.populationTotal, inside: REGIONAL_CENSUS_2022.pernambuco.quilombolaInside, outside: REGIONAL_CENSUS_2022.pernambuco.quilombolaOutside }
 };
 
 const number = value => new Intl.NumberFormat('pt-BR').format(value);
