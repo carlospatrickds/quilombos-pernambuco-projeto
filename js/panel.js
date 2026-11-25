@@ -1,5 +1,6 @@
 import { MUNICIPAL_DATA } from './data.js';
 import { DATA_STATUS } from './config.js';
+import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
 
 const $ = (selector) => document.querySelector(selector);
 const panel = $('#municipio-panel');
@@ -66,7 +67,35 @@ function formatNumber(value) {
   return new Intl.NumberFormat('pt-BR').format(value);
 }
 
+export function openMesoregion(name) {
+  const stats=MESOREGION_QUILOMBOLA_2022[name]; if(!stats)return;
+  const content=$('#panel-content');
+  content.querySelectorAll('.data-grid,.panel-section,.source-note').forEach(el=>el.style.display='none');
+  let regional=content.querySelector('#mesoregion-panel-content');
+  if(!regional){regional=document.createElement('section');regional.id='mesoregion-panel-content';regional.className='mesoregion-panel-content';$('#panel-code').insertAdjacentElement('afterend',regional);}
+  $('#municipality-vignette').replaceChildren();
+  $('#panel-region').textContent='PERNAMBUCO · MESORREGIÃO';
+  $('#panel-title').textContent=name;
+  $('#panel-code').textContent='Regionalização histórica do IBGE (1989)';
+  const fmt=v=>new Intl.NumberFormat('pt-BR').format(v);
+  const pct=(stats.total/78864*100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'% do total estadual';
+  regional.replaceChildren();
+  [['População quilombola',fmt(stats.total)],['Participação no total estadual',pct],['Municípios integrantes',String(stats.municipalityCount??'—')]].forEach(([label,value])=>{
+    const card=document.createElement('article');card.className='data-card';
+    const span=document.createElement('span');span.textContent=label;
+    const strong=document.createElement('strong');strong.textContent=value;
+    card.append(span,strong);regional.append(card);
+  });
+  const note=document.createElement('p');note.className='regional-panel-note';
+  note.textContent='Agregação dos totais municipais de população quilombola do Censo Demográfico 2022, SIDRA 9578.';
+  regional.append(note);regional.style.display='grid';
+  backdrop.hidden=false;requestAnimationFrame(()=>panel.classList.add('open'));panel.setAttribute('aria-hidden','false');
+}
+
 export function openMunicipality(feature) {
+  const content=$('#panel-content');
+  content.querySelectorAll('.data-grid,.panel-section,.source-note').forEach(el=>el.style.display='');
+  const regional=content.querySelector('#mesoregion-panel-content');if(regional)regional.style.display='none';
   const p = feature.properties || {};
   const id = String(p._app_id || feature.id || '');
   const name = p._app_name || 'Município';
