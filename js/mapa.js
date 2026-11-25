@@ -1,6 +1,7 @@
 import { CONFIG } from './config.js?v=20261125-pe-color';
 import { normalizeCollection } from './data.js';
 import { openMunicipality } from './panel.js';
+import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-censo-2022.js';
 
 const SOURCE_ID = 'municipios-pe';
 const FILL_ID = 'municipios-fill-3d';
