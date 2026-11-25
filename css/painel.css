@@ -148,3 +148,9 @@
 .municipio-panel{
   transition:transform 2s cubic-bezier(.2,.8,.2,1);
 }
+
+/* Paleta ampliada: números dos cartões de detalhe territorial em verde. */
+.data-card strong,
+.community-research-total{
+  color:#68734D;
+}
