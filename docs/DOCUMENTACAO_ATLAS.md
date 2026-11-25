@@ -359,3 +359,17 @@ A soma das cinco regiões reproduz os agregados nacionais da série utilizada: 1
 - https://www.ibge.gov.br/brasil-quilombola/
 
 **Mapa:** o modo Brasil / Regiões utiliza a Malha das Grandes Regiões do IBGE. A cor representa a população quilombola absoluta; o clique abre os cinco indicadores. A legenda identifica faixas de quantitativos absolutos, não taxas ou densidades. O modo Brasil / Estados e o recorte Nordeste continuam utilizando a Malha das Unidades da Federação; Pernambuco utiliza a Malha Municipal.
+
+
+## Camada das cinco mesorregiões de Pernambuco
+
+Foi incorporada ao mapa municipal uma camada de contorno para as cinco mesorregiões geográficas históricas do IBGE (divisão de 1989): Metropolitana de Recife, Mata Pernambucana, Agreste Pernambucano, Sertão Pernambucano e São Francisco Pernambucano.
+
+A associação dos 185 municípios às mesorregiões usa a tabela de referência `regioes`, coluna `mesorregiao`, organizada pela CONDEPE/FIDEM e distribuída no conjunto de dados do pacote condepe. O vínculo é feito pelo código IBGE municipal. Fernando de Noronha integra a Metropolitana de Recife na tabela, embora não apareça na geometria continental do mapa.
+
+O desenho das divisões é produzido pela dissolução dos polígonos municipais por mesorregião (Turf.js 7.2.0) e renderizado como linhas brancas sobre a malha municipal. O preenchimento e a seleção dos municípios permanecem inalterados.
+
+**Fontes:** IBGE; CONDEPE/FIDEM, Observatório de Pernambuco — Mesorregiões e tabela de referência `regioes` (coluna `mesorregiao`), versão 2026-11-23_161733. Consulta: 25/11/2026.
+- https://www.cf.pe.gov.br/observatorio/mapas/regioes/mesorregioes
+- https://github.com/StrategicProjects/condepe-py/blob/main/src/condepe/data/regioes.csv
+- https://www.cf.pe.gov.br/dados
