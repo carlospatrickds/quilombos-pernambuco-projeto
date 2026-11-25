@@ -264,3 +264,7 @@ Correção após revisão visual: o texto “TERRITÓRIO QUILOMBOLA” deve perm
 
 ### Ajuste de posição da vinheta conforme referência visual — 25/11/2026
 A posição da silhueta foi ajustada com base na montagem enviada pelo responsável. A vinheta deixa de ficar centralizada no cabeçalho inteiro e passa a ocupar a região superior esquerda, alinhada visualmente sobre o início do rótulo “TERRITÓRIO QUILOMBOLA”. O rótulo permanece na posição inferior esquerda; a sigla decorativa PE continua à direita. O objetivo é reproduzir a composição da referência, mantendo a silhueta dinâmica gerada a partir da geometria GeoJSON. Arquivo alterado: `css/painel.css`.
+
+
+### Refinamento de posição e opacidade da vinheta — 24/11/2026
+Ajuste solicitado após avaliação da montagem: a silhueta foi deslocada um pouco para baixo, aproximando-a do rótulo “TERRITÓRIO QUILOMBOLA”, sem alterar a posição do texto nem o alinhamento horizontal já aprovado. A opacidade do preenchimento foi elevada de 92% para 100% (aumento de 8 pontos percentuais, equivalente a aproximadamente 8,7% em termos relativos), mantendo a cor terracota `#D66A32`. A borda clara permanece inalterada. Arquivo alterado: `css/painel.css`.
