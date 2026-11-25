@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 11:06 — Correção definitiva da sobreposição da etiqueta da camada
+- Identificado que o ajuste anterior só reposicionava a etiqueta em larguras de até 720 px; a captura enviada tinha largura superior a esse limite.
+- Adicionada regra responsiva geral para ocultar a etiqueta de identificação da malha enquanto um cartão de seleção estiver aberto.
+- Mantido o tooltip de passagem do cursor, que não aciona a ocultação.
+- Atualizada a referência de cache do CSS no HTML.
+
+**Arquivos alterados:** `css/mapa.css`, `index.html`.
+
+**Preservação:** nenhuma alteração em JavaScript, camadas, geometrias, cores ou dados do mapa.
+
 ### 11:01 — Redução do cursor territorial
 - Reduzido em 30% o tamanho visual do cursor personalizado (de 48 × 72 para 34 × 50 unidades SVG).
 - Reposicionado o ponto ativo do cursor para acompanhar a nova dimensão e preservar a precisão do clique.
