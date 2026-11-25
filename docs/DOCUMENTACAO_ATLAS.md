@@ -307,32 +307,30 @@ Os percentuais exibidos na interface são calculados pela fórmula `população 
 
 ## 4.3 Base estadual — população quilombola (Censo 2022)
 
-**Atualização: 25/11/2026.**
+**Atualização: 24/11/2026.**
 
-A exportação CSV da tabela 9578 do SIDRA foi recebida e processada para as 27 Unidades da Federação. O arquivo contém os blocos de população quilombola absoluta, percentuais, população residente total e percentuais desta população.
+A exportação CSV recebida contém os quantitativos de população quilombola por Unidade da Federação (27 UFs), nas categorias total, em territórios quilombolas e fora de territórios quilombolas.
 
 - **Arquivo integrado:** `data/populacao-quilombola-estados-censo-2022.js`.
 - **Fonte:** IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quilombolas, localização do domicílio.
 - **URL:** https://sidra.ibge.gov.br/tabela/9578
 - **Ano de referência:** 2022.
 - **Nível geográfico:** Unidade da Federação (27 UFs).
-- **População residente total:** extraída do bloco correspondente da mesma tabela 9578, evitando combinar tabelas ou séries distintas.
-- **Percentual estadual:** população quilombola total dividida pela população residente total da UF, multiplicada por 100.
 
 ### Conferência dos totais
 
-| Recorte | População residente | Quilombolas | Em territórios | Fora de territórios |
-|---|---:|---:|---:|---:|
-| Brasil | 203.080.756 | 1.330.186 | 167.769 | 1.162.417 |
-| Nordeste | 54.658.515 | 906.337 | 89.521 | 816.816 |
-| Pernambuco | 9.058.931 | 78.864 | 6.769 | 72.095 |
+| Recorte | Quilombolas | Em territórios | Fora de territórios |
+|---|---:|---:|---:|
+| Brasil | 1.330.186 | 167.769 | 1.162.417 |
+| Nordeste | 906.337 | 89.521 | 816.816 |
+| Pernambuco | 78.864 | 6.769 | 72.095 |
 
-A soma dos 27 registros estaduais reproduz os totais nacionais da exportação. A soma dos nove estados do Nordeste reproduz os totais regionais. Pernambuco também coincide com a base municipal estadual anteriormente integrada.
+A soma dos valores estaduais publicados reproduz os totais nacionais e regionais da exportação. Acre e Roraima apresentam traços nos três quantitativos; foram preservados como `null`, não como zero. No Distrito Federal, o recorte “em territórios” também aparece como traço e foi preservado como `null`.
 
-**Tratamento de ausência:** os traços da exportação para Acre e Roraima nos quantitativos quilombolas foram preservados como `null`, não como zero. O recorte “em territórios” do Distrito Federal também permanece `null`, conforme a fonte. Os valores não foram imputados.
+**Limite da exportação:** este CSV não contém população residente total nem percentuais estaduais. Esses indicadores não foram incorporados à base estadual. Para calcular a participação quilombola por UF, será necessário obter separadamente a população residente do Censo 2022 na tabela SIDRA 4709, variável 93, e documentar a compatibilidade da série.
 
-**Nota metodológica:** “fora de territórios quilombolas” descreve a localização do domicílio em relação aos territórios oficialmente delimitados considerados pela tabela; não indica ausência de identidade ou pertencimento quilombola.
+**Nota conceitual:** “fora de territórios quilombolas” descreve a localização do domicílio em relação aos territórios oficialmente delimitados considerados pela tabela; não indica ausência de identidade ou pertencimento quilombola.
 
 ### Mapa em três escalas
 
-Está em implementação a alternância Brasil / Nordeste / Pernambuco com mapa coroplético em tons sequenciais da paleta marrom avermelhada do atlas. A intensidade da cor representará a população quilombola absoluta estadual; a legenda deverá explicitar a escala utilizada. A camada municipal de Pernambuco será mantida.
+Está em implementação a alternância Brasil / Nordeste / Pernambuco com mapa coroplético em tons sequenciais da paleta marrom avermelhada do atlas. A intensidade da cor representará a população quilombola absoluta estadual; a legenda explicitará as classes e os valores ausentes permanecerão visualmente distintos de zero. A camada municipal de Pernambuco será mantida.
