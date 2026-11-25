@@ -1,7 +1,7 @@
 # Roadmap — Atlas Territorial Quilombos de Pernambuco
 
 **Versão:** 1.0  
-**Atualizado em:** 24/11/2026  
+**Atualizado em:** 25/11/2026  
 **Status geral:** protótipo cartográfico funcional; integração de dados e conteúdo ainda pendente.
 
 ## Visão geral
@@ -15,7 +15,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 | 0 | Estrutura modular, mapa 2D padrão, painel municipal, busca/autocomplete e GitHub Pages | Concluída funcionalmente — zoom aceito em celular; observação de cache/escala no desktop fica para revisão posterior |
 | 1 | População total municipal — Censo 2022 | Concluída — base integrada e conferida |
 | 2 | População quilombola municipal — Censo 2022 | Integrada ao painel — auditoria e percentuais em continuidade |
-| 3 | Percentual quilombola por município e validação estatística | Em andamento — painel agregado Brasil/Nordeste/Pernambuco integrado; auditoria municipal continua |
+| 3 | Percentual quilombola por município e validação estatística | Em andamento — painel agregado integrado; base estadual SIDRA 9578 extraída e conferida; mapa coroplético em três escalas em implementação |
 | 4 | Cadastro de comunidades quilombolas por município | Pendente |
 | 5 | Situação de certificação e regularização territorial | Pendente |
 | 6 | Camada cartográfica de territórios quilombolas oficialmente delimitados | Pendente |
@@ -254,3 +254,27 @@ Arquivos:
 - `index.html`
 - `css/style.css`
 - `js/app.js`
+
+
+## Fase 3B — Mapa coroplético em três escalas
+
+**Status: dados estaduais validados; integração cartográfica em andamento (25/11/2026).**
+
+- [x] Receber e interpretar exportação CSV da tabela SIDRA 9578 para as 27 UFs.
+- [x] Extrair população quilombola total, em territórios e fora de territórios.
+- [x] Extrair população residente total por UF do mesmo arquivo/tabela.
+- [x] Conferir soma nacional: 1.330.186 pessoas quilombolas; 167.769 em territórios; 1.162.417 fora.
+- [x] Conferir soma Nordeste: 906.337 pessoas quilombolas; 89.521 em territórios; 816.816 fora.
+- [x] Conferir população residente nacional: 203.080.756.
+- [x] Preservar traços da fonte como null, sem converter ausência em zero.
+- [x] Criar `data/populacao-quilombola-estados-censo-2022.js`.
+- [ ] Integrar malha oficial das 27 UFs.
+- [ ] Conectar abas Brasil/Nordeste/Pernambuco ao enquadramento e às camadas do mapa.
+- [ ] Aplicar escala sequencial de tons da paleta marrom avermelhada do atlas, com legenda.
+- [ ] Criar ficha de consulta ao selecionar uma UF.
+- [ ] Manter busca e seleção municipal exclusivamente no recorte Pernambuco.
+- [ ] Atualizar documentação metodológica, testar responsividade e validar publicação no GitHub Pages.
+
+**Critério de aceite:** totais estaduais reproduzem exatamente os agregados Brasil e Nordeste da tabela 9578; mapa e painel apresentam a mesma série estatística e não ocultam valores ausentes.
+
+Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quilombolas, localização do domicílio. https://sidra.ibge.gov.br/tabela/9578
