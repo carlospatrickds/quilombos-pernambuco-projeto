@@ -4,6 +4,21 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 17:10 — Camada opcional de municípios com quantitativos de comunidades quilombolas
+- Criado controle independente para mostrar/ocultar a camada temática no mapa de Pernambuco, disponível somente na visualização municipal.
+- O controle inicia desativado e é ocultado nas escalas Brasil/Nordeste e na visualização por sub-regiões.
+- Municípios com quantitativos documentados no levantamento acadêmico do Agreste recebem destaque terracota; ao passar o cursor, o tooltip informa a quantidade e identifica o levantamento da UFPE.
+- A seleção municipal continua usando a interação original e o painel existente apresenta o quantitativo acadêmico quando há registro.
+- Municípios sem registro nessa base permanecem sem classificação; a interface informa que ausência de dado validado não significa ausência de comunidades.
+- Fonte exibida: UFPE, PPC da Licenciatura em Educação Escolar Quilombola Nego Bispo, Quadro 1, pp. 36–37; pesquisa 2022/2023, publicação 2024.
+- Atualizadas as referências de cache dos módulos e do CSS.
+
+**Arquivos alterados:** `js/mapa.js`, `js/app.js`, `index.html`, `css/style.css`.
+
+**Preservação:** não foram alterados arquivos GeoJSON, geometrias, projeções, enquadramento, limites municipais, cores originais da malha, dados do IBGE ou a lógica de seleção territorial. A camada usa exclusivamente os 26 quantitativos municipais já documentados no Agreste; não atribui zero aos demais municípios nem os classifica como sem comunidades.
+
+## 2026-11-25
+
 ### 17:00 — Refinamento do destaque estadual e da área do mapa
 - Alterado o número de destaque da abertura para terracota, aumentando o contraste com o fundo marfim.
 - Escurecido o texto auxiliar do destaque para melhorar a leitura.
