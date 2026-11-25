@@ -357,24 +357,32 @@ export async function loadMacroRegions() {
   return geo;
 }
 export function addMacroRegionLayer(map,geojson) {
-  const normalize = value => String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR').replace(/^regiao\s+/,'').replace(/\s+/g,'-');
-  const dataByName=new Map(MACROREGIONS_CENSUS_2022.flatMap(item=>[item.name,...item.aliases].map(name=>[normalize(name),item])));
+  // Códigos oficiais CD_REGIAO: 1 Norte, 2 Nordeste, 3 Sudeste, 4 Sul, 5 Centro-Oeste.
+  const byCode = new Map([
+    ['1', MACROREGIONS_CENSUS_2022.find(item=>item.name==='Norte')],
+    ['2', MACROREGIONS_CENSUS_2022.find(item=>item.name==='Nordeste')],
+    ['3', MACROREGIONS_CENSUS_2022.find(item=>item.name==='Sudeste')],
+    ['4', MACROREGIONS_CENSUS_2022.find(item=>item.name==='Sul')],
+    ['5', MACROREGIONS_CENSUS_2022.find(item=>item.name==='Centro-Oeste')]
+  ]);
+  const names={1:'Norte',2:'Nordeste',3:'Sudeste',4:'Sul',5:'Centro-Oeste'};
   geojson.features.forEach((feature,index)=>{
-    const name=feature.properties.nome||feature.properties.NM_REGIAO||feature.properties.name||'Região';
-    const item=dataByName.get(normalize(name));
-    feature.properties._region_name=item?.name||name;
-    feature.properties._quilombola=item?.quilombolaTotal??-1;
-    feature.properties._resident=item?.populationTotal??-1;
-    feature.properties._inside=item?.quilombolaInside??-1;
-    feature.properties._outside=item?.quilombolaOutside??-1;
-    feature.properties._share=item?item.quilombolaTotal/item.populationTotal*100:-1;
-    feature.id=String(feature.properties.codarea||index);
+    const p=feature.properties||{};
+    const rawCode=p.codarea??p.CD_REGIAO??p.id??feature.id??String(index+1);
+    const code=String(rawCode).replace(/\D/g,'')||String(index+1);
+    const item=byCode.get(code);
+    feature.properties={...p,_region_code:code,_region_name:item?.name||p.nome||p.NM_REGIAO||p.name||names[code]||'Região',
+      _quilombola:item?.quilombolaTotal??-1,_resident:item?.populationTotal??-1,
+      _inside:item?.quilombolaInside??-1,_outside:item?.quilombolaOutside??-1,
+      _share:item?item.quilombolaTotal/item.populationTotal*100:-1};
+    feature.id=code;
   });
   map.addSource('grandes-regioes',{type:'geojson',data:geojson});
   map.addLayer({id:'grandes-regioes-fill',type:'fill',source:'grandes-regioes',
-    paint:{'fill-color':['step',['get','_quilombola'],'#E8D6C7',40000,'#D7B5A0',100000,'#B98570',200000,'#965B49',500000,'#783F32'],'fill-opacity':0.96}});
+    paint:{'fill-color':['match',['get','_region_code'],
+      '1','#B98570','2','#783F32','3','#B98570','4','#E8D6C7','5','#D7B5A0','#D9CFC0'],'fill-opacity':0.98}});
   map.addLayer({id:'grandes-regioes-lines',type:'line',source:'grandes-regioes',
-    paint:{'line-color':'#F3EBDD','line-width':1.8,'line-opacity':0.98}});
+    paint:{'line-color':'#F3EBDD','line-width':2.2,'line-opacity':1}});
   map.addLayer({id:'grandes-regioes-labels',type:'symbol',source:'grandes-regioes',
     layout:{'text-field':['get','_region_name'],'text-font':['Open Sans Regular'],'text-size':13,'text-allow-overlap':false},
     paint:{'text-color':'#3D2500','text-halo-color':'#F3EBDD','text-halo-width':2}});
