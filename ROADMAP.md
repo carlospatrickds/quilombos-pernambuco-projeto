@@ -278,3 +278,16 @@ Arquivos:
 **Critério de aceite:** totais estaduais reproduzem exatamente os agregados Brasil e Nordeste da tabela 9578; mapa e painel apresentam a mesma série estatística e não ocultam valores ausentes. A integração de código foi commitada, mas só será considerada concluída após validar carregamento da malha, alternância das três escalas, seleção estadual e retorno ao mapa municipal no GitHub Pages.
 
 Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quilombolas, localização do domicílio. https://sidra.ibge.gov.br/tabela/9578
+
+
+## Navegação por nível territorial — Brasil, Nordeste e Pernambuco (25/11/2026)
+
+- [x] No recorte Brasil, adicionar alternância entre Grandes Regiões e Unidades da Federação.
+- [x] Carregar a malha das Grandes Regiões do IBGE para o modo regional.
+- [x] Manter a malha das Unidades da Federação para o modo estadual e para o Nordeste.
+- [x] Atualizar o rótulo da malha e a instrução de seleção conforme o nível territorial.
+- [x] No Nordeste, orientar a seleção de estado; em Pernambuco, manter seleção municipal.
+- [ ] Testar no GitHub Pages o carregamento da malha de regiões e a alternância de camadas nos três recortes.
+- [ ] Completar indicadores das regiões Norte, Centro-Oeste, Sudeste e Sul antes de apresentá-los como dados consultáveis.
+
+**Terminologia adotada conforme o catálogo de Malhas Territoriais do IBGE:** Malha das Grandes Regiões, Malha das Unidades da Federação e Malha Municipal. A expressão “malha nacional” fica reservada a uma referência genérica, pois não identifica o nível geográfico da camada.
