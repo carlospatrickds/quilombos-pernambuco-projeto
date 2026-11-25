@@ -1,4 +1,4 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, setPernambucoMapMode } from './mapa.js?v=20261125-meso-borders-hover-zoom';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, setPernambucoMapMode, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-northeast-pe-overlay';
 import { initPanel, closePanel } from './panel.js?v=20261125-panel-open-fix';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -11,6 +11,7 @@ async function start() {
   const map = createMap();
   let mapReady = false;
   let municipalityLoaded = false;
+  let northeastPeOverlayLoaded = false;
   let pendingRegion = 'brasil';
   let brazilMapMode = 'regioes';
   let pernambucoMapMode = 'subregioes';
@@ -21,6 +22,13 @@ async function start() {
     if (!mapReady || switching) return;
     switching = true;
     try {
+      if (region === 'nordeste' && !northeastPeOverlayLoaded) {
+        const geojson = await loadMunicipalities();
+        applyMesorregionColors(geojson);
+        addMunicipalLayer(map, geojson);
+        addPernambucoNortheastOverlay(map, geojson);
+        northeastPeOverlayLoaded = true;
+      }
       if (region === 'pernambuco' && !municipalityLoaded) {
         const geojson = await loadMunicipalities();
         applyMesorregionColors(geojson);
@@ -32,6 +40,7 @@ async function start() {
       showStateView(map, region);
       if(region==='brasil') setBrazilMapMode(map,brazilMapMode);
       if(region==='pernambuco') setPernambucoMapMode(map,pernambucoMapMode);
+      if(region==='nordeste') setNortheastPeMode(map, document.querySelector('#northeast-map-mode .map-mode-button.active')?.dataset.mapMode || 'subregioes');
       const mesoLegend=document.querySelector('#mesoregion-legend');
       if(mesoLegend)mesoLegend.style.display=region==='pernambuco'?'flex':'none';
       const meshLabel=document.querySelector('#map-mesh-label');
