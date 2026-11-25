@@ -15,7 +15,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 | 0 | Estrutura modular, mapa 2D padrão, painel municipal, busca/autocomplete e GitHub Pages | Concluída funcionalmente — zoom aceito em celular; observação de cache/escala no desktop fica para revisão posterior |
 | 1 | População total municipal — Censo 2022 | Concluída — base integrada e conferida |
 | 2 | População quilombola municipal — Censo 2022 | Integrada ao painel — auditoria e percentuais em continuidade |
-| 3 | Percentual quilombola por município e validação estatística | Pendente |
+| 3 | Percentual quilombola por município e validação estatística | Em andamento — painel agregado Brasil/Nordeste/Pernambuco integrado; auditoria municipal continua |
 | 4 | Cadastro de comunidades quilombolas por município | Pendente |
 | 5 | Situação de certificação e regularização territorial | Pendente |
 | 6 | Camada cartográfica de territórios quilombolas oficialmente delimitados | Pendente |
@@ -222,3 +222,35 @@ Consulta: **24/11/2026**.
 6. INCRA — política de regularização de territórios quilombolas: https://www.gov.br/incra/pt-br/assuntos/governanca-fundiaria/quilombolas
 
 **Nota:** os links e páginas institucionais foram consultados em 24/11/2026. Bases dinâmicas devem ter a data de extração registrada separadamente da data de consulta da página.
+
+
+## Entrega complementar — Painel demográfico Brasil, Nordeste e Pernambuco
+
+**Status em 25/11/2026:** estrutura visual e interação das três abas integradas ao site; conferência visual no navegador ainda pendente.
+
+- [x] Criar abas Brasil, Nordeste e Pernambuco.
+- [x] Exibir população quilombola total, população residente, participação percentual, residentes em territórios oficialmente delimitados e residentes fora desses territórios.
+- [x] Calcular percentuais a partir dos valores absolutos, sem transcrever percentuais arredondados.
+- [x] Manter nota explicativa de que residência fora de território oficialmente delimitado não retira identidade ou pertencimento quilombola.
+- [x] Separar os agregados em arquivo de dados versionado.
+- [x] Registrar as fontes e a diferença entre divulgações iniciais e os valores da extração SIDRA utilizada.
+- [ ] Conferir visualização e interação em desktop e celular após publicação.
+
+### Valores integrados — Censo 2022
+
+| Recorte | População residente | Quilombolas | Em territórios | Fora de territórios | Participação |
+|---|---:|---:|---:|---:|---:|
+| Brasil | 203.080.756 | 1.330.186 | 167.769 | 1.162.417 | 0,66% |
+| Nordeste | 54.658.515 | 906.337 | 89.521 | 816.816 | 1,66% |
+| Pernambuco | 9.058.931 | 78.864 | 6.769 | 72.095 | 0,87% |
+
+**Atenção às revisões:** os totais quilombolas aqui utilizados são os da extração da tabela SIDRA 9578 fornecida para o projeto (Brasil 1.330.186; Nordeste 906.337; Pernambuco 78.864). Eles diferem de números da divulgação inicial do Universo do Censo 2022 (Brasil 1.327.802; Nordeste 905.415; Pernambuco 78.827). Não misturar as duas séries. A interface utiliza os valores da tabela 9578 exportada, mantendo a mesma versão para os três recortes.
+
+**Fontes:** IBGE, SIDRA tabela 9578 (população quilombola e localização do domicílio) e tabela 4709 (população residente); resultados do Censo 2022 para os totais de população residente. Consulta: 25/11/2026.
+
+Arquivos:
+- `data/dados-gerais-censo-2022.js`
+- `js/dados-gerais.js`
+- `index.html`
+- `css/style.css`
+- `js/app.js`
