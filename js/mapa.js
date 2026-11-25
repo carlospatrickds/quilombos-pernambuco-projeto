@@ -341,3 +341,47 @@ export function showStateView(map, region) {
     map.fitBounds([[-48,-18],[-33,-1]],{padding:55,duration:700});
   }
 }
+
+
+// Malha das cinco Grandes Regiões do IBGE para o modo de exploração regional.
+export async function loadMacroRegions() {
+  const url='https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?intrarregiao=regiao&qualidade=minima&formato=application/vnd.geo+json';
+  const response=await fetch(url);
+  if(!response.ok) throw new Error(`Falha ao carregar malha das Grandes Regiões: HTTP ${response.status}`);
+  const geo=await response.json();
+  if(!geo.features||!Array.isArray(geo.features)) throw new Error('Malha das Grandes Regiões sem feições GeoJSON.');
+  return geo;
+}
+export function addMacroRegionLayer(map,geojson) {
+  geojson.features.forEach((feature,index)=>{
+    const name=feature.properties.nome||feature.properties.NM_REGIAO||feature.properties.name||'Região';
+    feature.properties._region_name=name;
+    feature.id=String(feature.properties.codarea||index);
+  });
+  map.addSource('grandes-regioes',{type:'geojson',data:geojson});
+  map.addLayer({id:'grandes-regioes-fill',type:'fill',source:'grandes-regioes',
+    paint:{'fill-color':'#D7B5A0','fill-opacity':0.22}});
+  map.addLayer({id:'grandes-regioes-lines',type:'line',source:'grandes-regioes',
+    paint:{'line-color':'#783F32','line-width':2.2,'line-opacity':0.9}});
+  map.addLayer({id:'grandes-regioes-labels',type:'symbol',source:'grandes-regioes',
+    layout:{'text-field':['get','_region_name'],'text-font':['Open Sans Regular'],'text-size':13,'text-allow-overlap':false},
+    paint:{'text-color':'#3D2500','text-halo-color':'#F3EBDD','text-halo-width':2}});
+  map.on('click','grandes-regioes-fill',event=>{
+    const feature=event.features?.[0];if(!feature)return;
+    const name=feature.properties._region_name;
+    new maplibregl.Popup({closeButton:true,offset:8}).setLngLat(event.lngLat)
+      .setHTML('<div class="state-popup"><strong>'+name+'</strong><span>Recorte territorial</span><small>IBGE · Malha das Grandes Regiões</small></div>').addTo(map);
+  });
+  map.on('mouseenter','grandes-regioes-fill',()=>map.getCanvas().style.cursor='pointer');
+  map.on('mouseleave','grandes-regioes-fill',()=>map.getCanvas().style.cursor='');
+}
+
+export function setBrazilMapMode(map,mode) {
+  const regions=mode==='regioes';
+  ['estados-fill','estados-lines','estados-labels'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',regions?'none':'visible');});
+  ['grandes-regioes-fill','grandes-regioes-lines','grandes-regioes-labels'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',regions?'visible':'none');});
+  const legend=document.querySelector('#state-map-legend');
+  if(legend) legend.style.display=regions?'none':'grid';
+  const hint=document.querySelector('#map-selection-hint');
+  if(hint) hint.textContent=regions?'Selecione uma região para obter dados':'Selecione um estado ou distrito para obter dados';
+}
