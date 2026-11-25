@@ -334,3 +334,28 @@ A soma dos valores estaduais publicados reproduz os totais nacionais e regionais
 ### Mapa em três escalas
 
 Está em implementação a alternância Brasil / Nordeste / Pernambuco com mapa coroplético em tons sequenciais da paleta marrom avermelhada do atlas. A intensidade da cor representará a população quilombola absoluta estadual; a legenda explicitará as classes e os valores ausentes permanecerão visualmente distintos de zero. A camada municipal de Pernambuco será mantida.
+
+
+## 4.4 Base das Grandes Regiões — população quilombola (Censo 2022)
+
+**Atualização: 25/11/2026.**
+
+Foram integrados os cinco agregados regionais do IBGE, com população quilombola total, localização do domicílio e população residente total. O arquivo versionado é `data/populacao-quilombola-regioes-censo-2022.js`.
+
+| Grande Região | População residente | Quilombolas | Em territórios | Fora de territórios |
+|---|---:|---:|---:|---:|
+| Norte | 17.354.884 | 167.311 | 52.249 | 115.062 |
+| Nordeste | 54.658.515 | 906.337 | 89.521 | 816.816 |
+| Sudeste | 84.840.113 | 182.427 | 14.945 | 167.482 |
+| Sul | 29.937.706 | 29.114 | 3.845 | 25.269 |
+| Centro-Oeste | 16.289.538 | 44.997 | 7.209 | 37.788 |
+
+A soma das cinco regiões reproduz os agregados nacionais da série utilizada: 1.330.186 pessoas quilombolas, 167.769 em territórios e 1.162.417 fora de territórios; população residente total de 203.080.756. A participação quilombola é calculada por região como população quilombola dividida pela população residente total.
+
+**Fontes:** IBGE, Censo Demográfico 2022, SIDRA tabela 9578 (população quilombola por Grandes Regiões e localização do domicílio) e SIDRA tabela 4709, variável 93 (população residente total). Conferência cruzada da tabela 9578 na página Brasil Quilombola do IBGE. Consulta: 25/11/2026.
+
+- https://sidra.ibge.gov.br/tabela/9578
+- https://sidra.ibge.gov.br/tabela/4709
+- https://www.ibge.gov.br/brasil-quilombola/
+
+**Mapa:** o modo Brasil / Regiões utiliza a Malha das Grandes Regiões do IBGE. A cor representa a população quilombola absoluta; o clique abre os cinco indicadores. A legenda identifica faixas de quantitativos absolutos, não taxas ou densidades. O modo Brasil / Estados e o recorte Nordeste continuam utilizando a Malha das Unidades da Federação; Pernambuco utiliza a Malha Municipal.
