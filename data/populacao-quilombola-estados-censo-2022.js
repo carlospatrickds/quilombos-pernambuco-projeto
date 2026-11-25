@@ -1,9 +1,7 @@
-// População quilombola e população residente por Unidade da Federação — Censo 2022.
-// Fonte: IBGE, SIDRA, tabela 9578, variável Pessoas quilombolas.
-// Extração fornecida pelo responsável pelo projeto (CSV exportado do SIDRA).
-// O arquivo contém também os blocos de população residente e percentuais da mesma tabela.
-// Valores "-" na tabela original foram preservados como null (não divulgado/sem valor numérico).
-// Percentual estadual: população quilombola total / população residente total * 100.
+// População quilombola por Unidade da Federação — Censo 2022.
+// Extraído da exportação CSV fornecida pelo responsável do projeto.
+// Fonte: IBGE, SIDRA, tabela 9578, variável Pessoas quilombolas, localização do domicílio.
+// Valores "-" no CSV foram preservados como null; não representam zero.
 export const STATE_CENSUS_2022 = [
   {
     "ibge": "11",
@@ -11,9 +9,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Rondônia",
     "quilombolaTotal": 2925,
     "quilombolaInside": 221,
-    "quilombolaOutside": 2704,
-    "populationTotal": 1581196,
-    "sharePercent": 0.184987
+    "quilombolaOutside": 2704
   },
   {
     "ibge": "12",
@@ -21,9 +17,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Acre",
     "quilombolaTotal": null,
     "quilombolaInside": null,
-    "quilombolaOutside": null,
-    "populationTotal": 830018,
-    "sharePercent": null
+    "quilombolaOutside": null
   },
   {
     "ibge": "13",
@@ -31,9 +25,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Amazonas",
     "quilombolaTotal": 2812,
     "quilombolaInside": 1231,
-    "quilombolaOutside": 1581,
-    "populationTotal": 3941613,
-    "sharePercent": 0.071341
+    "quilombolaOutside": 1581
   },
   {
     "ibge": "14",
@@ -41,9 +33,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Roraima",
     "quilombolaTotal": null,
     "quilombolaInside": null,
-    "quilombolaOutside": null,
-    "populationTotal": 636707,
-    "sharePercent": null
+    "quilombolaOutside": null
   },
   {
     "ibge": "15",
@@ -51,9 +41,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Pará",
     "quilombolaTotal": 135603,
     "quilombolaInside": 44560,
-    "quilombolaOutside": 91043,
-    "populationTotal": 8120131,
-    "sharePercent": 1.669961
+    "quilombolaOutside": 91043
   },
   {
     "ibge": "16",
@@ -61,9 +49,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Amapá",
     "quilombolaTotal": 12894,
     "quilombolaInside": 4909,
-    "quilombolaOutside": 7985,
-    "populationTotal": 733759,
-    "sharePercent": 1.757253
+    "quilombolaOutside": 7985
   },
   {
     "ibge": "17",
@@ -71,9 +57,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Tocantins",
     "quilombolaTotal": 13077,
     "quilombolaInside": 1328,
-    "quilombolaOutside": 11749,
-    "populationTotal": 1511460,
-    "sharePercent": 0.86519
+    "quilombolaOutside": 11749
   },
   {
     "ibge": "21",
@@ -81,9 +65,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Maranhão",
     "quilombolaTotal": 269168,
     "quilombolaInside": 29142,
-    "quilombolaOutside": 240026,
-    "populationTotal": 6776699,
-    "sharePercent": 3.971963
+    "quilombolaOutside": 240026
   },
   {
     "ibge": "22",
@@ -91,9 +73,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Piauí",
     "quilombolaTotal": 31786,
     "quilombolaInside": 8419,
-    "quilombolaOutside": 23367,
-    "populationTotal": 3271199,
-    "sharePercent": 0.971693
+    "quilombolaOutside": 23367
   },
   {
     "ibge": "23",
@@ -101,9 +81,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Ceará",
     "quilombolaTotal": 23994,
     "quilombolaInside": 4609,
-    "quilombolaOutside": 19385,
-    "populationTotal": 8794957,
-    "sharePercent": 0.272815
+    "quilombolaOutside": 19385
   },
   {
     "ibge": "24",
@@ -111,9 +89,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Rio Grande do Norte",
     "quilombolaTotal": 22371,
     "quilombolaInside": 3450,
-    "quilombolaOutside": 18921,
-    "populationTotal": 3302729,
-    "sharePercent": 0.677349
+    "quilombolaOutside": 18921
   },
   {
     "ibge": "25",
@@ -121,9 +97,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Paraíba",
     "quilombolaTotal": 16765,
     "quilombolaInside": 2922,
-    "quilombolaOutside": 13843,
-    "populationTotal": 3974687,
-    "sharePercent": 0.421794
+    "quilombolaOutside": 13843
   },
   {
     "ibge": "26",
@@ -131,9 +105,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Pernambuco",
     "quilombolaTotal": 78864,
     "quilombolaInside": 6769,
-    "quilombolaOutside": 72095,
-    "populationTotal": 9058931,
-    "sharePercent": 0.870566
+    "quilombolaOutside": 72095
   },
   {
     "ibge": "27",
@@ -141,9 +113,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Alagoas",
     "quilombolaTotal": 37724,
     "quilombolaInside": 691,
-    "quilombolaOutside": 37033,
-    "populationTotal": 3127683,
-    "sharePercent": 1.206132
+    "quilombolaOutside": 37033
   },
   {
     "ibge": "28",
@@ -151,9 +121,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Sergipe",
     "quilombolaTotal": 28163,
     "quilombolaInside": 12748,
-    "quilombolaOutside": 15415,
-    "populationTotal": 2210004,
-    "sharePercent": 1.274342
+    "quilombolaOutside": 15415
   },
   {
     "ibge": "29",
@@ -161,9 +129,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Bahia",
     "quilombolaTotal": 397502,
     "quilombolaInside": 20771,
-    "quilombolaOutside": 376731,
-    "populationTotal": 14141626,
-    "sharePercent": 2.810865
+    "quilombolaOutside": 376731
   },
   {
     "ibge": "31",
@@ -171,9 +137,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Minas Gerais",
     "quilombolaTotal": 135315,
     "quilombolaInside": 4576,
-    "quilombolaOutside": 130739,
-    "populationTotal": 20539989,
-    "sharePercent": 0.658788
+    "quilombolaOutside": 130739
   },
   {
     "ibge": "32",
@@ -181,9 +145,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Espírito Santo",
     "quilombolaTotal": 15659,
     "quilombolaInside": 2793,
-    "quilombolaOutside": 12866,
-    "populationTotal": 3833712,
-    "sharePercent": 0.408455
+    "quilombolaOutside": 12866
   },
   {
     "ibge": "33",
@@ -191,9 +153,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Rio de Janeiro",
     "quilombolaTotal": 20447,
     "quilombolaInside": 3500,
-    "quilombolaOutside": 16947,
-    "populationTotal": 16055174,
-    "sharePercent": 0.127355
+    "quilombolaOutside": 16947
   },
   {
     "ibge": "35",
@@ -201,9 +161,7 @@ export const STATE_CENSUS_2022 = [
     "name": "São Paulo",
     "quilombolaTotal": 11006,
     "quilombolaInside": 4076,
-    "quilombolaOutside": 6930,
-    "populationTotal": 44411238,
-    "sharePercent": 0.024782
+    "quilombolaOutside": 6930
   },
   {
     "ibge": "41",
@@ -211,9 +169,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Paraná",
     "quilombolaTotal": 7113,
     "quilombolaInside": 648,
-    "quilombolaOutside": 6465,
-    "populationTotal": 11444380,
-    "sharePercent": 0.062153
+    "quilombolaOutside": 6465
   },
   {
     "ibge": "42",
@@ -221,9 +177,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Santa Catarina",
     "quilombolaTotal": 4449,
     "quilombolaInside": 580,
-    "quilombolaOutside": 3869,
-    "populationTotal": 7610361,
-    "sharePercent": 0.05846
+    "quilombolaOutside": 3869
   },
   {
     "ibge": "43",
@@ -231,9 +185,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Rio Grande do Sul",
     "quilombolaTotal": 17552,
     "quilombolaInside": 2617,
-    "quilombolaOutside": 14935,
-    "populationTotal": 10882965,
-    "sharePercent": 0.16128
+    "quilombolaOutside": 14935
   },
   {
     "ibge": "50",
@@ -241,9 +193,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Mato Grosso do Sul",
     "quilombolaTotal": 2572,
     "quilombolaInside": 1145,
-    "quilombolaOutside": 1427,
-    "populationTotal": 2757013,
-    "sharePercent": 0.093289
+    "quilombolaOutside": 1427
   },
   {
     "ibge": "51",
@@ -251,9 +201,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Mato Grosso",
     "quilombolaTotal": 11729,
     "quilombolaInside": 958,
-    "quilombolaOutside": 10771,
-    "populationTotal": 3658649,
-    "sharePercent": 0.320583
+    "quilombolaOutside": 10771
   },
   {
     "ibge": "52",
@@ -261,9 +209,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Goiás",
     "quilombolaTotal": 30391,
     "quilombolaInside": 5106,
-    "quilombolaOutside": 25285,
-    "populationTotal": 7056495,
-    "sharePercent": 0.430681
+    "quilombolaOutside": 25285
   },
   {
     "ibge": "53",
@@ -271,9 +217,7 @@ export const STATE_CENSUS_2022 = [
     "name": "Distrito Federal",
     "quilombolaTotal": 305,
     "quilombolaInside": null,
-    "quilombolaOutside": 305,
-    "populationTotal": 2817381,
-    "sharePercent": 0.010826
+    "quilombolaOutside": 305
   }
 ];
 
@@ -285,12 +229,12 @@ export const STATE_CENSUS_SOURCE = {
   geographicLevel: 'Unidade da Federação',
   referenceYear: 2022,
   extraction: 'CSV exportado do SIDRA e fornecido pelo responsável pelo projeto',
-  consultedAt: '2026-11-25',
+  consultedAt: '2026-11-24',
   url: 'https://sidra.ibge.gov.br/tabela/9578',
   notes: [
-    'A população residente total foi extraída do bloco correspondente da própria tabela 9578, mantendo coerência de série.',
-    'Acre e Roraima apresentam traço para os quantitativos quilombolas na extração; foram preservados como null, não como zero.',
-    'No Distrito Federal, o recorte em territórios quilombolas aparece como traço e foi preservado como null.',
-    'Os percentuais estaduais foram calculados a partir dos quantitativos absolutos da tabela.'
+    'A base contém os quantitativos quilombolas total, em territórios e fora de territórios.',
+    'Acre e Roraima apresentam traço nos três recortes e foram preservados como null.',
+    'No Distrito Federal, o recorte em territórios aparece como traço e foi preservado como null.',
+    'A população residente total e os percentuais estaduais não constam neste CSV e não são incluídos nesta base.'
   ]
 };
