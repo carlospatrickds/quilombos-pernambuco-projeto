@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 15:16 — Harmonização dos números nos painéis territoriais
+- Os valores numéricos dos cartões de informação municipal e mesorregional passaram a usar o verde `#68734D`.
+- O total do bloco de levantamento de comunidades do Agreste também recebeu o verde.
+- Os títulos, textos, fundos e destaques terracota foram preservados.
+- Atualizada a referência de cache de `css/painel.css`.
+
+**Arquivos alterados:** `css/painel.css`, `index.html`.
+
+**Preservação:** alteração restrita à cor dos números dos cartões de detalhe; dados, estrutura, cartografia e tipografia não foram modificados.
+
 ### 15:16 — Aplicação da paleta ampliada à interface editorial
 - Mantido o terracota como cor principal de identidade e introduzido o verde `#68734D` como cor secundária de seleção, navegação e detalhes.
 - Introduzida a areia `#D6BD91` em superfícies suaves dos indicadores e conteúdos informativos.
