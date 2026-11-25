@@ -341,37 +341,36 @@ export function bindMapInteractions(map, geojson, options = {}) {
   const getMode = options.getMode || (() => 'municipios');
 
   function selectFeature(feature) {
-    const mode=getMode();
-    if(mode==='subregioes'){
-      const region=feature.properties._mesoregion;
-      if(!region)return;
-      selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:false}));
-      selectedId=null;
-      const members=geojson.features.filter(f=>f.properties._mesoregion===region);
-      selectedIds=members.map(f=>String(f.properties._app_id));
-      selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:true}));
-      const bounds=new maplibregl.LngLatBounds();
-      const walk=coords=>{if(typeof coords[0]==='number')bounds.extend(coords);else coords.forEach(walk);};
-      members.forEach(f=>walk(f.geometry.coordinates));
-      map.fitBounds(bounds,{padding:{top:70,bottom:70,left:70,right:70},duration:850,maxZoom:CONFIG.maxZoom,minZoom:getDeviceMinZoom(),pitch:CONFIG.pitch,bearing:CONFIG.bearing});
-      openMesoregion(region,members.length);
+    const mode = getMode();
+
+    if (mode === 'subregioes') {
+      const region = feature.properties._mesoregion;
+      if (!region) return;
+
+      selectedIds.forEach(id => map.setFeatureState({ source: SOURCE_ID, id }, { selected: false }));
+      selectedId = null;
+
+      const members = geojson.features.filter(item => item.properties._mesoregion === region);
+      selectedIds = members.map(item => String(item.properties._app_id));
+      selectedIds.forEach(id => map.setFeatureState({ source: SOURCE_ID, id }, { selected: true }));
+
+      // A seleção regional não altera zoom, centro, inclinação ou enquadramento do mapa.
+      openMesoregion(region, members.length);
       return;
     }
+
     const id = String(feature.properties._app_id);
-    selectedIds.forEach(old=>map.setFeatureState({source:SOURCE_ID,id:old},{selected:false}));
-    selectedIds=[id];
-    if (selectedId !== null) map.setFeatureState({ source: SOURCE_ID, id: selectedId }, { selected: false });
+    selectedIds.forEach(old => map.setFeatureState({ source: SOURCE_ID, id: old }, { selected: false }));
+    selectedIds = [id];
+
+    if (selectedId !== null) {
+      map.setFeatureState({ source: SOURCE_ID, id: selectedId }, { selected: false });
+    }
     selectedId = id;
     map.setFeatureState({ source: SOURCE_ID, id }, { selected: true });
-    const bounds = new maplibregl.LngLatBounds();
-    const walk = coords => {
-      if (typeof coords[0] === 'number') bounds.extend(coords);
-      else coords.forEach(walk);
-    };
-    walk(feature.geometry.coordinates);
-    map.fitBounds(bounds, { padding: { top: 70, bottom: 70, left: 70, right: 440 }, duration: 850, maxZoom: CONFIG.maxZoom, minZoom: getDeviceMinZoom(), pitch: CONFIG.pitch, bearing: CONFIG.bearing });
-    // Aguarda o início da transição de elevação antes de abrir a ficha.
-    window.setTimeout(() => openMunicipality(feature), 180);
+
+    // A seleção municipal mantém o enquadramento atual; apenas abre a ficha.
+    openMunicipality(feature);
   }
 
   map.on('mousemove', FILL_ID, event => {
