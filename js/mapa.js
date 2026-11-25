@@ -500,12 +500,23 @@ export function addStateLayer(map, geojson, stateData) {
   document.querySelector('.map-stage').append(legend);
   map.on('click','estados-fill',event=>{
     const feature=event.features?.[0]; if(!feature)return;
-    const p=feature.properties, value=Number(p._app_quilombola);
-    const formatted=value<0?'Não divulgado':new Intl.NumberFormat('pt-BR').format(value);
+    const p=feature.properties;
+    const item=byCode.get(String(p._app_code).padStart(2,'0'));
+    const fmt=value=>value===null||value===undefined||Number(value)<0?'Não divulgado':new Intl.NumberFormat('pt-BR').format(Number(value));
+    const quilombola=item?.quilombolaTotal??null;
+    const resident=item?.populationResident??null;
+    const share=Number.isFinite(quilombola)&&Number.isFinite(resident)&&resident>0
+      ? (quilombola/resident*100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%'
+      : 'Não disponível';
+    const html='<div class="state-popup"><strong>'+p._app_name+'</strong>'+
+      '<span>População quilombola</span><b>'+fmt(quilombola)+'</b>'+
+      '<small>População residente: '+fmt(resident)+'</small>'+
+      '<small>Participação: '+share+'</small>'+
+      '<small>Em territórios delimitados: '+fmt(item?.quilombolaInside)+'</small>'+
+      '<small>Fora de territórios delimitados: '+fmt(item?.quilombolaOutside)+'</small>'+
+      '<small>IBGE · Censo 2022 · SIDRA 9578 e 4709</small></div>';
     new maplibregl.Popup({closeButton:true,closeOnClick:true,offset:8})
-      .setLngLat(event.lngLat)
-      .setHTML('<div class="state-popup"><strong>'+p._app_name+'</strong><span>População quilombola</span><b>'+formatted+'</b><small>IBGE · Censo 2022 · SIDRA 9578</small></div>')
-      .addTo(map);
+      .setLngLat(event.lngLat).setHTML(html).addTo(map);
   });
   map.on('mouseenter','estados-fill',()=>map.getCanvas().style.cursor='pointer');
   map.on('mousemove','estados-fill',()=>map.getCanvas().style.cursor='pointer');
