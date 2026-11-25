@@ -67,7 +67,7 @@ function formatNumber(value) {
   return new Intl.NumberFormat('pt-BR').format(value);
 }
 
-export function openMesoregion(name) {
+export function openMesoregion(name, municipalityCount = null) {
   const stats=MESOREGION_QUILOMBOLA_2022[name]; if(!stats)return;
   const content=$('#panel-content');
   content.querySelectorAll('.data-grid,.panel-section,.source-note').forEach(el=>el.style.display='none');
@@ -80,7 +80,7 @@ export function openMesoregion(name) {
   const fmt=v=>new Intl.NumberFormat('pt-BR').format(v);
   const pct=(stats.total/78864*100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'% do total estadual';
   regional.replaceChildren();
-  [['População quilombola',fmt(stats.total)],['Participação no total estadual',pct],['Municípios integrantes',String(stats.municipalityCount??'—')]].forEach(([label,value])=>{
+  [['População quilombola',fmt(stats.total)],['Participação no total estadual',pct],['Municípios integrantes',String(municipalityCount??'—')]].forEach(([label,value])=>{
     const card=document.createElement('article');card.className='data-card';
     const span=document.createElement('span');span.textContent=label;
     const strong=document.createElement('strong');strong.textContent=value;
