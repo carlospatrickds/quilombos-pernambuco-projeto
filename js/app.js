@@ -49,7 +49,7 @@ async function start() {
     applyMesorregionColors(geojson);
     addMunicipalLayer(map, geojson);
     addMesorregionBoundaries(map, geojson);
-    bindMapInteractions(map, geojson, { getMode: () => pernambucoMapMode });
+    bindMapInteractions(map, geojson, { getMode: () => pernambucoMapMode, isTooltipEnabled: () => pendingRegion === 'pernambuco' });
     municipalityLoaded = true;
     return geojson;
   }
