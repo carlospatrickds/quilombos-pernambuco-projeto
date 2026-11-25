@@ -1,4 +1,4 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-mesorregion-choropleth';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-northeast-subregions';
 import { initPanel, closePanel } from './panel.js?v=20261125-vignette';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -76,7 +76,7 @@ async function start() {
           if(legend)legend.style.display='flex';
         }
       }));
-      document.querySelectorAll('[data-map-mode]').forEach(button=>button.addEventListener('click',()=>{
+      document.querySelectorAll('#brazil-map-mode [data-map-mode]').forEach(button=>button.addEventListener('click',()=>{
         brazilMapMode=button.dataset.mapMode;
         document.querySelectorAll('[data-map-mode]').forEach(item=>{
           const active=item.dataset.mapMode===brazilMapMode;
