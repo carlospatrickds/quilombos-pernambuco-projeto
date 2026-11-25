@@ -292,7 +292,7 @@ export function addStateLayer(map, geojson, stateData) {
       'case',
       ['<',['get','_app_quilombola'],0],'#D9CFC0',
       ['step',['get','_app_quilombola'],
-        '#E8D6C7', 6580, '#D7B5A0', 14626, '#B98570', 23020, '#965B49', 45952, '#783F32'
+        '#E8D6C7', 6580.2, '#D7B5A0', 14626.2, '#B98570', 23020.2, '#965B49', 45952, '#783F32'
       ]
     ],'fill-opacity':0.96}
   });
