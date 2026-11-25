@@ -256,3 +256,7 @@ Foi implementada no cabeçalho do painel lateral de detalhes uma vinheta cartogr
 
 ### Refinamento de composição da vinheta no cabeçalho — 25/11/2026
 A vinheta cartográfica foi reposicionada para ficar centralizada horizontalmente e acima do rótulo “TERRITÓRIO QUILOMBOLA”. O rótulo passou a ocupar uma linha centralizada na base do cabeçalho. A silhueta recebeu área própria na parte superior, com largura máxima de 190 px e altura de 82 px, reduzindo a proximidade visual com a sigla decorativa “PE” à direita. A geometria, cor e geração dinâmica em SVG permanecem inalteradas. Arquivo alterado: `css/painel.css`.
+
+
+### Correção de hierarquia do cabeçalho — 25/11/2026
+Correção após revisão visual: o texto “TERRITÓRIO QUILOMBOLA” deve permanecer na posição original do cabeçalho (alinhado à esquerda, junto à base, conforme o layout anterior). Somente a vinheta cartográfica deve ocupar a área superior, centralizada acima do texto. Foi removido o posicionamento absoluto/centralizado aplicado indevidamente ao rótulo; a silhueta continua centralizada na parte superior. A sigla decorativa PE permanece à direita. Arquivo corrigido: `css/painel.css`.
