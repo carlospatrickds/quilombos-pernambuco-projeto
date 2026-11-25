@@ -4,6 +4,18 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 15:16 — Aplicação da paleta ampliada à interface editorial
+- Mantido o terracota como cor principal de identidade e introduzido o verde `#68734D` como cor secundária de seleção, navegação e detalhes.
+- Introduzida a areia `#D6BD91` em superfícies suaves dos indicadores e conteúdos informativos.
+- Preservada a palha `#EDE6D8` como base clara e o grafite `#292B28` para contraste e leitura.
+- Indicadores secundários receberam acentos verdes; o primeiro indicador mantém destaque terracota.
+- Seletor territorial, controles de navegação, acordeão do Censo, destaques internos e elementos auxiliares receberam ajustes cromáticos.
+- Atualizada a referência de cache de `css/style.css`.
+
+**Arquivos alterados:** `css/style.css`, `index.html`.
+
+**Preservação:** Fraunces e DM Sans mantidas. Não foram alterados `css/mapa.css`, arquivos GeoJSON, geometrias, cores temáticas dos mapas, camadas, enquadramento ou dados cartográficos.
+
 ### 11:28 — Etiqueta flutuante restrita ao mapa de Pernambuco
 - A caixinha com o nome do município ou da mesorregião agora é exibida somente quando a escala ativa é Pernambuco.
 - Nas escalas Brasil e Nordeste, a etiqueta não aparece.
