@@ -1,5 +1,5 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, setPernambucoMapMode, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-northeast-pe-overlay';
-import { initPanel, closePanel } from './panel.js?v=20261125-panel-open-fix';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, setPernambucoMapMode, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-meso-legend-vignette';
+import { initPanel, closePanel } from './panel.js?v=20261125-meso-legend-vignette';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
 
