@@ -264,3 +264,80 @@ export function bindMapInteractions(map, geojson) {
     }
   });
 }
+
+// Camada estadual coroplética: população quilombola absoluta (SIDRA 9578).
+export async function loadStates() {
+  const url = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?intrarregiao=UF&qualidade=minima&formato=application/vnd.geo+json';
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Falha ao carregar malha estadual do IBGE: HTTP ${response.status}`);
+  const geo = await response.json();
+  if (!geo.features || !Array.isArray(geo.features)) throw new Error('Malha estadual sem feições GeoJSON.');
+  return geo;
+}
+
+export function addStateLayer(map, geojson, stateData) {
+  const byCode = new Map(stateData.map(item => [String(item.ibge).padStart(2,'0'), item]));
+  geojson.features.forEach(feature => {
+    const code = String(feature.properties.codarea || feature.properties._app_id || feature.id).padStart(2,'0');
+    const item = byCode.get(code);
+    feature.properties._app_code = code;
+    feature.properties._app_name = item?.name || feature.properties.nome || feature.properties.name || code;
+    feature.properties._app_quilombola = item?.quilombolaTotal ?? -1;
+    feature.id = code;
+  });
+  map.addSource('estados-br', { type:'geojson', data:geojson, promoteId:'_app_code' });
+  map.addLayer({
+    id:'estados-fill', type:'fill', source:'estados-br',
+    paint:{'fill-color':[
+      'case',
+      ['<',['get','_app_quilombola'],0],'#D9CFC0',
+      ['step',['get','_app_quilombola'],
+        '#E8D6C7', 6580, '#D7B5A0', 14626, '#B98570', 23020, '#965B49', 45952, '#783F32'
+      ]
+    ],'fill-opacity':0.96}
+  });
+  map.addLayer({id:'estados-lines',type:'line',source:'estados-br',paint:{'line-color':'#F3EBDD','line-width':1.15,'line-opacity':0.95}});
+  map.addLayer({id:'estados-labels',type:'symbol',source:'estados-br',layout:{
+    'text-field':['get','_app_name'],'text-font':['Open Sans Regular'],'text-size':['interpolate',['linear'],['zoom'],2,9,4,12],
+    'text-max-width':9,'text-allow-overlap':false
+  },paint:{'text-color':'#3D2500','text-halo-color':'#F3EBDD','text-halo-width':1.4}});
+  const legend = document.createElement('div');
+  legend.id='state-map-legend';
+  legend.className='state-map-legend';
+  legend.innerHTML='<strong>População quilombola</strong><span><i style="background:#E8D6C7"></i> até 6.580</span><span><i style="background:#D7B5A0"></i> 6.581–14.626</span><span><i style="background:#B98570"></i> 14.627–23.020</span><span><i style="background:#965B49"></i> 23.021–45.952</span><span><i style="background:#783F32"></i> acima de 45.952</span><small>Pessoas · Censo 2022 · SIDRA 9578</small>';
+  document.querySelector('.map-stage').append(legend);
+  map.on('click','estados-fill',event=>{
+    const feature=event.features?.[0]; if(!feature)return;
+    const p=feature.properties, value=Number(p._app_quilombola);
+    const formatted=value<0?'Não divulgado':new Intl.NumberFormat('pt-BR').format(value);
+    new maplibregl.Popup({closeButton:true,closeOnClick:true,offset:8})
+      .setLngLat(event.lngLat)
+      .setHTML('<div class="state-popup"><strong>'+p._app_name+'</strong><span>População quilombola</span><b>'+formatted+'</b><small>IBGE · Censo 2022 · SIDRA 9578</small></div>')
+      .addTo(map);
+  });
+  map.on('mouseenter','estados-fill',()=>map.getCanvas().style.cursor='pointer');
+  map.on('mouseleave','estados-fill',()=>map.getCanvas().style.cursor='');
+}
+
+export function showStateView(map, region) {
+  const stateVisibility = region === 'pernambuco' ? 'none' : 'visible';
+  ['estados-fill','estados-lines','estados-labels'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',stateVisibility);});
+  ['municipios-fill-3d','municipios-lines','municipios-labels'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',region==='pernambuco'?'visible':'none');});
+  const search=document.querySelector('.search-wrap');
+  const reset=document.querySelector('#reset-view');
+  if(search) search.style.display=region==='pernambuco'?'':'none';
+  if(reset) reset.style.display=region==='pernambuco'?'':'none';
+  const legend=document.querySelector('#state-map-legend');
+  if(legend) legend.style.display=region==='pernambuco'?'none':'grid';
+  const title=document.querySelector('.map-toolbar h2');
+  if(title) title.textContent=region==='brasil'?'Brasil — população quilombola':region==='nordeste'?'Nordeste — população quilombola':'Municípios de Pernambuco';
+  if(region==='brasil') {
+    map.setFilter('estados-fill',null); map.setFilter('estados-lines',null); map.setFilter('estados-labels',null);
+    map.fitBounds([[-74,-34],[-34,6]],{padding:55,duration:700});
+  } else if(region==='nordeste') {
+    const codes=['21','22','23','24','25','26','27','28','29'];
+    const filter=['in',['get','_app_code'],['literal',codes]];
+    ['estados-fill','estados-lines','estados-labels'].forEach(id=>map.setFilter(id,filter));
+    map.fitBounds([[-48,-18],[-33,-1]],{padding:55,duration:700});
+  }
+}
