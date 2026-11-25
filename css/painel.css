@@ -42,13 +42,14 @@
   inset:8px 18px 42px 18px;
   display:flex;
   align-items:flex-start;
-  justify-content:center;
+  justify-content:flex-start;
+  padding-left:2%;
   pointer-events:none;
   z-index:0;
 }
 .municipality-vignette-svg {
   display:block;
-  width:min(100%, 190px);
+  width:min(38%, 140px);
   height:82px;
   overflow:visible;
 }
