@@ -122,3 +122,33 @@ h1 em { color:var(--terra-light); font-weight:400; }
 .map-mode-button.active{background:#3D2500;color:#FBF8F1;border-color:#3D2500}
 .map-mode-button:focus-visible{outline:2px solid #D66A32;outline-offset:2px}
 @media(max-width:720px){.map-actions{flex-wrap:wrap}.map-mode-toggle{order:0;width:100%}.map-mode-button{flex:1}}
+
+
+/* Contexto do primeiro Censo Quilombola — bloco editorial independente dos mapas. */
+.census-context{margin:0 0 34px;padding:24px clamp(16px,3vw,34px);background:rgba(251,248,241,.96);border:1px solid var(--line);box-shadow:0 14px 38px rgba(61,37,0,.07)}
+.census-context-heading h2{margin:7px 0;font:500 clamp(25px,3vw,34px)/1.15 Georgia,serif;color:var(--brown-deep)}
+.census-context-heading>p{max-width:900px;margin:0;color:#5E554B;font-size:13px;line-height:1.75}
+.census-national-highlight{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px;margin:20px 0}
+.census-national-highlight>div{min-height:112px;padding:17px;background:#F1E5D3;border:1px solid rgba(120,63,50,.16)}
+.census-national-highlight strong{display:block;color:#783F32;font:500 clamp(25px,3vw,36px) Georgia,serif;margin-bottom:6px}
+.census-national-highlight span{display:block;color:#3D2500;font-size:11px;line-height:1.5;font-weight:600}
+.census-geography{padding:19px;background:#FBF8F1;border:1px solid rgba(120,63,50,.18)}
+.census-geography-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px}
+.census-geography-title h3{margin:0;color:#3D2500;font:18px Georgia,serif}
+.census-geography-title>span{color:#705F4B;font-size:10px;white-space:nowrap}
+.census-residence-row{margin:15px 0}
+.census-residence-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;color:#3D2500;font-size:12px}
+.census-residence-label strong{color:#783F32;font:22px Georgia,serif;white-space:nowrap}
+.census-track{height:13px;margin:7px 0 4px;background:#E9DDCB;overflow:hidden}
+.census-bar{display:block;height:100%;min-width:2px;transition:width .25s ease}
+.census-bar-inside{background:#783F32}
+.census-bar-outside{background:#D18B68}
+.census-residence-row>small{color:#705F4B;font-size:10px}
+.census-interpretation{margin:16px 0 0;padding:12px 14px;border-left:3px solid #A85D43;background:#F7F0E5;color:#4F3C28;font-size:11px;line-height:1.65}
+.census-method{margin-top:14px;padding:15px 17px;background:#E9DDCB}
+.census-method strong{color:#783F32;font:16px Georgia,serif}
+.census-method p{margin:6px 0 0;color:#3D342B;font-size:11px;line-height:1.7}
+.census-source{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:14px;color:#5E554B;font-size:10px}
+.census-source a{color:#783F32;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.census-source small{flex-basis:100%;color:#705F4B;line-height:1.5}
+@media(max-width:720px){.census-context{padding:18px 13px;margin-bottom:24px}.census-national-highlight{grid-template-columns:1fr;gap:7px;margin:15px 0}.census-national-highlight>div{min-height:0;padding:12px 14px}.census-national-highlight strong{font-size:27px;margin-bottom:2px}.census-geography{padding:13px}.census-geography-title{display:block}.census-geography-title h3{font-size:16px}.census-geography-title>span{display:block;margin-top:5px}.census-residence-label{font-size:11px}.census-residence-label strong{font-size:19px}.census-source{font-size:9px}}
