@@ -69,7 +69,7 @@ function formatNumber(value) {
 
 export function openMesoregion(name, municipalityCount = null) {
   const stats=MESOREGION_QUILOMBOLA_2022[name]; if(!stats)return;
-  const content=$('#panel-content');
+  const content=$('.panel-content');
   content.querySelectorAll('.data-grid,.panel-section,.source-note').forEach(el=>el.style.display='none');
   let regional=content.querySelector('#mesoregion-panel-content');
   if(!regional){regional=document.createElement('section');regional.id='mesoregion-panel-content';regional.className='mesoregion-panel-content';$('#panel-code').insertAdjacentElement('afterend',regional);}
@@ -93,7 +93,7 @@ export function openMesoregion(name, municipalityCount = null) {
 }
 
 export function openMunicipality(feature) {
-  const content=$('#panel-content');
+  const content=$('.panel-content');
   content.querySelectorAll('.data-grid,.panel-section,.source-note').forEach(el=>el.style.display='');
   const regional=content.querySelector('#mesoregion-panel-content');if(regional)regional.style.display='none';
   const p = feature.properties || {};
