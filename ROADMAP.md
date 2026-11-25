@@ -327,3 +327,13 @@ Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quil
 - [x] Criar alternância entre “Municípios” (divisas municipais visíveis) e “Sub-regiões” (divisas municipais ocultas).
 - [x] Atualizar rótulo da malha e instrução de seleção conforme o modo.
 - [ ] Validar visualmente no GitHub Pages, em desktop e celular.
+
+
+### Interação e painel das mesorregiões (25/11/2026)
+
+- [x] Identificar município ou mesorregião ao passar o cursor, conforme o modo.
+- [x] Selecionar a mesorregião inteira no modo Sub-regiões.
+- [x] Criar painel lateral com indicadores agregados da mesorregião.
+- [x] Alternar a legenda inferior entre Município e Mesorregião.
+- [x] Ocultar legendas municipais nos mapas Brasil e Nordeste.
+- [ ] Validar visualmente os dois modos em desktop e celular após publicação.
