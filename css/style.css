@@ -171,3 +171,8 @@ h1 em { color:var(--terra-light); font-weight:400; }
 .census-context-content .census-geography{margin-top:4px}
 .census-context summary:focus-visible{outline:3px solid #D66A32;outline-offset:-3px}
 @media(max-width:720px){.census-context>summary{padding:13px}.census-summary-copy strong{font-size:17px}.census-summary-copy small{font-size:10px}.census-context-content{padding:15px 12px 18px}}
+
+/* Acesso à página educativa de reconhecimentos. */
+.recognition-nav a{color:var(--terra);font-size:11px;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(120,63,50,.35);padding-bottom:4px}
+.recognition-nav a:hover,.recognition-nav a:focus-visible{color:var(--terra-light);border-color:currentColor}
+@media(max-width:720px){.topbar{height:auto;min-height:68px;gap:10px;padding:12px 16px;flex-wrap:wrap}.topbar .brand{gap:8px}.topbar .brand strong{font-size:14px}.topbar .brand-mark{width:33px;height:33px}.topbar .topbar-meta{display:none}.recognition-nav{margin-left:auto}.recognition-nav a{font-size:10px;white-space:nowrap}}
