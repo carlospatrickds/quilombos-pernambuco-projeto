@@ -152,3 +152,22 @@ h1 em { color:var(--terra-light); font-weight:400; }
 .census-source a{color:#783F32;font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .census-source small{flex-basis:100%;color:#705F4B;line-height:1.5}
 @media(max-width:720px){.census-context{padding:18px 13px;margin-bottom:24px}.census-national-highlight{grid-template-columns:1fr;gap:7px;margin:15px 0}.census-national-highlight>div{min-height:0;padding:12px 14px}.census-national-highlight strong{font-size:27px;margin-bottom:2px}.census-geography{padding:13px}.census-geography-title{display:block}.census-geography-title h3{font-size:16px}.census-geography-title>span{display:block;margin-top:5px}.census-residence-label{font-size:11px}.census-residence-label strong{font-size:19px}.census-source{font-size:9px}}
+
+
+/* A seção censitária inicia recolhida para preservar espaço na abertura do atlas. */
+.census-context{padding:0;overflow:hidden}
+.census-context>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 20px}
+.census-context>summary::-webkit-details-marker{display:none}
+.census-context>summary::marker{content:""}
+.census-summary-copy{display:grid;gap:3px}
+.census-summary-copy .section-kicker{font-size:9px}
+.census-summary-copy strong{color:#3D2500;font:500 20px Georgia,serif}
+.census-summary-copy small{color:#705F4B;font-size:11px;line-height:1.45}
+.census-summary-action{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(120,63,50,.25);color:#783F32;font-size:22px;line-height:1;transition:transform .2s ease}
+.census-context[open]>summary{border-bottom:1px solid var(--line);background:#F7F0E5}
+.census-context[open] .census-summary-action{transform:rotate(45deg)}
+.census-context-content{padding:22px clamp(16px,3vw,34px) 24px}
+.census-context-content .census-national-highlight{margin-top:16px}
+.census-context-content .census-geography{margin-top:4px}
+.census-context summary:focus-visible{outline:3px solid #D66A32;outline-offset:-3px}
+@media(max-width:720px){.census-context>summary{padding:13px}.census-summary-copy strong{font-size:17px}.census-summary-copy small{font-size:10px}.census-context-content{padding:15px 12px 18px}}
