@@ -268,3 +268,38 @@ A posição da silhueta foi ajustada com base na montagem enviada pelo responsá
 
 ### Refinamento de posição e opacidade da vinheta — 24/11/2026
 Ajuste solicitado após avaliação da montagem: a silhueta foi deslocada um pouco para baixo, aproximando-a do rótulo “TERRITÓRIO QUILOMBOLA”, sem alterar a posição do texto nem o alinhamento horizontal já aprovado. A opacidade do preenchimento foi elevada de 92% para 100% (aumento de 8 pontos percentuais, equivalente a aproximadamente 8,7% em termos relativos), mantendo a cor terracota `#D66A32`. A borda clara permanece inalterada. Arquivo alterado: `css/painel.css`.
+
+
+## 4.5 Painel agregado — Brasil, Nordeste e Pernambuco (25/11/2026)
+
+Foi aprovada e integrada à página inicial uma seção estatística com três abas: Brasil, Nordeste e Pernambuco. Cada aba apresenta:
+- população quilombola total;
+- participação da população quilombola sobre a população residente total;
+- população residente total;
+- pessoas quilombolas residentes em territórios quilombolas oficialmente delimitados;
+- pessoas quilombolas residentes fora desses territórios.
+
+### Valores e cálculos
+
+| Indicador | Brasil | Nordeste | Pernambuco |
+|---|---:|---:|---:|
+| População residente total | 203.080.756 | 54.658.515 | 9.058.931 |
+| População quilombola | 1.330.186 | 906.337 | 78.864 |
+| Em territórios delimitados | 167.769 | 89.521 | 6.769 |
+| Fora de territórios delimitados | 1.162.417 | 816.816 | 72.095 |
+| Participação quilombola | 0,6550% | 1,6582% | 0,8706% |
+
+Os percentuais exibidos na interface são calculados pela fórmula `população quilombola / população residente total × 100`, com duas casas decimais. Os percentuais de localização (dentro/fora) são calculados sobre a população quilombola de cada recorte.
+
+### Fontes e comparabilidade
+
+- **População quilombola e localização do domicílio:** IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável “Pessoas quilombolas”. Foi utilizada a exportação CSV da tabela enviada pelo responsável pelo projeto. O arquivo traz, para Brasil e Grandes Regiões, total e categorias “Em territórios quilombolas” e “Fora de territórios quilombolas”; os agregados de Pernambuco conferem com os totais municipais já integrados.
+- **População residente total:** IBGE, Censo Demográfico 2022, SIDRA, tabela 4709 / resultados do Censo 2022. Brasil: 203.080.756; Nordeste: 54.658.515; Pernambuco: 9.058.931.
+- **Consulta e integração:** 25/11/2026.
+- **Arquivo de dados:** `data/dados-gerais-censo-2022.js`.
+- **Interação das abas:** `js/dados-gerais.js`.
+- **Apresentação:** `index.html` e `css/style.css`.
+
+**Nota de revisão estatística:** a divulgação inicial do Universo do Censo 2022 apresentou 1.327.802 pessoas quilombolas no Brasil, 905.415 no Nordeste e 78.827 em Pernambuco. A extração da tabela 9578 utilizada neste projeto apresenta 1.330.186, 906.337 e 78.864, respectivamente. São números de divulgações/apurações distintas. Para não misturar séries, o painel usa exclusivamente os valores da exportação da tabela 9578 adotada também na base municipal. A diferença deve permanecer documentada e qualquer futura atualização precisa preservar a versão e a data da extração.
+
+**Nota conceitual:** “fora de territórios quilombolas oficialmente delimitados” descreve a localização do domicílio segundo a classificação censitária; não significa ausência de identidade, pertencimento, comunidade ou direito territorial.
