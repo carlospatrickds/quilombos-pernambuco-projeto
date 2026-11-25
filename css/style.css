@@ -113,3 +113,12 @@ h1 em { color:var(--terra-light); font-weight:400; }
   white-space:nowrap;
   overflow:hidden;
 }
+
+
+/* Seletor de nível territorial do mapa nacional */
+.map-mode-toggle{display:flex;align-items:center;gap:3px;padding:3px;background:#E9DDCB;border:1px solid var(--line)}
+.map-mode-toggle[hidden]{display:none}
+.map-mode-button{border:1px solid transparent;background:transparent;color:#4F3C28;padding:8px 12px;font-size:11px;font-weight:600;min-height:34px}
+.map-mode-button.active{background:#3D2500;color:#FBF8F1;border-color:#3D2500}
+.map-mode-button:focus-visible{outline:2px solid #D66A32;outline-offset:2px}
+@media(max-width:720px){.map-actions{flex-wrap:wrap}.map-mode-toggle{order:0;width:100%}.map-mode-button{flex:1}}
