@@ -224,18 +224,8 @@ export function addPernambucoNortheastOverlay(map, geojson) {
     filter:['==',['get','_app_code'],'26'],
     paint:{'line-color':'#F3EBDD','line-width':1.8,'line-opacity':1}
   });
-  map.on('click','ne-pe-municipios-fill',event=>{
-    const feature=event.features?.[0];if(!feature)return;
-    const p=feature.properties;
-    const mode=document.querySelector('#northeast-map-mode .map-mode-button.active')?.dataset.mapMode||'subregioes';
-    const title=mode==='subregioes'?(p._mesoregion||'Pernambuco'):p._app_name;
-    const amount=mode==='subregioes'?MESOREGION_QUILOMBOLA_2022[p._mesoregion]?.total:p._app_quilombola;
-    const formatted=amount==null||Number(amount)<0?'Não disponível':new Intl.NumberFormat('pt-BR').format(Number(amount));
-    new maplibregl.Popup({closeButton:true,offset:8})
-      .setLngLat(event.lngLat)
-      .setHTML('<div class="state-popup"><strong>'+title+'</strong><span>População quilombola</span><b>'+formatted+'</b><small>IBGE · Censo 2022 · SIDRA 9578</small></div>')
-      .addTo(map);
-  });
+  // Nesta escala, Pernambuco é selecionado como Unidade da Federação.
+  // A sobreposição mesorregional é somente visual; o clique exibe o total estadual.
   map.setLayoutProperty('ne-pe-municipios-fill','visibility','none');
   map.setLayoutProperty('ne-pe-municipios-lines','visibility','none');
   map.setLayoutProperty('ne-pe-outline','visibility','none');
@@ -519,6 +509,15 @@ export function addStateLayer(map, geojson, stateData) {
   });
   map.on('mouseenter','estados-fill',()=>map.getCanvas().style.cursor='pointer');
   map.on('mouseleave','estados-fill',()=>map.getCanvas().style.cursor='');
+}
+
+export function clearTerritorialSelection(map) {
+  map.getContainer().querySelectorAll('.maplibregl-popup').forEach(popup => popup.remove());
+  if (map.getSource(SOURCE_ID)) {
+    const features = map.querySourceFeatures(SOURCE_ID);
+    const ids = new Set(features.map(feature => feature.id ?? feature.properties?._app_id).filter(id => id != null));
+    ids.forEach(id => map.setFeatureState({ source: SOURCE_ID, id }, { selected: false, hover: false }));
+  }
 }
 
 export function showStateView(map, region) {
