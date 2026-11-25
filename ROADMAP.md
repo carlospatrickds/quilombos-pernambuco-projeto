@@ -318,3 +318,12 @@ Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quil
 - [x] Retirar contornos regionais brancos espessos e preservar divisas municipais discretas.
 - [x] Incluir legenda com nome da mesorregião e quantitativo absoluto.
 - [ ] Validar visualmente no GitHub Pages e conferir leitura das cinco cores em desktop e celular.
+
+
+### Alternância municipal/sub-regional no mapa do Nordeste (25/11/2026)
+
+- [x] Manter os nove estados do Nordeste na visualização.
+- [x] Sobrepor a malha municipal de Pernambuco com cores herdadas das cinco mesorregiões.
+- [x] Criar alternância entre “Municípios” (divisas municipais visíveis) e “Sub-regiões” (divisas municipais ocultas).
+- [x] Atualizar rótulo da malha e instrução de seleção conforme o modo.
+- [ ] Validar visualmente no GitHub Pages, em desktop e celular.
