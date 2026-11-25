@@ -452,3 +452,12 @@ h1,
 .search-suggestions{border-color:rgba(104,115,77,.30)}
 .search-suggestion:hover,.search-suggestion:focus{background:rgba(214,189,145,.25)}
 .recognition-nav a:hover,.recognition-nav a:focus-visible{color:var(--green);border-color:var(--green)}
+
+/* Fundo editorial de teste: papel marfim, luz difusa e sombras orgânicas de copa. */
+.app-shell{
+  background-color:#F3EBDD;
+  background-image:url("../assets/fundo-luz-sombras.svg");
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:100% 100%;
+}
