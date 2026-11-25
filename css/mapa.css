@@ -66,8 +66,10 @@
   animation:atlas-popup-in 1s ease both;
 }
 @keyframes atlas-popup-in{
-  from{opacity:0;transform:translateY(7px)}
-  to{opacity:1;transform:translateY(0)}
+  /* Não animar transform: o MapLibre usa essa propriedade para posicionar
+     o cartão exatamente nas coordenadas do clique. */
+  from{opacity:0}
+  to{opacity:1}
 }
 
 /* Ajustes responsivos dos cartões de dados e identificação da camada. */
