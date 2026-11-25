@@ -1,4 +1,4 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView } from './mapa.js?v=20261125-zoom5000';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode } from './mapa.js?v=20261125-zoom5000';
 import { initPanel, closePanel } from './panel.js?v=20261125-vignette';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -12,6 +12,7 @@ async function start() {
   let mapReady = false;
   let municipalityLoaded = false;
   let pendingRegion = 'brasil';
+  let brazilMapMode = 'regioes';
   let switching = false;
 
   async function changeRegion(region) {
@@ -26,6 +27,14 @@ async function start() {
         municipalityLoaded = true;
       }
       showStateView(map, region);
+      if(region==='brasil') setBrazilMapMode(map,brazilMapMode);
+      const meshLabel=document.querySelector('#map-mesh-label');
+      const hint=document.querySelector('#map-selection-hint');
+      const modeControl=document.querySelector('#brazil-map-mode');
+      if(modeControl) modeControl.hidden=region!=='brasil';
+      if(meshLabel) meshLabel.textContent=region==='pernambuco'?'MALHA MUNICIPAL':region==='nordeste'?'MALHA DAS UNIDADES DA FEDERAÇÃO':(brazilMapMode==='regioes'?'MALHA DAS GRANDES REGIÕES':'MALHA DAS UNIDADES DA FEDERAÇÃO');
+      if(hint && region==='nordeste') hint.textContent='Selecione um estado para obter dados';
+      if(hint && region==='pernambuco') hint.textContent='Selecione um município para explorar';
       if (region === 'pernambuco') {
         const bounds = new maplibregl.LngLatBounds();
         const walk = coords => { if (typeof coords[0] === 'number') bounds.extend(coords); else coords.forEach(walk); };
@@ -45,6 +54,23 @@ async function start() {
     try {
       const states = await loadStates();
       addStateLayer(map, states, STATE_CENSUS_2022);
+      const macroRegions = await loadMacroRegions();
+      addMacroRegionLayer(map, macroRegions);
+      document.querySelectorAll('[data-map-mode]').forEach(button=>button.addEventListener('click',()=>{
+        brazilMapMode=button.dataset.mapMode;
+        document.querySelectorAll('[data-map-mode]').forEach(item=>{
+          const active=item.dataset.mapMode===brazilMapMode;
+          item.classList.toggle('active',active);
+          item.setAttribute('aria-pressed',String(active));
+        });
+        if(pendingRegion==='brasil'){
+          setBrazilMapMode(map,brazilMapMode);
+          const label=document.querySelector('#map-mesh-label');
+          const hint=document.querySelector('#map-selection-hint');
+          if(label) label.textContent=brazilMapMode==='regioes'?'MALHA DAS GRANDES REGIÕES':'MALHA DAS UNIDADES DA FEDERAÇÃO';
+          if(hint) hint.textContent=brazilMapMode==='regioes'?'Selecione uma região para obter dados':'Selecione um estado ou distrito para obter dados';
+        }
+      }));
       mapReady = true;
       loading.hidden = true;
       await changeRegion(pendingRegion);
