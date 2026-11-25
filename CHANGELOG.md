@@ -4,6 +4,15 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 11:01 — Redução do cursor territorial
+- Reduzido em 30% o tamanho visual do cursor personalizado (de 48 × 72 para 34 × 50 unidades SVG).
+- Reposicionado o ponto ativo do cursor para acompanhar a nova dimensão e preservar a precisão do clique.
+- Atualizada a referência de cache de `css/mapa.css` em `index.html`.
+
+**Arquivos alterados:** `assets/cursor-lanca.svg`, `css/mapa.css`, `index.html`.
+
+**Preservação:** nenhuma alteração na geometria do mapa, nas camadas cartográficas ou nos dados territoriais.
+
 ### 08:55 — Ajustes responsivos dos cartões do mapa
 - Reposicionada, em telas móveis, a identificação da camada cartográfica para evitar sobreposição com o cartão de informações.
 - Ajustada a largura máxima dos cartões de dados conforme a largura disponível no celular.
