@@ -2,6 +2,7 @@ import { CONFIG } from './config.js?v=20261125-pe-color';
 import { normalizeCollection } from './data.js';
 import { openMunicipality } from './panel.js';
 import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-censo-2022.js';
+import { MESOREGION_BY_MUNICIPALITY } from '../data/mesorregioes-municipios.js';
 
 const SOURCE_ID = 'municipios-pe';
 const FILL_ID = 'municipios-fill-3d';
@@ -160,6 +161,44 @@ export function addMunicipalLayer(map, geojson) {
       bearing: CONFIG.bearing
     });
   }
+}
+
+// Sobrepõe os limites das cinco mesorregiões históricas sem alterar o preenchimento municipal.
+export function addMesorregionBoundaries(map, geojson) {
+  if (!window.turf || typeof window.turf.dissolve !== 'function') {
+    console.warn('Turf.js indisponível; limites das mesorregiões não foram desenhados.');
+    return false;
+  }
+  const features = geojson.features
+    .filter(feature => {
+      const code = String(feature.properties._app_code || feature.properties._app_id || '');
+      return Boolean(MESOREGION_BY_MUNICIPALITY[code]);
+    })
+    .map(feature => ({
+      type: 'Feature',
+      properties: { mesorregiao: MESOREGION_BY_MUNICIPALITY[String(feature.properties._app_code || feature.properties._app_id)] },
+      geometry: feature.geometry
+    }));
+  if (!features.length) {
+    console.warn('Nenhum município foi associado à tabela oficial de mesorregiões.');
+    return false;
+  }
+  const dissolved = window.turf.dissolve({ type: 'FeatureCollection', features }, { propertyName: 'mesorregiao' });
+  if (!dissolved.features?.length) throw new Error('Não foi possível dissolver os municípios por mesorregião.');
+  map.addSource('mesorregioes-pe', { type: 'geojson', data: dissolved });
+  map.addLayer({
+    id: 'mesorregioes-pe-boundaries',
+    type: 'line',
+    source: 'mesorregioes-pe',
+    paint: {
+      'line-color': '#FFFDF8',
+      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 1.6, 6, 2.2, 8, 2.8, 10, 3.2],
+      'line-opacity': 0.98,
+      'line-blur': 0.08
+    }
+  });
+  console.info('Limites das cinco mesorregiões incorporados:', dissolved.features.map(f => f.properties.mesorregiao));
+  return true;
 }
 
 function getFeatureByName(geojson, value) {
