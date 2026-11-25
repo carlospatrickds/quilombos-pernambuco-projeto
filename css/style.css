@@ -466,3 +466,18 @@ h1,
 /* Refinamento visual: contraste do destaque estadual na abertura. */
 .state-stat strong{color:var(--terra)}
 .state-stat>span:not(.stat-label){color:#705F4B}
+
+
+/* Controle opcional da camada de comunidades quilombolas — Pernambuco municipal. */
+.community-layer-control{gap:7px;flex-wrap:wrap}
+.community-layer-label{padding:0 8px;color:#4F3C28;font-size:10px;font-weight:700}
+#community-layer-toggle[aria-pressed="true"]{background:#783F32;color:#FBF8F1;border-color:#783F32}
+.community-layer-note{margin:10px 2px 0;padding:10px 12px;border-left:3px solid #D66A32;background:rgba(251,248,241,.88);color:#5E554B;font-size:10px;line-height:1.55}
+.community-layer-note[hidden]{display:none}
+.community-layer-note a{color:#783F32;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:720px){
+ .community-layer-control{width:100%;justify-content:space-between}
+ .community-layer-label{padding-left:4px;font-size:9px}
+ #community-layer-toggle{flex:0 0 auto;font-size:10px;padding:6px 9px}
+ .community-layer-note{font-size:9px}
+}
