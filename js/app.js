@@ -4,7 +4,7 @@ import {
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
 } from './mapa.js?v=20261125-state-total-popup-clean';
-import { initPanel, closePanel } from './panel.js?v=20261125-meso-legend-vignette';
+import { initPanel, closePanel } from './panel.js?v=20261125-metro-400-contrast';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
 
