@@ -28,12 +28,12 @@
       <section class="intro">
         <div class="intro-copy">
           <p class="eyebrow">TERRITÓRIO · MEMÓRIA · IDENTIDADE · RESISTÊNCIA</p>
-          <h1>Pernambuco, território de<br><em>histórias e resistências.</em></h1>
-          <p class="lead">Explore os municípios pernambucanos e conheça a presença, a história e a memória das comunidades quilombolas.</p>
+          <h1>Quilombos,<br><em>territórios de histórias e resistências.</em></h1>
+          <p class="lead">Explore as unidades federativas do Brasil, as regiões brasileiras e os municípios pernambucanos. Conheça a presença, a história e a memória das comunidades quilombolas.</p>
         </div>
         <div class="state-stat">
-          <span class="stat-label">PERNAMBUCO · CENSO 2022</span>
-          <strong>78.864</strong>
+          <span class="stat-label" id="intro-stat-label">PERNAMBUCO · CENSO 2022</span>
+          <strong id="intro-stat-value">78.864</strong>
           <span>pessoas quilombolas</span>
           <small>Fonte: IBGE · Censo Demográfico 2022</small>
         </div>
@@ -47,11 +47,11 @@
           <p>Uma leitura em três escalas territoriais: Brasil, Nordeste e Pernambuco.</p>
         </div>
         <div class="regional-tabs" role="tablist" aria-label="Selecionar recorte territorial">
-          <button class="regional-tab active" id="tab-brasil" type="button" role="tab" aria-selected="true" aria-controls="regional-panel" data-region="brasil">Brasil</button>
+          <button class="regional-tab" id="tab-brasil" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="brasil">Brasil</button>
           <button class="regional-tab" id="tab-nordeste" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="nordeste">Nordeste</button>
-          <button class="regional-tab" id="tab-pernambuco" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="pernambuco">Pernambuco</button>
+          <button class="regional-tab active" id="tab-pernambuco" type="button" role="tab" aria-selected="true" aria-controls="regional-panel" data-region="pernambuco">Pernambuco</button>
         </div>
-        <div class="regional-panel" id="regional-panel" role="tabpanel" aria-labelledby="tab-brasil" tabindex="0">
+        <div class="regional-panel" id="regional-panel" role="tabpanel" aria-labelledby="tab-pernambuco" tabindex="0">
           <div class="regional-summary">
             <div class="regional-total">
               <span>População quilombola</span>
@@ -256,6 +256,6 @@
   </aside>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script type="module" src="js/app.js?v=20261125-census-context"></script>
+  <script type="module" src="js/app.js?v=20261125-intro-territorial-sync"></script>
 </body>
 </html>
