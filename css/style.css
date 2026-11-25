@@ -452,12 +452,3 @@ h1,
 .search-suggestions{border-color:rgba(104,115,77,.30)}
 .search-suggestion:hover,.search-suggestion:focus{background:rgba(214,189,145,.25)}
 .recognition-nav a:hover,.recognition-nav a:focus-visible{color:var(--green);border-color:var(--green)}
-
-/* TESTE CROMÁTICO — fundo verde-claro na área principal do atlas.
-   O cabeçalho permanece em palha; o painel estatístico mantém seu fundo original. */
-.app-shell{
-  background:#E8EBDD;
-}
-.topbar{
-  background:#F3EBDD;
-}
