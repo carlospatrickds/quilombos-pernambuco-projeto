@@ -193,6 +193,7 @@ export function setPernambucoMapMode(map, mode) {
 
   const legend = document.querySelector('#mesoregion-legend');
   if (legend) legend.style.display = subregions ? 'flex' : 'none';
+  if (map.getLayer('mesoregion-boundaries-line')) map.setLayoutProperty('mesoregion-boundaries-line','visibility',subregions?'visible':'none');
 
   document.querySelectorAll('.map-footer .legend').forEach((item,index)=>{
     item.style.display='flex';
@@ -256,7 +257,57 @@ export function setNortheastPeMode(map, mode) {
 }
 
 // Legenda com quantitativos reais; as divisas municipais permanecem finas e discretas.
+function buildMesorregionBoundaryGeoJSON(geojson) {
+  const edges = new Map();
+  const keyPoint = point => point.map(value => Number(value).toFixed(6)).join(',');
+  const addRing = (ring, region) => {
+    for (let i=0;i<ring.length-1;i++) {
+      const a=ring[i], b=ring[i+1];
+      const ka=keyPoint(a), kb=keyPoint(b);
+      const key=ka<kb ? ka+'|'+kb : kb+'|'+ka;
+      if(!edges.has(key)) edges.set(key,[]);
+      edges.get(key).push({region,coordinates:[a,b]});
+    }
+  };
+  const walkGeometry = (geometry, region) => {
+    if(!geometry)return;
+    const walkCoordinates = coords => {
+      if(!Array.isArray(coords)||!coords.length)return;
+      if(typeof coords[0][0]==='number') addRing(coords,region);
+      else coords.forEach(walkCoordinates);
+    };
+    walkCoordinates(geometry.coordinates);
+  };
+  geojson.features.forEach(feature=>walkGeometry(feature.geometry,feature.properties._mesoregion));
+  const features=[];
+  edges.forEach(occurrences=>{
+    const regions=new Set(occurrences.map(item=>item.region).filter(Boolean));
+    if(regions.size>1) {
+      const segment=occurrences[0].coordinates;
+      features.push({type:'Feature',properties:{},geometry:{type:'LineString',coordinates:segment}});
+    }
+  });
+  return {type:'FeatureCollection',features};
+}
+
 export function addMesorregionBoundaries(map, geojson) {
+  const boundarySource='mesoregion-boundaries';
+  const boundaryLayer='mesoregion-boundaries-line';
+  if(map.getLayer(boundaryLayer))map.removeLayer(boundaryLayer);
+  if(map.getSource(boundarySource))map.removeSource(boundarySource);
+  const boundaries=buildMesorregionBoundaryGeoJSON(geojson);
+  map.addSource(boundarySource,{type:'geojson',data:boundaries});
+  map.addLayer({
+    id:boundaryLayer,type:'line',source:boundarySource,
+    layout:{visibility:'none'},
+    paint:{
+      'line-color':'#FFFDF8',
+      'line-width':['interpolate',['linear'],['zoom'],5,1.1,7,1.45,9,1.8],
+      'line-opacity':0.94,
+      'line-blur':0.15
+    }
+  });
+
   const existing=document.querySelector('#mesoregion-legend');
   if(existing) existing.remove();
   const legend=document.createElement('section');
@@ -274,7 +325,7 @@ export function addMesorregionBoundaries(map, geojson) {
   });
   const note=document.createElement('small');note.textContent='Pessoas · Censo 2022 · IBGE, SIDRA 9578';legend.append(note);
   const footer=document.querySelector('.map-footer');if(footer)footer.insertAdjacentElement('afterend',legend);
-  return true;
+  return boundaries.features.length;
 }
 
 function getFeatureByName(geojson, value) {
@@ -302,7 +353,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
       const bounds=new maplibregl.LngLatBounds();
       const walk=coords=>{if(typeof coords[0]==='number')bounds.extend(coords);else coords.forEach(walk);};
       members.forEach(f=>walk(f.geometry.coordinates));
-      map.fitBounds(bounds,{padding:{top:70,bottom:70,left:70,right:440},duration:850,maxZoom:7.5});
+      map.fitBounds(bounds,{padding:{top:70,bottom:70,left:70,right:70},duration:850,maxZoom:CONFIG.maxZoom,minZoom:getDeviceMinZoom(),pitch:CONFIG.pitch,bearing:CONFIG.bearing});
       openMesoregion(region,members.length);
       return;
     }
@@ -327,6 +378,11 @@ export function bindMapInteractions(map, geojson, options = {}) {
     map.getCanvas().style.cursor = 'pointer';
     const feature = event.features?.[0];
     if (!feature) return;
+    if (getMode() === 'subregioes') {
+      if (hoveredId && hoveredId !== selectedId) map.setFeatureState({ source: SOURCE_ID, id: hoveredId }, { hover: false });
+      hoveredId = null;
+      return;
+    }
     const id = String(feature.properties._app_id);
     if (hoveredId && hoveredId !== selectedId) map.setFeatureState({ source: SOURCE_ID, id: hoveredId }, { hover: false });
     hoveredId = id;
