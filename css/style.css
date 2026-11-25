@@ -82,3 +82,22 @@ h1 em { color:var(--terra-light); font-weight:400; }
 .regional-sources{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;color:#5E554B;font-size:10px}
 .regional-sources a{color:#783F32;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:720px){.regional-dashboard{padding:18px 13px;margin-bottom:24px}.regional-tabs{margin-top:17px}.regional-tab{font-size:12px}.regional-summary{grid-template-columns:1fr 1fr;gap:8px}.regional-total,.regional-share{min-height:118px;padding:13px}.regional-total strong{font-size:29px}.regional-share strong{font-size:27px}.regional-indicators{grid-template-columns:1fr;gap:8px;margin-top:8px}.regional-card{min-height:auto;padding:13px}.regional-card span{min-height:0}.regional-card strong{font-size:24px;margin:6px 0 3px}.regional-method{font-size:10px}.regional-sources{font-size:9px}}
+
+
+/* Legenda coroplética estadual — paleta editorial do atlas */
+.state-map-legend{
+  position:absolute;z-index:5;left:18px;bottom:18px;display:grid;gap:6px;
+  min-width:190px;padding:12px 14px;background:rgba(251,248,241,.96);
+  border:1px solid rgba(61,37,0,.18);box-shadow:0 8px 24px rgba(61,37,0,.12);
+  color:#3D2500;font-size:10px;backdrop-filter:blur(6px)
+}
+.state-map-legend strong{font-size:11px;margin-bottom:2px}
+.state-map-legend span{display:flex;align-items:center;gap:7px}
+.state-map-legend i{width:17px;height:11px;display:inline-block;border:1px solid rgba(61,37,0,.14)}
+.state-map-legend small{font-size:9px;color:#705F4B;margin-top:3px}
+.state-popup{display:grid;gap:5px;min-width:155px;color:#292B28;font-family:"DM Sans",sans-serif}
+.state-popup strong{font-family:Georgia,serif;font-size:16px;color:#3D2500}
+.state-popup span,.state-popup small{font-size:10px;color:#705F4B}
+.state-popup b{font-size:20px;color:#783F32}
+.map-stage{position:relative}
+@media(max-width:700px){.state-map-legend{left:8px;bottom:8px;min-width:165px;padding:9px 10px;font-size:9px}.state-map-legend strong{font-size:10px}}
