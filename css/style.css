@@ -359,3 +359,96 @@ h1,
 .state-popup strong{
   font-family:var(--font-editorial);
 }
+
+/* Paleta ampliada aprovada — terracota, verde, areia, palha e grafite.
+   Aplicação restrita à interface editorial; cartografia temática preservada. */
+:root{
+  --terra:#783F32;
+  --terra-light:#A85D43;
+  --green:#68734D;
+  --sand:#D6BD91;
+  --surface:#FBF8F1;
+  --surface-2:#EDE6D8;
+  --text:#292B28;
+}
+
+/* Abertura editorial: verde como acento secundário, sem competir com o título. */
+.eyebrow,.section-kicker{color:var(--terra)}
+.brand-mark{border-color:rgba(104,115,77,.48);color:var(--green)}
+.status-dot,.live-dot{background:var(--green);box-shadow:0 0 10px rgba(104,115,77,.28)}
+.note-symbol{color:var(--green)}
+
+/* Indicadores: areia suavizada nas superfícies e verde nos KPIs secundários. */
+.regional-kpi{
+  background:rgba(214,189,145,.20);
+  border-color:rgba(104,115,77,.20);
+}
+.regional-kpi-primary{
+  background:rgba(214,189,145,.30);
+  border-left-color:var(--terra);
+}
+.regional-kpi:not(.regional-kpi-primary) strong{color:var(--green)}
+.regional-kpi:not(.regional-kpi-primary){border-top:2px solid rgba(104,115,77,.55)}
+.regional-footnote{border-top-color:rgba(104,115,77,.28)}
+.regional-sources a,.census-source a{color:var(--terra)}
+
+/* Navegação: verde identifica seleção e foco; terracota continua como assinatura. */
+.regional-tabs,.map-mode-toggle{
+  background:rgba(214,189,145,.28);
+  border-color:rgba(104,115,77,.28);
+}
+.regional-tab.active,.map-mode-button.active{
+  background:var(--green);
+  border-color:var(--green);
+  color:#FBF8F1;
+}
+.regional-tab:focus-visible,.map-mode-button:focus-visible{
+  outline-color:var(--green);
+}
+.search-box:focus-within{
+  border-color:var(--green);
+  box-shadow:0 0 0 2px rgba(104,115,77,.13);
+}
+.icon-button{
+  color:#EDE6D8;
+  background:var(--green);
+  border-color:var(--green);
+}
+.icon-button:hover{background:#596341}
+
+/* Acordeão e conteúdo do Censo: areia como superfície, verde como marcador. */
+.census-context{border-color:rgba(104,115,77,.24)}
+.census-context>summary::before{
+  content:"";
+  align-self:stretch;
+  width:3px;
+  flex:0 0 3px;
+  margin-right:1px;
+  background:var(--green);
+}
+.census-context[open]>summary{background:rgba(214,189,145,.18)}
+.census-summary-action{
+  color:var(--green);
+  border-color:rgba(104,115,77,.38);
+}
+.census-national-highlight>div{
+  background:rgba(214,189,145,.22);
+  border-color:rgba(104,115,77,.20);
+}
+.census-national-highlight>div:first-child{border-left:3px solid var(--terra)}
+.census-national-highlight>div:not(:first-child) strong{color:var(--green)}
+.census-geography{border-color:rgba(104,115,77,.24)}
+.census-track{background:rgba(214,189,145,.38)}
+.census-bar-inside{background:var(--terra)}
+.census-bar-outside{background:var(--green)}
+.census-interpretation{
+  border-left-color:var(--green);
+  background:rgba(214,189,145,.17);
+}
+.census-method{background:rgba(214,189,145,.28)}
+.census-method strong{color:var(--green)}
+
+/* Controles e superfícies auxiliares fora das camadas cartográficas. */
+.search-suggestions{border-color:rgba(104,115,77,.30)}
+.search-suggestion:hover,.search-suggestion:focus{background:rgba(214,189,145,.25)}
+.recognition-nav a:hover,.recognition-nav a:focus-visible{color:var(--green);border-color:var(--green)}
