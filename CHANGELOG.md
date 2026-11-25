@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 11:09 — Posicionamento geográfico dos cartões de seleção
+- Corrigido conflito entre a animação CSS de entrada e a propriedade `transform` usada pelo MapLibre para posicionar o cartão.
+- A animação agora altera somente a opacidade; o posicionamento permanece vinculado às coordenadas exatas do clique.
+- Mantido o comportamento de posicionamento automático do MapLibre para evitar que o cartão ultrapasse os limites visíveis do mapa.
+- Atualizada a referência de cache do CSS.
+
+**Arquivos alterados:** `css/mapa.css`, `index.html`.
+
+**Preservação:** não foi necessário alterar `js/mapa.js`; os eventos já vinculavam os cartões a `event.lngLat`. Geometrias, camadas e dados cartográficos permanecem intactos.
+
 ### 11:06 — Correção definitiva da sobreposição da etiqueta da camada
 - Identificado que o ajuste anterior só reposicionava a etiqueta em larguras de até 720 px; a captura enviada tinha largura superior a esse limite.
 - Adicionada regra responsiva geral para ocultar a etiqueta de identificação da malha enquanto um cartão de seleção estiver aberto.
