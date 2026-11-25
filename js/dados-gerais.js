@@ -29,7 +29,6 @@ export function initRegionalDashboard(onRegionChange = () => {}) {
     const introValue = document.querySelector('#intro-stat-value');
     if (introLabel) introLabel.textContent = `${data.label.toLocaleUpperCase('pt-BR')} · CENSO 2022`;
     if (introValue) introValue.textContent = number(data.quilombola);
-    document.querySelector('#regional-resident').textContent = number(data.resident);
     document.querySelector('#regional-inside').textContent = number(data.inside);
     document.querySelector('#regional-outside').textContent = number(data.outside);
     document.querySelector('#regional-share').textContent = percent(data.quilombola / data.resident * 100);
