@@ -140,3 +140,6 @@
 @media(max-width:380px) {
   .community-subregion-group ul { columns:1; }
 }
+
+.panel-recognition-link{display:block;margin:-12px 0 22px;padding:10px 12px;background:#F7F0E5;border-left:2px solid #A85D43;color:#783F32;font-size:11px;font-weight:700;line-height:1.55;text-decoration:underline;text-underline-offset:3px}
+.panel-recognition-link:hover,.panel-recognition-link:focus-visible{color:#3D2500}
