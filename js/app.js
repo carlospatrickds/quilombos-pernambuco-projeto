@@ -5,7 +5,7 @@ import {
   setPernambucoMapMode, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
 } from './mapa.js?v=20261125-map-init-fix';
 import { initPanel, closePanel } from './panel.js?v=20261125-js-syntax-fix';
-import { initRegionalDashboard } from './dados-gerais.js?v=20261125-census-context';
+import { initRegionalDashboard } from './dados-gerais.js?v=20261125-intro-territorial-sync';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
 
 const loading = document.querySelector('#map-loading');
@@ -20,7 +20,7 @@ async function start() {
   let macroRegionsLoaded = false;
   let municipalityLoaded = false;
   let northeastPeOverlayLoaded = false;
-  let pendingRegion = 'brasil';
+  let pendingRegion = 'pernambuco';
   let appliedRegion = null;
   let brazilMapMode = 'regioes';
   let pernambucoMapMode = document.querySelector('#pernambuco-map-mode .map-mode-button.active')?.dataset.mapMode || 'municipios';
