@@ -193,7 +193,12 @@ export function setPernambucoMapMode(map, mode) {
   if(mesh)mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL';
   const legend=document.querySelector('#mesoregion-legend');
   if(legend)legend.style.display=subregions?'flex':'none';
-  document.querySelectorAll('.map-footer .legend').forEach(item=>item.style.display=subregions?'none':'flex');
+  const footerLegends=document.querySelectorAll('.map-footer .legend');
+  footerLegends.forEach((item,index)=>{
+    item.style.display='flex';
+    if(subregions)item.lastChild.textContent=index===0?'Mesorregião':'Mesorregião selecionada';
+    else item.lastChild.textContent=index===0?'Município':'Município selecionado';
+  });
   const hint=document.querySelector('#map-selection-hint');
   if(hint)hint.textContent=subregions?'Passe o cursor e selecione uma mesorregião':'Passe o cursor e selecione um município';
 }
@@ -286,6 +291,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
       const region=feature.properties._mesoregion;
       if(!region)return;
       selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:false}));
+      selectedId=null;
       const members=geojson.features.filter(f=>f.properties._mesoregion===region);
       selectedIds=members.map(f=>String(f.properties._app_id));
       selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:true}));
