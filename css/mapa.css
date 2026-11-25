@@ -56,3 +56,16 @@
 .mesoregion-panel-content .data-card span{display:block;color:#3D2500;font-size:11px;font-weight:700}
 .mesoregion-panel-content .data-card strong{display:block;margin-top:9px;color:#783F32;font:500 25px Georgia,serif}
 .regional-panel-note{grid-column:1/-1;color:#705F4B;font-size:11px;line-height:1.6}
+
+/* Cursor territorial personalizado: apenas sobre a área cartográfica. */
+#map .maplibregl-canvas{
+  cursor:url("../assets/cursor-lanca.svg") 24 68, crosshair !important;
+}
+/* Revelação dos dados por escala: Brasil/Nordeste 1s; Pernambuco 2s. */
+.maplibregl-popup{
+  animation:atlas-popup-in 1s ease both;
+}
+@keyframes atlas-popup-in{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:translateY(0)}
+}
