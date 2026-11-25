@@ -69,3 +69,87 @@
   from{opacity:0;transform:translateY(7px)}
   to{opacity:1;transform:translateY(0)}
 }
+
+/* Ajustes responsivos dos cartões de dados e identificação da camada. */
+.maplibregl-popup-content{
+  max-width:100%;
+  max-height:min(48vh,440px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.state-popup{
+  display:grid;
+  gap:7px;
+  min-width:0;
+  color:#292B28;
+  font-family:"DM Sans",sans-serif;
+}
+.state-popup strong{
+  display:block;
+  padding-right:22px;
+  color:#3D2500;
+  font:500 19px/1.25 Georgia,serif;
+  overflow-wrap:anywhere;
+}
+.state-popup span{
+  color:#705F4B;
+  font-size:11px;
+  line-height:1.4;
+}
+.state-popup b{
+  color:#783F32;
+  font:600 25px/1.15 "DM Sans",sans-serif;
+  font-variant-numeric:tabular-nums;
+}
+.state-popup small{
+  display:block;
+  color:#705F4B;
+  font-size:11px;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+}
+.state-popup small:last-child{
+  margin-top:3px;
+  padding-top:8px;
+  border-top:1px solid rgba(61,37,0,.12);
+  font-size:10px;
+}
+@media(max-width:720px){
+  .map-stage{min-height:430px;height:62vh;}
+  /* A etiqueta deixa de ocupar o mesmo canto do cartão aberto. */
+  .map-overlay.top-left{
+    top:48px;
+    left:auto;
+    right:10px;
+    max-width:calc(100% - 20px);
+    padding:7px 9px;
+    font-size:8px;
+    letter-spacing:.8px;
+    text-align:right;
+  }
+  .map-compass{top:10px;right:13px;}
+  .maplibregl-popup{
+    max-width:min(340px,calc(100vw - 76px)) !important;
+  }
+  .maplibregl-popup-content{
+    padding:14px 15px;
+    max-height:42vh;
+    border-radius:4px;
+  }
+  .maplibregl-popup-close-button{
+    width:28px;
+    height:28px;
+    font-size:19px;
+    line-height:26px;
+  }
+  .state-popup{gap:6px;}
+  .state-popup strong{font-size:17px;}
+  .state-popup b{font-size:23px;}
+  .state-popup small{font-size:10px;}
+}
+@media(max-width:380px){
+  .maplibregl-popup{max-width:calc(100vw - 66px) !important;}
+  .maplibregl-popup-content{padding:12px 13px;}
+  .state-popup strong{font-size:16px;}
+  .state-popup b{font-size:21px;}
+}
