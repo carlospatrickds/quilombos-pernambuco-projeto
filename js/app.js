@@ -78,7 +78,7 @@ async function start() {
       }));
       document.querySelectorAll('#brazil-map-mode [data-map-mode]').forEach(button=>button.addEventListener('click',()=>{
         brazilMapMode=button.dataset.mapMode;
-        document.querySelectorAll('[data-map-mode]').forEach(item=>{
+        document.querySelectorAll('#brazil-map-mode [data-map-mode]').forEach(item=>{
           const active=item.dataset.mapMode===brazilMapMode;
           item.classList.toggle('active',active);
           item.setAttribute('aria-pressed',String(active));
