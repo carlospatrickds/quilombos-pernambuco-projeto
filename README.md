@@ -1,5 +1,8 @@
 # Quilombos de Pernambuco — Atlas territorial
 
+> **Histórico de alterações:** consulte [`CHANGELOG.md`](CHANGELOG.md) para acompanhar as mudanças do projeto, com data, horário de Brasília e arquivos afetados.
+
+
 Protótipo modular de mapa municipal 3D com estética cartográfica elevada e fundo escuro/terroso.
 
 ## O que está implementado
