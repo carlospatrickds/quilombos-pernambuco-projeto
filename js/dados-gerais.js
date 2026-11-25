@@ -25,6 +25,10 @@ export function initRegionalDashboard(onRegionChange = () => {}) {
     });
     panel.setAttribute('aria-labelledby', `tab-${key}`);
     document.querySelector('#regional-quilombola').textContent = number(data.quilombola);
+    const introLabel = document.querySelector('#intro-stat-label');
+    const introValue = document.querySelector('#intro-stat-value');
+    if (introLabel) introLabel.textContent = `${data.label.toLocaleUpperCase('pt-BR')} · CENSO 2022`;
+    if (introValue) introValue.textContent = number(data.quilombola);
     document.querySelector('#regional-resident').textContent = number(data.resident);
     document.querySelector('#regional-inside').textContent = number(data.inside);
     document.querySelector('#regional-outside').textContent = number(data.outside);
@@ -48,8 +52,12 @@ export function initRegionalDashboard(onRegionChange = () => {}) {
     if (censusOutsidePercent) censusOutsidePercent.textContent = `${percent(outsideShare)} da população quilombola do recorte`;
     if (censusInsideBar) censusInsideBar.style.width = `${insideShare}%`;
     if (censusOutsideBar) censusOutsideBar.style.width = `${outsideShare}%`;
-    document.querySelector('#regional-method').textContent =
-      'A classificação “fora de territórios” indica residência fora dos territórios quilombolas oficialmente delimitados pelo IBGE; não significa ausência de identidade ou pertencimento quilombola.';
+    const scaleDescriptions = {
+      brasil: 'Escala Brasil: explore a distribuição da população quilombola entre as unidades federativas. No mapa, alterne entre as grandes regiões e os estados.',
+      nordeste: 'Escala Nordeste: observe os nove estados da região e a posição de Pernambuco nesse conjunto. O mapa destaca o território pernambucano para orientar a leitura.',
+      pernambuco: 'Escala Pernambuco: explore as regiões e os municípios do estado. A seleção permite avançar da leitura estadual para os recortes municipais.'
+    };
+    document.querySelector('#regional-method').textContent = `${scaleDescriptions[key]} A classificação “fora de territórios” indica residência fora dos territórios quilombolas oficialmente delimitados pelo IBGE; não significa ausência de identidade ou pertencimento quilombola.`;
     onRegionChange(key);
   }
 
@@ -65,5 +73,5 @@ export function initRegionalDashboard(onRegionChange = () => {}) {
       selectRegion(tabs[next].dataset.region);
     });
   });
-  selectRegion('brasil');
+  selectRegion('pernambuco');
 }
