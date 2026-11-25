@@ -4,6 +4,7 @@ import { openMunicipality, openMesoregion } from './panel.js?v=20261125-vignette
 import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-censo-2022.js';
 import { MESOREGION_BY_MUNICIPALITY } from '../data/mesorregioes-municipios.js';
 import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
+import { getAgresteMunicipalityCommunityCount } from '../data/comunidades-agreste.js';
 
 const SOURCE_ID = 'municipios-pe';
 const FILL_ID = 'municipios-fill-3d';
@@ -172,6 +173,9 @@ export function applyMesorregionColors(geojson) {
     const region=MESOREGION_BY_MUNICIPALITY[code];
     const stats=region?MESOREGION_QUILOMBOLA_2022[region]:null;
     feature.properties._mesoregion=region||'';
+    const communityRecord=getAgresteMunicipalityCommunityCount(feature.properties._app_name);
+    feature.properties._community_count=communityRecord?.count ?? null;
+    feature.properties._community_subregion=communityRecord?.subregion ?? '';
     feature.properties._meso_color=stats?.color||'#D9CFC0';
     feature.properties._meso_total=stats?.total??-1;
   });
@@ -182,6 +186,19 @@ export function applyMesorregionColors(geojson) {
   return geojson;
 }
 
+
+// Camada temática opcional: destaca somente municípios com quantitativo documentado.
+ // Os demais permanecem sem classificação; ausência de registro não equivale a zero.
+export function setCommunityLayer(map, enabled) {
+  if (!map.getLayer(FILL_ID)) return;
+  map.setPaintProperty(FILL_ID, 'fill-extrusion-color', [
+    'case',
+    ['boolean', ['feature-state', 'selected'], false], CONFIG.colors.selected,
+    ['boolean', ['feature-state', 'hover'], false], '#a98668',
+    enabled ? ['>', ['coalesce', ['get', '_community_count'], 0], 0] : false, '#D66A32',
+    ['coalesce', ['get', '_meso_color'], CONFIG.colors.fill]
+  ]);
+}
 
 export function setPernambucoMapMode(map, mode) {
   const subregions = mode === 'subregioes';
@@ -331,6 +348,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
   let hoverPopup = null;
   const getMode = options.getMode || (() => 'municipios');
   const isTooltipEnabled = options.isTooltipEnabled || (() => true);
+  const isCommunityLayerEnabled = options.isCommunityLayerEnabled || (() => false);
 
   function selectFeature(feature) {
     // Recursos retornados por queryRenderedFeatures podem não trazer a geometria
@@ -396,7 +414,9 @@ export function bindMapInteractions(map, geojson, options = {}) {
       return;
     }
     const feature=event.features?.[0];if(!feature)return;
-    const label=getMode()==='subregioes'?(feature.properties._mesoregion||'Mesorregião não identificada'):(feature.properties._app_name||'Município');
+    let label=getMode()==='subregioes'?(feature.properties._mesoregion||'Mesorregião não identificada'):(feature.properties._app_name||'Município');
+    const communityCount=feature.properties?._community_count;
+    if(getMode()==='municipios'&&isCommunityLayerEnabled()&&Number.isFinite(communityCount))label+=` · ${communityCount} comunidades (levantamento UFPE)`;
     if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:false,closeOnClick:false,offset:52,className:'map-hover-tooltip'});
     hoverPopup.setLngLat(event.lngLat).setText(label).addTo(map);
   });
