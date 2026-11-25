@@ -78,6 +78,9 @@
 
 /* Bloco documental do levantamento acadêmico inicial do Agreste. */
 .community-research-block {
+  grid-column:1 / -1;
+  width:100%;
+  min-width:0;
   margin-top:18px;
   padding:16px;
   background:#F1E5D3;
