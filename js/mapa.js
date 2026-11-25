@@ -184,22 +184,27 @@ export function applyMesorregionColors(geojson) {
 
 
 export function setPernambucoMapMode(map, mode) {
-  const subregions=mode==='subregioes';
-  if(map.getLayer('municipios-lines'))map.setLayoutProperty('municipios-lines','visibility',subregions?'none':'visible');
-  if(map.getLayer('municipios-labels'))map.setLayoutProperty('municipios-labels','visibility',subregions?'none':'visible');
-  const hint=document.querySelector('#map-selection-hint');
-  const mesh=document.querySelector('#map-mesh-label');
-  if(mesh)mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL';
-  const legend=document.querySelector('#mesoregion-legend');
-  if(legend)legend.style.display=subregions?'flex':'none';
-  const footerLegends=document.querySelectorAll('.map-footer .legend');
-  footerLegends.forEach((item,index)=>{
+  const subregions = mode === 'subregioes';
+  if (map.getLayer('municipios-lines')) map.setLayoutProperty('municipios-lines','visibility',subregions?'none':'visible');
+  if (map.getLayer('municipios-labels')) map.setLayoutProperty('municipios-labels','visibility',subregions?'none':'visible');
+
+  const mesh = document.querySelector('#map-mesh-label');
+  if (mesh) mesh.textContent = subregions ? 'MESORREGIÕES DE PERNAMBUCO' : 'MALHA MUNICIPAL';
+
+  const legend = document.querySelector('#mesoregion-legend');
+  if (legend) legend.style.display = subregions ? 'flex' : 'none';
+
+  document.querySelectorAll('.map-footer .legend').forEach((item,index)=>{
     item.style.display='flex';
-    if(subregions)item.lastChild.textContent=index===0?'Mesorregião':'Mesorregião selecionada';
-    else item.lastChild.textContent=index===0?'Município':'Município selecionado';
+    item.lastChild.textContent=subregions
+      ? (index===0?'Mesorregião':'Mesorregião selecionada')
+      : (index===0?'Município':'Município selecionado');
   });
-  const hint=document.querySelector('#map-selection-hint');
-  if(hint)hint.textContent=subregions?'Passe o cursor e selecione uma mesorregião':'Passe o cursor e selecione um município';
+
+  const hint = document.querySelector('#map-selection-hint');
+  if (hint) hint.textContent = subregions
+    ? 'Passe o cursor e selecione uma mesorregião'
+    : 'Passe o cursor e selecione um município';
 }
 
 // Camada de Pernambuco dentro do mapa do Nordeste: alterna leitura municipal e mesorregional.
