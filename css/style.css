@@ -461,3 +461,8 @@ h1,
   background-position:center top;
   background-size:100% 100%;
 }
+
+
+/* Refinamento visual: contraste do destaque estadual na abertura. */
+.state-stat strong{color:var(--terra)}
+.state-stat>span:not(.stat-label){color:#705F4B}
