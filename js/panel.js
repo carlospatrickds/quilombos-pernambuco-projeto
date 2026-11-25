@@ -222,7 +222,7 @@ export function openMunicipality(feature) {
   }
 
   $('#history-copy').textContent = agresteRecord
-    ? 'Informações históricas desta comunidade ainda não disponíveis. Conteúdo em levantamento documental.'
+    ? 'As informações históricas das comunidades vinculadas a este município ainda não estão disponíveis. Conteúdo em levantamento documental.'
     : (data.history || DATA_STATUS.history);
   $('#gallery').innerHTML = '';
   if (data.photos?.length) {
