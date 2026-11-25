@@ -77,3 +77,30 @@
   width: min(48%, 180px);
   height: 104px;
 }
+
+/* Tratamento exclusivo do recorte da Região Metropolitana no painel lateral. */
+.municipality-vignette-svg.mesoregion-vignette-svg {
+  width: min(100%, 220px);
+  height: 130px;
+  overflow: hidden;
+}
+.mesoregion-municipal-divisions {
+  fill: none;
+  stroke: #F3EBDD;
+  stroke-width: 1.15;
+  stroke-opacity: .96;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+.mesoregion-outer-boundary {
+  fill: none;
+  stroke: #783F32;
+  stroke-width: 2.2;
+  stroke-opacity: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}

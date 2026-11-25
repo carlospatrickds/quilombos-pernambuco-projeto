@@ -34,49 +34,76 @@ function renderMunicipalityVignette(feature, options = {}) {
     const focused = polygons.filter((polygon, index) => distances[index] <= cutoff);
     if (focused.length) polygons = focused;
   }
-  const positions = [];
-  const collect = value => {
-    if (Array.isArray(value) && typeof value[0] === 'number' && typeof value[1] === 'number') positions.push(value);
-    else if (Array.isArray(value)) value.forEach(collect);
-  };
-  collect(geometry.coordinates);
-  if (!positions.length) return;
 
-  const xs = positions.map(point => point[0]);
-  const ys = positions.map(point => point[1]);
+  const positions = [];
+  polygons.forEach(polygon => polygon.forEach(ring => ring.forEach(point => positions.push(point))));
+  if (!positions.length) return;
+  const xs = positions.map(point => point[0]), ys = positions.map(point => point[1]);
   const minX = Math.min(...xs), maxX = Math.max(...xs);
   const minY = Math.min(...ys), maxY = Math.max(...ys);
-  const width = Math.max(maxX - minX, 1e-9);
-  const height = Math.max(maxY - minY, 1e-9);
-  const pad = 9, viewWidth = 220, viewHeight = 130;
-  const scale = Math.min((viewWidth - pad * 2) / width, (viewHeight - pad * 2) / height);
-  const drawnWidth = width * scale, drawnHeight = height * scale;
-  const offsetX = (viewWidth - drawnWidth) / 2;
-  const offsetY = (viewHeight - drawnHeight) / 2;
+  const width = Math.max(maxX - minX, 1e-9), height = Math.max(maxY - minY, 1e-9);
+  const pad = options.zoomFactor ? 0 : 9, viewWidth = 220, viewHeight = 130;
+  const fitScale = Math.min((viewWidth - pad * 2) / width, (viewHeight - pad * 2) / height);
+  const scale = fitScale * (options.zoomFactor || 1);
+  const centerX = (minX + maxX) / 2, centerY = (minY + maxY) / 2;
+  const project = point => ({
+    x: viewWidth / 2 + (point[0] - centerX) * scale,
+    y: viewHeight / 2 - (point[1] - centerY) * scale
+  });
 
   const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox', `0 0 ${viewWidth} ${viewHeight}`);
   svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', `Contorno cartográfico do município de ${feature.properties?._app_name || 'selecionado'}`);
+  svg.setAttribute('aria-label', `Recorte cartográfico de ${feature.properties?._app_name || 'selecionado'}`);
   svg.classList.add('municipality-vignette-svg');
   if (options.enlargeRegionalCrop) svg.classList.add('mesoregion-vignette-svg');
 
-  polygons.forEach(polygon => {
-    polygon.forEach(ring => {
-      const commands = ring.map((point, index) => {
-        const x = offsetX + (point[0] - minX) * scale;
-        const y = viewHeight - (offsetY + (point[1] - minY) * scale);
-        return `${index === 0 ? 'M' : 'L'} ${x.toFixed(2)} ${y.toFixed(2)}`;
-      });
-      if (commands.length) {
-        commands.push('Z');
-        const path = document.createElementNS(SVG_NS, 'path');
-        path.setAttribute('d', commands.join(' '));
-        path.setAttribute('class', 'municipality-vignette-shape');
-        svg.append(path);
-      }
+  const edgeCounts = new Map();
+  const edgeCoordinates = new Map();
+  polygons.forEach(polygon => polygon.forEach(ring => {
+    for (let i = 0; i < ring.length - 1; i++) {
+      const a = ring[i], b = ring[i + 1];
+      const keyA = `${a[0].toFixed(7)},${a[1].toFixed(7)}`;
+      const keyB = `${b[0].toFixed(7)},${b[1].toFixed(7)}`;
+      const key = keyA < keyB ? `${keyA}|${keyB}` : `${keyB}|${keyA}`;
+      edgeCounts.set(key, (edgeCounts.get(key) || 0) + 1);
+      if (!edgeCoordinates.has(key)) edgeCoordinates.set(key, [a,b]);
+    }
+  }));
+
+  polygons.forEach(polygon => polygon.forEach(ring => {
+    const commands = ring.map((point, index) => {
+      const p = project(point);
+      return `${index === 0 ? 'M' : 'L'} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`;
     });
+    if (commands.length) {
+      commands.push('Z');
+      const path = document.createElementNS(SVG_NS, 'path');
+      path.setAttribute('d', commands.join(' '));
+      path.setAttribute('class', 'municipality-vignette-shape');
+      svg.append(path);
+    }
+  }));
+
+  const internal = [], external = [];
+  edgeCounts.forEach((count, key) => {
+    const [a,b] = edgeCoordinates.get(key);
+    const pa = project(a), pb = project(b);
+    const command = `M ${pa.x.toFixed(2)} ${pa.y.toFixed(2)} L ${pb.x.toFixed(2)} ${pb.y.toFixed(2)}`;
+    (count > 1 ? internal : external).push(command);
   });
+  if (internal.length) {
+    const lines = document.createElementNS(SVG_NS, 'path');
+    lines.setAttribute('d', internal.join(' '));
+    lines.setAttribute('class', 'mesoregion-municipal-divisions');
+    svg.append(lines);
+  }
+  if (external.length) {
+    const outline = document.createElementNS(SVG_NS, 'path');
+    outline.setAttribute('d', external.join(' '));
+    outline.setAttribute('class', 'mesoregion-outer-boundary');
+    svg.append(outline);
+  }
   host.append(svg);
 }
 
@@ -106,7 +133,8 @@ export function openMesoregion(name, municipalityCount = null, municipalityFeatu
       geometry: { type: 'MultiPolygon', coordinates: polygons }
     }, {
       focusRegionalCluster: name === 'Metropolitana de Recife',
-      enlargeRegionalCrop: name === 'Metropolitana de Recife'
+      enlargeRegionalCrop: name === 'Metropolitana de Recife',
+      zoomFactor: name === 'Metropolitana de Recife' ? 4 : 1
     });
   } else {
     $('#municipality-vignette').replaceChildren();
