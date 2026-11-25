@@ -176,3 +176,111 @@ h1 em { color:var(--terra-light); font-weight:400; }
 .recognition-nav a{color:var(--terra);font-size:11px;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(120,63,50,.35);padding-bottom:4px}
 .recognition-nav a:hover,.recognition-nav a:focus-visible{color:var(--terra-light);border-color:currentColor}
 @media(max-width:720px){.topbar{height:auto;min-height:68px;gap:10px;padding:12px 16px;flex-wrap:wrap}.topbar .brand{gap:8px}.topbar .brand strong{font-size:14px}.topbar .brand-mark{width:33px;height:33px}.topbar .topbar-meta{display:none}.recognition-nav{margin-left:auto}.recognition-nav a{font-size:10px;white-space:nowrap}}
+
+
+/* =========================================================
+   IDENTIDADE EDITORIAL — aproximação visual com a capa do e-book
+   Camada exclusivamente editorial. Não altera mapa.css, GeoJSON,
+   JavaScript cartográfico, projeções ou interações do mapa.
+   ========================================================= */
+:root{
+  --bg:#f4e8d8;
+  --surface:#fff8ed;
+  --surface-2:#ead8c2;
+  --line:rgba(92,48,31,.2);
+  --text:#492719;
+  --muted:#765344;
+  --terra:#783f32;
+  --terra-light:#a85d43;
+  --sand:#d99a63;
+  --brown-deep:#542b1b;
+}
+html,body{background-color:#f4e8d8}
+body{
+  background-image:
+    radial-gradient(ellipse at 78% 16%,rgba(166,103,65,.10),transparent 34%),
+    radial-gradient(ellipse at 35% 70%,rgba(120,63,50,.055),transparent 46%),
+    repeating-linear-gradient(38deg,rgba(116,75,48,.018) 0 1px,transparent 1px 5px);
+}
+.app-shell{position:relative;isolation:isolate;margin-left:clamp(42px,5.2vw,76px);min-height:100vh}
+.app-shell:before{
+  content:"";position:fixed;z-index:30;left:0;top:0;bottom:0;width:clamp(42px,5.2vw,76px);
+  pointer-events:none;background-color:#a94735;
+  background-image:
+    repeating-linear-gradient(135deg,transparent 0 17px,rgba(82,34,27,.22) 17px 19px,transparent 19px 35px),
+    repeating-linear-gradient(45deg,transparent 0 17px,rgba(82,34,27,.18) 17px 19px,transparent 19px 35px),
+    linear-gradient(90deg,rgba(80,29,24,.22),transparent 35%,rgba(255,205,164,.12));
+  border-right:1px solid rgba(82,34,27,.25);
+  box-shadow:3px 0 14px rgba(69,34,24,.08)
+}
+.topbar{
+  min-height:82px;height:auto;padding:12px clamp(18px,4vw,58px);
+  background:rgba(255,248,237,.82);border-bottom:1px solid rgba(92,48,31,.2)
+}
+.brand-mark{border:1px solid rgba(120,63,50,.4);background:rgba(120,63,50,.07);color:#783f32}
+.brand small{color:#a85d43}
+.brand strong{font-family:"Fraunces",Georgia,serif;color:#542b1b;font-size:18px}
+.recognition-nav a{color:#783f32}
+main{padding-top:clamp(24px,3.8vw,48px)}
+.intro{
+  position:relative;isolation:isolate;overflow:hidden;align-items:center;
+  min-height:245px;margin:0 0 26px;padding:clamp(24px,4vw,48px);
+  background:linear-gradient(105deg,rgba(255,248,237,.97),rgba(246,231,211,.88));
+  border:1px solid rgba(120,63,50,.17);box-shadow:0 12px 34px rgba(83,45,27,.07)
+}
+.intro:after{
+  content:"";position:absolute;z-index:-1;right:-3%;top:-36%;width:48%;height:170%;
+  opacity:.13;pointer-events:none;
+  background:repeating-radial-gradient(ellipse at 50% 50%,transparent 0 19px,#9a6347 20px 21px,transparent 22px 38px);
+  transform:rotate(-17deg)
+}
+.intro-copy{max-width:720px}
+.eyebrow,.section-kicker{color:#a3543c;letter-spacing:1.7px}
+h1{font-family:"Fraunces",Georgia,serif;color:#783f32;letter-spacing:-.8px}
+h1 em{color:#783f32}
+.lead{color:#684737;max-width:650px}
+.state-stat{
+  position:relative;z-index:1;min-width:190px;padding:12px 0 12px 24px;
+  border-left:2px solid rgba(168,93,67,.45)
+}
+.state-stat strong{color:#783f32}
+.state-stat>span:not(.stat-label){color:#684737}
+.state-stat small{color:#806451}
+.regional-dashboard,.census-context,.explorer{
+  background:rgba(255,249,240,.92);border-color:rgba(120,63,50,.2);
+  box-shadow:0 12px 32px rgba(83,45,27,.065)
+}
+.regional-heading h2,.map-toolbar h2,.census-context-heading h2{font-family:"Fraunces",Georgia,serif;color:#542b1b}
+.regional-tab.active,.map-mode-button.active{background:#783f32;border-color:#783f32}
+.regional-total,.regional-share,.regional-card,.census-national-highlight>div{
+  background:#f4e6d4;border-color:rgba(120,63,50,.17)
+}
+.regional-total strong,.regional-share strong,.regional-card strong,.census-national-highlight strong{color:#783f32}
+.regional-method,.census-interpretation,.recognition-note{background:#f5eadc;border-left-color:#a94735}
+.editorial-note{
+  position:relative;margin:25px 0 0;padding:20px 22px 20px 26px;
+  background:rgba(255,248,237,.75);border-left:3px solid #a94735;color:#684737
+}
+.note-symbol{color:#a94735}
+.site-footer{color:#806451;border-top-color:rgba(120,63,50,.22)}
+/* O painel lateral recebe a mesma paleta, sem interferir no mapa. */
+.topbar-meta{color:#806451}
+button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#b85a3d}
+@media(max-width:720px){
+  .app-shell{margin-left:42px}
+  .app-shell:before{width:42px}
+  .topbar{padding:11px 12px;min-height:68px}
+  .topbar .brand strong{font-size:13px}
+  main{padding:22px 10px 30px}
+  .intro{padding:21px 17px;min-height:0;gap:18px}
+  .intro:after{right:-18%;width:65%;opacity:.09}
+  h1{font-size:clamp(29px,8vw,42px);line-height:1.08}
+  .lead{font-size:12px}
+  .state-stat{min-width:0;margin-top:18px;padding:8px 0 8px 13px}
+  .regional-dashboard,.census-context,.explorer{box-shadow:0 7px 20px rgba(83,45,27,.055)}
+  .editorial-note{padding:15px 13px 15px 17px}
+}
+@media(max-width:390px){
+  .app-shell{margin-left:36px}
+  .app-shell:before{width:36px}
+}
