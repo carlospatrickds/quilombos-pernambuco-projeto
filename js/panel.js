@@ -56,54 +56,7 @@ function renderMunicipalityVignette(feature, options = {}) {
   svg.setAttribute('role', 'img');
   svg.setAttribute('aria-label', `Recorte cartográfico de ${feature.properties?._app_name || 'selecionado'}`);
   svg.classList.add('municipality-vignette-svg');
-  if (options.enlargeRegionalCrop) svg.classList.add('mesoregion-vignette-svg');
 
-  const edgeCounts = new Map();
-  const edgeCoordinates = new Map();
-  polygons.forEach(polygon => polygon.forEach(ring => {
-    for (let i = 0; i < ring.length - 1; i++) {
-      const a = ring[i], b = ring[i + 1];
-      const keyA = `${a[0].toFixed(7)},${a[1].toFixed(7)}`;
-      const keyB = `${b[0].toFixed(7)},${b[1].toFixed(7)}`;
-      const key = keyA < keyB ? `${keyA}|${keyB}` : `${keyB}|${keyA}`;
-      edgeCounts.set(key, (edgeCounts.get(key) || 0) + 1);
-      if (!edgeCoordinates.has(key)) edgeCoordinates.set(key, [a,b]);
-    }
-  }));
-
-  polygons.forEach(polygon => polygon.forEach(ring => {
-    const commands = ring.map((point, index) => {
-      const p = project(point);
-      return `${index === 0 ? 'M' : 'L'} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`;
-    });
-    if (commands.length) {
-      commands.push('Z');
-      const path = document.createElementNS(SVG_NS, 'path');
-      path.setAttribute('d', commands.join(' '));
-      path.setAttribute('class', 'municipality-vignette-shape');
-      svg.append(path);
-    }
-  }));
-
-  const internal = [], external = [];
-  edgeCounts.forEach((count, key) => {
-    const [a,b] = edgeCoordinates.get(key);
-    const pa = project(a), pb = project(b);
-    const command = `M ${pa.x.toFixed(2)} ${pa.y.toFixed(2)} L ${pb.x.toFixed(2)} ${pb.y.toFixed(2)}`;
-    (count > 1 ? internal : external).push(command);
-  });
-  if (internal.length) {
-    const lines = document.createElementNS(SVG_NS, 'path');
-    lines.setAttribute('d', internal.join(' '));
-    lines.setAttribute('class', 'mesoregion-municipal-divisions');
-    svg.append(lines);
-  }
-  if (external.length) {
-    const outline = document.createElementNS(SVG_NS, 'path');
-    outline.setAttribute('d', external.join(' '));
-    outline.setAttribute('class', 'mesoregion-outer-boundary');
-    svg.append(outline);
-  }
   host.append(svg);
 }
 
@@ -133,8 +86,6 @@ export function openMesoregion(name, municipalityCount = null, municipalityFeatu
       geometry: { type: 'MultiPolygon', coordinates: polygons }
     }, {
       focusRegionalCluster: name === 'Metropolitana de Recife',
-      enlargeRegionalCrop: name === 'Metropolitana de Recife',
-      zoomFactor: name === 'Metropolitana de Recife' ? 4 : 1
     });
   } else {
     $('#municipality-vignette').replaceChildren();
