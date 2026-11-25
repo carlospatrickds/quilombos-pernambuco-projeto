@@ -4,6 +4,15 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 15:31 — Teste de fundo verde-claro no painel principal
+- Aplicado o tom verde-claro `#E8EBDD` exclusivamente ao fundo do painel “A população quilombola em números”.
+- Cartões internos, indicadores, tipografia, seletores, fontes e demais seções permanecem inalterados.
+- Atualizada a referência de cache do CSS para permitir a visualização do teste.
+
+**Arquivos alterados:** `css/style.css`, `index.html`.
+
+**Natureza da alteração:** teste visual reversível, sujeito à avaliação do usuário.
+
 ### 15:26 — Reforço da cor verde nos números dos painéis territoriais
 - As capturas mostraram que os números do painel de mesorregião continuavam em terracota, apesar da regra geral já registrada.
 - Reforçado o seletor CSS com escopo explícito para cartões municipais, mesorregionais e total do levantamento acadêmico.
