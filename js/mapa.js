@@ -188,7 +188,6 @@ export function setPernambucoMapMode(map, mode) {
   if(map.getLayer('municipios-lines'))map.setLayoutProperty('municipios-lines','visibility',subregions?'none':'visible');
   if(map.getLayer('municipios-labels'))map.setLayoutProperty('municipios-labels','visibility',subregions?'none':'visible');
   const hint=document.querySelector('#map-selection-hint');
-  if(hint)hint.textContent=subregions?'Selecione uma sub-região para obter dados':'Selecione um município para explorar';
   const mesh=document.querySelector('#map-mesh-label');
   if(mesh)mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL';
   const legend=document.querySelector('#mesoregion-legend');
