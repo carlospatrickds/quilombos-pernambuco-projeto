@@ -370,8 +370,9 @@ export function addMacroRegionLayer(map,geojson) {
   map.on('click','grandes-regioes-fill',event=>{
     const feature=event.features?.[0];if(!feature)return;
     const name=feature.properties._region_name;
+    const regionalInfo=name==='Nordeste'?'População quilombola: 906.337 pessoas · Censo 2022 · SIDRA 9578':'Dados populacionais agregados desta região ainda não foram integrados ao atlas.';
     new maplibregl.Popup({closeButton:true,offset:8}).setLngLat(event.lngLat)
-      .setHTML('<div class="state-popup"><strong>'+name+'</strong><span>Recorte territorial</span><small>IBGE · Malha das Grandes Regiões</small></div>').addTo(map);
+      .setHTML('<div class="state-popup"><strong>'+name+'</strong><span>'+regionalInfo+'</span><small>IBGE · Malha das Grandes Regiões</small></div>').addTo(map);
   });
   map.on('mouseenter','grandes-regioes-fill',()=>map.getCanvas().style.cursor='pointer');
   map.on('mouseleave','grandes-regioes-fill',()=>map.getCanvas().style.cursor='');
