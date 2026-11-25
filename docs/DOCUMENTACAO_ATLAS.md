@@ -397,3 +397,16 @@ As divisas municipais permanecem em linhas finas e discretas. A camada de contor
 - https://sidra.ibge.gov.br/tabela/9578
 - https://www.cf.pe.gov.br/observatorio/mapas/regioes/mesorregioes
 - https://github.com/StrategicProjects/condepe-py/blob/main/src/condepe/data/regioes.csv
+
+
+## Alternância de visualização no mapa do Nordeste
+
+**Atualização: 25/11/2026.**
+
+No recorte Nordeste, foi adicionado um controle de alternância para a representação de Pernambuco:
+- **Sub-regiões:** os municípios recebem as cores de sua mesorregião, mas as linhas municipais são ocultadas. A leitura visual agrupa o território nas cinco mesorregiões históricas do IBGE.
+- **Municípios:** as mesmas cores regionais são mantidas e as divisas municipais são exibidas em linhas finas.
+
+O mapa continua apresentando os nove estados do Nordeste. A camada de Pernambuco é sobreposta à malha estadual apenas dentro do limite de Pernambuco; os demais estados permanecem na escala estadual. O modo inicial é “Sub-regiões”. A seleção abre uma ficha com o total da mesorregião ou do município, conforme o modo ativo.
+
+Fontes de classificação e quantitativos: IBGE, Censo 2022, SIDRA 9578; associação municipal à regionalização histórica por tabela CONDEPE/FIDEM. Ver seções anteriores desta documentação.
