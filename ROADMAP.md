@@ -301,3 +301,11 @@ Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quil
 - [x] Aplicar tons proporcionais ao quantitativo absoluto e legenda no modo Brasil / Regiões.
 - [x] Exibir ficha regional ao clicar, com população quilombola, residente, participação e localização.
 - [ ] Validar no GitHub Pages a associação dos nomes da malha do IBGE, as cinco cores, os cliques e a troca Regiões/Estados.
+
+
+### Camada das cinco mesorregiões de Pernambuco (25/11/2026)
+
+- [x] Associar os 185 municípios às cinco mesorregiões pela tabela oficial de referência e código IBGE.
+- [x] Dissolver os polígonos municipais por mesorregião e desenhar limites brancos sobre a malha municipal.
+- [x] Preservar o preenchimento municipal e a interação de seleção.
+- [ ] Validar visualmente no GitHub Pages, inclusive contraste e alinhamento das linhas regionais.
