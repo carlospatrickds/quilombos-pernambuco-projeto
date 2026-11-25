@@ -1,6 +1,6 @@
 // Indicadores agregados do Censo Demográfico 2022.
 // População quilombola: IBGE/SIDRA, tabela 9578, variável Pessoas quilombolas.
-// População residente total: IBGE/SIDRA, tabela 9578, bloco População residente total.
+// População residente total: IBGE/SIDRA, tabela 4709, variável 93.
 // Valores absolutos em pessoas; percentuais derivados por cálculo simples.
 export const REGIONAL_CENSUS_2022 = {
   brasil: { name: 'Brasil', populationTotal: 203080756, quilombolaTotal: 1330186, quilombolaInside: 167769, quilombolaOutside: 1162417, sharePercent: 0.6550034706 },
@@ -10,7 +10,7 @@ export const REGIONAL_CENSUS_2022 = {
 
 export const REGIONAL_CENSUS_SOURCE = {
   quilombola: 'IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quilombolas, localização do domicílio.',
-  population: 'IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, bloco População residente total.',
+  population: 'IBGE, Censo Demográfico 2022, SIDRA, tabela 4709, variável 93, população residente.',
   consultedAt: '2026-11-25',
-  urls: ['https://sidra.ibge.gov.br/tabela/9578']
+  urls: ['https://sidra.ibge.gov.br/tabela/9578', 'https://sidra.ibge.gov.br/tabela/4709']
 };
