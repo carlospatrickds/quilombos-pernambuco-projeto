@@ -303,3 +303,36 @@ Os percentuais exibidos na interface são calculados pela fórmula `população 
 **Nota de revisão estatística:** a divulgação inicial do Universo do Censo 2022 apresentou 1.327.802 pessoas quilombolas no Brasil, 905.415 no Nordeste e 78.827 em Pernambuco. A extração da tabela 9578 utilizada neste projeto apresenta 1.330.186, 906.337 e 78.864, respectivamente. São números de divulgações/apurações distintas. Para não misturar séries, o painel usa exclusivamente os valores da exportação da tabela 9578 adotada também na base municipal. A diferença deve permanecer documentada e qualquer futura atualização precisa preservar a versão e a data da extração.
 
 **Nota conceitual:** “fora de territórios quilombolas oficialmente delimitados” descreve a localização do domicílio segundo a classificação censitária; não significa ausência de identidade, pertencimento, comunidade ou direito territorial.
+
+
+## 4.3 Base estadual — população quilombola (Censo 2022)
+
+**Atualização: 25/11/2026.**
+
+A exportação CSV da tabela 9578 do SIDRA foi recebida e processada para as 27 Unidades da Federação. O arquivo contém os blocos de população quilombola absoluta, percentuais, população residente total e percentuais desta população.
+
+- **Arquivo integrado:** `data/populacao-quilombola-estados-censo-2022.js`.
+- **Fonte:** IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quilombolas, localização do domicílio.
+- **URL:** https://sidra.ibge.gov.br/tabela/9578
+- **Ano de referência:** 2022.
+- **Nível geográfico:** Unidade da Federação (27 UFs).
+- **População residente total:** extraída do bloco correspondente da mesma tabela 9578, evitando combinar tabelas ou séries distintas.
+- **Percentual estadual:** população quilombola total dividida pela população residente total da UF, multiplicada por 100.
+
+### Conferência dos totais
+
+| Recorte | População residente | Quilombolas | Em territórios | Fora de territórios |
+|---|---:|---:|---:|---:|
+| Brasil | 203.080.756 | 1.330.186 | 167.769 | 1.162.417 |
+| Nordeste | 54.658.515 | 906.337 | 89.521 | 816.816 |
+| Pernambuco | 9.058.931 | 78.864 | 6.769 | 72.095 |
+
+A soma dos 27 registros estaduais reproduz os totais nacionais da exportação. A soma dos nove estados do Nordeste reproduz os totais regionais. Pernambuco também coincide com a base municipal estadual anteriormente integrada.
+
+**Tratamento de ausência:** os traços da exportação para Acre e Roraima nos quantitativos quilombolas foram preservados como `null`, não como zero. O recorte “em territórios” do Distrito Federal também permanece `null`, conforme a fonte. Os valores não foram imputados.
+
+**Nota metodológica:** “fora de territórios quilombolas” descreve a localização do domicílio em relação aos territórios oficialmente delimitados considerados pela tabela; não indica ausência de identidade ou pertencimento quilombola.
+
+### Mapa em três escalas
+
+Está em implementação a alternância Brasil / Nordeste / Pernambuco com mapa coroplético em tons sequenciais da paleta marrom avermelhada do atlas. A intensidade da cor representará a população quilombola absoluta estadual; a legenda deverá explicitar a escala utilizada. A camada municipal de Pernambuco será mantida.
