@@ -1,4 +1,4 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode } from './mapa.js?v=20261125-region-fill-colors';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, addMesorregionBoundaries } from './mapa.js?v=20261125-region-fill-colors';
 import { initPanel, closePanel } from './panel.js?v=20261125-vignette';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -23,6 +23,7 @@ async function start() {
       if (region === 'pernambuco' && !municipalityLoaded) {
         const geojson = await loadMunicipalities();
         addMunicipalLayer(map, geojson);
+        addMesorregionBoundaries(map, geojson);
         bindMapInteractions(map, geojson);
         municipalityLoaded = true;
       }
