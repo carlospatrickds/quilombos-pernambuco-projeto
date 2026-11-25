@@ -258,7 +258,7 @@ Arquivos:
 
 ## Fase 3B — Mapa coroplético em três escalas
 
-**Status: dados estaduais validados; integração cartográfica em andamento (25/11/2026).**
+**Status: base estadual validada e primeira integração cartográfica implementada; testes de publicação e navegador pendentes (25/11/2026).**
 
 - [x] Receber e interpretar exportação CSV da tabela SIDRA 9578 para as 27 UFs.
 - [x] Extrair população quilombola total, em territórios e fora de territórios.
@@ -268,13 +268,13 @@ Arquivos:
 - [x] Conferir população residente nacional: 203.080.756.
 - [x] Preservar traços da fonte como null, sem converter ausência em zero.
 - [x] Criar `data/populacao-quilombola-estados-censo-2022.js`.
-- [ ] Integrar malha oficial das 27 UFs.
-- [ ] Conectar abas Brasil/Nordeste/Pernambuco ao enquadramento e às camadas do mapa.
-- [ ] Aplicar escala sequencial de tons da paleta marrom avermelhada do atlas, com legenda.
-- [ ] Criar ficha de consulta ao selecionar uma UF.
-- [ ] Manter busca e seleção municipal exclusivamente no recorte Pernambuco.
+- [x] Integrar chamada à malha oficial das UFs do IBGE (API de Malhas, GeoJSON).
+- [x] Conectar abas Brasil/Nordeste/Pernambuco ao enquadramento e às camadas do mapa.
+- [x] Aplicar escala sequencial de tons da paleta marrom avermelhada do atlas, com legenda (classes por quantis dos valores estaduais publicados).
+- [x] Criar ficha de consulta ao selecionar uma UF (popup com valor, estado e fonte).
+- [x] Manter busca e seleção municipal exclusivamente no recorte Pernambuco.
 - [ ] Atualizar documentação metodológica, testar responsividade e validar publicação no GitHub Pages.
 
-**Critério de aceite:** totais estaduais reproduzem exatamente os agregados Brasil e Nordeste da tabela 9578; mapa e painel apresentam a mesma série estatística e não ocultam valores ausentes.
+**Critério de aceite:** totais estaduais reproduzem exatamente os agregados Brasil e Nordeste da tabela 9578; mapa e painel apresentam a mesma série estatística e não ocultam valores ausentes. A integração de código foi commitada, mas só será considerada concluída após validar carregamento da malha, alternância das três escalas, seleção estadual e retorno ao mapa municipal no GitHub Pages.
 
 Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quilombolas, localização do domicílio. https://sidra.ibge.gov.br/tabela/9578
