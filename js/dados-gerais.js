@@ -35,7 +35,7 @@ export function initRegionalDashboard(onRegionChange = () => {}) {
     document.querySelector('#regional-share').textContent = percent(data.quilombola / data.resident * 100);
     document.querySelector('#regional-inside-share').textContent = `${percent(data.inside / data.quilombola * 100)} da população quilombola`;
     document.querySelector('#regional-outside-share').textContent = `${percent(data.outside / data.quilombola * 100)} da população quilombola`;
-    document.querySelector('#regional-share-note').textContent = `Percentual calculado sobre a população residente de ${data.label}`;
+    document.querySelector('#regional-share-note').textContent = `de ${number(data.resident)} hab. em ${data.label}`;
     const censusTitle = document.querySelector('#census-geography-title');
     const censusInside = document.querySelector('#census-inside-value');
     const censusOutside = document.querySelector('#census-outside-value');
