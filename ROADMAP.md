@@ -309,3 +309,12 @@ Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quil
 - [x] Dissolver os polígonos municipais por mesorregião e desenhar limites brancos sobre a malha municipal.
 - [x] Preservar o preenchimento municipal e a interação de seleção.
 - [ ] Validar visualmente no GitHub Pages, inclusive contraste e alinhamento das linhas regionais.
+
+
+### Mapa temático das cinco mesorregiões (25/11/2026)
+
+- [x] Agregar população quilombola municipal por mesorregião e conferir soma estadual (78.864).
+- [x] Aplicar tons da paleta editorial a todos os municípios conforme o total regional.
+- [x] Retirar contornos regionais brancos espessos e preservar divisas municipais discretas.
+- [x] Incluir legenda com nome da mesorregião e quantitativo absoluto.
+- [ ] Validar visualmente no GitHub Pages e conferir leitura das cinco cores em desktop e celular.
