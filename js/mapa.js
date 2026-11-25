@@ -3,6 +3,7 @@ import { normalizeCollection } from './data.js';
 import { openMunicipality } from './panel.js';
 import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-censo-2022.js';
 import { MESOREGION_BY_MUNICIPALITY } from '../data/mesorregioes-municipios.js';
+import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
 
 const SOURCE_ID = 'municipios-pe';
 const FILL_ID = 'municipios-fill-3d';
@@ -101,7 +102,7 @@ export function addMunicipalLayer(map, geojson) {
         'case', ['boolean', ['feature-state', 'selected'], false],
         CONFIG.colors.selected,
         ['boolean', ['feature-state', 'hover'], false], '#a98668',
-        CONFIG.colors.fill
+        ['coalesce', ['get', '_meso_color'], CONFIG.colors.fill]
       ],
       'fill-extrusion-height': [
         'case', ['boolean', ['feature-state', 'selected'], false],
@@ -163,41 +164,43 @@ export function addMunicipalLayer(map, geojson) {
   }
 }
 
-// Sobrepõe os limites das cinco mesorregiões históricas sem alterar o preenchimento municipal.
-export function addMesorregionBoundaries(map, geojson) {
-  if (!window.turf || typeof window.turf.dissolve !== 'function') {
-    console.warn('Turf.js indisponível; limites das mesorregiões não foram desenhados.');
-    return false;
-  }
-  const features = geojson.features
-    .filter(feature => {
-      const code = String(feature.properties._app_code || feature.properties._app_id || '');
-      return Boolean(MESOREGION_BY_MUNICIPALITY[code]);
-    })
-    .map(feature => ({
-      type: 'Feature',
-      properties: { mesorregiao: MESOREGION_BY_MUNICIPALITY[String(feature.properties._app_code || feature.properties._app_id)] },
-      geometry: feature.geometry
-    }));
-  if (!features.length) {
-    console.warn('Nenhum município foi associado à tabela oficial de mesorregiões.');
-    return false;
-  }
-  const dissolved = window.turf.dissolve({ type: 'FeatureCollection', features }, { propertyName: 'mesorregiao' });
-  if (!dissolved.features?.length) throw new Error('Não foi possível dissolver os municípios por mesorregião.');
-  map.addSource('mesorregioes-pe', { type: 'geojson', data: dissolved });
-  map.addLayer({
-    id: 'mesorregioes-pe-boundaries',
-    type: 'line',
-    source: 'mesorregioes-pe',
-    paint: {
-      'line-color': '#FFFDF8',
-      'line-width': ['interpolate', ['linear'], ['zoom'], 4, 1.6, 6, 2.2, 8, 2.8, 10, 3.2],
-      'line-opacity': 0.98,
-      'line-blur': 0.08
-    }
+// Atribui a cada município a cor correspondente ao total quilombola de sua mesorregião.
+export function applyMesorregionColors(geojson) {
+  const counts={};
+  geojson.features.forEach(feature=>{
+    const code=String(feature.properties._app_code||feature.properties._app_id||'');
+    const region=MESOREGION_BY_MUNICIPALITY[code];
+    const stats=region?MESOREGION_QUILOMBOLA_2022[region]:null;
+    feature.properties._mesoregion=region||'';
+    feature.properties._meso_color=stats?.color||'#D9CFC0';
+    feature.properties._meso_total=stats?.total??-1;
   });
-  console.info('Limites das cinco mesorregiões incorporados:', dissolved.features.map(f => f.properties.mesorregiao));
+  Object.entries(MESOREGION_QUILOMBOLA_2022).forEach(([name])=>{
+    counts[name]=geojson.features.filter(f=>f.properties._mesoregion===name).length;
+  });
+  console.info('Cores regionais aplicadas aos municípios:',counts);
+  return geojson;
+}
+
+// Legenda com quantitativos reais; as divisas municipais permanecem finas e discretas.
+export function addMesorregionBoundaries(map, geojson) {
+  const existing=document.querySelector('#mesoregion-legend');
+  if(existing) existing.remove();
+  const legend=document.createElement('section');
+  legend.id='mesoregion-legend';
+  legend.className='mesoregion-legend';
+  const heading=document.createElement('strong');
+  heading.textContent='População quilombola por região';
+  legend.append(heading);
+  Object.entries(MESOREGION_QUILOMBOLA_2022).sort((a,b)=>a[1].rank-b[1].rank).forEach(([name,stats])=>{
+    const item=document.createElement('div');item.className='mesoregion-legend-item';
+    const swatch=document.createElement('span');swatch.className='mesoregion-swatch';swatch.style.backgroundColor=stats.color;
+    const label=document.createElement('span');label.className='mesoregion-name';label.textContent=name;
+    const value=document.createElement('strong');value.textContent=new Intl.NumberFormat('pt-BR').format(stats.total);
+    item.append(swatch,label,value);legend.append(item);
+  });
+  const note=document.createElement('small');note.textContent='Pessoas · Censo 2022 · IBGE, SIDRA 9578';legend.append(note);
+  const footer=document.querySelector('.map-footer');if(footer)footer.insertAdjacentElement('afterend',legend);
   return true;
 }
 
