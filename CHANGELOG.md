@@ -4,6 +4,19 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 11:17 — Reorganização compacta do painel “A população quilombola em números”
+- Reduzida a altura vertical do bloco, com cabeçalho e seletor Brasil/Nordeste/Pernambuco na mesma linha em telas amplas.
+- Reorganizados os indicadores em quatro cards horizontais: população quilombola, participação, residentes em territórios delimitados e residentes fora deles.
+- Incorporada a população residente total ao subtítulo do KPI de participação, mantendo a atualização dinâmica conforme o recorte selecionado.
+- Unificadas a nota explicativa e as fontes em uma faixa de rodapé.
+- Reduzidos os espaçamentos entre o painel, o acordeão “O primeiro Censo Quilombola” e o mapa.
+- Em telas menores, os quatro indicadores passam a uma grade compacta de duas colunas para preservar legibilidade.
+- Atualizados os identificadores de cache do CSS e do módulo de dados.
+
+**Arquivos alterados:** `index.html`, `css/style.css`, `js/dados-gerais.js`, `js/app.js`.
+
+**Preservação:** paleta terrosa/bege, tipografia editorial, textos metodológicos e links de fonte mantidos. Nenhuma alteração nas geometrias, camadas ou lógica cartográfica.
+
 ### 11:09 — Posicionamento geográfico dos cartões de seleção
 - Corrigido conflito entre a animação CSS de entrada e a propriedade `transform` usada pelo MapLibre para posicionar o cartão.
 - A animação agora altera somente a opacidade; o posicionamento permanece vinculado às coordenadas exatas do clique.
