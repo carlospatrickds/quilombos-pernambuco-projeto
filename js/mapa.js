@@ -201,7 +201,7 @@ export function addPernambucoNortheastOverlay(map, geojson) {
   map.on('click','ne-pe-municipios-fill',event=>{
     const feature=event.features?.[0];if(!feature)return;
     const p=feature.properties;
-    const mode=document.querySelector('#northeast-map-mode [data-map-mode]:not(.active)')?.dataset.mapMode==='municipios'?'subregioes':'municipios';
+    const mode=document.querySelector('#northeast-map-mode .map-mode-button.active')?.dataset.mapMode||'subregioes';
     const title=mode==='subregioes'?(p._mesoregion||'Pernambuco'):p._app_name;
     const amount=mode==='subregioes'?MESOREGION_QUILOMBOLA_2022[p._mesoregion]?.total:p._app_quilombola;
     const formatted=amount==null||Number(amount)<0?'Não disponível':new Intl.NumberFormat('pt-BR').format(Number(amount));
