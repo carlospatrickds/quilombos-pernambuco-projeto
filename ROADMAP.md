@@ -291,3 +291,13 @@ Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quil
 - [ ] Completar indicadores das regiões Norte, Centro-Oeste, Sudeste e Sul antes de apresentá-los como dados consultáveis.
 
 **Terminologia adotada conforme o catálogo de Malhas Territoriais do IBGE:** Malha das Grandes Regiões, Malha das Unidades da Federação e Malha Municipal. A expressão “malha nacional” fica reservada a uma referência genérica, pois não identifica o nível geográfico da camada.
+
+
+### Dados por Grandes Regiões — primeira integração (25/11/2026)
+
+- [x] Integrar população quilombola total, dentro e fora de territórios para Norte, Nordeste, Sudeste, Sul e Centro-Oeste.
+- [x] Integrar população residente total das cinco regiões pela tabela SIDRA 4709.
+- [x] Conferir soma das cinco regiões com os totais Brasil da série usada.
+- [x] Aplicar tons proporcionais ao quantitativo absoluto e legenda no modo Brasil / Regiões.
+- [x] Exibir ficha regional ao clicar, com população quilombola, residente, participação e localização.
+- [ ] Validar no GitHub Pages a associação dos nomes da malha do IBGE, as cinco cores, os cliques e a troca Regiões/Estados.
