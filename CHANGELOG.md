@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 15:26 — Reforço da cor verde nos números dos painéis territoriais
+- As capturas mostraram que os números do painel de mesorregião continuavam em terracota, apesar da regra geral já registrada.
+- Reforçado o seletor CSS com escopo explícito para cartões municipais, mesorregionais e total do levantamento acadêmico.
+- Aplicada a cor verde `#68734D` aos valores numéricos desses cartões.
+- Renovada a versão de cache de `css/painel.css` para forçar o navegador a buscar a regra corrigida.
+
+**Arquivos alterados:** `css/painel.css`, `index.html`.
+
+**Preservação:** não foram alterados textos, dados, estrutura dos painéis, tipografia, mapas ou geometrias.
+
 ### 15:16 — Harmonização dos números nos painéis territoriais
 - Os valores numéricos dos cartões de informação municipal e mesorregional passaram a usar o verde `#68734D`.
 - O total do bloco de levantamento de comunidades do Agreste também recebeu o verde.
