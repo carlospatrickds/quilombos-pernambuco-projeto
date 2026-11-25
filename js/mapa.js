@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js?v=20261124-mobile200';
+import { CONFIG } from './config.js?v=20261125-pe-color';
 import { normalizeCollection } from './data.js';
 import { openMunicipality } from './panel.js';
 
