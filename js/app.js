@@ -1,4 +1,4 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-northeast-subregions-v2';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, setPernambucoMapMode } from './mapa.js?v=20261125-pe-subregion-toggle';
 import { initPanel, closePanel } from './panel.js?v=20261125-vignette';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -13,7 +13,7 @@ async function start() {
   let municipalityLoaded = false;
   let pendingRegion = 'brasil';
   let brazilMapMode = 'regioes';
-  let northeastPeMode = 'subregioes';
+  let pernambucoMapMode = 'subregioes';
   let switching = false;
 
   async function changeRegion(region) {
@@ -21,29 +21,28 @@ async function start() {
     if (!mapReady || switching) return;
     switching = true;
     try {
-      if ((region === 'pernambuco' || region === 'nordeste') && !municipalityLoaded) {
+      if (region === 'pernambuco' && !municipalityLoaded) {
         const geojson = await loadMunicipalities();
         applyMesorregionColors(geojson);
         addMunicipalLayer(map, geojson);
         addMesorregionBoundaries(map, geojson);
         bindMapInteractions(map, geojson);
-        addPernambucoNortheastOverlay(map, geojson);
         municipalityLoaded = true;
       }
       showStateView(map, region);
       if(region==='brasil') setBrazilMapMode(map,brazilMapMode);
-      setNortheastPeMode(map,region==='nordeste'?northeastPeMode:'off');
+      if(region==='pernambuco') setPernambucoMapMode(map,pernambucoMapMode);
       const mesoLegend=document.querySelector('#mesoregion-legend');
       if(mesoLegend)mesoLegend.style.display=region==='pernambuco'?'flex':'none';
       const meshLabel=document.querySelector('#map-mesh-label');
       const hint=document.querySelector('#map-selection-hint');
       const modeControl=document.querySelector('#brazil-map-mode');
-      const northeastControl=document.querySelector('#northeast-map-mode');
+      const pernambucoControl=document.querySelector('#pernambuco-map-mode');
       if(modeControl) modeControl.hidden=region!=='brasil';
-      if(northeastControl) northeastControl.hidden=region!=='nordeste';
-      if(meshLabel) meshLabel.textContent=region==='pernambuco'?'MALHA MUNICIPAL':region==='nordeste'?(northeastPeMode==='subregioes'?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL DE PERNAMBUCO'):(brazilMapMode==='regioes'?'MALHA DAS GRANDES REGIÕES':'MALHA DAS UNIDADES DA FEDERAÇÃO');
-      if(hint && region==='nordeste') hint.textContent=northeastPeMode==='subregioes'?'Selecione uma sub-região de Pernambuco para obter dados':'Selecione um município de Pernambuco para obter dados';
-      if(hint && region==='pernambuco') hint.textContent='Selecione um município para explorar';
+      if(pernambucoControl) pernambucoControl.hidden=region!=='pernambuco';
+      if(meshLabel) meshLabel.textContent=region==='pernambuco'?'MALHA MUNICIPAL':region==='nordeste'?'MALHA DAS UNIDADES DA FEDERAÇÃO':(brazilMapMode==='regioes'?'MALHA DAS GRANDES REGIÕES':'MALHA DAS UNIDADES DA FEDERAÇÃO');
+      if(hint && region==='nordeste') hint.textContent='Selecione um estado para obter dados';
+      if(hint && region==='pernambuco') hint.textContent=pernambucoMapMode==='subregioes'?'Selecione uma sub-região para obter dados':'Selecione um município para explorar';
       if (region === 'pernambuco') {
         const bounds = new maplibregl.LngLatBounds();
         const walk = coords => { if (typeof coords[0] === 'number') bounds.extend(coords); else coords.forEach(walk); };
@@ -65,18 +64,14 @@ async function start() {
       addStateLayer(map, states, STATE_CENSUS_2022);
       const macroRegions = await loadMacroRegions();
       addMacroRegionLayer(map, macroRegions);
-      document.querySelectorAll('#northeast-map-mode [data-map-mode]').forEach(button=>button.addEventListener('click',()=>{
-        northeastPeMode=button.dataset.mapMode;
-        document.querySelectorAll('#northeast-map-mode [data-map-mode]').forEach(item=>{
-          const active=item.dataset.mapMode===northeastPeMode;
+      document.querySelectorAll('#pernambuco-map-mode [data-map-mode]').forEach(button=>button.addEventListener('click',()=>{
+        pernambucoMapMode=button.dataset.mapMode;
+        document.querySelectorAll('#pernambuco-map-mode [data-map-mode]').forEach(item=>{
+          const active=item.dataset.mapMode===pernambucoMapMode;
           item.classList.toggle('active',active);
           item.setAttribute('aria-pressed',String(active));
         });
-        if(pendingRegion==='nordeste'){
-          setNortheastPeMode(map,northeastPeMode);
-          const legend=document.querySelector('#mesoregion-legend');
-          if(legend)legend.style.display='flex';
-        }
+        if(pendingRegion==='pernambuco') setPernambucoMapMode(map,pernambucoMapMode);
       }));
       document.querySelectorAll('#brazil-map-mode [data-map-mode]').forEach(button=>button.addEventListener('click',()=>{
         brazilMapMode=button.dataset.mapMode;
