@@ -154,3 +154,11 @@
 .community-research-total{
   color:#68734D;
 }
+
+/* Reforço de escopo: números dos cartões municipais e mesorregionais.
+   Seletor específico para os cartões gerados dinamicamente pelo painel. */
+.municipio-panel .panel-content .data-grid .data-card strong,
+.municipio-panel .panel-content #mesoregion-panel-content .data-card strong,
+.municipio-panel .panel-content .community-research-block .community-research-total{
+  color:#68734D !important;
+}
