@@ -62,12 +62,10 @@
   vector-effect:non-scaling-stroke;
 }
 .panel-kicker {
-  position:absolute;
+  position:relative;
   z-index:1;
-  left:0;
-  right:0;
-  bottom:17px;
-  width:100%;
-  text-align:center;
+  color:#F3EBDD;
+  font-size:9px;
+  letter-spacing:2px;
 }
 .cover-decoration { z-index:0; }
