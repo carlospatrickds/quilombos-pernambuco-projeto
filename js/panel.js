@@ -57,6 +57,28 @@ function renderMunicipalityVignette(feature, options = {}) {
   svg.setAttribute('aria-label', `Recorte cartográfico de ${feature.properties?._app_name || 'selecionado'}`);
   svg.classList.add('municipality-vignette-svg');
 
+  // Desenha os polígonos da geometria no SVG do cabeçalho.
+  // A mesma rotina atende municípios e a união das geometrias municipais de cada mesorregião.
+  polygons.forEach(polygon => {
+    const commands = [];
+    polygon.forEach(ring => {
+      if (!ring.length) return;
+      const first = project(ring[0]);
+      commands.push(`M ${first.x.toFixed(2)} ${first.y.toFixed(2)}`);
+      for (let i = 1; i < ring.length; i++) {
+        const point = project(ring[i]);
+        commands.push(`L ${point.x.toFixed(2)} ${point.y.toFixed(2)}`);
+      }
+      commands.push('Z');
+    });
+    if (!commands.length) return;
+    const path = document.createElementNS(SVG_NS, 'path');
+    path.setAttribute('d', commands.join(' '));
+    path.setAttribute('fill-rule', 'evenodd');
+    path.classList.add('municipality-vignette-shape');
+    svg.append(path);
+  });
+
   host.append(svg);
 }
 
