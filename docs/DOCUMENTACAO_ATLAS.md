@@ -410,3 +410,8 @@ No recorte Nordeste, foi adicionado um controle de alternância para a represent
 O mapa continua apresentando os nove estados do Nordeste. A camada de Pernambuco é sobreposta à malha estadual apenas dentro do limite de Pernambuco; os demais estados permanecem na escala estadual. O modo inicial é “Sub-regiões”. A seleção abre uma ficha com o total da mesorregião ou do município, conforme o modo ativo.
 
 Fontes de classificação e quantitativos: IBGE, Censo 2022, SIDRA 9578; associação municipal à regionalização histórica por tabela CONDEPE/FIDEM. Ver seções anteriores desta documentação.
+
+
+### Correção de posicionamento do seletor (25/11/2026)
+
+A alternância entre “Sub-regiões” e “Municípios” pertence à visualização **Pernambuco**, e não ao recorte Nordeste. O mapa Nordeste permanece na escala das Unidades da Federação, com a instrução “Selecione um estado para obter dados”. Ao entrar em Pernambuco, o seletor permite alternar entre a leitura agrupada pelas cinco mesorregiões e a malha municipal detalhada.
