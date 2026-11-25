@@ -1,6 +1,6 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView } from './mapa.js?v=20261124-zoomfix2';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView } from './mapa.js?v=20261125-statechoropleth';
 import { initPanel, closePanel } from './panel.js?v=20261125-vignette';
-import { initRegionalDashboard } from './dados-gerais.js?v=20261125-dados-gerais';
+import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
 
 const loading = document.querySelector('#map-loading');
