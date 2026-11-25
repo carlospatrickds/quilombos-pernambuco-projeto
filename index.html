@@ -97,6 +97,7 @@
             <h2>Municípios de Pernambuco</h2>
           </div>
           <div class="map-actions">
+            <div class="map-mode-toggle" id="brazil-map-mode" role="group" aria-label="Modo de visualização do mapa do Brasil" hidden><button type="button" class="map-mode-button active" data-map-mode="regioes" aria-pressed="true">Regiões</button><button type="button" class="map-mode-button" data-map-mode="estados" aria-pressed="false">Estados</button></div>
             <div class="search-wrap"><label class="search-box" for="municipio-search">
               <span aria-hidden="true">⌕</span>
               <input id="municipio-search" type="search" placeholder="Buscar município..." autocomplete="off">
@@ -107,8 +108,8 @@
 
         <div class="map-stage">
           <div id="map" role="application" aria-label="Mapa tridimensional dos municípios de Pernambuco"></div>
-          <div class="map-overlay top-left"><span class="live-dot"></span> MALHA MUNICIPAL OFICIAL</div>
-          <div class="map-overlay bottom-left">Selecione um município para explorar</div>
+          <div class="map-overlay top-left"><span class="live-dot"></span> <span id="map-mesh-label">MALHA DAS GRANDES REGIÕES</span></div>
+          <div class="map-overlay bottom-left" id="map-selection-hint">Selecione uma região para obter dados</div>
           <div class="map-compass" aria-hidden="true"><span>N</span><b>↑</b></div>
           <div id="map-loading" class="map-loading">
             <div class="loader"></div>
@@ -207,6 +208,6 @@
   </aside>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script type="module" src="js/app.js?v=20261125-zoom5000"></script>
+  <script type="module" src="js/app.js?v=20261125-region-state-toggle"></script>
 </body>
 </html>
