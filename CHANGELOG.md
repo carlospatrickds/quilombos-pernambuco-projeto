@@ -4,6 +4,17 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 15:35 — Correção do escopo do teste de fundo verde-claro
+- Desfeito o teste anterior que aplicava verde-claro somente ao painel “A população quilombola em números”.
+- Aplicado o verde-sálvia claro `#E8EBDD` à área principal do site, abrangendo abertura, indicadores, acordeão, mapa, nota editorial e rodapé, conforme a área delimitada na captura enviada.
+- Cabeçalho superior preservado em palha `#F3EBDD`.
+- O painel de indicadores voltou ao fundo original.
+- Atualizada a referência de cache de `css/style.css`.
+
+**Arquivos alterados:** `css/style.css`, `index.html`.
+
+**Natureza da alteração:** teste visual reversível para avaliação da distribuição cromática.
+
 ### 15:31 — Teste de fundo verde-claro no painel principal
 - Aplicado o tom verde-claro `#E8EBDD` exclusivamente ao fundo do painel “A população quilombola em números”.
 - Cartões internos, indicadores, tipografia, seletores, fontes e demais seções permanecem inalterados.
