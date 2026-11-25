@@ -67,13 +67,28 @@ function formatNumber(value) {
   return new Intl.NumberFormat('pt-BR').format(value);
 }
 
-export function openMesoregion(name, municipalityCount = null) {
+export function openMesoregion(name, municipalityCount = null, municipalityFeatures = []) {
   const stats=MESOREGION_QUILOMBOLA_2022[name]; if(!stats)return;
   const content=$('.panel-content');
   content.querySelectorAll('.data-grid,.panel-section,.source-note').forEach(el=>el.style.display='none');
   let regional=content.querySelector('#mesoregion-panel-content');
   if(!regional){regional=document.createElement('section');regional.id='mesoregion-panel-content';regional.className='mesoregion-panel-content';$('#panel-code').insertAdjacentElement('afterend',regional);}
-  $('#municipality-vignette').replaceChildren();
+  const polygons = [];
+  municipalityFeatures.forEach(feature => {
+    const geometry = feature.geometry;
+    if (!geometry) return;
+    if (geometry.type === 'Polygon') polygons.push(geometry.coordinates);
+    else if (geometry.type === 'MultiPolygon') polygons.push(...geometry.coordinates);
+  });
+  if (polygons.length) {
+    renderMunicipalityVignette({
+      type: 'Feature',
+      properties: { _app_name: name },
+      geometry: { type: 'MultiPolygon', coordinates: polygons }
+    });
+  } else {
+    $('#municipality-vignette').replaceChildren();
+  }
   $('#panel-region').textContent='PERNAMBUCO · MESORREGIÃO';
   $('#panel-title').textContent=name;
   $('#panel-code').textContent='Regionalização histórica do IBGE (1989)';

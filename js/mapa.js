@@ -319,9 +319,10 @@ export function addMesorregionBoundaries(map, geojson) {
   Object.entries(MESOREGION_QUILOMBOLA_2022).sort((a,b)=>a[1].rank-b[1].rank).forEach(([name,stats])=>{
     const item=document.createElement('div');item.className='mesoregion-legend-item';
     const swatch=document.createElement('span');swatch.className='mesoregion-swatch';swatch.style.backgroundColor=stats.color;
+    const value=document.createElement('strong');value.className='mesoregion-value';value.textContent=new Intl.NumberFormat('pt-BR').format(stats.total);
+    const separator=document.createElement('span');separator.className='mesoregion-separator';separator.textContent='|';
     const label=document.createElement('span');label.className='mesoregion-name';label.textContent=name;
-    const value=document.createElement('strong');value.textContent=new Intl.NumberFormat('pt-BR').format(stats.total);
-    item.append(swatch,label,value);legend.append(item);
+    item.append(swatch,value,separator,label);legend.append(item);
   });
   const note=document.createElement('small');note.textContent='Pessoas · Censo 2022 · IBGE, SIDRA 9578';legend.append(note);
   const footer=document.querySelector('.map-footer');if(footer)footer.insertAdjacentElement('afterend',legend);
@@ -355,7 +356,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
       selectedIds.forEach(id => map.setFeatureState({ source: SOURCE_ID, id }, { selected: true }));
 
       // A seleção regional não altera zoom, centro, inclinação ou enquadramento do mapa.
-      openMesoregion(region, members.length);
+      openMesoregion(region, members.length, members);
       return;
     }
 
