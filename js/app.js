@@ -3,7 +3,7 @@ import {
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, setCommunityLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
-} from './mapa.js?v=20261125-tooltip-pernambuco';
+} from './mapa.js?v=20261125-camada-comunidades';
 import { initPanel, closePanel } from './panel.js?v=20261125-js-syntax-fix';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
