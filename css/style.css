@@ -333,3 +333,29 @@ h1 em { color:var(--terra-light); font-weight:400; }
   .regional-sources{font-size:8px}
   .census-context{margin-bottom:12px}
 }
+
+/* Restauração da combinação tipográfica editorial aprovada:
+   Fraunces para títulos e números de destaque; DM Sans para interface e leitura. */
+:root{
+  --font-editorial:"Fraunces",Georgia,serif;
+  --font-interface:"DM Sans",Inter,ui-sans-serif,system-ui,sans-serif;
+}
+body,button,input,select,textarea{
+  font-family:var(--font-interface);
+}
+h1,
+.brand-mark,
+.brand strong,
+.state-stat strong,
+.map-toolbar h2,
+.regional-heading h2,
+.regional-kpi strong,
+.census-context-heading h2,
+.census-summary-copy strong,
+.census-national-highlight strong,
+.census-geography-title h3,
+.census-residence-label strong,
+.census-method strong,
+.state-popup strong{
+  font-family:var(--font-editorial);
+}
