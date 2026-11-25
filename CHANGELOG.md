@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 11:24 — Restauração da combinação tipográfica editorial
+- Restabelecida a Fraunces nos títulos principais, títulos de seções, números de destaque e elementos serifados da interface.
+- Mantida a DM Sans nos textos corridos, controles, legendas e demais elementos funcionais.
+- Confirmada a importação das duas famílias pelo Google Fonts; não foi introduzida a DM Serif.
+- Atualizada a referência de cache de `css/style.css` para carregar as regras tipográficas novas.
+
+**Arquivos alterados:** `css/style.css`, `index.html`.
+
+**Preservação:** paleta de cores, estrutura dos painéis, indicadores, conteúdo e cartografia não foram alterados.
+
 ### 11:22 — Correção do carregamento do território após a compactação dos KPIs
 - Identificado que o HTML mantinha a versão de cache anterior do módulo principal `js/app.js`, apesar da atualização de seu import para o módulo de indicadores.
 - A versão antiga do módulo de indicadores ainda tentava atualizar o elemento `#regional-resident`, removido na nova estrutura de quatro KPIs. Esse erro interrompia a inicialização antes do registro do evento de carregamento do mapa, deixando a mensagem “Preparando o território” presa na tela.
