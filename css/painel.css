@@ -39,17 +39,17 @@
 /* Vinheta cartográfica vetorial do município selecionado no cabeçalho do painel. */
 .municipality-vignette {
   position:absolute;
-  inset:8px 18px 30px 18px;
+  inset:8px 18px 42px 18px;
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:center;
   pointer-events:none;
   z-index:0;
 }
 .municipality-vignette-svg {
   display:block;
-  width:min(100%, 330px);
-  height:100%;
+  width:min(100%, 190px);
+  height:82px;
   overflow:visible;
 }
 .municipality-vignette-shape {
@@ -61,5 +61,13 @@
   stroke-linejoin:round;
   vector-effect:non-scaling-stroke;
 }
-.panel-kicker { z-index:1; }
+.panel-kicker {
+  position:absolute;
+  z-index:1;
+  left:0;
+  right:0;
+  bottom:17px;
+  width:100%;
+  text-align:center;
+}
 .cover-decoration { z-index:0; }
