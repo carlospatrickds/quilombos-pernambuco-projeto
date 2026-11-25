@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 11:28 — Etiqueta flutuante restrita ao mapa de Pernambuco
+- A caixinha com o nome do município ou da mesorregião agora é exibida somente quando a escala ativa é Pernambuco.
+- Nas escalas Brasil e Nordeste, a etiqueta não aparece.
+- Aumentado o afastamento vertical do texto em relação ao ponto do cursor, para que a caixa fique acima do alfinete personalizado.
+- Atualizados os identificadores de cache dos módulos JavaScript.
+
+**Arquivos alterados:** `js/mapa.js`, `js/app.js`, `index.html`.
+
+**Preservação:** alteração limitada ao tooltip de identificação. Não foram modificados mapas, geometrias, camadas, cores, zoom, dados ou tipografia.
+
 ### 11:24 — Restauração da combinação tipográfica editorial
 - Restabelecida a Fraunces nos títulos principais, títulos de seções, números de destaque e elementos serifados da interface.
 - Mantida a DM Sans nos textos corridos, controles, legendas e demais elementos funcionais.
