@@ -114,8 +114,8 @@
   font-weight:600;
 }
 .community-subregion-group ul {
-  columns:2;
-  column-gap:18px;
+  columns:1;
+  column-gap:0;
   margin:0;
   padding-left:17px;
   color:#3D342B;
