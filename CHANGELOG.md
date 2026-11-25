@@ -4,6 +4,19 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 17:00 — Refinamento do destaque estadual e da área do mapa
+- Alterado o número de destaque da abertura para terracota, aumentando o contraste com o fundo marfim.
+- Escurecido o texto auxiliar do destaque para melhorar a leitura.
+- Reduzida a altura-base da área de exibição do mapa de 66vh/650px para 54vh/540px em telas amplas, diminuindo o espaço vertical excedente ao redor do território.
+- Preservadas as regras específicas de altura para dispositivos móveis.
+- Atualizadas as referências de cache dos dois arquivos CSS.
+
+**Arquivos alterados:** `css/style.css`, `css/mapa.css`, `index.html`.
+
+**Preservação:** nenhuma alteração em geometrias, projeção, zoom definido pelo mapa, camadas, cores cartográficas, dados territoriais ou lógica JavaScript.
+
+## 2026-11-25
+
 ### 16:07 — Teste de fundo editorial com luz e sombras
 - Criado o arquivo `assets/fundo-luz-sombras.svg`, com base marfim, granulação discreta e sombras orgânicas difusas inspiradas na referência do fundo do e-book.
 - Aplicado o fundo à área principal do site, sem alterar cartões, painéis, mapa, controles ou tipografia.
