@@ -1,6 +1,7 @@
 import { MUNICIPAL_DATA } from './data.js';
 import { DATA_STATUS } from './config.js';
 import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
+import { AGRESTE_COMMUNITY_TOTAL, AGRESTE_COMMUNITY_SOURCE, getAgresteMunicipalityCommunityCount, getAgresteSubregionCounts } from '../data/comunidades-agreste.js';
 
 const $ = (selector) => document.querySelector(selector);
 const panel = $('#municipio-panel');
@@ -119,7 +120,49 @@ export function openMesoregion(name, municipalityCount = null, municipalityFeatu
   });
   const note=document.createElement('p');note.className='regional-panel-note';
   note.textContent='Agregação dos totais municipais de população quilombola do Censo Demográfico 2022, SIDRA 9578.';
-  regional.append(note);regional.style.display='grid';
+  regional.append(note);
+
+  if (name === 'Agreste Pernambucano') {
+    const section = document.createElement('section');
+    section.className = 'community-research-block';
+    const title = document.createElement('h3');
+    title.textContent = 'Levantamento acadêmico de comunidades';
+    const total = document.createElement('strong');
+    total.className = 'community-research-total';
+    total.textContent = String(AGRESTE_COMMUNITY_TOTAL);
+    const description = document.createElement('p');
+    description.textContent = 'comunidades contabilizadas no levantamento de pesquisa utilizado como referência inicial do atlas. Esse número não corresponde ao total oficial atualizado de comunidades certificadas pela Fundação Cultural Palmares.';
+    section.append(title, total, description);
+
+    getAgresteSubregionCounts().forEach(subregion => {
+      const group = document.createElement('div');
+      group.className = 'community-subregion-group';
+      const heading = document.createElement('h4');
+      heading.textContent = subregion.name;
+      const summary = document.createElement('p');
+      summary.textContent = subregion.communityCount + ' comunidades · ' + subregion.municipalityCount + ' municípios';
+      const list = document.createElement('ul');
+      subregion.municipalities.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.municipality + ': ' + item.count;
+        list.append(li);
+      });
+      group.append(heading, summary, list);
+      section.append(group);
+    });
+
+    const source = document.createElement('p');
+    source.className = 'community-research-source';
+    source.textContent = 'Fonte: ' + AGRESTE_COMMUNITY_SOURCE.institution + '. ' + AGRESTE_COMMUNITY_SOURCE.title + ', ' + AGRESTE_COMMUNITY_SOURCE.section + ', ' + AGRESTE_COMMUNITY_SOURCE.table + ', pp. ' + AGRESTE_COMMUNITY_SOURCE.pages + '. Pesquisa 2022/2023; elaboração: ' + AGRESTE_COMMUNITY_SOURCE.researcher + '.';
+    const link = document.createElement('a');
+    link.href = AGRESTE_COMMUNITY_SOURCE.url;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Consultar documento da UFPE';
+    section.append(source, link);
+    regional.append(section);
+  }
+  regional.style.display='grid';
   backdrop.hidden=false;requestAnimationFrame(()=>panel.classList.add('open'));panel.setAttribute('aria-hidden','false');
 }
 
@@ -164,7 +207,23 @@ export function openMunicipality(feature) {
     $('#community-tags').append(tag);
   }
 
-  $('#history-copy').textContent = data.history || DATA_STATUS.history;
+  const agresteRecord = getAgresteMunicipalityCommunityCount(name);
+  if (agresteRecord) {
+    $('#communities-copy').textContent = 'O levantamento acadêmico de referência contabiliza ' + agresteRecord.count + ' comunidades para este município (' + agresteRecord.subregion + '). A tabela consultada apresenta o quantitativo, mas não discrimina os nomes individuais das comunidades.';
+    $('#community-tags').replaceChildren();
+    const countTag = document.createElement('span');
+    countTag.className = 'tag';
+    countTag.textContent = agresteRecord.count + ' registros no levantamento';
+    $('#community-tags').append(countTag);
+    const statusTag = document.createElement('span');
+    statusTag.className = 'tag pending';
+    statusTag.textContent = 'Nomes individuais em levantamento documental';
+    $('#community-tags').append(statusTag);
+  }
+
+  $('#history-copy').textContent = agresteRecord
+    ? 'Informações históricas desta comunidade ainda não disponíveis. Conteúdo em levantamento documental.'
+    : (data.history || DATA_STATUS.history);
   $('#gallery').innerHTML = '';
   if (data.photos?.length) {
     data.photos.forEach(photo => {
