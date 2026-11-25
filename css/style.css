@@ -197,25 +197,27 @@ h1 em { color:var(--terra-light); font-weight:400; }
 }
 html,body{background-color:#f4e8d8}
 body{
-  background-image:
-    radial-gradient(ellipse at 78% 16%,rgba(166,103,65,.10),transparent 34%),
-    radial-gradient(ellipse at 35% 70%,rgba(120,63,50,.055),transparent 46%),
-    repeating-linear-gradient(38deg,rgba(116,75,48,.018) 0 1px,transparent 1px 5px);
+  background-color:#f4e8d8;
+  background-image:linear-gradient(rgba(255,250,244,.16),rgba(255,250,244,.16)),url("../assets/fundo-editorial.webp");
+  background-repeat:no-repeat,no-repeat;
+  background-position:center top,center top;
+  background-size:cover,cover;
+  background-attachment:fixed,fixed;
 }
 .app-shell{position:relative;isolation:isolate;margin-left:clamp(42px,5.2vw,76px);min-height:100vh}
 .app-shell:before{
-  content:"";position:fixed;z-index:30;left:0;top:0;bottom:0;width:clamp(42px,5.2vw,76px);
+  content:"";display:block;position:fixed;z-index:9999;left:0;top:0;bottom:0;width:clamp(42px,5.2vw,76px);
   pointer-events:none;background-color:#a94735;
   background-image:url("../assets/grafismo-barra.webp");
   background-repeat:repeat-y;
   background-position:center top;
-  background-size:100% auto;
+  background-size:100% auto;min-height:100vh;
   border-right:1px solid rgba(82,34,27,.25);
   box-shadow:3px 0 14px rgba(69,34,24,.08)
 }
 .topbar{
   min-height:82px;height:auto;padding:12px clamp(18px,4vw,58px);
-  background:rgba(255,248,237,.82);border-bottom:1px solid rgba(92,48,31,.2)
+  background:rgba(255,248,237,.78);border-bottom:1px solid rgba(92,48,31,.2)
 }
 .brand-mark{border:1px solid rgba(120,63,50,.4);background:rgba(120,63,50,.07);color:#783f32}
 .brand small{color:#a85d43}
@@ -225,7 +227,7 @@ main{padding-top:clamp(24px,3.8vw,48px)}
 .intro{
   position:relative;isolation:isolate;overflow:hidden;align-items:center;
   min-height:245px;margin:0 0 26px;padding:clamp(24px,4vw,48px);
-  background:linear-gradient(105deg,rgba(255,248,237,.97),rgba(246,231,211,.88));
+  background:linear-gradient(105deg,rgba(255,248,237,.88),rgba(246,231,211,.76));
   border:1px solid rgba(120,63,50,.17);box-shadow:0 12px 34px rgba(83,45,27,.07)
 }
 .intro:after{
