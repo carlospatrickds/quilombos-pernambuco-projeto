@@ -59,7 +59,7 @@
 
 /* Cursor territorial personalizado: apenas sobre a área cartográfica. */
 #map .maplibregl-canvas{
-  cursor:url("../assets/cursor-lanca.svg") 24 68, crosshair !important;
+  cursor:url("../assets/cursor-lanca.svg") 17 48, crosshair !important;
 }
 /* Revelação dos dados por escala: Brasil/Nordeste 1s; Pernambuco 2s. */
 .maplibregl-popup{
