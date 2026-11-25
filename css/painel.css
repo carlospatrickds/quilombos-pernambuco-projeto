@@ -74,3 +74,66 @@
 .cover-decoration { z-index:0; }
 
 
+
+
+/* Bloco documental do levantamento acadêmico inicial do Agreste. */
+.community-research-block {
+  margin-top:18px;
+  padding:16px;
+  background:#F1E5D3;
+  border:1px solid rgba(120,63,50,.16);
+}
+.community-research-block h3 {
+  margin:0 0 8px;
+  color:#3D2500;
+  font:18px Georgia,serif;
+}
+.community-research-total {
+  display:block;
+  color:#783F32;
+  font:38px Georgia,serif;
+  margin:2px 0;
+}
+.community-research-block p {
+  color:#3D342B;
+  font-size:12px;
+  line-height:1.6;
+}
+.community-subregion-group {
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid rgba(120,63,50,.18);
+}
+.community-subregion-group h4 {
+  margin:0;
+  color:#783F32;
+  font:16px Georgia,serif;
+}
+.community-subregion-group p {
+  margin:4px 0 7px;
+  font-weight:600;
+}
+.community-subregion-group ul {
+  columns:2;
+  column-gap:18px;
+  margin:0;
+  padding-left:17px;
+  color:#3D342B;
+  font-size:11px;
+  line-height:1.8;
+}
+.community-research-source {
+  margin-top:16px;
+  padding-top:12px;
+  border-top:1px solid rgba(120,63,50,.18);
+}
+.community-research-block a {
+  display:inline-block;
+  color:#783F32;
+  font-size:12px;
+  font-weight:700;
+  text-decoration:underline;
+}
+@media(max-width:380px) {
+  .community-subregion-group ul { columns:1; }
+}
