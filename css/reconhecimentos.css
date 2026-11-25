@@ -1,0 +1,47 @@
+.recognition-main{max-width:1120px}
+.recognition-nav a,.recognition-back a{color:#783F32;font-size:12px;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(120,63,50,.35);padding-bottom:4px}
+.recognition-hero{max-width:850px;margin:8px 0 48px}
+.recognition-hero h1{font-size:clamp(38px,5vw,62px)}
+.recognition-hero h1 em{color:#A85D43}
+.recognition-note{margin-top:22px;padding:12px 15px;border-left:2px solid #A85D43;background:#E9DDCB;color:#5E554B;font-size:11px;line-height:1.6}
+.recognition-intro{margin-bottom:42px}
+.recognition-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.recognition-card{padding:22px;background:#FBF8F1;border:1px solid var(--line);min-height:220px}
+.recognition-number{color:#A85D43;font:28px Georgia,serif}
+.recognition-card h2{margin:12px 0 8px;color:#3D2500;font:21px Georgia,serif}
+.recognition-card p,.recognition-section>p{color:#4F463D;font-size:13px;line-height:1.8}
+.recognition-card a{display:inline-block;margin-top:9px;color:#783F32;font-size:11px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.recognition-section{margin:0 0 26px;padding:clamp(20px,3vw,34px);background:#FBF8F1;border:1px solid var(--line);scroll-margin-top:20px}
+.recognition-section-heading{display:flex;gap:15px;align-items:flex-start;margin-bottom:18px}
+.recognition-section-heading>span{color:#A85D43;font:28px Georgia,serif}
+.recognition-section-heading .section-kicker{font-size:9px}
+.recognition-section h2{margin:5px 0 0;color:#3D2500;font:clamp(24px,3vw,32px) Georgia,serif}
+.recognition-section h3{margin:24px 0 8px;color:#3D2500;font:20px Georgia,serif}
+.recognition-section>p{max-width:900px}
+.recognition-callout{margin:20px 0;padding:16px 18px;background:#F1E5D3;border-left:3px solid #A85D43}
+.recognition-callout strong{color:#783F32;font:17px Georgia,serif}
+.recognition-callout p{margin:6px 0 0;color:#4F463D;font-size:12px;line-height:1.7}
+.document-list{padding-left:22px;color:#4F463D;font-size:12px;line-height:1.8}
+.document-list li{padding:5px 0 5px 4px}
+.document-list strong{color:#3D2500}
+.recognition-steps{margin:22px 0;padding:20px;background:#F7F0E5}
+.recognition-steps h3{margin:0 0 14px}
+.recognition-steps ol{list-style:none;padding:0;margin:0;display:grid;gap:13px}
+.recognition-steps li{display:flex;align-items:flex-start;gap:12px}
+.recognition-steps li>span{flex:0 0 27px;height:27px;display:grid;place-items:center;background:#783F32;color:#FBF8F1;font-size:12px}
+.recognition-steps li div{display:grid;gap:3px}
+.recognition-steps li strong{color:#3D2500;font-size:12px}
+.recognition-steps li small{color:#5E554B;font-size:11px;line-height:1.6}
+.official-links{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.official-links a{color:#783F32;font-size:11px;font-weight:700;line-height:1.6;text-decoration:underline;text-underline-offset:3px}
+.recognition-reading h2{margin:8px 0 18px}
+.reading-table{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.reading-table>div{padding:15px;background:#F1E5D3}
+.reading-table strong{color:#783F32;font:17px Georgia,serif}
+.reading-table p{margin:6px 0 0;color:#4F463D;font-size:11px;line-height:1.65}
+.recognition-footnote{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:11px!important}
+.recognition-sources{padding:22px 0 12px}
+.recognition-sources ul{padding-left:19px;color:#4F463D;font-size:11px;line-height:1.8}
+.recognition-sources>p{color:#705F4B;font-size:10px;line-height:1.6}
+.recognition-back{margin:20px 0 36px}
+@media(max-width:720px){.recognition-nav a{font-size:11px}.recognition-hero{margin:0 0 30px}.recognition-cards{grid-template-columns:1fr}.recognition-card{min-height:0;padding:17px}.recognition-card h2{font-size:19px}.recognition-section{padding:18px 15px;margin-bottom:16px}.recognition-section-heading{gap:10px}.recognition-section h2{font-size:24px}.recognition-section>p{font-size:12px}.reading-table{grid-template-columns:1fr}.official-links{display:grid;gap:11px}}
