@@ -19,12 +19,20 @@ function renderMunicipalityVignette(feature, options = {}) {
   let polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
   // Mantém todos os polígonos da seleção, inclusive municípios periféricos da região.
 
-  const positions = [];
-  polygons.forEach(polygon => polygon.forEach(ring => ring.forEach(point => positions.push(point))));
-  if (!positions.length) return;
-  const xs = positions.map(point => point[0]), ys = positions.map(point => point[1]);
-  const minX = Math.min(...xs), maxX = Math.max(...xs);
-  const minY = Math.min(...ys), maxY = Math.max(...ys);
+  // Calcula os limites em passagem única. Evita Math.min(...array) com
+  // milhares de vértices, que pode estourar o limite de argumentos do navegador.
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  let pointCount = 0;
+  polygons.forEach(polygon => polygon.forEach(ring => ring.forEach(point => {
+    const x = Number(point?.[0]), y = Number(point?.[1]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+    minX = Math.min(minX, x);
+    maxX = Math.max(maxX, x);
+    minY = Math.min(minY, y);
+    maxY = Math.max(maxY, y);
+    pointCount++;
+  })));
+  if (!pointCount) return;
   const width = Math.max(maxX - minX, 1e-9), height = Math.max(maxY - minY, 1e-9);
   const pad = options.zoomFactor ? 0 : 9, viewWidth = 220, viewHeight = 130;
   const fitScale = Math.min((viewWidth - pad * 2) / width, (viewHeight - pad * 2) / height);
@@ -37,6 +45,9 @@ function renderMunicipalityVignette(feature, options = {}) {
 
   const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox', `0 0 ${viewWidth} ${viewHeight}`);
+  svg.setAttribute('width', '140');
+  svg.setAttribute('height', '82');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   svg.setAttribute('role', 'img');
   svg.setAttribute('aria-label', `Recorte cartográfico de ${feature.properties?._app_name || 'selecionado'}`);
   svg.classList.add('municipality-vignette-svg');
