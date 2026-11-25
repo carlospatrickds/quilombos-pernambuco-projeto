@@ -415,3 +415,14 @@ Fontes de classificação e quantitativos: IBGE, Censo 2022, SIDRA 9578; associa
 ### Correção de posicionamento do seletor (25/11/2026)
 
 A alternância entre “Sub-regiões” e “Municípios” pertence à visualização **Pernambuco**, e não ao recorte Nordeste. O mapa Nordeste permanece na escala das Unidades da Federação, com a instrução “Selecione um estado para obter dados”. Ao entrar em Pernambuco, o seletor permite alternar entre a leitura agrupada pelas cinco mesorregiões e a malha municipal detalhada.
+
+
+## Interação por hover e seleção de mesorregiões em Pernambuco
+
+**Atualização: 25/11/2026.**
+
+- No modo **Municípios**, o cursor identifica o nome do município; o clique abre o painel municipal.
+- No modo **Sub-regiões**, o cursor identifica a mesorregião; o clique seleciona visualmente todos os municípios que a compõem e abre um painel lateral específico da mesorregião.
+- O painel mesorregional apresenta o total quilombola agregado, a participação no total estadual e a quantidade de municípios integrantes.
+- A legenda inferior acompanha a escala: “Município / Município selecionado” ou “Mesorregião / Mesorregião selecionada”.
+- As legendas municipais inferiores ficam ocultas nos mapas Brasil e Nordeste.
