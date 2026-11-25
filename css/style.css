@@ -193,10 +193,13 @@ h1 em { color:var(--terra-light); font-weight:400; }
   width:clamp(42px,8.4vw,72px);
   pointer-events:none;
   background-color:#a94735;
-  background-image:url("../assets/faixa-vermelha-ebook.webp");
-  background-repeat:repeat-y;
-  background-position:center top;
-  background-size:100% auto;
+  background-image:
+    repeating-linear-gradient(135deg,transparent 0 10px,rgba(91,35,29,.30) 10px 12px,transparent 12px 22px),
+    repeating-linear-gradient(45deg,transparent 0 10px,rgba(91,35,29,.24) 10px 12px,transparent 12px 22px),
+    linear-gradient(90deg,rgba(91,35,29,.12),rgba(255,190,153,.10) 48%,rgba(91,35,29,.12));
+  background-repeat:repeat-y,repeat-y,no-repeat;
+  background-position:center top,center top,center;
+  background-size:100% 44px,100% 44px,100% 100%;
   border-right:1px solid rgba(82,34,27,.35);
 }
 @media(max-width:720px){
