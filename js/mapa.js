@@ -429,7 +429,7 @@ export function showStateView(map, region) {
     map.setFilter('estados-fill',null); map.setFilter('estados-lines',null); map.setFilter('estados-labels',null);
     map.fitBounds([[-74,-34],[-34,6]],{padding:55,duration:700});
   } else if(region==='nordeste') {
-    const codes=['21','22','23','24','25','26','27','28','29'];
+    const codes=['21','22','23','24','25','27','28','29'];
     const filter=['in',['get','_app_code'],['literal',codes]];
     ['estados-fill','estados-lines','estados-labels'].forEach(id=>map.setFilter(id,filter));
     map.fitBounds([[-48,-18],[-33,-1]],{padding:55,duration:700});
