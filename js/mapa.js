@@ -182,6 +182,19 @@ export function applyMesorregionColors(geojson) {
   return geojson;
 }
 
+
+export function setPernambucoMapMode(map, mode) {
+  const subregions=mode==='subregioes';
+  if(map.getLayer('municipios-lines'))map.setLayoutProperty('municipios-lines','visibility',subregions?'none':'visible');
+  if(map.getLayer('municipios-labels'))map.setLayoutProperty('municipios-labels','visibility',subregions?'none':'visible');
+  const hint=document.querySelector('#map-selection-hint');
+  if(hint)hint.textContent=subregions?'Selecione uma sub-região para obter dados':'Selecione um município para explorar';
+  const mesh=document.querySelector('#map-mesh-label');
+  if(mesh)mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL';
+  const legend=document.querySelector('#mesoregion-legend');
+  if(legend)legend.style.display='flex';
+}
+
 // Camada de Pernambuco dentro do mapa do Nordeste: alterna leitura municipal e mesorregional.
 export function addPernambucoNortheastOverlay(map, geojson) {
   if (!map.getSource('municipios-pe')) throw new Error('A malha municipal de Pernambuco ainda não foi carregada.');
