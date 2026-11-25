@@ -42,52 +42,49 @@
 
       
       <section class="regional-dashboard" aria-labelledby="regional-title">
-        <div class="regional-heading">
-          <span class="section-kicker">CENSO DEMOGRÁFICO 2022 · IBGE</span>
-          <h2 id="regional-title">A população quilombola em números</h2>
-          <p>Uma leitura em três escalas territoriais: Brasil, Nordeste e Pernambuco.</p>
-        </div>
-        <div class="regional-tabs" role="tablist" aria-label="Selecionar recorte territorial">
-          <button class="regional-tab" id="tab-brasil" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="brasil">Brasil</button>
-          <button class="regional-tab" id="tab-nordeste" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="nordeste">Nordeste</button>
-          <button class="regional-tab active" id="tab-pernambuco" type="button" role="tab" aria-selected="true" aria-controls="regional-panel" data-region="pernambuco">Pernambuco</button>
+        <div class="regional-topline">
+          <div class="regional-heading">
+            <span class="section-kicker">CENSO DEMOGRÁFICO 2022 · IBGE</span>
+            <h2 id="regional-title">A população quilombola em números</h2>
+            <p>Uma leitura em três escalas territoriais: Brasil, Nordeste e Pernambuco.</p>
+          </div>
+          <div class="regional-tabs" role="tablist" aria-label="Selecionar recorte territorial">
+            <button class="regional-tab" id="tab-brasil" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="brasil">Brasil</button>
+            <button class="regional-tab" id="tab-nordeste" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="nordeste">Nordeste</button>
+            <button class="regional-tab active" id="tab-pernambuco" type="button" role="tab" aria-selected="true" aria-controls="regional-panel" data-region="pernambuco">Pernambuco</button>
+          </div>
         </div>
         <div class="regional-panel" id="regional-panel" role="tabpanel" aria-labelledby="tab-pernambuco" tabindex="0">
-          <div class="regional-summary">
-            <div class="regional-total">
+          <div class="regional-kpis">
+            <article class="regional-kpi regional-kpi-primary">
               <span>População quilombola</span>
               <strong id="regional-quilombola">1.330.186</strong>
               <small>pessoas · Censo 2022</small>
-            </div>
-            <div class="regional-share">
-              <span>Participação na população residente</span>
+            </article>
+            <article class="regional-kpi">
+              <span>Participação na pop. residente</span>
               <strong id="regional-share">0,66%</strong>
-              <small id="regional-share-note">Percentual calculado sobre a população total do Brasil</small>
+              <small id="regional-share-note">de 203.080.756 hab. no Brasil</small>
+            </article>
+            <article class="regional-kpi">
+              <span>Em territórios delimitados</span>
+              <strong id="regional-inside">167.769</strong>
+              <small id="regional-inside-share">12,61% da pop. quilombola</small>
+            </article>
+            <article class="regional-kpi">
+              <span>Fora de territórios delimitados</span>
+              <strong id="regional-outside">1.162.417</strong>
+              <small id="regional-outside-share">87,39% da pop. quilombola</small>
+            </article>
+          </div>
+          <div class="regional-footnote">
+            <p class="regional-method" id="regional-method">Escala Brasil: explore a distribuição da população quilombola entre as unidades federativas. No mapa, alterne entre as grandes regiões e os estados.</p>
+            <div class="regional-sources">
+              <span>Fontes: IBGE, Censo Demográfico 2022, SIDRA</span>
+              <a href="https://sidra.ibge.gov.br/tabela/9578" target="_blank" rel="noopener">Tabela 9578</a>
+              <a href="https://sidra.ibge.gov.br/tabela/4709" target="_blank" rel="noopener">Tabela 4709</a>
             </div>
           </div>
-          <div class="regional-indicators">
-            <article class="regional-card">
-              <span>População residente total</span>
-              <strong id="regional-resident">203.080.756</strong>
-              <small>Censo Demográfico 2022</small>
-            </article>
-            <article class="regional-card">
-              <span>Quilombolas em territórios oficialmente delimitados</span>
-              <strong id="regional-inside">167.769</strong>
-              <small id="regional-inside-share">12,61% da população quilombola</small>
-            </article>
-            <article class="regional-card">
-              <span>Quilombolas fora de territórios oficialmente delimitados</span>
-              <strong id="regional-outside">1.162.417</strong>
-              <small id="regional-outside-share">87,39% da população quilombola</small>
-            </article>
-          </div>
-          <p class="regional-method" id="regional-method">A classificação “fora de territórios” indica residência fora dos territórios quilombolas oficialmente delimitados pelo IBGE; não significa ausência de identidade ou pertencimento quilombola.</p>
-        </div>
-        <div class="regional-sources">
-          <span>Fontes: IBGE, Censo Demográfico 2022, SIDRA tabelas 9578 e 4709.</span>
-          <a href="https://sidra.ibge.gov.br/tabela/9578" target="_blank" rel="noopener">Tabela 9578</a>
-          <a href="https://sidra.ibge.gov.br/tabela/4709" target="_blank" rel="noopener">Tabela 4709</a>
         </div>
       </section>
 
