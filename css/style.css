@@ -206,10 +206,10 @@ body{
 .app-shell:before{
   content:"";position:fixed;z-index:30;left:0;top:0;bottom:0;width:clamp(42px,5.2vw,76px);
   pointer-events:none;background-color:#a94735;
-  background-image:
-    repeating-linear-gradient(135deg,transparent 0 17px,rgba(82,34,27,.22) 17px 19px,transparent 19px 35px),
-    repeating-linear-gradient(45deg,transparent 0 17px,rgba(82,34,27,.18) 17px 19px,transparent 19px 35px),
-    linear-gradient(90deg,rgba(80,29,24,.22),transparent 35%,rgba(255,205,164,.12));
+  background-image:url("../assets/grafismo-barra.webp");
+  background-repeat:repeat-y;
+  background-position:center top;
+  background-size:100% auto;
   border-right:1px solid rgba(82,34,27,.25);
   box-shadow:3px 0 14px rgba(69,34,24,.08)
 }
