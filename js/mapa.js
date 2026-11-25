@@ -354,25 +354,38 @@ export async function loadMacroRegions() {
   return geo;
 }
 export function addMacroRegionLayer(map,geojson) {
+  const normalize = value => String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR').replace(/^regiao\s+/,'').replace(/\s+/g,'-');
+  const dataByName=new Map(MACROREGIONS_CENSUS_2022.flatMap(item=>[item.name,...item.aliases].map(name=>[normalize(name),item])));
   geojson.features.forEach((feature,index)=>{
     const name=feature.properties.nome||feature.properties.NM_REGIAO||feature.properties.name||'Região';
-    feature.properties._region_name=name;
+    const item=dataByName.get(normalize(name));
+    feature.properties._region_name=item?.name||name;
+    feature.properties._quilombola=item?.quilombolaTotal??-1;
+    feature.properties._resident=item?.populationTotal??-1;
+    feature.properties._inside=item?.quilombolaInside??-1;
+    feature.properties._outside=item?.quilombolaOutside??-1;
+    feature.properties._share=item?item.quilombolaTotal/item.populationTotal*100:-1;
     feature.id=String(feature.properties.codarea||index);
   });
   map.addSource('grandes-regioes',{type:'geojson',data:geojson});
   map.addLayer({id:'grandes-regioes-fill',type:'fill',source:'grandes-regioes',
-    paint:{'fill-color':'#D7B5A0','fill-opacity':0.22}});
+    paint:{'fill-color':['step',['get','_quilombola'],'#E8D6C7',40000,'#D7B5A0',100000,'#B98570',200000,'#965B49',500000,'#783F32'],'fill-opacity':0.96}});
   map.addLayer({id:'grandes-regioes-lines',type:'line',source:'grandes-regioes',
-    paint:{'line-color':'#783F32','line-width':2.2,'line-opacity':0.9}});
+    paint:{'line-color':'#F3EBDD','line-width':1.8,'line-opacity':0.98}});
   map.addLayer({id:'grandes-regioes-labels',type:'symbol',source:'grandes-regioes',
     layout:{'text-field':['get','_region_name'],'text-font':['Open Sans Regular'],'text-size':13,'text-allow-overlap':false},
     paint:{'text-color':'#3D2500','text-halo-color':'#F3EBDD','text-halo-width':2}});
+  const legend=document.createElement('div');
+  legend.id='macroregion-map-legend';legend.className='state-map-legend';
+  legend.innerHTML='<strong>População quilombola</strong><span><i style="background:#E8D6C7"></i> até 40 mil</span><span><i style="background:#D7B5A0"></i> 40.001–100 mil</span><span><i style="background:#B98570"></i> 100.001–200 mil</span><span><i style="background:#965B49"></i> 200.001–500 mil</span><span><i style="background:#783F32"></i> acima de 500 mil</span><small>Pessoas · Censo 2022 · SIDRA 9578</small>';
+  document.querySelector('.map-stage').append(legend);
   map.on('click','grandes-regioes-fill',event=>{
     const feature=event.features?.[0];if(!feature)return;
-    const name=feature.properties._region_name;
-    const regionalInfo=name==='Nordeste'?'População quilombola: 906.337 pessoas · Censo 2022 · SIDRA 9578':'Dados populacionais agregados desta região ainda não foram integrados ao atlas.';
-    new maplibregl.Popup({closeButton:true,offset:8}).setLngLat(event.lngLat)
-      .setHTML('<div class="state-popup"><strong>'+name+'</strong><span>'+regionalInfo+'</span><small>IBGE · Malha das Grandes Regiões</small></div>').addTo(map);
+    const p=feature.properties;
+    const fmt=value=>value<0?'Não disponível':new Intl.NumberFormat('pt-BR').format(value);
+    const pct=value=>value<0?'Não disponível':value.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+    const html='<div class="state-popup"><strong>'+p._region_name+'</strong><span>População quilombola</span><b>'+fmt(Number(p._quilombola))+'</b><small>População residente: '+fmt(Number(p._resident))+'</small><small>Participação: '+pct(Number(p._share))+'</small><small>Em territórios delimitados: '+fmt(Number(p._inside))+'</small><small>Fora de territórios delimitados: '+fmt(Number(p._outside))+'</small><small>IBGE · Censo 2022 · SIDRA 9578 e 4709</small></div>';
+    new maplibregl.Popup({closeButton:true,offset:8}).setLngLat(event.lngLat).setHTML(html).addTo(map);
   });
   map.on('mouseenter','grandes-regioes-fill',()=>map.getCanvas().style.cursor='pointer');
   map.on('mouseleave','grandes-regioes-fill',()=>map.getCanvas().style.cursor='');
@@ -384,6 +397,8 @@ export function setBrazilMapMode(map,mode) {
   ['grandes-regioes-fill','grandes-regioes-lines','grandes-regioes-labels'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',regions?'visible':'none');});
   const legend=document.querySelector('#state-map-legend');
   if(legend) legend.style.display=regions?'none':'grid';
+  const macroLegend=document.querySelector('#macroregion-map-legend');
+  if(macroLegend) macroLegend.style.display=regions?'grid':'none';
   const hint=document.querySelector('#map-selection-hint');
   if(hint) hint.textContent=regions?'Selecione uma região para obter dados':'Selecione um estado ou distrito para obter dados';
 }
