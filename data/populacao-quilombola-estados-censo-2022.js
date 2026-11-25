@@ -63,6 +63,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "21",
     "uf": "MA",
     "name": "Maranhão",
+    "populationResident": 6776699,
     "quilombolaTotal": 269168,
     "quilombolaInside": 29142,
     "quilombolaOutside": 240026
@@ -71,6 +72,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "22",
     "uf": "PI",
     "name": "Piauí",
+    "populationResident": 3271199,
     "quilombolaTotal": 31786,
     "quilombolaInside": 8419,
     "quilombolaOutside": 23367
@@ -79,6 +81,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "23",
     "uf": "CE",
     "name": "Ceará",
+    "populationResident": 8794957,
     "quilombolaTotal": 23994,
     "quilombolaInside": 4609,
     "quilombolaOutside": 19385
@@ -87,6 +90,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "24",
     "uf": "RN",
     "name": "Rio Grande do Norte",
+    "populationResident": 3302729,
     "quilombolaTotal": 22371,
     "quilombolaInside": 3450,
     "quilombolaOutside": 18921
@@ -95,6 +99,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "25",
     "uf": "PB",
     "name": "Paraíba",
+    "populationResident": 3974687,
     "quilombolaTotal": 16765,
     "quilombolaInside": 2922,
     "quilombolaOutside": 13843
@@ -103,6 +108,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "26",
     "uf": "PE",
     "name": "Pernambuco",
+    "populationResident": 9058931,
     "quilombolaTotal": 78864,
     "quilombolaInside": 6769,
     "quilombolaOutside": 72095
@@ -111,6 +117,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "27",
     "uf": "AL",
     "name": "Alagoas",
+    "populationResident": 3127683,
     "quilombolaTotal": 37724,
     "quilombolaInside": 691,
     "quilombolaOutside": 37033
@@ -119,6 +126,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "28",
     "uf": "SE",
     "name": "Sergipe",
+    "populationResident": 2210004,
     "quilombolaTotal": 28163,
     "quilombolaInside": 12748,
     "quilombolaOutside": 15415
@@ -127,6 +135,7 @@ export const STATE_CENSUS_2022 = [
     "ibge": "29",
     "uf": "BA",
     "name": "Bahia",
+    "populationResident": 14141626,
     "quilombolaTotal": 397502,
     "quilombolaInside": 20771,
     "quilombolaOutside": 376731
@@ -233,6 +242,7 @@ export const STATE_CENSUS_SOURCE = {
   url: 'https://sidra.ibge.gov.br/tabela/9578',
   notes: [
     'A base contém os quantitativos quilombolas total, em territórios e fora de territórios.',
+    'População residente por UF: IBGE, Censo Demográfico 2022, SIDRA, tabela 4709, variável 93; incluída para cálculo da participação estadual.',
     'Acre e Roraima apresentam traço nos três recortes e foram preservados como null.',
     'No Distrito Federal, o recorte em territórios aparece como traço e foi preservado como null.',
     'A população residente total e os percentuais estaduais não constam neste CSV e não são incluídos nesta base.'
