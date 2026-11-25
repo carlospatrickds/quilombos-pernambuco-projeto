@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 16:07 — Teste de fundo editorial com luz e sombras
+- Criado o arquivo `assets/fundo-luz-sombras.svg`, com base marfim, granulação discreta e sombras orgânicas difusas inspiradas na referência do fundo do e-book.
+- Aplicado o fundo à área principal do site, sem alterar cartões, painéis, mapa, controles ou tipografia.
+- Mantida a faixa lateral terracota já existente.
+- Atualizada a referência de cache de `css/style.css`.
+
+**Arquivos alterados:** `assets/fundo-luz-sombras.svg`, `css/style.css`, `index.html`.
+
+**Natureza da alteração:** teste visual reversível, sujeito à avaliação em desktop e celular.
+
 ### 15:38 — Reversão do teste de fundo verde-claro
 - Removido o fundo verde-sálvia aplicado experimentalmente à área principal do site.
 - Restaurado o fundo original da composição.
