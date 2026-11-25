@@ -1,6 +1,6 @@
 import { CONFIG } from './config.js?v=20261125-pe-color';
 import { normalizeCollection } from './data.js';
-import { openMunicipality } from './panel.js';
+import { openMunicipality, openMesoregion } from './panel.js';
 import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-censo-2022.js';
 import { MESOREGION_BY_MUNICIPALITY } from '../data/mesorregioes-municipios.js';
 import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
@@ -192,7 +192,10 @@ export function setPernambucoMapMode(map, mode) {
   const mesh=document.querySelector('#map-mesh-label');
   if(mesh)mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL';
   const legend=document.querySelector('#mesoregion-legend');
-  if(legend)legend.style.display='flex';
+  if(legend)legend.style.display=subregions?'flex':'none';
+  document.querySelectorAll('.map-footer .legend').forEach(item=>item.style.display=subregions?'none':'flex');
+  const hint=document.querySelector('#map-selection-hint');
+  if(hint)hint.textContent=subregions?'Passe o cursor e selecione uma mesorregião':'Passe o cursor e selecione um município';
 }
 
 // Camada de Pernambuco dentro do mapa do Nordeste: alterna leitura municipal e mesorregional.
@@ -270,12 +273,32 @@ function getFeatureByName(geojson, value) {
   return geojson.features.find(f => (f.properties._app_name || '').toLocaleLowerCase('pt-BR') === normalized);
 }
 
-export function bindMapInteractions(map, geojson) {
+export function bindMapInteractions(map, geojson, options = {}) {
   let selectedId = null;
+  let selectedIds = [];
   let hoveredId = null;
+  let hoverPopup = null;
+  const getMode = options.getMode || (() => 'municipios');
 
   function selectFeature(feature) {
+    const mode=getMode();
+    if(mode==='subregioes'){
+      const region=feature.properties._mesoregion;
+      if(!region)return;
+      selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:false}));
+      const members=geojson.features.filter(f=>f.properties._mesoregion===region);
+      selectedIds=members.map(f=>String(f.properties._app_id));
+      selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:true}));
+      const bounds=new maplibregl.LngLatBounds();
+      const walk=coords=>{if(typeof coords[0]==='number')bounds.extend(coords);else coords.forEach(walk);};
+      members.forEach(f=>walk(f.geometry.coordinates));
+      map.fitBounds(bounds,{padding:{top:70,bottom:70,left:70,right:440},duration:850,maxZoom:7.5});
+      openMesoregion(region,members.length);
+      return;
+    }
     const id = String(feature.properties._app_id);
+    selectedIds.forEach(old=>map.setFeatureState({source:SOURCE_ID,id:old},{selected:false}));
+    selectedIds=[id];
     if (selectedId !== null) map.setFeatureState({ source: SOURCE_ID, id: selectedId }, { selected: false });
     selectedId = id;
     map.setFeatureState({ source: SOURCE_ID, id }, { selected: true });
@@ -299,6 +322,13 @@ export function bindMapInteractions(map, geojson) {
     hoveredId = id;
     if (id !== selectedId) map.setFeatureState({ source: SOURCE_ID, id }, { hover: true });
   });
+  map.on('mousemove', FILL_ID, event => {
+    const feature=event.features?.[0];if(!feature)return;
+    const label=getMode()==='subregioes'?(feature.properties._mesoregion||'Mesorregião não identificada'):(feature.properties._app_name||'Município');
+    if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:false,closeOnClick:false,offset:12,className:'map-hover-tooltip'});
+    hoverPopup.setLngLat(event.lngLat).setText(label).addTo(map);
+  });
+  map.on('mouseleave',FILL_ID,()=>{if(hoverPopup){hoverPopup.remove();hoverPopup=null;}});
   map.on('mouseleave', FILL_ID, () => {
     map.getCanvas().style.cursor = '';
     if (hoveredId && hoveredId !== selectedId) map.setFeatureState({ source: SOURCE_ID, id: hoveredId }, { hover: false });
@@ -345,6 +375,8 @@ export function bindMapInteractions(map, geojson) {
   document.querySelector('#reset-view').addEventListener('click', () => {
     if (selectedId !== null) map.setFeatureState({ source: SOURCE_ID, id: selectedId }, { selected: false });
     selectedId = null;
+    selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:false}));
+    selectedIds=[];
 
     // Reenquadra a malha completa, independentemente do município selecionado.
     const bounds = new maplibregl.LngLatBounds();
@@ -436,6 +468,7 @@ export function showStateView(map, region) {
   if(reset) reset.style.display=region==='pernambuco'?'':'none';
   const legend=document.querySelector('#state-map-legend');
   if(legend) legend.style.display=region==='pernambuco'?'none':'grid';
+  document.querySelectorAll('.map-footer .legend').forEach(item=>item.style.display=region==='pernambuco'?'flex':'none');
   const title=document.querySelector('.map-toolbar h2');
   if(title) title.textContent=region==='brasil'?'Brasil — população quilombola':region==='nordeste'?'Nordeste — população quilombola':'Municípios de Pernambuco';
   if(region==='brasil') {
