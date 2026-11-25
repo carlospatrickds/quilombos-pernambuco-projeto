@@ -57,3 +57,28 @@ h1 em { color:var(--terra-light); font-weight:400; }
 .search-wrap{position:relative}.search-suggestions{position:absolute;z-index:15;top:calc(100% + 5px);left:0;right:0;max-height:280px;overflow:auto;background:#FFFCF6;border:1px solid rgba(61,37,0,.24);box-shadow:0 12px 28px rgba(61,37,0,.16)}
 .search-suggestions[hidden]{display:none}.search-suggestion{display:block;width:100%;padding:10px 12px;border:0;border-bottom:1px solid rgba(61,37,0,.09);background:transparent;color:#292B28;text-align:left;font-size:12px}
 .search-suggestion:hover,.search-suggestion:focus{background:#E9DDCB;outline:0}.search-suggestion small{display:block;color:#806C57;font-size:9px;margin-top:3px}.search-empty{padding:12px;color:#705F4B;font-size:11px}
+
+/* Painel estatístico comparativo: Brasil, Nordeste e Pernambuco */
+.regional-dashboard{margin:0 0 34px;padding:24px clamp(16px,3vw,34px);background:rgba(251,248,241,.94);border:1px solid var(--line);box-shadow:0 14px 38px rgba(61,37,0,.08)}
+.regional-heading h2{margin:7px 0 7px;font:500 clamp(25px,3vw,34px)/1.15 Georgia,serif;color:var(--brown-deep)}
+.regional-heading p{margin:0;color:#5E554B;font-size:13px;line-height:1.6}
+.regional-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:22px 0 14px;padding:5px;background:#E9DDCB;border:1px solid var(--line)}
+.regional-tab{min-height:42px;border:1px solid transparent;background:transparent;color:#4F3C28;font-weight:600;font-size:13px}
+.regional-tab.active{background:#3D2500;color:#FBF8F1;border-color:#3D2500}
+.regional-tab:focus-visible{outline:3px solid #D66A32;outline-offset:2px}
+.regional-panel{padding:0}
+.regional-summary{display:grid;grid-template-columns:1.2fr 1fr;gap:12px}
+.regional-total,.regional-share{display:flex;flex-direction:column;justify-content:center;min-height:138px;padding:20px;background:#F1E5D3;border:1px solid rgba(120,63,50,.16)}
+.regional-total span,.regional-share span{color:#3D2500;font-size:12px;font-weight:700}
+.regional-total strong{margin:8px 0 1px;color:#783F32;font:500 clamp(32px,4vw,43px) Georgia,serif}
+.regional-share strong{margin:10px 0 2px;color:#783F32;font:500 clamp(29px,3vw,38px) Georgia,serif}
+.regional-total small,.regional-share small{color:#4F3C28;font-size:11px;line-height:1.5}
+.regional-indicators{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.regional-card{min-height:116px;padding:16px;background:#F1E5D3;border:1px solid rgba(120,63,50,.16)}
+.regional-card span{display:block;min-height:34px;color:#3D2500;font-size:11px;line-height:1.4;font-weight:700}
+.regional-card strong{display:block;margin:8px 0 4px;color:#783F32;font:500 clamp(21px,2.4vw,28px) Georgia,serif}
+.regional-card small{color:#4F3C28;font-size:10px;line-height:1.4}
+.regional-method{margin:14px 0 0;padding:12px 14px;border-left:3px solid #A85D43;background:#F7F0E5;color:#4F3C28;font-size:11px;line-height:1.6}
+.regional-sources{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;color:#5E554B;font-size:10px}
+.regional-sources a{color:#783F32;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:720px){.regional-dashboard{padding:18px 13px;margin-bottom:24px}.regional-tabs{margin-top:17px}.regional-tab{font-size:12px}.regional-summary{grid-template-columns:1fr 1fr;gap:8px}.regional-total,.regional-share{min-height:118px;padding:13px}.regional-total strong{font-size:29px}.regional-share strong{font-size:27px}.regional-indicators{grid-template-columns:1fr;gap:8px;margin-top:8px}.regional-card{min-height:auto;padding:13px}.regional-card span{min-height:0}.regional-card strong{font-size:24px;margin:6px 0 3px}.regional-method{font-size:10px}.regional-sources{font-size:9px}}
