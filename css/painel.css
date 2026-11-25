@@ -39,7 +39,7 @@
 /* Vinheta cartográfica vetorial do município selecionado no cabeçalho do painel. */
 .municipality-vignette {
   position:absolute;
-  inset:8px 18px 42px 18px;
+  inset:18px 18px 34px 18px;
   display:flex;
   align-items:flex-start;
   justify-content:flex-start;
@@ -55,7 +55,7 @@
 }
 .municipality-vignette-shape {
   fill:#D66A32;
-  fill-opacity:.92;
+  fill-opacity:1;
   stroke:#F3EBDD;
   stroke-width:1.1;
   stroke-opacity:.72;
