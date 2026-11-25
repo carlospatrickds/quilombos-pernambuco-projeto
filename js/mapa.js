@@ -320,6 +320,8 @@ export function addStateLayer(map, geojson, stateData) {
 }
 
 export function showStateView(map, region) {
+  const macroLegend=document.querySelector('#macroregion-map-legend');
+  if(macroLegend) macroLegend.style.display='none';
   ['grandes-regioes-fill','grandes-regioes-lines','grandes-regioes-labels'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility','none');});
   const stateVisibility = region === 'pernambuco' ? 'none' : 'visible';
   ['estados-fill','estados-lines','estados-labels'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',stateVisibility);});
