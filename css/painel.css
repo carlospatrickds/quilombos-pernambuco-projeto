@@ -45,12 +45,14 @@
   justify-content:flex-start;
   padding-left:2%;
   pointer-events:none;
-  z-index:0;
+  z-index:1;
 }
 .municipality-vignette-svg {
   display:block;
-  width:min(38%, 140px);
+  width:140px;
   height:82px;
+  position:relative;
+  z-index:1;
   overflow:visible;
 }
 .municipality-vignette-shape {
