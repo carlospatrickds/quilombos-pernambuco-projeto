@@ -9,13 +9,31 @@ const backdrop = $('#panel-backdrop');
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
-function renderMunicipalityVignette(feature) {
+function renderMunicipalityVignette(feature, options = {}) {
   const host = $('#municipality-vignette');
   host.replaceChildren();
   const geometry = feature?.geometry;
   if (!geometry || !['Polygon', 'MultiPolygon'].includes(geometry.type)) return;
 
-  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+  let polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+  if (options.focusRegionalCluster && polygons.length > 1) {
+    const centers = polygons.map(polygon => {
+      const ring = polygon[0] || [];
+      const xs = ring.map(point => point[0]), ys = ring.map(point => point[1]);
+      return { x: (Math.min(...xs) + Math.max(...xs)) / 2, y: (Math.min(...ys) + Math.max(...ys)) / 2 };
+    });
+    const median = values => {
+      const sorted = [...values].sort((a,b) => a-b);
+      return sorted[Math.floor(sorted.length / 2)];
+    };
+    const centerX = median(centers.map(point => point.x));
+    const centerY = median(centers.map(point => point.y));
+    const distances = centers.map(point => Math.hypot(point.x-centerX, point.y-centerY));
+    const typicalDistance = median(distances);
+    const cutoff = Math.max(typicalDistance * 3.5, 1e-9);
+    const focused = polygons.filter((polygon, index) => distances[index] <= cutoff);
+    if (focused.length) polygons = focused;
+  }
   const positions = [];
   const collect = value => {
     if (Array.isArray(value) && typeof value[0] === 'number' && typeof value[1] === 'number') positions.push(value);
@@ -41,6 +59,7 @@ function renderMunicipalityVignette(feature) {
   svg.setAttribute('role', 'img');
   svg.setAttribute('aria-label', `Contorno cartográfico do município de ${feature.properties?._app_name || 'selecionado'}`);
   svg.classList.add('municipality-vignette-svg');
+  if (options.enlargeRegionalCrop) svg.classList.add('mesoregion-vignette-svg');
 
   polygons.forEach(polygon => {
     polygon.forEach(ring => {
@@ -85,6 +104,9 @@ export function openMesoregion(name, municipalityCount = null, municipalityFeatu
       type: 'Feature',
       properties: { _app_name: name },
       geometry: { type: 'MultiPolygon', coordinates: polygons }
+    }, {
+      focusRegionalCluster: name === 'Metropolitana de Recife',
+      enlargeRegionalCrop: name === 'Metropolitana de Recife'
     });
   } else {
     $('#municipality-vignette').replaceChildren();

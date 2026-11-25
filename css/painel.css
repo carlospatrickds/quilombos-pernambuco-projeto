@@ -70,3 +70,10 @@
   letter-spacing:2px;
 }
 .cover-decoration { z-index:0; }
+
+
+/* Recorte ampliado exclusivo da Região Metropolitana de Recife no painel lateral. */
+.municipality-vignette-svg.mesoregion-vignette-svg {
+  width: min(48%, 180px);
+  height: 104px;
+}
