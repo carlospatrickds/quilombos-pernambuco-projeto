@@ -2,7 +2,7 @@ import {
   createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions,
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
-  setPernambucoMapMode, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
+  setPernambucoMapMode, setCommunityLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
 } from './mapa.js?v=20261125-tooltip-pernambuco';
 import { initPanel, closePanel } from './panel.js?v=20261125-js-syntax-fix';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
@@ -24,6 +24,7 @@ async function start() {
   let appliedRegion = null;
   let brazilMapMode = 'regioes';
   let pernambucoMapMode = document.querySelector('#pernambuco-map-mode .map-mode-button.active')?.dataset.mapMode || 'municipios';
+  let communityLayerEnabled = false;
   let switching = false;
 
   const setLoading = active => { loading.hidden = !active; };
@@ -49,7 +50,7 @@ async function start() {
     applyMesorregionColors(geojson);
     addMunicipalLayer(map, geojson);
     addMesorregionBoundaries(map, geojson);
-    bindMapInteractions(map, geojson, { getMode: () => pernambucoMapMode, isTooltipEnabled: () => pendingRegion === 'pernambuco' });
+    bindMapInteractions(map, geojson, { getMode: () => pernambucoMapMode, isTooltipEnabled: () => pendingRegion === 'pernambuco', isCommunityLayerEnabled: () => communityLayerEnabled });
     municipalityLoaded = true;
     return geojson;
   }
@@ -88,7 +89,10 @@ async function start() {
 
       showStateView(map, region);
       if (region === 'brasil') setBrazilMapMode(map, brazilMapMode);
-      if (region === 'pernambuco') setPernambucoMapMode(map, pernambucoMapMode);
+      if (region === 'pernambuco') {
+        setPernambucoMapMode(map, pernambucoMapMode);
+        setCommunityLayer(map, communityLayerEnabled && pernambucoMapMode === 'municipios');
+      }
       if (region === 'nordeste') {
         setNortheastPeMode(map, document.querySelector('#northeast-map-mode .map-mode-button.active')?.dataset.mapMode || 'subregioes');
       }
@@ -101,6 +105,15 @@ async function start() {
       const pernambucoControl = document.querySelector('#pernambuco-map-mode');
       if (modeControl) modeControl.hidden = region !== 'brasil';
       if (pernambucoControl) pernambucoControl.hidden = region !== 'pernambuco';
+      const communityControl = document.querySelector('#community-layer-control');
+      if (communityControl) communityControl.hidden = region !== 'pernambuco' || pernambucoMapMode !== 'municipios';
+      if (region !== 'pernambuco' || pernambucoMapMode !== 'municipios') {
+        communityLayerEnabled = false;
+        const communityButton = document.querySelector('#community-layer-toggle');
+        if (communityButton) { communityButton.setAttribute('aria-pressed','false'); communityButton.textContent='Mostrar comunidades'; }
+        const communityNote = document.querySelector('#community-layer-note');
+        if (communityNote) communityNote.hidden = true;
+      }
       if (meshLabel) meshLabel.textContent = region === 'pernambuco'
         ? 'MALHA MUNICIPAL'
         : region === 'nordeste'
@@ -146,7 +159,19 @@ async function start() {
       item.classList.toggle('active', active);
       item.setAttribute('aria-pressed', String(active));
     });
-    if (pendingRegion === 'pernambuco' && municipalityLoaded) setPernambucoMapMode(map, pernambucoMapMode);
+    if (pendingRegion === 'pernambuco' && municipalityLoaded) {
+      setPernambucoMapMode(map, pernambucoMapMode);
+      if (pernambucoMapMode === 'subregioes') {
+        communityLayerEnabled = false;
+        setCommunityLayer(map, false);
+        const communityButton = document.querySelector('#community-layer-toggle');
+        if (communityButton) { communityButton.setAttribute('aria-pressed','false'); communityButton.textContent='Mostrar comunidades'; }
+        const communityNote = document.querySelector('#community-layer-note');
+        if (communityNote) communityNote.hidden = true;
+      }
+      const communityControl = document.querySelector('#community-layer-control');
+      if (communityControl) communityControl.hidden = pernambucoMapMode !== 'municipios';
+    }
   }));
 
   document.querySelectorAll('#brazil-map-mode [data-map-mode]').forEach(button => button.addEventListener('click', async () => {
@@ -164,6 +189,17 @@ async function start() {
       ? 'Selecione uma região para obter dados'
       : 'Selecione um estado ou distrito para obter dados';
   }));
+
+  const communityToggle = document.querySelector('#community-layer-toggle');
+  communityToggle?.addEventListener('click', () => {
+    if (pendingRegion !== 'pernambuco' || pernambucoMapMode !== 'municipios' || !municipalityLoaded) return;
+    communityLayerEnabled = !communityLayerEnabled;
+    setCommunityLayer(map, communityLayerEnabled);
+    communityToggle.setAttribute('aria-pressed', String(communityLayerEnabled));
+    communityToggle.textContent = communityLayerEnabled ? 'Ocultar comunidades' : 'Mostrar comunidades';
+    const note = document.querySelector('#community-layer-note');
+    if (note) note.hidden = !communityLayerEnabled;
+  });
 
   retryButton.addEventListener('click', () => changeRegion(pendingRegion));
 
