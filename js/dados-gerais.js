@@ -32,6 +32,22 @@ export function initRegionalDashboard(onRegionChange = () => {}) {
     document.querySelector('#regional-inside-share').textContent = `${percent(data.inside / data.quilombola * 100)} da população quilombola`;
     document.querySelector('#regional-outside-share').textContent = `${percent(data.outside / data.quilombola * 100)} da população quilombola`;
     document.querySelector('#regional-share-note').textContent = `Percentual calculado sobre a população residente de ${data.label}`;
+    const censusTitle = document.querySelector('#census-geography-title');
+    const censusInside = document.querySelector('#census-inside-value');
+    const censusOutside = document.querySelector('#census-outside-value');
+    const censusInsidePercent = document.querySelector('#census-inside-percent');
+    const censusOutsidePercent = document.querySelector('#census-outside-percent');
+    const censusInsideBar = document.querySelector('#census-inside-bar');
+    const censusOutsideBar = document.querySelector('#census-outside-bar');
+    if (censusTitle) censusTitle.textContent = `${data.label}: população dentro e fora de territórios oficialmente delimitados`;
+    if (censusInside) censusInside.textContent = number(data.inside);
+    if (censusOutside) censusOutside.textContent = number(data.outside);
+    const insideShare = data.inside / data.quilombola * 100;
+    const outsideShare = data.outside / data.quilombola * 100;
+    if (censusInsidePercent) censusInsidePercent.textContent = `${percent(insideShare)} da população quilombola do recorte`;
+    if (censusOutsidePercent) censusOutsidePercent.textContent = `${percent(outsideShare)} da população quilombola do recorte`;
+    if (censusInsideBar) censusInsideBar.style.width = `${insideShare}%`;
+    if (censusOutsideBar) censusOutsideBar.style.width = `${outsideShare}%`;
     document.querySelector('#regional-method').textContent =
       'A classificação “fora de territórios” indica residência fora dos territórios quilombolas oficialmente delimitados pelo IBGE; não significa ausência de identidade ou pertencimento quilombola.';
     onRegionChange(key);
