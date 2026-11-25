@@ -508,6 +508,7 @@ export function addStateLayer(map, geojson, stateData) {
       .addTo(map);
   });
   map.on('mouseenter','estados-fill',()=>map.getCanvas().style.cursor='pointer');
+  map.on('mousemove','estados-fill',()=>map.getCanvas().style.cursor='pointer');
   map.on('mouseleave','estados-fill',()=>map.getCanvas().style.cursor='');
 }
 
