@@ -252,3 +252,7 @@ A pedido do responsável, o afastamento máximo no celular foi ampliado de aprox
 
 ## Vinheta cartográfica municipal no painel lateral — 25/11/2026
 Foi implementada no cabeçalho do painel lateral de detalhes uma vinheta cartográfica vetorial dinâmica. Ao selecionar um município, o sistema usa a geometria GeoJSON da própria feição selecionada (Polygon ou MultiPolygon), calcula seus limites e desenha o contorno em SVG, com preenchimento terracota `#D66A32` e contorno claro. O desenho fica acima/ao fundo do rótulo “Território quilombola”, preservando o título e a sigla PE. A solução não usa imagem externa nem captura de tela: a forma deriva da mesma malha municipal usada no mapa, garantindo correspondência geométrica e nitidez em diferentes telas. A atualização ocorre a cada seleção municipal. Arquivos alterados: `js/panel.js`, `css/painel.css`, `index.html` e `js/app.js` (versionamento para evitar cache).
+
+
+### Refinamento de composição da vinheta no cabeçalho — 25/11/2026
+A vinheta cartográfica foi reposicionada para ficar centralizada horizontalmente e acima do rótulo “TERRITÓRIO QUILOMBOLA”. O rótulo passou a ocupar uma linha centralizada na base do cabeçalho. A silhueta recebeu área própria na parte superior, com largura máxima de 190 px e altura de 82 px, reduzindo a proximidade visual com a sigla decorativa “PE” à direita. A geometria, cor e geração dinâmica em SVG permanecem inalteradas. Arquivo alterado: `css/painel.css`.
