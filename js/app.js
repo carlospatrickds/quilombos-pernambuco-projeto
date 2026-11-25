@@ -3,8 +3,8 @@ import {
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
-} from './mapa.js?v=20261125-state-total-popup-clean';
-import { initPanel, closePanel } from './panel.js?v=20261125-metro-400-contrast';
+} from './mapa.js?v=20261125-metro-panel-final';
+import { initPanel, closePanel } from './panel.js?v=20261125-metro-panel-final';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
 
@@ -23,7 +23,7 @@ async function start() {
   let pendingRegion = 'brasil';
   let appliedRegion = null;
   let brazilMapMode = 'regioes';
-  let pernambucoMapMode = 'subregioes';
+  let pernambucoMapMode = document.querySelector('#pernambuco-map-mode .map-mode-button.active')?.dataset.mapMode || 'municipios';
   let switching = false;
 
   const setLoading = active => { loading.hidden = !active; };
