@@ -373,3 +373,27 @@ O desenho das divisões é produzido pela dissolução dos polígonos municipais
 - https://www.cf.pe.gov.br/observatorio/mapas/regioes/mesorregioes
 - https://github.com/StrategicProjects/condepe-py/blob/main/src/condepe/data/regioes.csv
 - https://www.cf.pe.gov.br/dados
+
+
+## Mapa temático das cinco mesorregiões de Pernambuco
+
+**Atualização: 25/11/2026.**
+
+O mapa municipal passou a utilizar preenchimento cromático por mesorregião. Todos os municípios de uma mesma mesorregião recebem a mesma cor, em escala sequencial da paleta editorial, ordenada pelo total absoluto de pessoas quilombolas no Censo 2022.
+
+| Mesorregião | População quilombola | Cor |
+|---|---:|---|
+| Agreste Pernambucano | 38.718 | `#783F32` |
+| Sertão Pernambucano | 20.793 | `#965B49` |
+| São Francisco Pernambucano | 11.074 | `#B98570` |
+| Mata Pernambucana | 6.261 | `#D7B5A0` |
+| Metropolitana de Recife | 2.018 | `#E8D6C7` |
+
+Os totais resultam da soma dos valores municipais da tabela SIDRA 9578 agrupados pela mesorregião histórica do IBGE (1989), com associação municipal por código IBGE a partir da tabela de referência CONDEPE/FIDEM. A soma das cinco regiões é 78.864, igual ao total estadual utilizado nesta série. Municípios com recortes territoriais inibidos (X) mantêm essa condição nos indicadores dentro/fora; para a cor regional foi utilizado somente o total municipal publicado.
+
+As divisas municipais permanecem em linhas finas e discretas. A camada de contorno branco espesso entre mesorregiões foi retirada para evitar fragmentação visual. A legenda apresenta nomes e quantitativos absolutos.
+
+**Fontes:** IBGE, Censo Demográfico 2022, SIDRA tabela 9578; CONDEPE/FIDEM, tabela de referência `regioes` / coluna `mesorregiao`, regionalização histórica do IBGE (1989). Consulta: 25/11/2026.
+- https://sidra.ibge.gov.br/tabela/9578
+- https://www.cf.pe.gov.br/observatorio/mapas/regioes/mesorregioes
+- https://github.com/StrategicProjects/condepe-py/blob/main/src/condepe/data/regioes.csv
