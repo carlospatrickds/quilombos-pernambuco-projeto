@@ -4,6 +4,15 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-25
 
+### 11:22 — Correção do carregamento do território após a compactação dos KPIs
+- Identificado que o HTML mantinha a versão de cache anterior do módulo principal `js/app.js`, apesar da atualização de seu import para o módulo de indicadores.
+- A versão antiga do módulo de indicadores ainda tentava atualizar o elemento `#regional-resident`, removido na nova estrutura de quatro KPIs. Esse erro interrompia a inicialização antes do registro do evento de carregamento do mapa, deixando a mensagem “Preparando o território” presa na tela.
+- Atualizada a versão de cache de `js/app.js` em `index.html`, forçando o navegador a carregar o módulo principal e o módulo de indicadores compatíveis.
+
+**Arquivos alterados:** `index.html`.
+
+**Preservação:** nenhuma alteração nas fontes tipográficas, no CSS cartográfico, no JavaScript do mapa, nas geometrias ou nos dados territoriais.
+
 ### 11:17 — Reorganização compacta do painel “A população quilombola em números”
 - Reduzida a altura vertical do bloco, com cabeçalho e seletor Brasil/Nordeste/Pernambuco na mesma linha em telas amplas.
 - Reorganizados os indicadores em quatro cards horizontais: população quilombola, participação, residentes em territórios delimitados e residentes fora deles.
