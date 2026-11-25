@@ -24,3 +24,21 @@
 .maplibregl-canvas { outline:none; }
 @media(max-width:720px) { .map-stage { min-height:430px; height:62vh; } .map-footer p { width:100%; margin:0; } }
 .maplibregl-ctrl-group{background:#FBF8F1!important;border:1px solid rgba(61,37,0,.22)!important}.maplibregl-ctrl-group button{filter:none!important}.maplibregl-ctrl-attrib{background:rgba(251,248,241,.9)!important;color:#705F4B!important}.maplibregl-ctrl-attrib a{color:#783F32!important}
+
+/* Legenda temática das cinco mesorregiões pernambucanas */
+.mesoregion-legend{
+  display:flex;align-items:center;flex-wrap:wrap;gap:9px 18px;
+  margin:12px 0 2px;padding:12px 14px;
+  background:rgba(233,221,203,.58);border:1px solid rgba(61,37,0,.13);
+  color:#5C4A38;font-size:10px;
+}
+.mesoregion-legend>strong{width:100%;color:#3D2500;font-size:11px;font-weight:700}
+.mesoregion-legend-item{display:flex;align-items:center;gap:7px;min-width:210px}
+.mesoregion-swatch{display:inline-block;flex:0 0 13px;width:13px;height:13px;border:1px solid rgba(61,37,0,.16)}
+.mesoregion-name{flex:1}
+.mesoregion-legend-item strong{font-variant-numeric:tabular-nums;color:#3D2500;font-size:10px}
+.mesoregion-legend>small{width:100%;color:#806C57;font-size:9px}
+@media(max-width:720px){
+ .mesoregion-legend{display:grid;grid-template-columns:1fr;gap:8px}
+ .mesoregion-legend-item{min-width:0}
+}
