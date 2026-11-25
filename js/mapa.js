@@ -182,6 +182,53 @@ export function applyMesorregionColors(geojson) {
   return geojson;
 }
 
+// Camada de Pernambuco dentro do mapa do Nordeste: alterna leitura municipal e mesorregional.
+export function addPernambucoNortheastOverlay(map, geojson) {
+  if (!map.getSource('municipios-pe')) throw new Error('A malha municipal de Pernambuco ainda não foi carregada.');
+  map.addLayer({
+    id:'ne-pe-municipios-fill',type:'fill',source:SOURCE_ID,
+    paint:{'fill-color':['coalesce',['get','_meso_color'],'#D9CFC0'],'fill-opacity':0.98}
+  });
+  map.addLayer({
+    id:'ne-pe-municipios-lines',type:'line',source:SOURCE_ID,
+    paint:{'line-color':'#B49A80','line-width':0.65,'line-opacity':0.8}
+  });
+  map.addLayer({
+    id:'ne-pe-outline',type:'line',source:'estados-br',
+    filter:['==',['get','_app_code'],'26'],
+    paint:{'line-color':'#F3EBDD','line-width':1.8,'line-opacity':1}
+  });
+  map.on('click','ne-pe-municipios-fill',event=>{
+    const feature=event.features?.[0];if(!feature)return;
+    const p=feature.properties;
+    const mode=document.querySelector('#northeast-map-mode [data-map-mode]:not(.active)')?.dataset.mapMode==='municipios'?'subregioes':'municipios';
+    const title=mode==='subregioes'?(p._mesoregion||'Pernambuco'):p._app_name;
+    const amount=mode==='subregioes'?MESOREGION_QUILOMBOLA_2022[p._mesoregion]?.total:p._app_quilombola;
+    const formatted=amount==null||Number(amount)<0?'Não disponível':new Intl.NumberFormat('pt-BR').format(Number(amount));
+    new maplibregl.Popup({closeButton:true,offset:8})
+      .setLngLat(event.lngLat)
+      .setHTML('<div class="state-popup"><strong>'+title+'</strong><span>População quilombola</span><b>'+formatted+'</b><small>IBGE · Censo 2022 · SIDRA 9578</small></div>')
+      .addTo(map);
+  });
+  map.setLayoutProperty('ne-pe-municipios-fill','visibility','none');
+  map.setLayoutProperty('ne-pe-municipios-lines','visibility','none');
+  map.setLayoutProperty('ne-pe-outline','visibility','none');
+}
+
+export function setNortheastPeMode(map, mode) {
+  const subregions=mode==='subregioes';
+  ['ne-pe-municipios-fill','ne-pe-municipios-lines','ne-pe-outline'].forEach(id=>{
+    if(map.getLayer(id))map.setLayoutProperty(id,'visibility',id==='ne-pe-municipios-lines'&&!subregions?'visible':id==='ne-pe-outline'?'visible':'visible');
+  });
+  if(map.getLayer('ne-pe-municipios-lines'))map.setLayoutProperty('ne-pe-municipios-lines','visibility',subregions?'none':'visible');
+  const hint=document.querySelector('#map-selection-hint');
+  if(hint)hint.textContent=subregions?'Selecione uma sub-região de Pernambuco para obter dados':'Selecione um município de Pernambuco para obter dados';
+  const mesh=document.querySelector('#map-mesh-label');
+  if(mesh)mesh.textContent=subregions?'MESORREGIÕES DE PERNAMBUCO':'MALHA MUNICIPAL DE PERNAMBUCO';
+  const legend=document.querySelector('#mesoregion-legend');
+  if(legend)legend.style.display='flex';
+}
+
 // Legenda com quantitativos reais; as divisas municipais permanecem finas e discretas.
 export function addMesorregionBoundaries(map, geojson) {
   const existing=document.querySelector('#mesoregion-legend');
