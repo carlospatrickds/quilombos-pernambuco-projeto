@@ -1,4 +1,4 @@
-import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-northeast-subregions';
+import { createMap, loadMunicipalities, addMunicipalLayer, bindMapInteractions, loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer, setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries, addPernambucoNortheastOverlay, setNortheastPeMode } from './mapa.js?v=20261125-northeast-subregions-v2';
 import { initPanel, closePanel } from './panel.js?v=20261125-vignette';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-statechoropleth';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -33,6 +33,8 @@ async function start() {
       showStateView(map, region);
       if(region==='brasil') setBrazilMapMode(map,brazilMapMode);
       setNortheastPeMode(map,region==='nordeste'?northeastPeMode:'off');
+      const mesoLegend=document.querySelector('#mesoregion-legend');
+      if(mesoLegend)mesoLegend.style.display=region==='pernambuco'?'flex':'none';
       const meshLabel=document.querySelector('#map-mesh-label');
       const hint=document.querySelector('#map-selection-hint');
       const modeControl=document.querySelector('#brazil-map-mode');
