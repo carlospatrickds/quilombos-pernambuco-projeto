@@ -1,4 +1,4 @@
-.map-stage { height:min(66vh,650px); min-height:390px; position:relative; overflow:hidden; background:radial-gradient(ellipse at 50% 48%, #E9DDCB 0%, #F3EBDD 55%, #F3EBDD 100%); border:1px solid rgba(61,37,0,.16); }
+.map-stage { height:min(54vh,540px); min-height:390px; position:relative; overflow:hidden; background:radial-gradient(ellipse at 50% 48%, #E9DDCB 0%, #F3EBDD 55%, #F3EBDD 100%); border:1px solid rgba(61,37,0,.16); }
 #map { position:absolute; inset:0; }
 .maplibregl-ctrl-group { background:#211a16!important; border:1px solid rgba(222,194,164,.2)!important; border-radius:2px!important; }
 .maplibregl-ctrl-group button { filter:invert(.8) sepia(.2); }
