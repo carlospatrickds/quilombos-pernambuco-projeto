@@ -260,6 +260,9 @@ export function setCommunityLayer(map, enabled, mode='municipios') {
 
 export function setPernambucoMapMode(map, mode) {
   const subregions = mode === 'subregioes';
+  // O controle temático permanece disponível nos dois modos de Pernambuco.
+  const communityControl = document.querySelector('#community-layer-control');
+  if (communityControl) communityControl.hidden = false;
   if (map.getLayer('municipios-lines')) map.setLayoutProperty('municipios-lines','visibility',subregions?'none':'visible');
   if (map.getLayer('municipios-labels')) map.setLayoutProperty('municipios-labels','visibility',subregions?'none':'visible');
 
