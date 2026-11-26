@@ -4,6 +4,17 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-26
 
+### 07:46 — Correção de persistência do controle de comunidades em Sub-regiões
+- Reforçada a exibição do controle temático dentro da função que ativa os modos cartográficos de Pernambuco.
+- O controle “Comunidades quilombolas” passa a ser explicitamente exibido tanto em Municípios quanto em Sub-regiões, evitando depender somente do evento do seletor.
+- Atualizadas as referências de cache dos módulos JavaScript.
+
+**Arquivos alterados:** `js/mapa.js`, `js/app.js`, `index.html`.
+
+**Preservação:** nenhuma alteração em geometrias, camadas municipais originais, projeções, enquadramento, dados ou comportamento de seleção.
+
+## 2026-11-26
+
 ### 07:35 — Bolhas proporcionais por município na visualização de sub-regiões
 - Implementada a Opção A: na visualização por sub-regiões, círculos proporcionais indicam os municípios com quantitativos documentados de comunidades quilombolas.
 - Os círculos são posicionados em pontos representativos calculados a partir das geometrias municipais já carregadas; não representam coordenadas exatas de comunidades.
