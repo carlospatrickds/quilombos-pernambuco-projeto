@@ -478,7 +478,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
       });
       content.append(button);
     }
-    if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:true,closeOnClick:false,offset:22,className:'map-hover-tooltip',maxWidth:'260px'});
+    if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:true,closeOnClick:false,offset:22,className:withButton?'map-hover-tooltip map-hover-tooltip-actionable':'map-hover-tooltip map-hover-tooltip-static',maxWidth:'260px'});
     hoverPopup.setLngLat(lngLat).setDOMContent(content).addTo(map);
   }
 
