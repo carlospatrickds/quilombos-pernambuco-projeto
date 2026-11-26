@@ -4,6 +4,22 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-26
 
+### 08:05 — v1.1.0-rc.1 — Etiquetas informativas e abertura deliberada do painel
+- No computador, a etiqueta informativa aparece ao passar o cursor sobre municípios, mesorregiões e bolhas, desde que o controle de etiquetas esteja ligado.
+- No celular, o primeiro toque apresenta uma etiqueta compacta com o botão “Abrir painel lateral”; um segundo toque no mesmo território, em até 2,8 segundos, também abre o painel.
+- No computador, o clique no território mantém a abertura direta do painel lateral.
+- O controle “Etiquetas: ligadas/desligadas” permite ativar ou desativar a apresentação automática; desligado, o toque/clique abre diretamente o painel.
+- Bolhas proporcionais são associadas ao município correspondente e abrem sua ficha municipal, inclusive quando a visualização está em Sub-regiões.
+- A etiqueta apresenta quantitativo e identificação do levantamento UFPE somente quando a camada de comunidades está ativa e existe registro validado.
+- A versão está em avaliação; não substitui a referência estável v1.0.0.
+
+**Arquivos alterados:** `js/mapa.js`, `js/app.js`, `index.html`, `css/style.css`.
+
+**Preservação:** nenhuma alteração em GeoJSON, geometria, projeção, enquadramento, dados, cores cartográficas ou conteúdo dos painéis. A seleção territorial existente foi mantida, com tratamento específico para o clique nas bolhas.
+
+
+## 2026-11-26
+
 ### 07:46 — Correção de persistência do controle de comunidades em Sub-regiões
 - Reforçada a exibição do controle temático dentro da função que ativa os modos cartográficos de Pernambuco.
 - O controle “Comunidades quilombolas” passa a ser explicitamente exibido tanto em Municípios quanto em Sub-regiões, evitando depender somente do evento do seletor.
