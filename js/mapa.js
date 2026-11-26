@@ -187,17 +187,75 @@ export function applyMesorregionColors(geojson) {
 }
 
 
+// Gera pontos representativos a partir da malha municipal existente.
+ // Os pontos indicam municípios com registros, não a localização exata das comunidades.
+function getRingCentroid(ring) {
+  let area2=0, cx=0, cy=0;
+  for(let i=0;i<ring.length-1;i++){
+    const [x1,y1]=ring[i], [x2,y2]=ring[i+1];
+    const cross=x1*y2-x2*y1;
+    area2+=cross; cx+=(x1+x2)*cross; cy+=(y1+y2)*cross;
+  }
+  if(Math.abs(area2)<1e-12)return null;
+  return [cx/(3*area2),cy/(3*area2)];
+}
+function getMunicipalityRepresentativePoint(geometry) {
+  const polygons=geometry.type==='Polygon'?[geometry.coordinates]:geometry.coordinates;
+  let best=null,bestArea=-1;
+  polygons.forEach(polygon=>{
+    const ring=polygon[0]; if(!ring?.length)return;
+    const point=getRingCentroid(ring); if(!point)return;
+    let area=0;
+    for(let i=0;i<ring.length-1;i++)area+=ring[i][0]*ring[i+1][1]-ring[i+1][0]*ring[i][1];
+    area=Math.abs(area);
+    if(area>bestArea){bestArea=area;best=point;}
+  });
+  return best;
+}
+export function addCommunityPointLayer(map, geojson) {
+  const sourceId='quilombola-community-points';
+  const layerId='quilombola-community-circles';
+  if(map.getLayer(layerId))map.removeLayer(layerId);
+  if(map.getSource(sourceId))map.removeSource(sourceId);
+  const features=geojson.features.filter(feature=>Number.isFinite(feature.properties?._community_count)&&feature.properties._community_count>0)
+    .map(feature=>{
+      const coordinates=getMunicipalityRepresentativePoint(feature.geometry);
+      if(!coordinates)return null;
+      return {type:'Feature',properties:{
+        municipality:feature.properties._app_name,
+        count:feature.properties._community_count,
+        subregion:feature.properties._community_subregion
+      },geometry:{type:'Point',coordinates}};
+    }).filter(Boolean);
+  map.addSource(sourceId,{type:'geojson',data:{type:'FeatureCollection',features}});
+  map.addLayer({
+    id:layerId,type:'circle',source:sourceId,
+    layout:{visibility:'none'},
+    paint:{
+      'circle-radius':['interpolate',['linear'],['get','count'],1,5,3,7,6,10,11,14],
+      'circle-color':'#C94F2D',
+      'circle-opacity':0.9,
+      'circle-stroke-color':'#FFF8ED',
+      'circle-stroke-width':1.5
+    }
+  });
+  return features.length;
+}
+
 // Camada temática opcional: destaca somente municípios com quantitativo documentado.
  // Os demais permanecem sem classificação; ausência de registro não equivale a zero.
-export function setCommunityLayer(map, enabled) {
-  if (!map.getLayer(FILL_ID)) return;
-  map.setPaintProperty(FILL_ID, 'fill-extrusion-color', [
-    'case',
-    ['boolean', ['feature-state', 'selected'], false], CONFIG.colors.selected,
-    ['boolean', ['feature-state', 'hover'], false], '#a98668',
-    enabled ? ['>', ['coalesce', ['get', '_community_count'], 0], 0] : false, '#D66A32',
-    ['coalesce', ['get', '_meso_color'], CONFIG.colors.fill]
-  ]);
+export function setCommunityLayer(map, enabled, mode='municipios') {
+  if (map.getLayer(FILL_ID)) {
+    map.setPaintProperty(FILL_ID, 'fill-extrusion-color', [
+      'case',
+      ['boolean', ['feature-state', 'selected'], false], CONFIG.colors.selected,
+      ['boolean', ['feature-state', 'hover'], false], '#a98668',
+      enabled && mode==='municipios' ? ['>', ['coalesce', ['get', '_community_count'], 0], 0] : false, '#D66A32',
+      ['coalesce', ['get', '_meso_color'], CONFIG.colors.fill]
+    ]);
+  }
+  const circles='quilombola-community-circles';
+  if(map.getLayer(circles))map.setLayoutProperty(circles,'visibility',enabled&&mode==='subregioes'?'visible':'none');
 }
 
 export function setPernambucoMapMode(map, mode) {
