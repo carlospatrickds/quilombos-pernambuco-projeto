@@ -25,6 +25,7 @@ async function start() {
   let brazilMapMode = 'regioes';
   let pernambucoMapMode = document.querySelector('#pernambuco-map-mode .map-mode-button.active')?.dataset.mapMode || 'municipios';
   let communityLayerEnabled = false;
+  let mapTooltipEnabled = true;
   let switching = false;
 
   const setLoading = active => { loading.hidden = !active; };
@@ -51,7 +52,7 @@ async function start() {
     addMunicipalLayer(map, geojson);
     addMesorregionBoundaries(map, geojson);
     addCommunityPointLayer(map, geojson);
-    bindMapInteractions(map, geojson, { getMode: () => pernambucoMapMode, isTooltipEnabled: () => pendingRegion === 'pernambuco', isCommunityLayerEnabled: () => communityLayerEnabled });
+    bindMapInteractions(map, geojson, { getMode: () => pernambucoMapMode, isTooltipEnabled: () => pendingRegion === 'pernambuco' && mapTooltipEnabled, isCommunityLayerEnabled: () => communityLayerEnabled });
     municipalityLoaded = true;
     return geojson;
   }
@@ -193,6 +194,13 @@ async function start() {
     communityToggle.textContent = communityLayerEnabled ? 'Ocultar comunidades' : 'Mostrar comunidades';
     const note = document.querySelector('#community-layer-note');
     if (note) note.hidden = !communityLayerEnabled;
+  });
+
+  const tooltipToggle = document.querySelector('#map-tooltip-toggle');
+  tooltipToggle?.addEventListener('click', () => {
+    mapTooltipEnabled = !mapTooltipEnabled;
+    tooltipToggle.setAttribute('aria-pressed',String(mapTooltipEnabled));
+    tooltipToggle.textContent = mapTooltipEnabled ? 'Etiquetas: ligadas' : 'Etiquetas: desligadas';
   });
 
   retryButton.addEventListener('click', () => changeRegion(pendingRegion));
