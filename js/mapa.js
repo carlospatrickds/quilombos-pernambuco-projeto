@@ -530,6 +530,8 @@ export function bindMapInteractions(map, geojson, options = {}) {
     if(id!==selectedId)map.setFeatureState({source:SOURCE_ID,id},{hover:true});
   });
   map.on('mousemove',FILL_ID,event=>{
+    // Em Sub-regiões, as etiquetas pertencem somente às bolhas proporcionais.
+    if(getMode()==='subregioes')return;
     const feature=event.features?.[0];if(feature)handleHover(feature,event.lngLat);
   });
   map.on('mousemove',CIRCLE_LAYER,event=>{
@@ -547,10 +549,11 @@ export function bindMapInteractions(map, geojson, options = {}) {
   });
 
   map.on('click',event=>{
-    const hits=map.queryRenderedFeatures(event.point,{layers:[CIRCLE_LAYER,FILL_ID].filter(id=>map.getLayer(id))});
+    const activeLayers=getMode()==='subregioes'?[CIRCLE_LAYER]:[CIRCLE_LAYER,FILL_ID];
+    const hits=map.queryRenderedFeatures(event.point,{layers:activeLayers.filter(id=>map.getLayer(id))});
     if(!hits.length)return;
     const bubble=hits.find(item=>item.layer?.id===CIRCLE_LAYER);
-    const feature=bubble||hits.find(item=>item.layer?.id===FILL_ID);
+    const feature=bubble||(getMode()==='municipios'?hits.find(item=>item.layer?.id===FILL_ID):null);
     if(feature)handleFeatureClick(feature,event.lngLat,Boolean(bubble));
   });
 
