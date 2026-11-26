@@ -481,3 +481,23 @@ h1,
  #community-layer-toggle{flex:0 0 auto;font-size:10px;padding:6px 9px}
  .community-layer-note{font-size:9px}
 }
+
+
+/* Controles de etiquetas informativas da versão candidata v1.1.0. */
+.tooltip-layer-control{gap:7px;flex-wrap:wrap}
+#map-tooltip-toggle[aria-pressed="false"]{background:#E9DDCB;color:#705F4B}
+.map-hover-tooltip .maplibregl-popup-content{padding:10px 12px;background:#FBF8F1;color:#3D2500;border:1px solid rgba(61,37,0,.18);box-shadow:0 5px 18px rgba(61,37,0,.16);font:500 12px "DM Sans",sans-serif}
+.map-hover-tooltip .maplibregl-popup-tip{border-top-color:#FBF8F1;border-bottom-color:#FBF8F1}
+.atlas-feature-tooltip{display:grid;gap:6px;min-width:145px}
+.atlas-feature-tooltip strong{color:#3D2500;font:500 17px/1.2 Georgia,serif}
+.atlas-feature-tooltip span{color:#705F4B;font-size:10px;line-height:1.4}
+.atlas-tooltip-action{margin-top:4px;padding:8px 10px;border:1px solid #783F32;background:#783F32;color:#FBF8F1;font:600 11px "DM Sans",sans-serif;cursor:pointer}
+@media(max-width:720px){
+ .tooltip-layer-control{width:100%;justify-content:space-between}
+ .tooltip-layer-control .community-layer-label{padding-left:4px;font-size:9px}
+ #map-tooltip-toggle{flex:0 0 auto;font-size:10px;padding:6px 9px}
+ .map-hover-tooltip{max-width:min(270px,calc(100vw - 50px)) !important}
+ .map-hover-tooltip .maplibregl-popup-content{padding:12px 13px}
+ .atlas-feature-tooltip strong{font-size:16px}
+ .atlas-tooltip-action{width:100%;min-height:38px}
+}
