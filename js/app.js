@@ -3,7 +3,7 @@ import {
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, setCommunityLayer, addCommunityPointLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
-} from './mapa.js?v=20261126-controle-subregioes';
+} from './mapa.js?v=20261126-v110-tooltips';
 import { initPanel, closePanel } from './panel.js?v=20261125-js-syntax-fix';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -109,6 +109,8 @@ async function start() {
       if (pernambucoControl) pernambucoControl.hidden = region !== 'pernambuco';
       const communityControl = document.querySelector('#community-layer-control');
       if (communityControl) communityControl.hidden = region !== 'pernambuco';
+      const tooltipControl = document.querySelector('#tooltip-layer-control');
+      if (tooltipControl) tooltipControl.hidden = region !== 'pernambuco';
       if (region !== 'pernambuco') {
         communityLayerEnabled = false;
         const communityButton = document.querySelector('#community-layer-toggle');
