@@ -4,7 +4,7 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-26
 
-### 08:3X — Ajuste da etiqueta no modo Sub-regiões (teste mobile)
+### 08:20 — Ajuste da etiqueta no modo Sub-regiões (teste mobile)
 - No modo Sub-regiões, a etiqueta informativa passa a responder somente às bolhas proporcionais de municípios.
 - Toques em áreas vazias ou diretamente no polígono da mesorregião deixam de abrir etiquetas municipais.
 - A seleção de mesorregião pelo mapa permanece disponível; no modo Municípios, a interação com os polígonos continua funcionando.
