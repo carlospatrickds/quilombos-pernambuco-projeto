@@ -4,6 +4,19 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-26
 
+### 08:3X — Ajuste da etiqueta no modo Sub-regiões (teste mobile)
+- No modo Sub-regiões, a etiqueta informativa passa a responder somente às bolhas proporcionais de municípios.
+- Toques em áreas vazias ou diretamente no polígono da mesorregião deixam de abrir etiquetas municipais.
+- A seleção de mesorregião pelo mapa permanece disponível; no modo Municípios, a interação com os polígonos continua funcionando.
+- O ajuste atende ao teste em celular relatado pelo responsável pelo projeto.
+
+**Arquivo alterado:** `js/mapa.js`.
+
+**Preservação:** nenhuma alteração em geometrias, GeoJSON, projeção, cores, enquadramento ou dados.
+
+
+## 2026-11-26
+
 ### 08:05 — v1.1.0-rc.1 — Etiquetas informativas e abertura deliberada do painel
 - No computador, a etiqueta informativa aparece ao passar o cursor sobre municípios, mesorregiões e bolhas, desde que o controle de etiquetas esteja ligado.
 - No celular, o primeiro toque apresenta uma etiqueta compacta com o botão “Abrir painel lateral”; um segundo toque no mesmo território, em até 2,8 segundos, também abre o painel.
