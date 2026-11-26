@@ -407,89 +407,151 @@ export function bindMapInteractions(map, geojson, options = {}) {
   let selectedIds = [];
   let hoveredId = null;
   let hoverPopup = null;
+  let lastTouchKey = null;
+  let lastTouchAt = 0;
   const getMode = options.getMode || (() => 'municipios');
   const isTooltipEnabled = options.isTooltipEnabled || (() => true);
   const isCommunityLayerEnabled = options.isCommunityLayerEnabled || (() => false);
+  const isTouchDevice = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  const CIRCLE_LAYER = 'quilombola-community-circles';
 
-  function selectFeature(feature) {
-    // Recursos retornados por queryRenderedFeatures podem não trazer a geometria
-    // GeoJSON completa. Recupera a feição original da coleção carregada.
-    const featureCode = String(
-      feature.properties?._app_id ??
-      feature.properties?._app_code ??
-      feature.id ??
-      ''
-    );
-    const sourceFeature = geojson.features.find(item =>
-      String(item.properties?._app_id ?? item.id ?? '') === featureCode
-    ) || feature;
-    const mode = getMode();
+  function resolveMunicipality(feature) {
+    const props=feature?.properties||{};
+    if(props.municipality) return geojson.features.find(item=>item.properties?._app_name===props.municipality)||null;
+    const code=String(props._app_id??props._app_code??feature?.id??'');
+    return geojson.features.find(item=>String(item.properties?._app_id??item.id??'')===code)||null;
+  }
 
-    if (mode === 'subregioes') {
-      const region = sourceFeature.properties._mesoregion;
-      if (!region) return;
-
-      selectedIds.forEach(id => map.setFeatureState({ source: SOURCE_ID, id }, { selected: false }));
-      selectedId = null;
-
-      const members = geojson.features.filter(item => item.properties._mesoregion === region && item.geometry);
-      selectedIds = members.map(item => String(item.properties._app_id));
-      selectedIds.forEach(id => map.setFeatureState({ source: SOURCE_ID, id }, { selected: true }));
-
-      // A seleção regional não altera zoom, centro, inclinação ou enquadramento do mapa.
-      openMesoregion(region, members.length, members);
+  function selectFeature(feature, forceMunicipality=false) {
+    const sourceFeature=resolveMunicipality(feature)||feature;
+    const mode=forceMunicipality?'municipios':getMode();
+    if(mode==='subregioes'){
+      const region=sourceFeature.properties?._mesoregion;
+      if(!region)return;
+      selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:false}));
+      selectedId=null;
+      const members=geojson.features.filter(item=>item.properties._mesoregion===region&&item.geometry);
+      selectedIds=members.map(item=>String(item.properties._app_id));
+      selectedIds.forEach(id=>map.setFeatureState({source:SOURCE_ID,id},{selected:true}));
+      openMesoregion(region,members.length,members);
       return;
     }
-
-    const id = String(sourceFeature.properties._app_id);
-    selectedIds.forEach(old => map.setFeatureState({ source: SOURCE_ID, id: old }, { selected: false }));
-    selectedIds = [id];
-
-    if (selectedId !== null) {
-      map.setFeatureState({ source: SOURCE_ID, id: selectedId }, { selected: false });
-    }
-    selectedId = id;
-    map.setFeatureState({ source: SOURCE_ID, id }, { selected: true });
-
-    // A seleção municipal mantém o enquadramento atual; apenas abre a ficha.
+    const id=String(sourceFeature.properties._app_id);
+    selectedIds.forEach(old=>map.setFeatureState({source:SOURCE_ID,id:old},{selected:false}));
+    selectedIds=[id];
+    if(selectedId!==null)map.setFeatureState({source:SOURCE_ID,id:selectedId},{selected:false});
+    selectedId=id;
+    map.setFeatureState({source:SOURCE_ID,id},{selected:true});
     openMunicipality(sourceFeature);
   }
 
-  map.on('mousemove', FILL_ID, event => {
-    map.getCanvas().style.cursor = 'pointer';
-    const feature = event.features?.[0];
-    if (!feature) return;
-    if (getMode() === 'subregioes') {
-      if (hoveredId && hoveredId !== selectedId) map.setFeatureState({ source: SOURCE_ID, id: hoveredId }, { hover: false });
-      hoveredId = null;
+  function getTooltipParts(feature, forceMunicipality=false) {
+    const props=feature?.properties||{};
+    const isMunicipality=forceMunicipality||Boolean(props.municipality)||getMode()==='municipios';
+    const name=props.municipality||props._app_name||props._mesoregion||'Território';
+    const count=Number.isFinite(props.count)?props.count:props._community_count;
+    return {name,isMunicipality,count};
+  }
+
+  function showFeatureTooltip(feature,lngLat,{withButton=false,forceMunicipality=false}={}) {
+    const {name,isMunicipality,count}=getTooltipParts(feature,forceMunicipality);
+    const content=document.createElement('div');
+    content.className='atlas-feature-tooltip';
+    const title=document.createElement('strong');
+    title.textContent=name;
+    content.append(title);
+    if(isMunicipality&&isCommunityLayerEnabled()&&Number.isFinite(count)){
+      const quantity=document.createElement('span');
+      quantity.textContent=count+' comunidades · levantamento acadêmico UFPE';
+      content.append(quantity);
+    }
+    if(withButton){
+      const button=document.createElement('button');
+      button.type='button';
+      button.className='atlas-tooltip-action';
+      button.textContent='Abrir painel lateral';
+      button.addEventListener('click',event=>{
+        event.stopPropagation();
+        if(hoverPopup){hoverPopup.remove();hoverPopup=null;}
+        selectFeature(feature,forceMunicipality);
+        lastTouchKey=null;
+      });
+      content.append(button);
+    }
+    if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:true,closeOnClick:false,offset:22,className:'map-hover-tooltip',maxWidth:'260px'});
+    hoverPopup.setLngLat(lngLat).setDOMContent(content).addTo(map);
+  }
+
+  function featureKey(feature,forceMunicipality=false){
+    const p=feature?.properties||{};
+    return String(p.municipality||p._app_id||p._app_code||p._mesoregion||p._app_name||'');
+  }
+
+  function handleFeatureClick(feature,lngLat,forceMunicipality=false){
+    if(!feature)return;
+    if(!isTouchDevice()||!isTooltipEnabled()){
+      if(hoverPopup){hoverPopup.remove();hoverPopup=null;}
+      selectFeature(feature,forceMunicipality);
       return;
     }
-    const id = String(feature.properties._app_id);
-    if (hoveredId && hoveredId !== selectedId) map.setFeatureState({ source: SOURCE_ID, id: hoveredId }, { hover: false });
-    hoveredId = id;
-    if (id !== selectedId) map.setFeatureState({ source: SOURCE_ID, id }, { hover: true });
-  });
-  map.on('mousemove', FILL_ID, event => {
-    if (!isTooltipEnabled()) {
-      if (hoverPopup) { hoverPopup.remove(); hoverPopup = null; }
+    const key=featureKey(feature,forceMunicipality);
+    const now=Date.now();
+    if(lastTouchKey===key&&now-lastTouchAt<2800){
+      if(hoverPopup){hoverPopup.remove();hoverPopup=null;}
+      selectFeature(feature,forceMunicipality);
+      lastTouchKey=null;
+      lastTouchAt=0;
       return;
     }
+    lastTouchKey=key;
+    lastTouchAt=now;
+    showFeatureTooltip(feature,lngLat,{withButton:true,forceMunicipality});
+  }
+
+  function handleHover(feature,lngLat,forceMunicipality=false){
+    if(isTouchDevice()||!isTooltipEnabled()){
+      if(hoverPopup){hoverPopup.remove();hoverPopup=null;}
+      return;
+    }
+    showFeatureTooltip(feature,lngLat,{forceMunicipality});
+  }
+
+  map.on('mousemove',FILL_ID,event=>{
+    map.getCanvas().style.cursor='pointer';
     const feature=event.features?.[0];if(!feature)return;
-    let label=getMode()==='subregioes'?(feature.properties._mesoregion||'Mesorregião não identificada'):(feature.properties._app_name||'Município');
-    const communityCount=feature.properties?._community_count;
-    if(getMode()==='municipios'&&isCommunityLayerEnabled()&&Number.isFinite(communityCount))label+=` · ${communityCount} comunidades (levantamento UFPE)`;
-    if(!hoverPopup)hoverPopup=new maplibregl.Popup({closeButton:false,closeOnClick:false,offset:52,className:'map-hover-tooltip'});
-    hoverPopup.setLngLat(event.lngLat).setText(label).addTo(map);
+    if(getMode()==='subregioes'){
+      if(hoveredId&&hoveredId!==selectedId)map.setFeatureState({source:SOURCE_ID,id:hoveredId},{hover:false});
+      hoveredId=null;
+      return;
+    }
+    const id=String(feature.properties._app_id);
+    if(hoveredId&&hoveredId!==selectedId)map.setFeatureState({source:SOURCE_ID,id:hoveredId},{hover:false});
+    hoveredId=id;
+    if(id!==selectedId)map.setFeatureState({source:SOURCE_ID,id},{hover:true});
   });
-  map.on('mouseleave',FILL_ID,()=>{if(hoverPopup){hoverPopup.remove();hoverPopup=null;}});
-  map.on('mouseleave', FILL_ID, () => {
-    map.getCanvas().style.cursor = '';
-    if (hoveredId && hoveredId !== selectedId) map.setFeatureState({ source: SOURCE_ID, id: hoveredId }, { hover: false });
-    hoveredId = null;
+  map.on('mousemove',FILL_ID,event=>{
+    const feature=event.features?.[0];if(feature)handleHover(feature,event.lngLat);
   });
-  map.on('click', FILL_ID, event => {
-    const feature = event.features?.[0];
-    if (feature) selectFeature(feature);
+  map.on('mousemove',CIRCLE_LAYER,event=>{
+    const feature=event.features?.[0];if(feature)handleHover(feature,event.lngLat,true);
+    map.getCanvas().style.cursor='pointer';
+  });
+  map.on('mouseleave',FILL_ID,()=>{
+    if(hoverPopup&&!isTouchDevice()){hoverPopup.remove();hoverPopup=null;}
+    map.getCanvas().style.cursor='';
+    if(hoveredId&&hoveredId!==selectedId)map.setFeatureState({source:SOURCE_ID,id:hoveredId},{hover:false});
+    hoveredId=null;
+  });
+  map.on('mouseleave',CIRCLE_LAYER,()=>{
+    if(hoverPopup&&!isTouchDevice()){hoverPopup.remove();hoverPopup=null;}
+  });
+
+  map.on('click',event=>{
+    const hits=map.queryRenderedFeatures(event.point,{layers:[CIRCLE_LAYER,FILL_ID].filter(id=>map.getLayer(id))});
+    if(!hits.length)return;
+    const bubble=hits.find(item=>item.layer?.id===CIRCLE_LAYER);
+    const feature=bubble||hits.find(item=>item.layer?.id===FILL_ID);
+    if(feature)handleFeatureClick(feature,event.lngLat,Boolean(bubble));
   });
 
   const search = document.querySelector('#municipio-search');
