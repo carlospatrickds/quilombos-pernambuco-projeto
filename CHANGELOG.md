@@ -2,6 +2,20 @@
 
 Registro cronológico das mudanças implementadas no projeto. Os horários seguem o fuso de Brasília (UTC−03:00).
 
+## 2026-11-26
+
+### 07:35 — Bolhas proporcionais por município na visualização de sub-regiões
+- Implementada a Opção A: na visualização por sub-regiões, círculos proporcionais indicam os municípios com quantitativos documentados de comunidades quilombolas.
+- Os círculos são posicionados em pontos representativos calculados a partir das geometrias municipais já carregadas; não representam coordenadas exatas de comunidades.
+- O controle da camada passou a permanecer disponível tanto na visualização Municípios quanto em Sub-regiões.
+- Em Municípios, a camada mantém o destaque terracota dos municípios com registros; em Sub-regiões, apresenta os círculos proporcionais.
+- A camada continua desligada por padrão e os municípios sem quantitativo validado permanecem sem bolhas.
+- Atualizada a nota metodológica para esclarecer a natureza aproximada dos pontos.
+
+**Arquivos alterados:** `js/mapa.js`, `js/app.js`, `index.html`.
+
+**Preservação:** nenhum GeoJSON foi editado; geometrias, limites, projeções, enquadramento, dados IBGE e interações de seleção/clique permanecem sem alteração intencional. O comportamento de abertura do painel lateral não foi modificado nesta etapa.
+
 ## 2026-11-25
 
 ### 17:10 — Camada opcional de municípios com quantitativos de comunidades quilombolas
