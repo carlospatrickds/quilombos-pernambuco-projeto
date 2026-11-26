@@ -501,3 +501,6 @@ h1,
  .atlas-feature-tooltip strong{font-size:16px}
  .atlas-tooltip-action{width:100%;min-height:38px}
 }
+
+.map-hover-tooltip-static{pointer-events:none}
+.map-hover-tooltip-actionable{pointer-events:auto}
