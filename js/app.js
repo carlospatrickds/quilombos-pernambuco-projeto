@@ -166,7 +166,7 @@ async function start() {
           map.fitBounds(bounds, {
             padding: desktop ? 42 : 65,
             duration: 450,
-            maxZoom: desktop ? 8.2 : 7.5
+            maxZoom: desktop ? 9.0 : 7.5
           });
         }
       }
