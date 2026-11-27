@@ -1,5 +1,16 @@
 ## 2026-11-27
 
+### 11:47 — Correção do caminho do módulo de localidades quilombolas
+- Corrigido o caminho de importação do módulo de localidades do Censo 2022: o arquivo está em `data/`, e não em `js/`.
+- Atualizada a cadeia de versões dos módulos JavaScript para evitar reutilização de arquivos em cache após a correção.
+- A falha de importação impedia a inicialização do módulo cartográfico e, consequentemente, o carregamento do mapa e a resposta dos seletores Brasil, Nordeste e Pernambuco.
+- Corrigido somente o caminho do módulo e as referências de cache; nenhuma geometria, camada, dado, projeção ou enquadramento cartográfico foi alterado.
+
+**Arquivos alterados:** `js/data.js`, `js/mapa.js`, `js/app.js`, `index.html`, `CHANGELOG.md`.
+
+**Validação:** caminho relativo conferido em relação à estrutura real do repositório; validação visual no navegador ainda depende de recarregamento após a publicação.
+
+
 ### 11:42 — Aproximação inicial do mapa de Pernambuco no desktop
 - Aumentado em 0,7 nível o zoom após o enquadramento automático dos limites estaduais, buscando escala gráfica inicial próxima de 300 km em vez de 500 km.
 - Ajuste aplicado somente em telas com largura superior a 700 px.
