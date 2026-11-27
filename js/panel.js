@@ -1,4 +1,4 @@
-import { MUNICIPAL_DATA } from './data.js';
+import { MUNICIPAL_DATA } from './data.js?v=20261127-ibge-comunidades-v111';
 import { DATA_STATUS } from './config.js';
 import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
 import { AGRESTE_COMMUNITY_TOTAL, AGRESTE_COMMUNITY_SOURCE, getAgresteMunicipalityCommunityCount, getAgresteSubregionCounts } from '../data/comunidades-agreste.js';
@@ -189,38 +189,70 @@ export function openMunicipality(feature) {
     : 'A verificar';
   $('#population-share').textContent = share;
 
-  $('#communities-copy').textContent = data.communities?.length
-    ? 'Comunidades registradas para este município:'
-    : DATA_STATUS.communities;
-  $('#community-tags').innerHTML = '';
-  if (data.communities?.length) {
-    data.communities.forEach(item => {
-      const tag = document.createElement('span');
-      tag.className = 'tag';
-      tag.textContent = typeof item === 'string' ? item : item.name;
-      $('#community-tags').append(tag);
-    });
-  } else {
-    const tag = document.createElement('span');
-    tag.className = 'tag pending';
-    tag.textContent = 'Informações em levantamento';
-    $('#community-tags').append(tag);
-  }
-
+  const censusCommunities = data.quilombolaLocalities;
+  const declaredNode = $('#communities-declared');
+  const localitiesNode = $('#quilombola-localities');
+  const listDetails = $('#community-list-details');
+  const listNode = $('#community-list');
   const agresteRecord = getAgresteMunicipalityCommunityCount(name);
-  if (agresteRecord) {
-    $('#communities-copy').textContent = 'O levantamento acadêmico de referência contabiliza ' + agresteRecord.count + ' comunidades para este município (' + agresteRecord.subregion + '). A tabela consultada apresenta o quantitativo, mas não discrimina os nomes individuais das comunidades nem informa, individualmente, certificação pela FCP, processo no INCRA ou titulação territorial. Essas situações permanecem "A verificar".';
+
+  declaredNode.textContent = censusCommunities
+    ? formatNumber(censusCommunities.communitiesDeclared)
+    : 'A verificar';
+  localitiesNode.textContent = censusCommunities
+    ? formatNumber(censusCommunities.localities)
+    : 'A verificar';
+
+  $('#communities-copy').textContent = censusCommunities
+    ? 'O Censo Demográfico 2022 identificou, neste município, ' +
+      formatNumber(censusCommunities.communitiesDeclared) +
+      ' comunidades declaradas associadas a ' +
+      formatNumber(censusCommunities.localities) +
+      ' localidades quilombolas. A relação abaixo reproduz as denominações registradas na base estadual do IBGE.'
+    : DATA_STATUS.communities;
+
+  listNode.replaceChildren();
+  if (censusCommunities?.communities?.length) {
+    censusCommunities.communities.forEach(item => {
+      const li = document.createElement('li');
+      const nameNode = document.createElement('strong');
+      nameNode.textContent = item.name || 'Denominação não informada';
+      const meta = document.createElement('span');
+      meta.textContent = 'Código IBGE da comunidade: ' + item.id +
+        ' · ' + item.localities + (item.localities === 1 ? ' localidade associada' : ' localidades associadas');
+      li.append(nameNode, meta);
+      if (item.territories?.length) {
+        const territory = document.createElement('small');
+        territory.textContent = 'Território oficialmente delimitado associado no Censo: ' + item.territories.join('; ');
+        li.append(territory);
+      }
+      listNode.append(li);
+    });
+    listDetails.hidden = false;
+    listDetails.querySelector('summary').textContent =
+      'Consultar relação nominal (' + censusCommunities.communities.length + ')';
     $('#community-tags').replaceChildren();
-    const countTag = document.createElement('span');
-    countTag.className = 'tag';
-    countTag.textContent = agresteRecord.count + ' registros no levantamento';
-    $('#community-tags').append(countTag);
-    const statusTag = document.createElement('span');
-    statusTag.className = 'tag pending';
-    statusTag.textContent = 'Nomes individuais em levantamento documental';
-    $('#community-tags').append(statusTag);
+    const sourceTag = document.createElement('span');
+    sourceTag.className = 'tag';
+    sourceTag.textContent = 'IBGE · Censo 2022';
+    $('#community-tags').append(sourceTag);
+  } else {
+    listDetails.hidden = true;
+    $('#community-tags').replaceChildren();
+    const pending = document.createElement('span');
+    pending.className = 'tag pending';
+    pending.textContent = 'Sem registro municipal nesta extração';
+    $('#community-tags').append(pending);
   }
 
+  if (agresteRecord) {
+    const academicNote = document.createElement('p');
+    academicNote.className = 'community-academic-note';
+    academicNote.textContent = 'Fonte complementar: o levantamento acadêmico de referência contabiliza ' +
+      agresteRecord.count + ' comunidades para este município (' + agresteRecord.subregion +
+      '). Esse quantitativo tem origem e metodologia próprias e não deve ser somado aos números do Censo 2022.';
+    $('#communities-copy').insertAdjacentElement('afterend', academicNote);
+  }
   $('#history-copy').textContent = agresteRecord
     ? 'As informações históricas das comunidades vinculadas a este município ainda não estão disponíveis. Conteúdo em levantamento documental.'
     : (data.history || DATA_STATUS.history);
