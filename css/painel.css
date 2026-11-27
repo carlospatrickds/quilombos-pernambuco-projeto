@@ -162,3 +162,90 @@
 .municipio-panel .panel-content .community-research-block .community-research-total{
   color:#68734D !important;
 }
+
+
+/* Indicadores censitários de comunidades e localidades na ficha municipal. */
+.community-census-indicators{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin:2px 0 13px;
+}
+.community-census-card{
+  min-width:0;
+  padding:12px 13px;
+  background:#F1E5D3;
+  border:1px solid rgba(120,63,50,.16);
+}
+.community-census-card span{
+  display:block;
+  color:#705F4B;
+  font-size:10px;
+  line-height:1.4;
+}
+.community-census-card strong{
+  display:block;
+  margin:5px 0 3px;
+  color:#783F32;
+  font:28px/1 Georgia,serif;
+  font-variant-numeric:tabular-nums;
+}
+.community-census-card small{
+  display:block;
+  color:#705F4B;
+  font-size:9px;
+  line-height:1.4;
+}
+.community-list-details{
+  margin-top:13px;
+  border-top:1px solid rgba(120,63,50,.2);
+  border-bottom:1px solid rgba(120,63,50,.2);
+}
+.community-list-details[hidden]{display:none}
+.community-list-details summary{
+  padding:12px 2px;
+  color:#783F32;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+.community-list-details ul{
+  display:grid;
+  gap:0;
+  max-height:330px;
+  overflow:auto;
+  margin:0;
+  padding:0 0 8px;
+  list-style:none;
+}
+.community-list-details li{
+  display:grid;
+  gap:3px;
+  padding:9px 10px;
+  border-top:1px solid rgba(120,63,50,.12);
+}
+.community-list-details li strong{
+  color:#3D2500;
+  font-size:12px;
+  font-weight:600;
+}
+.community-list-details li span,
+.community-list-details li small{
+  color:#705F4B;
+  font-size:10px;
+  line-height:1.5;
+}
+.community-academic-note{
+  margin-top:10px !important;
+  padding:10px 12px;
+  border-left:2px solid #68734D;
+  background:rgba(104,115,77,.08);
+  color:#5E554B !important;
+  font-size:11px !important;
+  line-height:1.6 !important;
+}
+@media(max-width:380px){
+  .community-census-indicators{gap:6px}
+  .community-census-card{padding:10px 9px}
+  .community-census-card strong{font-size:24px}
+}
