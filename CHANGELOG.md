@@ -1,6 +1,6 @@
 ## 2026-11-27
 
-### 08:xx — Compatibilidade com importação antiga do módulo de localidades
+### 11:53 — Compatibilidade com importação antiga do módulo de localidades
 - Criado módulo de compatibilidade em `js/localidades-quilombolas-municipais-censo-2022.js`, correspondente ao caminho antigo que ainda pode ser solicitado por versões de `js/data.js` mantidas em cache.
 - O módulo apenas reexporta os dados de `data/localidades-quilombolas-municipais-censo-2022.js`; não duplica, transforma ou altera a base.
 - Preservados dados, geometrias, camadas, projeções, enquadramentos e interações cartográficas.
