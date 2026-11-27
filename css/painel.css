@@ -1,6 +1,6 @@
-.panel-backdrop { position:fixed; inset:0; z-index:20; background:rgba(41,43,40,.32); backdrop-filter:blur(3px); }
+.panel-backdrop { position:fixed; inset:0; z-index:1100; background:rgba(41,43,40,.32); backdrop-filter:blur(3px); }
 .panel-backdrop[hidden] { display:none; }
-.municipio-panel { position:fixed; z-index:21; top:0; right:0; height:100dvh; width:min(470px,100%); overflow-y:auto; background:#FBF8F1; border-left:1px solid rgba(61,37,0,.2); transform:translateX(102%); transition:transform .42s cubic-bezier(.2,.8,.2,1); box-shadow:-24px 0 70px rgba(0,0,0,.38); }
+.municipio-panel { position:fixed; z-index:1101; top:0; right:0; height:100dvh; width:min(470px,100%); overflow-y:auto; background:#FBF8F1; border-left:1px solid rgba(61,37,0,.2); transform:translateX(102%); transition:transform .42s cubic-bezier(.2,.8,.2,1); box-shadow:-24px 0 70px rgba(0,0,0,.38); }
 .municipio-panel.open { transform:translateX(0); }
 .panel-close { position:absolute; z-index:2; top:15px; right:16px; width:36px; height:36px; border:1px solid rgba(255,255,255,.3); color:#fff; background:rgba(23,18,15,.65); font-size:25px; line-height:1; }
 .panel-cover { height:150px; position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:20px 26px; background:linear-gradient(120deg,#783F32,#A85D43 65%,#3D2500); }
