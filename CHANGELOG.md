@@ -710,3 +710,17 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Nenhuma alteração na lógica territorial, dados ou cartografia.
 
 **Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
+
+
+## 2026-11-27
+
+### 16:05 — Exibição exclusiva dos seletores por escala territorial
+- Corrigida a sincronização dos controles Regiões/Estados e Municípios/Sub-regiões.
+- Regiões/Estados é exibido exclusivamente na escala Brasil.
+- Municípios/Sub-regiões é exibido exclusivamente na escala Pernambuco.
+- Na escala Nordeste, ambos os seletores ficam ocultos.
+- A visibilidade agora é atualizada imediatamente quando a escala é solicitada, antes do carregamento assíncrono do mapa, evitando que controles da escala anterior permaneçam visíveis durante a transição.
+- Mantida a regra CSS que respeita o atributo `hidden`.
+
+**Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
+**Escopo:** correção de interface e estado; nenhuma alteração em dados, geometrias ou camadas cartográficas.
