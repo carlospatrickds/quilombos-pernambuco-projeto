@@ -891,3 +891,48 @@ body::after{
   .map-actions > .search-wrap { grid-column:1 / -1; min-width:0; width:100%; max-width:none; min-height:44px; }
   .map-actions > #reset-view { grid-column:2; justify-self:end; }
 }
+
+
+/* v144 — corrige o seletor territorial: título acima, opções lado a lado. */
+.map-actions > #pernambuco-map-mode,
+.map-actions > #brazil-map-mode {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:12px 40px;
+  align-content:center;
+  align-items:stretch;
+  justify-items:stretch;
+  gap:5px;
+  flex-direction:initial;
+  height:76px;
+  min-height:76px;
+  padding:7px;
+  box-sizing:border-box;
+  overflow:visible;
+}
+.map-actions > #pernambuco-map-mode::before,
+.map-actions > #brazil-map-mode::before {
+  content:"Visualização territorial";
+  display:flex;
+  grid-column:1 / -1;
+  grid-row:1;
+  align-items:center;
+  height:12px;
+  min-height:12px;
+  padding:0 4px;
+  white-space:nowrap;
+}
+.map-actions > #pernambuco-map-mode .map-mode-button,
+.map-actions > #brazil-map-mode .map-mode-button {
+  grid-row:2;
+  flex:none;
+  width:100%;
+  height:40px;
+  min-height:40px;
+  min-width:0;
+  margin:0;
+  padding:0 8px;
+  align-self:stretch;
+  justify-self:stretch;
+  box-sizing:border-box;
+}
