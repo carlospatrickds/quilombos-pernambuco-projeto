@@ -5,6 +5,7 @@
 - Integrados os quantitativos de comunidades declaradas associadas a localidades e de localidades quilombolas para os 72 municípios com registros na Tabela 2.
 - Incluída a relação nominal agrupada por código nacional de comunidade, com quantidade de localidades associadas e vínculo territorial somente quando informado na fonte.
 - Atualizada a ficha municipal para exibir os dois indicadores e uma lista nominal expansível.
+- Incluído link direto para a página oficial do produto do IBGE na ficha municipal.
 - Mantido o levantamento acadêmico do Agreste como fonte complementar independente, sem somá-lo aos resultados do Censo.
 - Municípios sem linha na Tabela 2 não são classificados como municípios sem comunidades.
 - Atualizados os módulos, estilos, versões de cache, roadmap e documentação da Base Mestra.
