@@ -163,10 +163,14 @@ async function start() {
         geo.features.forEach(feature => walk(feature.geometry.coordinates));
         if (!bounds.isEmpty()) {
           const desktop = window.matchMedia('(min-width: 701px)').matches;
+          const mapHeight = map.getContainer().clientHeight;
           map.fitBounds(bounds, {
-            // Centraliza Pernambuco no quadro, seguindo o mesmo critério
-            // de enquadramento utilizado na visualização do Nordeste.
-            padding: 55,
+            // No desktop, desloca visualmente o território 30% para cima.
+            // O padding inferior assimétrico desloca o centro do enquadramento
+            // sem alterar as geometrias ou a posição dos dados.
+            padding: desktop
+              ? { top: 55, right: 55, bottom: 55 + mapHeight * 0.60, left: 55 }
+              : 55,
             duration: 450,
             maxZoom: desktop ? 9.0 : 7.5
           });
