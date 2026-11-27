@@ -658,3 +658,14 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 **Arquivos alterados:** `index.html`, `js/mapa.js`, `js/app.js`, `css/style.css`, `CHANGELOG.md`.
 **Preservação:** nenhuma alteração em GeoJSON, geometrias, coordenadas, projeções, enquadramentos ou camadas cartográficas.
+
+
+### 15:18 — Reordenação dos controles e correção de cache da busca comunitária
+- Reordenados os controles de Pernambuco: comunidades quilombolas, municípios/sub-regiões, etiquetas informativas, busca e reinício.
+- Substituído o botão alternável de comunidades por duas opções explícitas: Mostrar (verde-oliva) e Ocultar (terracota), com indicação visual do estado ativo.
+- Corrigida a normalização Unicode dos termos de busca para remover sinais diacríticos de forma consistente.
+- Incrementada a versão de cache do módulo cartográfico e do aplicativo para impedir reutilização de módulo anterior pelo navegador.
+- Mantida a busca nominal baseada na relação estruturada do Censo 2022 e o vínculo com o município correspondente.
+- Nenhuma geometria, coordenada, projeção, enquadramento ou camada cartográfica foi modificada.
+
+**Arquivos alterados:** `index.html`, `js/app.js`, `js/mapa.js`, `css/style.css`, `CHANGELOG.md`.
