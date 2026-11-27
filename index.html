@@ -12,7 +12,7 @@
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
   <link href="css/style.css?v=20261127-adinkra-embutido-v135" rel="stylesheet">
   <link href="css/mapa.css?v=20261127-etiqueta-mobile-rc6" rel="stylesheet">
-  <link href="css/painel.css?v=20261126-painel-alinha-faixa" rel="stylesheet">
+  <link href="css/painel.css?v=20261127-ibge-comunidades-v121" rel="stylesheet">
   <link href="css/biblioteca.css?v=20261127-biblioteca-v120" rel="stylesheet">
 </head>
 <body>
@@ -253,8 +253,24 @@
 
       <section class="panel-section">
         <div class="section-heading"><span>01</span><h3>Comunidades quilombolas</h3></div>
-        <p id="communities-copy">As comunidades vinculadas a este município serão apresentadas aqui após validação das fontes.</p>
-        <div id="community-tags" class="community-tags"><span class="tag pending">Informações em levantamento</span></div>
+        <div class="community-census-indicators">
+          <article class="community-census-card">
+            <span>Comunidades declaradas</span>
+            <strong id="communities-declared">A verificar</strong>
+            <small>Associadas a localidades · Censo 2022</small>
+          </article>
+          <article class="community-census-card">
+            <span>Localidades quilombolas</span>
+            <strong id="quilombola-localities">A verificar</strong>
+            <small>Unidades territoriais identificadas · Censo 2022</small>
+          </article>
+        </div>
+        <p id="communities-copy">Os quantitativos municipais do Censo 2022 serão apresentados após integração da base.</p>
+        <details id="community-list-details" class="community-list-details" hidden>
+          <summary>Consultar relação nominal</summary>
+          <ul id="community-list"></ul>
+        </details>
+        <div id="community-tags" class="community-tags"><span class="tag pending">Relação nominal em validação</span></div>
       </section>
 
       <section class="panel-section">
@@ -277,6 +293,6 @@
   </aside>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script type="module" src="js/app.js?v=20261126-v110-rc2"></script>
+  <script type="module" src="js/app.js?v=20261127-ibge-comunidades-v111"></script>
 </body>
 </html>
