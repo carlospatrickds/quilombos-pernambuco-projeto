@@ -726,3 +726,168 @@ body::after{
 .map-actions > #brazil-map-mode[hidden] {
   display:none !important;
 }
+
+
+/* v143 — sistema visual unificado da barra superior do mapa. */
+.map-actions {
+  align-items:center;
+  gap:10px;
+}
+.map-actions > .map-mode-toggle,
+.map-actions > .community-layer-control,
+.map-actions > .tooltip-layer-control,
+.map-actions > #pernambuco-map-mode,
+.map-actions > #brazil-map-mode {
+  box-sizing:border-box;
+  display:flex;
+  flex:0 0 auto;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:flex-start;
+  gap:7px;
+  height:76px;
+  min-height:76px;
+  padding:8px;
+  border:1px solid rgba(61,37,0,.20);
+  border-radius:8px;
+  background:#EDE6D6;
+}
+.map-actions > #pernambuco-map-mode::before,
+.map-actions > #brazil-map-mode::before {
+  content:"Visualização territorial";
+  display:flex;
+  align-items:center;
+  height:12px;
+  min-height:12px;
+  padding:0 4px;
+  color:#4F3C28;
+  font:600 9px/12px "DM Sans",sans-serif;
+  white-space:nowrap;
+}
+.map-actions .community-layer-label {
+  display:flex;
+  align-items:center;
+  height:12px;
+  min-height:12px;
+  padding:0 4px;
+  color:#4F3C28;
+  font:600 9px/12px "DM Sans",sans-serif;
+  white-space:nowrap;
+}
+.map-actions .map-toggle-segment {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:3px;
+  width:100%;
+  height:40px;
+  min-height:40px;
+  padding:3px;
+  box-sizing:border-box;
+  border:1px solid rgba(61,37,0,.16);
+  border-radius:6px;
+  background:#F7F4EB;
+}
+.map-actions .map-mode-button {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  height:34px;
+  min-height:34px;
+  margin:0;
+  padding:0 10px;
+  border:1px solid transparent;
+  border-radius:6px;
+  font:600 11px/1.1 "DM Sans",sans-serif;
+  white-space:nowrap;
+}
+.map-actions .map-toggle-segment .map-mode-button {
+  width:100%;
+  height:32px;
+  min-height:32px;
+}
+.map-actions > #pernambuco-map-mode,
+.map-actions > #brazil-map-mode {
+  flex-direction:column;
+}
+.map-actions > #pernambuco-map-mode .map-mode-button,
+.map-actions > #brazil-map-mode .map-mode-button {
+  flex:1 1 0;
+}
+.map-actions .map-mode-button.active,
+.map-actions .map-toggle-segment .map-mode-button.active {
+  background:#5C6944;
+  border-color:#5C6944;
+  color:#F7F4EB;
+}
+.map-actions .community-toggle-segment .community-show-button.active {
+  background:#5C6944;
+  border-color:#5C6944;
+  color:#F7F4EB;
+}
+.map-actions .community-toggle-segment .community-hide-button.active {
+  background:#6B3629;
+  border-color:#6B3629;
+  color:#F7F4EB;
+}
+.map-actions .community-toggle-segment .map-mode-button:not(.active),
+.map-actions .map-toggle-segment .map-mode-button:not(.active),
+.map-actions > #pernambuco-map-mode .map-mode-button:not(.active),
+.map-actions > #brazil-map-mode .map-mode-button:not(.active) {
+  background:transparent;
+  color:#3D2500;
+}
+.map-actions > .search-wrap {
+  display:flex;
+  flex:1 1 210px;
+  align-items:center;
+  align-self:center;
+  min-width:190px;
+  max-width:250px;
+  min-height:76px;
+}
+.map-actions .search-box {
+  box-sizing:border-box;
+  width:100%;
+  height:44px;
+  min-height:44px;
+  border-radius:8px;
+  background:#F7F4EB;
+}
+.map-actions .search-box input {
+  min-width:0;
+  background:transparent;
+}
+.map-actions > #reset-view {
+  flex:0 0 44px;
+  align-self:center;
+  width:44px;
+  height:44px;
+  min-height:44px;
+  border-radius:8px;
+  background:#5C6944;
+  color:#F7F4EB;
+}
+.map-actions > #pernambuco-map-mode[hidden],
+.map-actions > #brazil-map-mode[hidden],
+.map-actions > .community-layer-control[hidden],
+.map-actions > .tooltip-layer-control[hidden] {
+  display:none !important;
+}
+@media(max-width:1100px) and (min-width:721px) {
+  .map-actions { align-items:center; flex-wrap:wrap; }
+  .map-actions > .map-mode-toggle { flex:1 1 180px; }
+  .map-actions > .search-wrap { flex:1 1 220px; max-width:none; }
+}
+@media(max-width:720px) {
+  .map-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:stretch; gap:8px; }
+  .map-actions > .map-mode-toggle,
+  .map-actions > .community-layer-control,
+  .map-actions > .tooltip-layer-control,
+  .map-actions > #pernambuco-map-mode,
+  .map-actions > #brazil-map-mode { width:100%; min-width:0; height:76px; }
+  .map-actions > .search-wrap { grid-column:1 / -1; min-width:0; width:100%; max-width:none; min-height:44px; }
+  .map-actions > #reset-view { grid-column:2; justify-self:end; }
+}
