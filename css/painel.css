@@ -249,3 +249,41 @@
   .community-census-card{padding:10px 9px}
   .community-census-card strong{font-size:24px}
 }
+
+
+/* v122 — hierarquia reforçada para os dados das comunidades quilombolas. */
+.data-grid { gap:7px; }
+.data-card { min-height:82px; padding:11px 12px; }
+.data-card span { min-height:2.3em; font-size:11px; }
+.data-card strong { margin:5px 0 3px; font-size:22px; }
+.data-card-wide { min-height:66px; }
+.communities-panel-section { margin-top:22px; padding:16px 14px 18px; background:#F5F0E5; border:1px solid rgba(78,100,61,.22); border-radius:3px; }
+.communities-panel-section .section-heading { border-bottom-color:rgba(78,100,61,.28); margin-bottom:9px; }
+.communities-panel-section .section-heading span { color:#4F7D3A; }
+.communities-panel-section .section-heading h3 { font-size:20px; }
+.community-section-intro { margin:0 0 12px !important; color:#5D604C !important; font-size:12px !important; line-height:1.5 !important; }
+.community-census-indicators { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:0 0 12px; }
+.community-census-card { min-width:0; padding:11px 12px; background:#E8EEDB; border:1px solid rgba(79,125,58,.22); }
+.community-census-card span { display:block; min-height:0; color:#435637; font-size:10px; font-weight:600; line-height:1.35; }
+.community-census-card strong { display:block; margin:4px 0 2px; color:#4F7D3A; font:28px/1.05 Georgia,serif; }
+.community-census-card small { display:block; color:#526447; font-size:10px; line-height:1.35; }
+.communities-panel-section #communities-copy { font-size:12px; line-height:1.55; margin:0 0 10px; }
+.community-list-details { margin-top:10px; border:1px solid rgba(120,63,50,.2); background:#FBF8F1; }
+.community-list-details summary { padding:11px 12px; color:#783F32; font-size:12px; font-weight:700; cursor:pointer; }
+.community-list-head { display:grid; grid-template-columns:minmax(0,1fr) 66px 72px; gap:8px; padding:8px 10px; background:#783F32; color:#fffaf2; font-size:9px; font-weight:700; letter-spacing:.2px; }
+.community-list-head span:not(:first-child) { text-align:center; }
+#community-list { list-style:none; padding:0 10px; margin:0; }
+#community-list .community-record { display:grid; grid-template-columns:minmax(0,1fr) 66px 72px; gap:8px; align-items:center; padding:10px 0; border-bottom:1px solid rgba(120,63,50,.16); }
+.community-record-identity { min-width:0; display:flex; flex-direction:column; gap:3px; }
+.community-record-identity strong { color:#3D2500; font-size:11px; line-height:1.35; }
+.community-record-identity small { color:#786A59; font-size:9px; }
+.community-record-localities { color:#4F7D3A; text-align:center; font:22px Georgia,serif; }
+.community-record-residents { color:#70695F; text-align:center; font:18px Georgia,serif; }
+.community-record-territory { grid-column:1/-1; color:#526447; font-size:10px; line-height:1.4; }
+.community-population-caveat { padding:9px 10px; margin:0 !important; background:#F1E5D3; color:#5B4B39 !important; font-size:10px !important; line-height:1.5 !important; }
+.communities-panel-section .community-tags { margin-top:10px; }
+@media(max-width:380px) {
+  .communities-panel-section { padding:13px 10px; }
+  .community-list-head, #community-list .community-record { grid-template-columns:minmax(0,1fr) 54px 62px; gap:5px; }
+  .community-census-card { padding:9px; }
+}
