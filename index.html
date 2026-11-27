@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
-  <link href="css/style.css?v=20261127-adinkra-embutido-v135" rel="stylesheet">
-  <link href="css/mapa.css?v=20261127-etiqueta-mobile-rc6" rel="stylesheet">
+  <link href="css/style.css?v=20261127-toolbar-busca-comunidade-v136" rel="stylesheet">
+  <link href="css/mapa.css?v=20261127-etiqueta-mobile-rc7" rel="stylesheet">
   <link href="css/painel.css?v=20261127-ficha-comunidades-v123" rel="stylesheet">
   <link href="css/biblioteca.css?v=20261127-biblioteca-v120" rel="stylesheet">
 </head>
@@ -150,12 +150,12 @@
           <div class="map-actions">
             <div class="map-mode-toggle" id="pernambuco-map-mode" role="group" aria-label="Visualização do mapa de Pernambuco" hidden><button type="button" class="map-mode-button" data-map-mode="municipios" aria-pressed="false">Municípios</button><button type="button" class="map-mode-button active" data-map-mode="subregioes" aria-pressed="true">Sub-regiões</button></div>
             <div class="map-mode-toggle community-layer-control" id="community-layer-control" hidden><span class="community-layer-label">Comunidades quilombolas</span><button type="button" class="map-mode-button" id="community-layer-toggle" aria-pressed="false">Mostrar comunidades</button></div>
-            <div class="map-mode-toggle tooltip-layer-control" id="tooltip-layer-control" hidden><span class="community-layer-label">Etiquetas informativas</span><button type="button" class="map-mode-button" id="map-tooltip-toggle" aria-pressed="true">Etiquetas: ligadas</button></div>
+            <div class="map-mode-toggle tooltip-layer-control" id="tooltip-layer-control" role="group" aria-label="Etiquetas informativas" hidden><span class="community-layer-label">Etiquetas informativas</span><div class="map-toggle-segment"><button type="button" class="map-mode-button active" id="map-tooltip-on" aria-pressed="true">Ligadas</button><button type="button" class="map-mode-button" id="map-tooltip-off" aria-pressed="false">Desligadas</button></div></div>
             <div class="map-mode-toggle" id="brazil-map-mode" role="group" aria-label="Modo de visualização do mapa do Brasil" hidden><button type="button" class="map-mode-button active" data-map-mode="regioes" aria-pressed="true">Regiões</button><button type="button" class="map-mode-button" data-map-mode="estados" aria-pressed="false">Estados</button></div>
             <div class="search-wrap"><label class="search-box" for="municipio-search">
               <span aria-hidden="true">⌕</span>
-              <input id="municipio-search" type="search" placeholder="Buscar município..." autocomplete="off">
-            </label><div id="search-suggestions" class="search-suggestions" role="listbox" aria-label="Municípios encontrados" hidden></div></div>
+              <input id="municipio-search" type="search" placeholder="Buscar município ou comunidade..." autocomplete="off">
+            </label><div id="search-suggestions" class="search-suggestions" role="listbox" aria-label="Municípios e comunidades encontrados" hidden></div></div>
             <button id="reset-view" class="icon-button" type="button" title="Reiniciar visualização" aria-label="Reiniciar visualização">↺</button>
           </div>
         </div>
