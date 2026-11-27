@@ -799,3 +799,14 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Nenhuma alteração em geometrias, dados, camadas, controles ou interações.
 
 **Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
+
+
+### 20:57 — Refinamento da experiência mobile do Atlas
+- Reorganizados os três grupos de filtros em cartões compactos de largura integral, com títulos e controles segmentados em linhas próprias.
+- Uniformizadas as alturas dos cartões e dos botões no celular; preservadas as cores, os estados e as funções.
+- Busca e botão de reinício colocados na mesma linha, com proporções adequadas à tela estreita.
+- Reduzido o espaço vertical entre título, filtros e mapa para antecipar a área cartográfica na rolagem.
+- Ajustada a altura do mapa móvel para 56vh (mínimo 370 px) e aplicado deslocamento vertical moderado do enquadramento para aproximar o território do topo da área cartográfica.
+- Mantida integralmente a apresentação desktop e preservados os controles, dados, geometrias, camadas e interações.
+
+**Arquivos alterados:** `css/style.css`, `css/mapa.css`, `js/app.js`, `index.html`, `CHANGELOG.md`.
