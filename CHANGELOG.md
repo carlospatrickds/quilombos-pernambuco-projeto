@@ -4,6 +4,19 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-26
 
+### 23:18 — v1.1.0-rc.4 — Painel lateral alinhado ao início da faixa editorial
+- O painel lateral passa a ocupar somente a área à direita da faixa vertical terracota, começando exatamente após o limite da faixa.
+- O fundo de escurecimento também respeita a faixa, que permanece visível e fora da área coberta.
+- Em telas móveis, a largura do painel considera automaticamente a largura da faixa; em telas amplas, mantém o limite máximo de 470 px.
+- Atualizada a referência de cache de `css/painel.css`.
+
+**Arquivos alterados:** `css/painel.css`, `index.html`.
+
+**Preservação:** conteúdo, cartões, dados, animação, mapas e cartografia não foram alterados.
+
+
+## 2026-11-26
+
 ### 23:12 — v1.1.0-rc.3 — Painel lateral acima da faixa editorial
 - Corrigida a hierarquia de camadas do painel lateral: o fundo escurecido e o painel passam a ficar acima da faixa vertical terracota fixa.
 - Ao abrir um município ou mesorregião em telas móveis, a faixa decorativa deixa de encobrir a margem esquerda e o conteúdo do painel.
