@@ -164,11 +164,9 @@ async function start() {
         if (!bounds.isEmpty()) {
           const desktop = window.matchMedia('(min-width: 701px)').matches;
           map.fitBounds(bounds, {
-            // No desktop, reserva mais espaço abaixo para posicionar Pernambuco
-            // na faixa superior do quadro, conforme o enquadramento aprovado.
-            padding: desktop
-              ? { top: 42, right: 42, bottom: 344, left: 42 }
-              : 65,
+            // Centraliza Pernambuco no quadro, seguindo o mesmo critério
+            // de enquadramento utilizado na visualização do Nordeste.
+            padding: 55,
             duration: 450,
             maxZoom: desktop ? 9.0 : 7.5
           });
