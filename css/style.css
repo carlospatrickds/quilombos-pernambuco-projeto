@@ -520,3 +520,13 @@ h1,
  .census-documentary-figure figcaption{padding:8px 10px;font-size:9px}
  .census-context-heading h2{font-size:21px}
 }
+
+
+/* Acesso público à metodologia e às fontes do Atlas. */
+.methodology-access{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);gap:24px;align-items:center;margin:28px 0 0;padding:24px clamp(16px,3vw,30px);background:rgba(251,248,241,.92);border:1px solid var(--line);border-left:3px solid var(--terra)}
+.methodology-access-copy h2{margin:7px 0 8px;color:var(--brown-deep);font:500 clamp(23px,2.8vw,31px)/1.15 Georgia,serif}
+.methodology-access-copy p{max-width:720px;margin:0;color:#5E554B;font-size:12px;line-height:1.7}
+.methodology-access-links{display:grid;gap:8px}
+.methodology-access-links a{display:block;padding:10px 12px;border:1px solid var(--line);color:var(--terra);font-size:11px;line-height:1.4;font-weight:700;text-decoration:none;background:#FBF8F1}
+.methodology-access-links a:hover{background:#E9DDCB}
+@media(max-width:720px){.methodology-access{grid-template-columns:1fr;gap:15px;margin-top:22px;padding:18px 14px}.methodology-access-copy h2{font-size:24px}.methodology-access-copy p{font-size:11px}.methodology-access-links a{font-size:11px;padding:11px}}
