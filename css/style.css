@@ -555,7 +555,7 @@ h1,
 }
 
 
-/* Faixa lateral: símbolos PNG reais aplicados como máscaras, sem vetores esquemáticos. */
+/* Faixa lateral: grupos repetidos de três símbolos Adinkra, com separador. */
 body::before{background-color:#A94735}
 body::after{
   content:"";
@@ -566,21 +566,9 @@ body::after{
   height:100vh;
   height:100dvh;
   pointer-events:none;
-  background-color:rgba(84,39,31,.66);
-  -webkit-mask-image:url("../assets/adinkra/sankofa.png"),url("../assets/adinkra/nsaa.png"),url("../assets/adinkra/nkyinkyim.png");
-  mask-image:url("../assets/adinkra/sankofa.png"),url("../assets/adinkra/nsaa.png"),url("../assets/adinkra/nkyinkyim.png");
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  -webkit-mask-position:center 5px,center 61px,center 117px;
-  mask-position:center 5px,center 61px,center 117px;
-  -webkit-mask-size:68% 48px;
-  mask-size:68% 48px;
+  background-image:url("../assets/faixa-adinkra.svg");
+  background-repeat:repeat-y;
+  background-position:center top;
+  background-size:100% 190px;
 }
-@media(max-width:720px){
-  body::after{
-    -webkit-mask-size:34px 34px;
-    mask-size:34px 34px;
-    -webkit-mask-position:center 5px,center 54px,center 103px;
-    mask-position:center 5px,center 54px,center 103px;
-  }
-}
+@media(max-width:720px){body::after{background-size:50px 132px}}
