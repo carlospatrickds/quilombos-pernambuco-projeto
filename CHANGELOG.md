@@ -1,6 +1,17 @@
 # Histórico de alterações
 
 
+### Correção da conferência do Apêndice 2 — 27/11/2026
+- A leitura foi ampliada às páginas 346 (impressa 344), que contêm os territórios 95 (CONCEIÇÃO DAS CRIOULAS) e 96 (CASTAINHO), ausentes na primeira consulta parcial.
+- Resultado corrigido: **14 territórios e 56 localidades** associadas em Pernambuco, em consonância com a publicação do IBGE.
+- A primeira contagem parcial de 12 territórios e 50 localidades foi substituída no documento da Base Mestra; não deve ser utilizada.
+- Permanecem identificados dois territórios com localidades em mais de um município: CONTENDAS (Terra Nova e Salgueiro) e ÁGUAS DO VELHO CHICO (Orocó e Cabrobó).
+
+**Arquivo alterado:** `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`.
+**Escopo:** correção documental após ampliação da leitura do PDF; sem alteração dos indicadores publicados, mapas, geometrias ou lógica cartográfica.
+
+
+
 ### 2026-11-27 — Conferência do Apêndice 2 do IBGE
 - Conferidas as páginas 365–368 do PDF (páginas impressas 363–366) e os registros da Tabela 3 relativos a Pernambuco.
 - Identificados 12 territórios com localidades associadas nominalmente no Apêndice 2, totalizando 50 localidades segundo a Tabela 3.
