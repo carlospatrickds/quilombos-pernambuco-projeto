@@ -504,3 +504,13 @@ h1,
 
 .map-hover-tooltip-static{pointer-events:none}
 .map-hover-tooltip-actionable{pointer-events:auto}
+
+
+/* v1.1.0-rc.5 — Faixa editorial com símbolos Adinkra de referência. */
+.app-shell::before{
+  background-color:#A94735;
+  background-image:url("../assets/faixa-adinkra.svg");
+  background-repeat:repeat-y;
+  background-position:center top;
+  background-size:100% 210px;
+}
