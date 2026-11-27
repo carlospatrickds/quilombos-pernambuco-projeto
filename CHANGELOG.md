@@ -4,6 +4,20 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-27
 
+### v1.4.0 — Guia “Como ler o Atlas” e registro fotográfico do Quilombo Lambedor
+- Criada a página independente “Como ler o Atlas”, com guia de navegação, leitura dos indicadores, distinção entre comunidades, população e territórios, interpretação crítica e fontes/metodologia.
+- Adicionada ao menu sanduíche do Atlas e das bibliotecas a entrada “Como ler o Atlas”.
+- Utilizada como capa a fotografia aérea da Comunidade Quilombola Lambedor, Lagoa Grande (PE), de Tiago Lubiana (17/08/2024).
+- Incluído o mesmo registro na Biblioteca Visual, em coleção própria de fotografias, com autoria, data, origem e licença CC BY-SA 4.0.
+- A imagem é exibida a partir do arquivo original no Wikimedia Commons, sem alteração, com crédito e link para a licença.
+
+**Arquivos criados:** `como-ler-o-atlas.html`, `css/guia.css`.
+**Arquivos alterados:** `index.html`, `biblioteca.html`, `biblioteca-documental.html`, `css/biblioteca.css`, `CHANGELOG.md`.
+
+**Preservação:** não foram alterados dados, mapas, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica. As bibliotecas visual e documental permanecem independentes.
+
+## 2026-11-27
+
 ### 00:19 — v1.3.2 — Contextualização editorial do primeiro Censo Quilombola
 - Removido do cabeçalho o link externo “Entenda os reconhecimentos”; o acesso permanece no menu sanduíche.
 - Reordenada a abertura: o bloco “O primeiro Censo Quilombola” passa a anteceder o painel de indicadores Brasil, Nordeste e Pernambuco.
