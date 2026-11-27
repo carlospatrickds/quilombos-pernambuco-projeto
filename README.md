@@ -3,6 +3,8 @@
 > **Política permanente de dados:** consulte [`docs/POLITICA_DE_FONTES_E_VALIDACAO_DOS_DADOS.md`](docs/POLITICA_DE_FONTES_E_VALIDACAO_DOS_DADOS.md) antes de incluir, corrigir ou publicar números e registros quilombolas.\n> **Histórico de alterações:** consulte [`CHANGELOG.md`](CHANGELOG.md) para acompanhar as mudanças do projeto, com data, horário de Brasília e arquivos afetados.
 
 
+> **Base Mestra Quilombola de Pernambuco:** consulte [`docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`](docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md) para a estrutura de comunidades, localidades e territórios, as fontes censitárias e o protocolo de consolidação.
+
 Protótipo modular de mapa municipal 3D com estética cartográfica elevada e fundo escuro/terroso.
 
 ## O que está implementado
