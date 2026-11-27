@@ -7,6 +7,16 @@
 
 Este inventário organiza fontes acadêmicas, bases estatísticas, legislação, registros institucionais e referências visuais. Ele distingue o tipo e a finalidade de cada documento. A presença de um registro na Biblioteca não significa que todos os seus dados estejam integralmente validados para publicação.
 
+## Política permanente de fontes e validação
+
+As regras obrigatórias para hierarquia de fontes, distinção entre pessoas, comunidades, localidades e territórios, validação, estados de conferência, base nominal e publicação dos dados estão documentadas em:
+
+- [Política de fontes, validação e publicação de dados quilombolas](POLITICA_DE_FONTES_E_VALIDACAO_DOS_DADOS.md).
+
+Este documento orienta todo o trabalho futuro de coleta e atualização do Atlas. O inventário registra as fontes específicas; a política define como elas devem ser avaliadas e utilizadas.
+
+---
+
 ## Critérios de situação
 
 - **Conferido:** identidade bibliográfica e endereço ou arquivo de acesso identificados; escopo de uso definido.
