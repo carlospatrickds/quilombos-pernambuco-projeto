@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="190" viewBox="0 0 72 190">
+  <defs><filter id="ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .329 0 0 0 0 .153 0 0 0 0 .122 0 0 0 .66 0"/></filter></defs>
+  <image x="16.5" y="4" width="39" height="39" preserveAspectRatio="xMidYMid meet" href="adinkra/sankofa.png" xlink:href="adinkra/sankofa.png" filter="url(#ink)"/>
+  <image x="16.5" y="52" width="39" height="39" preserveAspectRatio="xMidYMid meet" href="adinkra/nsaa.png" xlink:href="adinkra/nsaa.png" filter="url(#ink)"/>
+  <image x="16.5" y="100" width="39" height="39" preserveAspectRatio="xMidYMid meet" href="adinkra/nkyinkyim.png" xlink:href="adinkra/nkyinkyim.png" filter="url(#ink)"/>
+  <g fill="#54271F" opacity=".72"><circle cx="29" cy="157" r="2.2"/><circle cx="36" cy="157" r="2.2"/><circle cx="43" cy="157" r="2.2"/></g>
+</svg>
