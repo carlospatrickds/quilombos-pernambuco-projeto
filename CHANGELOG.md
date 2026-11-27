@@ -617,3 +617,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 **Arquivos alterados:** `index.html`, `js/app.js`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
 **Preservação:** nenhuma alteração em dados-fonte, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica.
+
+
+## 2026-11-27
+
+### 12:43 — Ajuste de hierarquia da ficha municipal e clareza sobre população comunitária
+- Compactado o cartão de participação quilombola, reorganizando rótulo, percentual e legenda em uma faixa horizontal.
+- Reforçado o destaque da seção “Comunidades quilombolas” com borda lateral verde-oliva, título ampliado e indicadores mais evidentes.
+- Substituído o traço na coluna de população por “ND” (não disponível), com explicação direta de que a base consultada não individualiza moradores por comunidade.
+- Renomeado o cabeçalho da coluna para “População”, evitando sugerir que o dado está apenas aguardando carregamento.
+- Preservada a distinção entre população quilombola municipal e população por comunidade; nenhum valor foi estimado ou rateado.
+
+**Arquivos alterados:** `index.html`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
+**Preservação:** nenhuma alteração nos dados-fonte, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica.
