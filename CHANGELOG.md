@@ -7,7 +7,8 @@
 - Removido o arquivo SVG esquemático que alimentava a faixa; os símbolos agora são renderizados a partir dos PNGs originais, com tonalidade marrom escura, transparência, repetição vertical e proporções preservadas.
 - Atualizada a versão de cache do CSS principal.
 
-**Arquivos alterados:** `css/style.css`, `assets/faixa-adinkra.svg`, `index.html`, `CHANGELOG.md`.
+**Arquivo removido:** `assets/faixa-adinkra.svg` (vetores esquemáticos antigos).
+**Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
 **Preservação:** nenhuma alteração em dados, mapas, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica. As imagens PNG originais da Biblioteca visual foram reutilizadas, sem modificar seus arquivos.
 
 ## 2026-11-27
