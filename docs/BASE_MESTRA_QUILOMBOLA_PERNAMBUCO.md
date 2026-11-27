@@ -456,3 +456,22 @@ Concluída a conciliação tabular, permanecem pendentes:
 - integração futura com FCP, INCRA e ITERPE em bases independentes.
 
 **Regra de publicação:** os CSVs derivados passam a compor a Base Mestra documental, mas não autorizam automaticamente a inclusão de 621 pontos no mapa público. A camada cartográfica dependerá da validação espacial, do tipo de geometria e de uma decisão editorial específica.
+
+
+## 9.6 Integração dos dados censitários às fichas municipais do Atlas
+
+Em 27/11/2026, os quantitativos municipais da Tabela de Resultado 2 e a relação nominal derivada do CSV vetorial estadual passaram a alimentar a ficha municipal do Atlas.
+
+**Indicadores exibidos:**
+- comunidades declaradas associadas a localidades;
+- localidades quilombolas.
+
+**Relação nominal:** os registros são agrupados por código IBGE do município e código nacional da comunidade declarada. Para cada denominação, a ficha apresenta o código nacional, a quantidade de localidades associadas e, quando o campo está preenchido na fonte, o nome do território oficialmente delimitado relacionado.
+
+**Conferência da camada editorial:** 72 municípios com registros; 566 comunidades declaradas associadas a localidades; 621 localidades. A soma dos registros nominais agrupados por município corresponde a 566, e a soma das localidades corresponde a 621.
+
+**Cuidado de interpretação:** a relação nominal utiliza o campo `NM_CQ` do arquivo estadual. A divergência entre esse cabeçalho e a descrição `NM_LQ` do dicionário permanece documentada. Por isso, a interface identifica os itens como denominações declaradas reproduzidas da base do IBGE, sem reinterpretar o campo como nome oficial de localidade. Os quantitativos são do Censo 2022 e não representam cadastro administrativo atualizado.
+
+Municípios sem linha na Tabela de Resultado 2 são identificados como sem registro nessa tabela; a interface não os classifica como municípios sem comunidades quilombolas.
+
+**Limite cartográfico:** esta integração é exclusivamente tabular/editorial. Não foram utilizados os campos de latitude e longitude para criar pontos no mapa. A validação dos arquivos SHP, do sistema de referência e da posição dos pontos permanece pendente. Nenhuma geometria, projeção, enquadramento, camada ou interação cartográfica foi modificada.
