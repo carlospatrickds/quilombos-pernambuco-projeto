@@ -166,3 +166,42 @@
 .map-overlay.top-left{
   transition:opacity .16s ease,visibility .16s ease;
 }
+
+
+/* v1.1.0-rc.6 — Etiquetas do mapa: título não colide com o botão fechar. */
+.map-hover-tooltip .maplibregl-popup-content{
+  position:relative;
+  padding:15px 38px 13px 14px;
+}
+.map-hover-tooltip .maplibregl-popup-close-button{
+  position:absolute;
+  top:5px;
+  right:5px;
+  width:27px;
+  height:27px;
+  padding:0;
+  display:grid;
+  place-items:center;
+  font-size:19px;
+  line-height:1;
+  border-radius:2px;
+}
+.atlas-feature-tooltip{min-width:0;max-width:100%;gap:7px}
+.atlas-feature-tooltip strong{
+  display:block;
+  min-width:0;
+  max-width:100%;
+  padding:0 2px 0 0;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  line-height:1.18;
+}
+.atlas-feature-tooltip span{overflow-wrap:anywhere}
+.atlas-tooltip-action{margin-top:3px}
+@media(max-width:720px){
+  .map-hover-tooltip{max-width:min(300px,calc(100vw - 62px)) !important}
+  .map-hover-tooltip .maplibregl-popup-content{padding:16px 39px 13px 14px}
+  .map-hover-tooltip .maplibregl-popup-close-button{top:5px;right:5px;width:27px;height:27px}
+  .atlas-feature-tooltip strong{font-size:15px;line-height:1.2}
+  .atlas-tooltip-action{min-height:40px}
+}
