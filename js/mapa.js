@@ -5,6 +5,7 @@ import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-c
 import { MESOREGION_BY_MUNICIPALITY } from '../data/mesorregioes-municipios.js';
 import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
 import { getAgresteMunicipalityCommunityCount } from '../data/comunidades-agreste.js';
+import { QUILOMBOLA_LOCALITIES_BY_MUNICIPALITY } from '../data/localidades-quilombolas-municipais-censo-2022.js';
 
 const SOURCE_ID = 'municipios-pe';
 const FILL_ID = 'municipios-fill-3d';
@@ -180,9 +181,14 @@ export function applyMesorregionColors(geojson) {
     const region=MESOREGION_BY_MUNICIPALITY[code];
     const stats=region?MESOREGION_QUILOMBOLA_2022[region]:null;
     feature.properties._mesoregion=region||'';
-    const communityRecord=getAgresteMunicipalityCommunityCount(feature.properties._app_name);
-    feature.properties._community_count=communityRecord?.count ?? null;
-    feature.properties._community_subregion=communityRecord?.subregion ?? '';
+    const municipalityCode=String(feature.properties._app_code||feature.properties._app_id||'').padStart(7,'0');
+    const ibgeRecord=QUILOMBOLA_LOCALITIES_BY_MUNICIPALITY[municipalityCode]||null;
+    const academicRecord=getAgresteMunicipalityCommunityCount(feature.properties._app_name);
+    feature.properties._community_count=ibgeRecord?.communitiesDeclared ?? academicRecord?.count ?? null;
+    feature.properties._community_source=ibgeRecord
+      ? 'IBGE · Censo 2022'
+      : academicRecord ? 'Levantamento acadêmico · UFPE' : '';
+    feature.properties._community_subregion=academicRecord?.subregion ?? '';
     feature.properties._meso_color=stats?.color||'#D9CFC0';
     feature.properties._meso_total=stats?.total??-1;
   });
@@ -231,7 +237,8 @@ export function addCommunityPointLayer(map, geojson) {
       return {type:'Feature',properties:{
         municipality:feature.properties._app_name,
         count:feature.properties._community_count,
-        subregion:feature.properties._community_subregion
+        subregion:feature.properties._community_subregion,
+        source:feature.properties._community_source
       },geometry:{type:'Point',coordinates}};
     }).filter(Boolean);
   map.addSource(sourceId,{type:'geojson',data:{type:'FeatureCollection',features}});
@@ -457,11 +464,12 @@ export function bindMapInteractions(map, geojson, options = {}) {
     const isMunicipality=forceMunicipality||Boolean(props.municipality)||getMode()==='municipios';
     const name=props.municipality||props._app_name||props._mesoregion||'Território';
     const count=Number.isFinite(props.count)?props.count:props._community_count;
-    return {name,isMunicipality,count};
+    const source=props.source||props._community_source||'';
+    return {name,isMunicipality,count,source};
   }
 
   function showFeatureTooltip(feature,lngLat,{withButton=false,forceMunicipality=false}={}) {
-    const {name,isMunicipality,count}=getTooltipParts(feature,forceMunicipality);
+    const {name,isMunicipality,count,source}=getTooltipParts(feature,forceMunicipality);
     const content=document.createElement('div');
     content.className='atlas-feature-tooltip';
     const title=document.createElement('strong');
@@ -469,7 +477,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
     content.append(title);
     if(isMunicipality&&isCommunityLayerEnabled()&&Number.isFinite(count)){
       const quantity=document.createElement('span');
-      quantity.textContent=count+' comunidades · levantamento acadêmico UFPE';
+      quantity.textContent=count+' comunidades · '+source;
       content.append(quantity);
     }
     if(withButton){
