@@ -1,5 +1,5 @@
 import { CONFIG } from './config.js?v=20261125-pe-color';
-import { normalizeCollection } from './data.js';
+import { normalizeCollection } from './data.js?v=20261127-caminho-localidades-fix';
 import { openMunicipality, openMesoregion } from './panel.js?v=20261125-vignette-fix-2';
 import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-censo-2022.js';
 import { MESOREGION_BY_MUNICIPALITY } from '../data/mesorregioes-municipios.js';
