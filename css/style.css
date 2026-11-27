@@ -530,3 +530,29 @@ h1,
 .methodology-access-links a{display:block;padding:10px 12px;border:1px solid var(--line);color:var(--terra);font-size:11px;line-height:1.4;font-weight:700;text-decoration:none;background:#FBF8F1}
 .methodology-access-links a:hover{background:#E9DDCB}
 @media(max-width:720px){.methodology-access{grid-template-columns:1fr;gap:15px;margin-top:22px;padding:18px 14px}.methodology-access-copy h2{font-size:24px}.methodology-access-copy p{font-size:11px}.methodology-access-links a{font-size:11px;padding:11px}}
+
+/* 2026-11-27 — Cabeçalho desktop: marca, identificação e menu na mesma faixa. */
+@media(min-width:721px){
+  .topbar{
+    gap:clamp(10px,1.6vw,22px);
+    padding-left:clamp(16px,3vw,48px);
+    padding-right:clamp(16px,3vw,48px);
+  }
+  .topbar .brand{flex:0 1 auto;min-width:0}
+  .topbar .brand>span:last-child{min-width:0}
+  .topbar .brand strong{font-size:clamp(14px,1.15vw,17px)}
+  .topbar .topbar-meta{
+    flex:0 1 auto;
+    min-width:0;
+    margin:0;
+    white-space:nowrap;
+    font-size:clamp(8px,.72vw,10px);
+    letter-spacing:.45px;
+  }
+  .topbar .site-menu{flex:0 0 42px;margin-left:0}
+}
+@media(min-width:721px) and (max-width:900px){
+  .topbar{padding-left:14px;padding-right:14px;gap:10px}
+  .topbar .brand{gap:8px}
+  .topbar .topbar-meta{font-size:8px;letter-spacing:.25px}
+}
