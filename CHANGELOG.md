@@ -781,3 +781,12 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Alteração restrita ao enquadramento visual; sem mudanças em geometrias, dados, projeções, camadas ou interações.
 
 **Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
+
+
+### 20:51 — Centralização do enquadramento inicial de Pernambuco
+- Removido o preenchimento inferior assimétrico de 344 px que deslocava a malha para fora do campo de visão.
+- Restaurado o enquadramento centralizado, com preenchimento uniforme de 55 px, seguindo o mesmo critério utilizado na visualização do Nordeste.
+- Mantido o zoom máximo inicial de 9,0 no desktop e 7,5 no celular.
+- Sem alterações em geometrias, dados, controles, camadas ou interações.
+
+**Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
