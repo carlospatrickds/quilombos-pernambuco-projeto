@@ -16,7 +16,7 @@ O trabalho será executado em fases, com validação de fontes antes de cada pub
 | 1 | População total municipal — Censo 2022 | Concluída — base integrada e conferida |
 | 2 | População quilombola municipal — Censo 2022 | Integrada ao painel — auditoria e percentuais em continuidade |
 | 3 | Percentual quilombola por município e validação estatística | Em andamento — painel agregado integrado; base estadual SIDRA 9578 extraída e conferida; mapa coroplético em três escalas em implementação |
-| 4 | Cadastro de comunidades quilombolas por município | Pendente |
+| 4 | Base censitária de comunidades e localidades por município | Integração inicial concluída no painel para os 72 municípios com registros na Tabela 2; certificação FCP e cadastro administrativo permanecem pendentes |
 | 5 | Situação de certificação e regularização territorial | Pendente |
 | 6 | Camada cartográfica de territórios quilombolas oficialmente delimitados | Pendente |
 | 7 | História, memória e referências documentais por comunidade/município | Pendente |
@@ -337,3 +337,21 @@ Fonte: IBGE, Censo Demográfico 2022, SIDRA, tabela 9578, variável Pessoas quil
 - [x] Alternar a legenda inferior entre Município e Mesorregião.
 - [x] Ocultar legendas municipais nos mapas Brasil e Nordeste.
 - [ ] Validar visualmente os dois modos em desktop e celular após publicação.
+
+
+## Integração municipal — Localidades Quilombolas do IBGE (27/11/2026)
+
+- [x] Integrar os quantitativos da Tabela de Resultado 2 por código IBGE municipal.
+- [x] Exibir comunidades declaradas associadas a localidades e localidades quilombolas na ficha municipal.
+- [x] Exibir a relação nominal agrupada por código nacional de comunidade, com quantidade de localidades associadas.
+- [x] Exibir vínculo com território oficialmente delimitado somente quando informado no arquivo estadual do IBGE.
+- [x] Manter separados os resultados censitários de 2022 e o levantamento acadêmico complementar do Agreste.
+- [x] Não interpretar município sem linha na Tabela 2 como ausência de comunidades.
+- [x] Preservar a cartografia existente: nenhuma geometria, projeção, enquadramento, camada ou interação cartográfica foi alterada.
+- [ ] Validar visualmente as fichas municipais no GitHub Pages, em desktop e celular.
+- [ ] Inspecionar SHP, sistema de referência e posição dos 621 pontos antes de qualquer publicação cartográfica das localidades.
+
+**Conferência da integração:** 72 municípios; 566 comunidades declaradas associadas a localidades; 621 localidades quilombolas. Os totais da relação nominal agrupada por município reconciliam com 566 registros. Os dados representam o Censo 2022, não cadastro administrativo atualizado.
+
+**Fonte:** IBGE, Censo Demográfico 2022 — Localidades Quilombolas, Tabela de Resultado 2 e arquivo vetorial estadual de Pernambuco.  
+https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/27385-localidades.html?edicao=40668
