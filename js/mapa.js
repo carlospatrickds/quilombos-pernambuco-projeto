@@ -576,7 +576,7 @@ export function bindMapInteractions(map, geojson, options = {}) {
   const suggestions = document.querySelector('#search-suggestions');
   let matches = [];
   let active = -1;
-  const normalizeSearch = value => String(value||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLocaleLowerCase('pt-BR').trim();
+  const normalizeSearch = value => String(value||'').normalize('NFD').replace(/\\p{Diacritic}/gu,'').toLocaleLowerCase('pt-BR').trim();
   function chooseSearchMatch(match) {
     if(!match)return;
     suggestions.hidden=true;
