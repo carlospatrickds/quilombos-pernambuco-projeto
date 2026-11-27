@@ -471,3 +471,15 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 **Arquivos alterados:** `assets/cursor-lanca.svg`, `css/mapa.css`, `css/painel.css`, `index.html`.
 
 **Observação:** o horário exato dessa implementação anterior não foi registrado; por isso, não foi estimado.
+
+
+### 2026-11-27 — v0.3 da Base Mestra: CSV estadual e conciliação por códigos
+- Extraído o arquivo oficial `PE_LQs_CD2022_100724.csv` e consultado o dicionário `Dicionario_LQs.xlsx`.
+- Conferidos 621 registros e códigos CD_LQ distintos, 566 códigos IDCQ0001 distintos, 72 municípios e 621 pares de coordenadas preenchidos.
+- Os 621 códigos CD_LQ foram conciliados com o Apêndice 1; município, ocorrência, código nacional de comunidade e processo FCP informado também coincidiram em todos os registros.
+- Os 56 registros com CD_TQ foram conciliados com os vínculos dos Apêndices 1 e 2, incluindo os 14 códigos territoriais.
+- Documentada a divergência de cabeçalho NM_CQ no CSV e NM_LQ no dicionário, sem alterar o campo de origem.
+- Criados três arquivos CSV na pasta `data/base-mestra/`: localidades (621), comunidades (566) e relações localidade–território (56).
+- A inspeção dos SHP e a validação espacial das coordenadas continuam pendentes; nenhum ponto foi publicado no mapa.
+
+**Escopo:** extração e conciliação tabular. Sem alteração dos mapas, geometrias existentes ou lógica cartográfica.
