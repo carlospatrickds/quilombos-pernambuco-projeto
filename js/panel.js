@@ -232,9 +232,12 @@ export function openMunicipality(feature) {
     listDetails.querySelector('summary').textContent =
       'Consultar relação nominal (' + censusCommunities.communities.length + ')';
     $('#community-tags').replaceChildren();
-    const sourceTag = document.createElement('span');
+    const sourceTag = document.createElement('a');
     sourceTag.className = 'tag';
-    sourceTag.textContent = 'IBGE · Censo 2022';
+    sourceTag.href = data.quilombolaLocalitiesSource?.url || 'https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/27385-localidades.html?edicao=40668';
+    sourceTag.target = '_blank';
+    sourceTag.rel = 'noopener';
+    sourceTag.textContent = 'Fonte: IBGE · Censo 2022 ↗';
     $('#community-tags').append(sourceTag);
   } else {
     listDetails.hidden = true;
@@ -277,7 +280,7 @@ export function openMunicipality(feature) {
   $('#source-copy').textContent = data.sourceNote ||
     (populationSource
       ? `População municipal: IBGE, Censo Demográfico 2022, SIDRA tabela 4709, variável 93. População quilombola: IBGE, Censo Demográfico 2022, SIDRA tabela 9578, variável Pessoas quilombolas, localização do domicílio. Consulta: 24/11/2026. Nos recortes dentro/fora, “Não divulgado” identifica dado inibido pelo IBGE (X), não zero. Geometria: malha municipal, edição 2025.`
-      : 'A geometria vem da Malha Municipal de Pernambuco. Indicadores demográficos e informações comunitárias ainda não foram conectados.');
+      : 'A geometria vem da Malha Municipal de Pernambuco. Os indicadores demográficos e comunitários são apresentados conforme as respectivas fontes e anos de referência.');
   $('#source-copy').textContent += ' Comunidades declaradas e localidades: IBGE, Censo Demográfico 2022, Localidades Quilombolas, Tabela de Resultado 2 e arquivo vetorial estadual de Pernambuco. A relação nominal reproduz o campo NM_CQ do arquivo; a divergência entre o cabeçalho e o dicionário está documentada na Base Mestra.';
   backdrop.hidden = false;
   requestAnimationFrame(() => panel.classList.add('open'));
