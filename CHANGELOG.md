@@ -4,6 +4,19 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-26
 
+### 23:12 — v1.1.0-rc.3 — Painel lateral acima da faixa editorial
+- Corrigida a hierarquia de camadas do painel lateral: o fundo escurecido e o painel passam a ficar acima da faixa vertical terracota fixa.
+- Ao abrir um município ou mesorregião em telas móveis, a faixa decorativa deixa de encobrir a margem esquerda e o conteúdo do painel.
+- Mantidos largura, animação, conteúdo, rolagem e botão de fechamento do painel.
+- Atualizada a referência de cache de `css/painel.css`.
+
+**Arquivos alterados:** `css/painel.css`, `index.html`.
+
+**Preservação:** nenhuma alteração no conteúdo dos cartões, dados, mapas, geometrias ou controles territoriais. Correção restrita à ordem de sobreposição visual.
+
+
+## 2026-11-26
+
 ### 08:20 — Ajuste da etiqueta no modo Sub-regiões (teste mobile)
 - No modo Sub-regiões, a etiqueta informativa passa a responder somente às bolhas proporcionais de municípios.
 - Toques em áreas vazias ou diretamente no polígono da mesorregião deixam de abrir etiquetas municipais.
