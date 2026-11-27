@@ -3,7 +3,7 @@ import {
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, setCommunityLayer, addCommunityPointLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
-} from './mapa.js?v=20261127-etiqueta-ibge-prioridade';
+} from './mapa.js?v=20261127-toolbar-busca-comunidade-v136';
 import { initPanel, closePanel } from './panel.js?v=20261127-ficha-comunidades-v123';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -52,7 +52,20 @@ async function start() {
     addMunicipalLayer(map, geojson);
     addMesorregionBoundaries(map, geojson);
     addCommunityPointLayer(map, geojson);
-    bindMapInteractions(map, geojson, { getMode: () => pernambucoMapMode, isTooltipEnabled: () => pendingRegion === 'pernambuco' && mapTooltipEnabled, isCommunityLayerEnabled: () => communityLayerEnabled });
+    bindMapInteractions(map, geojson, {
+      getMode: () => pernambucoMapMode,
+      isTooltipEnabled: () => pendingRegion === 'pernambuco' && mapTooltipEnabled,
+      isCommunityLayerEnabled: () => communityLayerEnabled,
+      onCommunitySearchSelect: () => {
+        pernambucoMapMode = 'municipios';
+        document.querySelectorAll('#pernambuco-map-mode [data-map-mode]').forEach(button => {
+          const active = button.dataset.mapMode === 'municipios';
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        setPernambucoMapMode(map, 'municipios');
+      }
+    });
     municipalityLoaded = true;
     return geojson;
   }
@@ -198,12 +211,17 @@ async function start() {
     if (note) note.hidden = !communityLayerEnabled;
   });
 
-  const tooltipToggle = document.querySelector('#map-tooltip-toggle');
-  tooltipToggle?.addEventListener('click', () => {
-    mapTooltipEnabled = !mapTooltipEnabled;
-    tooltipToggle.setAttribute('aria-pressed',String(mapTooltipEnabled));
-    tooltipToggle.textContent = mapTooltipEnabled ? 'Etiquetas: ligadas' : 'Etiquetas: desligadas';
-  });
+  const tooltipOn = document.querySelector('#map-tooltip-on');
+  const tooltipOff = document.querySelector('#map-tooltip-off');
+  function setTooltipState(enabled) {
+    mapTooltipEnabled = enabled;
+    tooltipOn?.classList.toggle('active', enabled);
+    tooltipOff?.classList.toggle('active', !enabled);
+    tooltipOn?.setAttribute('aria-pressed', String(enabled));
+    tooltipOff?.setAttribute('aria-pressed', String(!enabled));
+  }
+  tooltipOn?.addEventListener('click', () => setTooltipState(true));
+  tooltipOff?.addEventListener('click', () => setTooltipState(false));
 
   retryButton.addEventListener('click', () => changeRegion(pendingRegion));
 
