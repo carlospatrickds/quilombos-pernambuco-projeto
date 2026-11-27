@@ -1,5 +1,21 @@
 ## 2026-11-27
 
+### 11:33 — Integração dos dados de comunidades e localidades do IBGE às fichas municipais
+- Criado o módulo `data/localidades-quilombolas-municipais-censo-2022.js`, derivado dos arquivos já conferidos da Tabela de Resultado 2 e do CSV vetorial estadual.
+- Integrados os quantitativos de comunidades declaradas associadas a localidades e de localidades quilombolas para os 72 municípios com registros na Tabela 2.
+- Incluída a relação nominal agrupada por código nacional de comunidade, com quantidade de localidades associadas e vínculo territorial somente quando informado na fonte.
+- Atualizada a ficha municipal para exibir os dois indicadores e uma lista nominal expansível.
+- Mantido o levantamento acadêmico do Agreste como fonte complementar independente, sem somá-lo aos resultados do Censo.
+- Municípios sem linha na Tabela 2 não são classificados como municípios sem comunidades.
+- Atualizados os módulos, estilos, versões de cache, roadmap e documentação da Base Mestra.
+
+**Arquivos criados:** `data/localidades-quilombolas-municipais-censo-2022.js`.
+**Arquivos alterados:** `js/data.js`, `js/panel.js`, `js/app.js`, `index.html`, `css/painel.css`, `ROADMAP.md`, `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`, `CHANGELOG.md`.
+**Conferência:** 72 municípios; 566 comunidades declaradas associadas a localidades; 621 localidades quilombolas. Relação nominal agrupada: 566 registros por município/código nacional.
+**Preservação cartográfica:** nenhum GeoJSON, SHP, polígono, geometria, projeção, enquadramento, camada ou lógica de interação cartográfica foi alterado. Coordenadas não foram utilizadas para criar pontos no mapa.
+
+## 2026-11-27
+
 ### 09:36 — Remove caractere literal entre seções da Biblioteca visual
 - Removida a sequência textual `\\n` que aparecia entre o registro fotográfico e a coleção de símbolos Adinkra.
 - Restaurada a separação normal entre as seções, sem alterar conteúdo, imagens, estilos ou estrutura da Biblioteca.
