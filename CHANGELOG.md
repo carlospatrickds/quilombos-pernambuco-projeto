@@ -724,3 +724,17 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 **Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
 **Escopo:** correção de interface e estado; nenhuma alteração em dados, geometrias ou camadas cartográficas.
+
+
+## 2026-11-27
+
+### 15:50 — Refatoração visual da barra superior de filtros
+- Padronizados altura, padding, borda e raio de 8 px dos cards de filtros.
+- Uniformizados os controles segmentados, com opções de larguras iguais, alturas consistentes e cantos de 6 px.
+- Incluído rótulo reservado “Visualização territorial” acima de Municípios/Sub-regiões e Regiões/Estados, alinhando os botões com os demais grupos.
+- Arredondados o campo de busca e o botão de reinício.
+- Aplicada à barra a paleta solicitada: creme `#F7F4EB`, bege `#EDE6D6`, verde-oliva `#5C6944` e terracota `#6B3629`.
+- Preservada a regra de exibição exclusiva dos seletores por escala territorial.
+
+**Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
+**Escopo:** apresentação da barra de filtros; nenhuma alteração em lógica de busca, dados, geometrias, camadas ou interações do mapa.
