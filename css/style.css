@@ -194,10 +194,7 @@ body::before{
   height:100dvh;
   pointer-events:none;
   background-color:#A94735;
-  background-image:url("../assets/faixa-adinkra.svg");
-  background-repeat:repeat-y;
-  background-position:center top;
-  background-size:100% 170px;
+  background-image:none;
   border-right:1px solid rgba(82,34,27,.35);
 }
 @media(max-width:720px){
@@ -559,7 +556,7 @@ h1,
 
 
 /* Faixa lateral: símbolos PNG reais aplicados como máscaras, sem vetores esquemáticos. */
-body::before{background-image:none;background-color:#A94735}
+body::before{background-color:#A94735}
 body::after{
   content:"";
   position:fixed;
