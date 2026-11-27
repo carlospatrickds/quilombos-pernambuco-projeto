@@ -92,6 +92,19 @@ Cada registro deve preservar: título, autoria, instituição, ano, tipo, resumo
 
 ---
 
+
+### E04 — Censo Demográfico 2022: Localidades Quilombolas — Resultados do Universo
+- **Autoria/responsabilidade:** Instituto Brasileiro de Geografia e Estatística (IBGE), Coordenação de Estruturas Territoriais.
+- **Instituição:** IBGE.
+- **Ano:** 2024.
+- **Tipo:** publicação estatística, tabelas de resultados, apêndices e arquivos geoespaciais.
+- **Resumo:** apresenta a distribuição espacial das localidades associadas às comunidades quilombolas declaradas, com recortes por Brasil, Grandes Regiões, Unidades da Federação, municípios e territórios oficialmente delimitados.
+- **Finalidade no Atlas:** fonte censitária principal para estruturar a Base Mestra Quilombola de Pernambuco, identificar comunidades declaradas, localidades associadas e relações territoriais.
+- **Tabelas e apêndices prioritários:** Tabela de resultado 01 (UF); Tabela de resultado 02 (municípios); Tabela de resultado 03 (localidades segundo territórios); Apêndice 01 (localidades por municípios); Apêndice 02 (localidades segundo territórios oficialmente delimitados); arquivos geoespaciais vetoriais e dicionário de dados.
+- **Acesso:** [Página oficial do IBGE — Localidades Quilombolas](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/27385-localidades.html?edicao=40668). [Página alternativa de acesso aos resultados](https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html/22827-censo-demografico-2022.html?edicao=40667). [Publicação em PDF — cópia de acesso](https://acervo.socioambiental.org/sites/default/files/documents/03d00274.pdf).
+- **Situação:** fonte identificada e estrutura de uso definida; extração nominal, conferência das planilhas originais e arquivamento dos arquivos ainda pendentes. Não considerar os quantitativos agregados como base nominal já validada.
+- **Observação metodológica:** distinguir comunidades quilombolas declaradas e associadas a localidades de localidades quilombolas. Não converter automaticamente 621 localidades em 621 comunidades.
+
 ## 3. Registros institucionais e bases administrativas
 
 ### I01 — Certificação Quilombola e Cadastro Geral de Comunidades Certificadas
