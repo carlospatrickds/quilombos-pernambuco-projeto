@@ -1,5 +1,16 @@
 ## 2026-11-27
 
+### 08:xx — Compatibilidade com importação antiga do módulo de localidades
+- Criado módulo de compatibilidade em `js/localidades-quilombolas-municipais-censo-2022.js`, correspondente ao caminho antigo que ainda pode ser solicitado por versões de `js/data.js` mantidas em cache.
+- O módulo apenas reexporta os dados de `data/localidades-quilombolas-municipais-censo-2022.js`; não duplica, transforma ou altera a base.
+- Preservados dados, geometrias, camadas, projeções, enquadramentos e interações cartográficas.
+- A alteração é defensiva: a versão atual de `js/data.js` continua importando diretamente de `../data/`.
+
+**Arquivos alterados:** `js/localidades-quilombolas-municipais-censo-2022.js`, `CHANGELOG.md`.
+**Validação:** módulo de compatibilidade criado; confirmar após publicação se o pedido antigo deixa de retornar 404 e se o mapa carrega no navegador.
+
+## 2026-11-27
+
 ### 11:47 — Correção do caminho do módulo de localidades quilombolas
 - Corrigido o caminho de importação do módulo de localidades do Censo 2022: o arquivo está em `data/`, e não em `js/`.
 - Atualizada a cadeia de versões dos módulos JavaScript para evitar reutilização de arquivos em cache após a correção.
