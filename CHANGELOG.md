@@ -1,5 +1,15 @@
 # Histórico de alterações
 
+### 2026-11-27 — Base municipal estruturada a partir da Tabela de Resultado 2
+- Criado `data/base-mestra/indicadores-municipais-localidades-quilombolas-PE-2022.csv`, com os 72 municípios pernambucanos presentes na Tabela de Resultado 2 do IBGE.
+- Preservados códigos IBGE, nomes municipais, quantitativos de comunidades declaradas associadas a localidades e localidades quilombolas, ano de referência e identificação da fonte.
+- Conferida a soma dos registros: 566 comunidades declaradas e 621 localidades, em reconciliação com as Tabelas 1 e 2.
+- Registrado que o arquivo é agregado por município e não contém identificação nominal individual nem coordenadas.
+
+**Arquivo criado:** `data/base-mestra/indicadores-municipais-localidades-quilombolas-PE-2022.csv`.
+**Arquivos alterados:** `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`, `CHANGELOG.md`.
+**Escopo:** estruturação de dados censitários agregados; sem alteração dos indicadores publicados, mapas, geometrias ou lógica cartográfica.
+
 ### 2026-11-27 — v0.2 da Base Mestra: conferência das Tabelas de Resultados 01, 02 e 03 do IBGE
 - Examinadas as três planilhas XLSX oficiais do produto *Localidades Quilombolas*, Censo Demográfico 2022.
 - Tabela 1: confirmados para Pernambuco (UF 26) 14 territórios oficialmente delimitados, 566 comunidades declaradas e associadas a localidades e 621 localidades quilombolas.
