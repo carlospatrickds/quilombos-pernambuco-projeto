@@ -204,14 +204,16 @@ Esses exemplos mostram por que não se deve deduplicar as localidades apenas pel
 
 ## 9.2 Conferência do Apêndice 2 — localidades segundo territórios oficialmente delimitados
 
-Foi feita a leitura das páginas 365 a 368 do PDF (páginas impressas 363 a 366) e a conferência dos resultados da Tabela 3 para Pernambuco.
+A leitura foi ampliada para as páginas 346 e 365 a 368 do PDF (páginas impressas 344 e 363 a 366), além da conferência da Tabela de Resultado 3. Essa ampliação foi necessária porque os primeiros trechos consultados não continham o início da relação de Pernambuco.
 
-### 9.2.1 Territórios com localidades relacionadas no Apêndice 2
+### 9.2.1 Os 14 territórios pernambucanos
 
-Foram identificados 12 registros de territórios quilombolas oficialmente delimitados com localidades associadas no Apêndice 2:
+O cruzamento do Apêndice 2 com a Tabela de Resultado 3 identifica **14 territórios oficialmente delimitados com localidades quilombolas associadas em Pernambuco**, totalizando **56 localidades**:
 
-| Código do território no IBGE | Território | Localidades relacionadas na Tabela 3 |
+| Código do território no IBGE | Território | Localidades associadas |
 |---:|---|---:|
+| 95 | CONCEIÇÃO DAS CRIOULAS | 5 |
+| 96 | CASTAINHO | 1 |
 | 164 | CONTENDAS | 2 |
 | 165 | SANTANA III | 4 |
 | 367 | TIMBO | 1 |
@@ -224,48 +226,59 @@ Foram identificados 12 registros de territórios quilombolas oficialmente delimi
 | 414 | ÁGUAS DO VELHO CHICO | 14 |
 | 415 | FEIJÃO E POSSE | 3 |
 | 419 | SERROTE | 8 |
-| **Total** | **12 territórios** | **50 localidades** |
+| **Total** | **14 territórios** | **56 localidades** |
 
-A soma das quantidades da Tabela 3 é 50 localidades relacionadas a esses 12 territórios.
+A soma confere com o quantitativo de 56 localidades em territórios oficialmente delimitados informado para Pernambuco na publicação do IBGE.
 
-### 9.2.2 Abrangência municipal identificada pelos códigos das localidades
+### 9.2.2 Municípios alcançados pelas localidades associadas
 
-O código municipal da localidade quilombola contém o geocódigo IBGE do município. A leitura dos códigos impressos no Apêndice 2 identifica:
+O código municipal da localidade é composto pelo geocódigo IBGE do município acrescido do identificador da localidade. A leitura dos códigos do Apêndice 2 mostra os seguintes municípios:
 
-- **CONTENDAS (código 164):** localidades com códigos municipais 2615201 (Terra Nova) e 2612208 (Salgueiro).
-- **ÁGUAS DO VELHO CHICO (código 414):** localidades com códigos municipais 2609808 (Orocó) e 2603009 (Cabrobó).
+| Território | Código(s) municipal(is) identificado(s) | Município(s) |
+|---|---|---|
+| CONCEIÇÃO DAS CRIOULAS | 2612208 | Salgueiro |
+| CASTAINHO | 2606002 | Garanhuns |
+| CONTENDAS | 2615201; 2612208 | Terra Nova; Salgueiro |
+| SANTANA III | 2612208 | Salgueiro |
+| TIMBO | 2606002 | Garanhuns |
+| JATOBÁ | 2603009 | Cabrobó |
+| MASSAPÃ | 2603926 | Carnaubeira da Penha |
+| INHANHUM | 2612604 | Santa Maria da Boa Vista |
+| CRUZ DOS RIACHOS | 2603009 | Cabrobó |
+| FAZENDA SANTANA | 2603009 | Cabrobó |
+| TIRIRICA DOS CRIOULOS | 2603926 | Carnaubeira da Penha |
+| ÁGUAS DO VELHO CHICO | 2609808; 2603009 | Orocó; Cabrobó |
+| FEIJÃO E POSSE | 2609303 | Mirandiba |
+| SERROTE | 2612604 | Santa Maria da Boa Vista |
 
-Esses dois casos comprovam, na própria tabela do IBGE, que há territórios oficialmente delimitados cujas localidades associadas estão registradas em mais de um município. A relação deve ser representada como vínculo território–localidade–município, e não como propriedade exclusiva de um único município.
+**Dois territórios apresentam localidades associadas em mais de um município:**
+- CONTENDAS: Terra Nova e Salgueiro;
+- ÁGUAS DO VELHO CHICO: Orocó e Cabrobó.
 
-Os demais códigos municipais identificados nos registros pernambucanos do Apêndice 2 são:
-- 2603926 — Carnaubeira da Penha (MASSAPÃ e TIRIRICA DOS CRIOULOS);
-- 2612604 — Santa Maria da Boa Vista (INHANHUM e SERROTE);
-- 2603009 — Cabrobó (CRUZ DOS RIACHOS, FAZENDA SANTANA e JATOBÁ, além de ÁGUAS DO VELHO CHICO);
-- 2609303 — Mirandiba (FEIJÃO E POSSE);
-- 2612208 — Salgueiro (SANTANA III e CONTENDAS);
-- 2615201 — Terra Nova (CONTENDAS);
-- 2606002 — Garanhuns (TIMBO);
-- 2609808 — Orocó (ÁGUAS DO VELHO CHICO).
+Isso comprova que a relação territorial não deve ser modelada como pertencimento exclusivo a um município. O vínculo deve ser território–localidade–município.
 
-### 9.2.3 Divergência quantitativa a investigar
+### 9.2.3 Reconciliação dos quantitativos
 
-A Tabela 1 do produto censitário informa 14 territórios quilombolas oficialmente delimitados em Pernambuco. Já a Tabela 3 e o Apêndice 2 permitem identificar 12 territórios com localidades quilombolas associadas nominalmente.
+A conferência ampliada corrige a leitura preliminar anterior, que havia identificado somente 12 territórios e 50 localidades por não incluir as páginas iniciais do Apêndice 2.
 
-**Não se deve concluir que existam apenas 12 territórios delimitados.** Os dois quantitativos têm recortes distintos: a existência de território oficialmente delimitado não implica, necessariamente, que o Apêndice 2 apresente localidade associada. A diferença de dois registros fica classificada como **pendência de conciliação**. Deve ser investigada pela comparação da Tabela 1, Tabela 3, dicionário de dados, arquivos geoespaciais e documentação dos territórios, sem criar nomes ou vínculos por inferência.
+Com a inclusão dos territórios 95 (CONCEIÇÃO DAS CRIOULAS, 5 localidades) e 96 (CASTAINHO, 1 localidade), o resultado passa a ser **14 territórios e 56 localidades**, em consonância com o quantitativo estadual apresentado pelo IBGE.
+
+A relação do Apêndice 2 também informa o nome da comunidade quilombola declarada associada à localidade. Esse campo deve ser preservado como dado de origem, sem confundi-lo com o nome da localidade e sem presumir equivalência nominal.
 
 ### 9.2.4 Implicações para a Base Mestra e o Atlas
 
 A base deverá manter relações independentes:
 - território oficialmente delimitado;
+- comunidade quilombola declarada;
 - localidade quilombola associada;
-- município correspondente ao código geográfico da localidade;
-- comunidade declarada associada à localidade, quando a chave puder ser conciliada com o Apêndice 1.
+- município correspondente ao código geográfico da localidade.
 
-O código do território do Apêndice 2 não deve ser confundido com código municipal, código da comunidade ou número de processo administrativo.
+O código do território no Apêndice 2 não deve ser confundido com código municipal, código da comunidade ou número de processo administrativo.
 
-Para o painel municipal, a presença de uma localidade vinculada a território intermunicipal deverá ser exibida como **relação territorial**, sem atribuir o território inteiro ao município nem contar o mesmo território como novo em cada município.
+Para o painel municipal, a presença de localidade vinculada a território intermunicipal deverá ser exibida como relação territorial, sem atribuir o território inteiro ao município nem contar o mesmo território como novo em cada município.
 
-**Limite da conferência:** a lista e a contagem acima foram transcritas da Tabela 3 e das linhas pernambucanas do Apêndice 2. A conciliação integral de cada linha com o Apêndice 1 e com os arquivos geoespaciais ainda precisa ser executada. A classificação de abrangência intermunicipal aqui decorre dos geocódigos municipais das localidades listadas, não de uma análise espacial das geometrias dos polígonos territoriais.
+**Limite da conferência:** os quantitativos, nomes dos territórios e códigos municipais foram transcritos das tabelas e páginas citadas. A conciliação integral de cada linha com o Apêndice 1, a extração tabular estruturada e a análise espacial das geometrias territoriais ainda precisam ser executadas. A abrangência intermunicipal identificada decorre dos geocódigos das localidades, não de uma análise espacial dos polígonos dos territórios.
+
 ## 10. Fontes oficiais e complementares
 
 - IBGE — Localidades Quilombolas, Censo 2022: https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/27385-localidades.html?edicao=40668
