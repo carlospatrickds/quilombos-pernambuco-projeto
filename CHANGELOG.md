@@ -643,3 +643,18 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Nenhuma alteração em geometrias, coordenadas, projeções, enquadramentos ou desenho das camadas.
 
 **Arquivos alterados:** `js/mapa.js`, `js/app.js`, `CHANGELOG.md`.
+
+
+## 2026-11-27
+
+### 13:42 — Alinhamento dos controles e busca por comunidades quilombolas
+- Padronizada a altura e a distribuição dos controles do mapa no desktop, com reorganização responsiva para tablet e celular.
+- Substituído o botão único de etiquetas por seletor segmentado “Ligadas / Desligadas”, no mesmo padrão visual dos controles territoriais.
+- Ampliada a busca para municípios e comunidades nominais disponíveis na base do IBGE.
+- A busca normaliza acentos e permite localizar nomes por fragmentos; por exemplo, “onz” retorna “ONZE NEGRAS”.
+- Ao selecionar uma comunidade, o Atlas muda para a visualização municipal, ativa o município correspondente e abre sua ficha.
+- A busca comunitária utiliza os registros nominais da Tabela de Resultado 2 já integrada. Não acrescenta nomes do levantamento UFPE quando a base acadêmica não possui relação nominal estruturada.
+- Preservadas as fontes, os quantitativos e as estruturas cartográficas existentes.
+
+**Arquivos alterados:** `index.html`, `js/mapa.js`, `js/app.js`, `css/style.css`, `CHANGELOG.md`.
+**Preservação:** nenhuma alteração em GeoJSON, geometrias, coordenadas, projeções, enquadramentos ou camadas cartográficas.
