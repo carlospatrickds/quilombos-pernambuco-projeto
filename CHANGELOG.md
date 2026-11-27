@@ -4,6 +4,19 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-27
 
+### 00:19 — v1.3.2 — Contextualização editorial do primeiro Censo Quilombola
+- Removido do cabeçalho o link externo “Entenda os reconhecimentos”; o acesso permanece no menu sanduíche.
+- Reordenada a abertura: o bloco “O primeiro Censo Quilombola” passa a anteceder o painel de indicadores Brasil, Nordeste e Pernambuco.
+- O controle de expansão mantém o conteúdo na própria página e agora apresenta fotografia documental de trabalho de campo do Censo 2022, texto de contextualização, legenda e crédito.
+- Incluída explicação sobre a identificação por autodeclaração e as duas perguntas utilizadas pelo Censo.
+- Aplicado tratamento responsivo à fotografia, preservando a identidade visual editorial do Atlas.
+
+**Arquivos alterados:** `index.html`, `css/style.css`, `CHANGELOG.md`.
+
+**Preservação:** nenhuma alteração em JavaScript cartográfico, GeoJSON, geometrias, projeções, enquadramentos, camadas, dados territoriais ou lógica dos mapas. As bibliotecas visual e documental permanecem independentes.
+
+## 2026-11-27
+
 ### 00:35 — v1.3.1 — Separação das bibliotecas visual e documental
 - Separadas as coleções em duas páginas independentes: Biblioteca visual (biblioteca.html) e Biblioteca documental (biblioteca-documental.html).
 - Mantida a coleção Adinkra e os registros visuais na biblioteca visual.
