@@ -1,5 +1,17 @@
 ## 2026-11-27
 
+### 09:25 — Ajuste da faixa lateral Adinkra e exibição do Nkyinkyim
+- Reduzido em aproximadamente 20% o tamanho dos três símbolos exibidos na faixa terracota.
+- Criada repetição vertical em grupos de três símbolos, com separador visual de reticências entre os grupos.
+- Reorganizados os intervalos para que o terceiro símbolo não encoste no limite inferior do grupo.
+- Acrescentada área de respiro à exibição do Nkyinkyim na Biblioteca visual, mantendo a imagem integral em proporção.
+- Atualizadas as versões de cache dos arquivos CSS nas páginas correspondentes.
+
+**Arquivos alterados:** `assets/faixa-adinkra.svg`, `css/style.css`, `css/biblioteca.css`, `index.html`, `biblioteca.html`, `CHANGELOG.md`.
+**Preservação:** nenhum dado, mapa, GeoJSON, geometria, projeção, enquadramento, camada ou lógica cartográfica foi alterado.
+
+## 2026-11-27
+
 ### 09:06 — Correção do cabeçalho desktop e fidelidade dos símbolos Adinkra na faixa lateral
 - Reorganizado o cabeçalho em telas desktop para manter marca, identificação acadêmica e menu sanduíche na mesma faixa, com espaçamentos e tipografia responsivos.
 - Removido o deslocamento automático do menu que concorria com a identificação institucional.
