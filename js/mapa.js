@@ -576,32 +576,59 @@ export function bindMapInteractions(map, geojson, options = {}) {
   const suggestions = document.querySelector('#search-suggestions');
   let matches = [];
   let active = -1;
+  const normalizeSearch = value => String(value||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLocaleLowerCase('pt-BR').trim();
+  function chooseSearchMatch(match) {
+    if(!match)return;
+    suggestions.hidden=true;
+    if(match.kind==='community'){
+      search.value=match.name;
+      options.onCommunitySearchSelect?.(match.feature,match.name);
+      selectFeature(match.feature,true);
+    } else {
+      search.value=match.feature.properties._app_name;
+      selectFeature(match.feature,true);
+    }
+  }
   function showSuggestions(value) {
-    const q=value.trim().toLocaleLowerCase('pt-BR');
+    const q=normalizeSearch(value);
     suggestions.innerHTML='';
     if(!q){suggestions.hidden=true;matches=[];return;}
-    matches=geojson.features.filter(f=>(f.properties._app_name||'').toLocaleLowerCase('pt-BR').includes(q))
-      .sort((x,y)=>x.properties._app_name.localeCompare(y.properties._app_name,'pt-BR')).slice(0,10);
+    const municipalityMatches=geojson.features
+      .filter(feature=>normalizeSearch(feature.properties._app_name).includes(q))
+      .map(feature=>({kind:'municipality',feature,name:feature.properties._app_name,municipality:feature.properties._app_name}));
+    const communityMatches=[];
+    Object.entries(QUILOMBOLA_LOCALITIES_BY_MUNICIPALITY).forEach(([code,record])=>{
+      const feature=geojson.features.find(item=>String(item.properties._app_code||item.properties._app_id).padStart(7,'0')===code);
+      if(!feature)return;
+      (record.communities||[]).forEach(community=>{
+        if(normalizeSearch(community.name).includes(q)){
+          communityMatches.push({kind:'community',feature,name:community.name,municipality:feature.properties._app_name,communityId:community.id});
+        }
+      });
+    });
+    matches=[...communityMatches.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR')),
+      ...municipalityMatches.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'))].slice(0,12);
     active=-1;
-    if(!matches.length){const empty=document.createElement('div');empty.className='search-empty';empty.textContent='Nenhum município encontrado.';suggestions.append(empty);}
-    matches.forEach((feature,index)=>{
+    if(!matches.length){const empty=document.createElement('div');empty.className='search-empty';empty.textContent='Nenhum município ou comunidade encontrado.';suggestions.append(empty);}
+    matches.forEach(match=>{
       const btn=document.createElement('button');btn.type='button';btn.className='search-suggestion';btn.setAttribute('role','option');
-      const name=document.createElement('span');name.textContent=feature.properties._app_name;
-      const code=document.createElement('small');code.textContent='Código IBGE: '+feature.properties._app_code;
-      btn.append(name,code);btn.addEventListener('click',()=>{search.value=feature.properties._app_name;suggestions.hidden=true;selectFeature(feature);});
+      const name=document.createElement('span');name.textContent=match.name;
+      const detail=document.createElement('small');
+      detail.textContent=match.kind==='community'?'Comunidade quilombola · '+match.municipality:'Município · Código IBGE: '+match.feature.properties._app_code;
+      btn.append(name,detail);btn.addEventListener('click',()=>chooseSearchMatch(match));
       suggestions.append(btn);
     });
     suggestions.hidden=false;
   }
   search.addEventListener('input',()=>showSuggestions(search.value));
   search.addEventListener('keydown',event=>{
-    if(suggestions.hidden){if(event.key==='Enter'){const f=getFeatureByName(geojson,search.value);if(f)selectFeature(f);}return;}
-    const options=[...suggestions.querySelectorAll('.search-suggestion')];
-    if(event.key==='ArrowDown'){event.preventDefault();active=Math.min(active+1,options.length-1);}
+    if(suggestions.hidden){if(event.key==='Enter'){const q=normalizeSearch(search.value);const exact=matches.find(match=>normalizeSearch(match.name)===q);if(exact)chooseSearchMatch(exact);}return;}
+    const optionNodes=[...suggestions.querySelectorAll('.search-suggestion')];
+    if(event.key==='ArrowDown'){event.preventDefault();active=Math.min(active+1,optionNodes.length-1);}
     else if(event.key==='ArrowUp'){event.preventDefault();active=Math.max(active-1,0);}
-    else if(event.key==='Enter'){event.preventDefault();if(matches[active]){search.value=matches[active].properties._app_name;suggestions.hidden=true;selectFeature(matches[active]);}else if(matches.length===1){search.value=matches[0].properties._app_name;suggestions.hidden=true;selectFeature(matches[0]);}}
+    else if(event.key==='Enter'){event.preventDefault();if(matches[active])chooseSearchMatch(matches[active]);else if(matches.length===1)chooseSearchMatch(matches[0]);}
     else if(event.key==='Escape'){suggestions.hidden=true;return;}
-    options.forEach((o,i)=>o.setAttribute('aria-selected',String(i===active)));
+    optionNodes.forEach((node,index)=>node.setAttribute('aria-selected',String(index===active)));
   });
   document.addEventListener('click',event=>{if(!event.target.closest('.search-wrap'))suggestions.hidden=true;});
   
