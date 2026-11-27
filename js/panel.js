@@ -231,8 +231,8 @@ export function openMunicipality(feature) {
 
       const residents = document.createElement('span');
       residents.className = 'community-record-residents';
-      residents.textContent = '—';
-      residents.title = 'A base consultada não apresenta população individualizada por comunidade.';
+      residents.textContent = 'ND';
+      residents.title = 'População individual por comunidade não disponível na base consultada.';
 
       li.append(identity, localities, residents);
       if (item.territories?.length) {
