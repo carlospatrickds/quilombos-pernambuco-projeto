@@ -3,7 +3,7 @@ import {
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, setCommunityLayer, addCommunityPointLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
-} from './mapa.js?v=20261127-toolbar-busca-comunidade-v137';
+} from './mapa.js?v=20261127-toolbar-busca-comunidade-v138';
 import { initPanel, closePanel } from './panel.js?v=20261127-ficha-comunidades-v123';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -126,8 +126,10 @@ async function start() {
       if (tooltipControl) tooltipControl.hidden = region !== 'pernambuco';
       if (region !== 'pernambuco') {
         communityLayerEnabled = false;
-        const communityButton = document.querySelector('#community-layer-toggle');
-        if (communityButton) { communityButton.setAttribute('aria-pressed','false'); communityButton.textContent='Mostrar comunidades'; }
+        const communityShow = document.querySelector('#community-layer-show');
+        const communityHide = document.querySelector('#community-layer-hide');
+        if (communityShow) { communityShow.classList.remove('active'); communityShow.setAttribute('aria-pressed','false'); }
+        if (communityHide) { communityHide.classList.add('active'); communityHide.setAttribute('aria-pressed','true'); }
         const communityNote = document.querySelector('#community-layer-note');
         if (communityNote) communityNote.hidden = true;
       }
