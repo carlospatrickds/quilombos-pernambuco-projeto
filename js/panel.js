@@ -215,14 +215,29 @@ export function openMunicipality(feature) {
   if (censusCommunities?.communities?.length) {
     censusCommunities.communities.forEach(item => {
       const li = document.createElement('li');
+      li.className = 'community-record';
+
+      const identity = document.createElement('div');
+      identity.className = 'community-record-identity';
       const nameNode = document.createElement('strong');
       nameNode.textContent = item.name || 'Denominação não informada';
-      const meta = document.createElement('span');
-      meta.textContent = 'Código IBGE da comunidade: ' + item.id +
-        ' · ' + item.localities + (item.localities === 1 ? ' localidade associada' : ' localidades associadas');
-      li.append(nameNode, meta);
+      const code = document.createElement('small');
+      code.textContent = 'Código IBGE da comunidade: ' + item.id;
+      identity.append(nameNode, code);
+
+      const localities = document.createElement('strong');
+      localities.className = 'community-record-localities';
+      localities.textContent = formatNumber(item.localities);
+
+      const residents = document.createElement('span');
+      residents.className = 'community-record-residents';
+      residents.textContent = '—';
+      residents.title = 'A base consultada não apresenta população individualizada por comunidade.';
+
+      li.append(identity, localities, residents);
       if (item.territories?.length) {
         const territory = document.createElement('small');
+        territory.className = 'community-record-territory';
         territory.textContent = 'Território oficialmente delimitado associado no Censo: ' + item.territories.join('; ');
         li.append(territory);
       }
@@ -230,7 +245,7 @@ export function openMunicipality(feature) {
     });
     listDetails.hidden = false;
     listDetails.querySelector('summary').textContent =
-      'Consultar relação nominal (' + censusCommunities.communities.length + ')';
+      'Ver comunidades e indicadores (' + censusCommunities.communities.length + ')';
     $('#community-tags').replaceChildren();
     const sourceTag = document.createElement('a');
     sourceTag.className = 'tag';
