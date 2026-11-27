@@ -209,7 +209,7 @@ export function openMunicipality(feature) {
       ' comunidades declaradas associadas a ' +
       formatNumber(censusCommunities.localities) +
       ' localidades quilombolas. A relação abaixo reproduz as denominações registradas na base estadual do IBGE.'
-    : DATA_STATUS.communities;
+    : 'A Tabela de Resultado 2 do IBGE não apresenta registro para este município. Isso não permite concluir ausência de comunidades quilombolas.';
 
   listNode.replaceChildren();
   if (censusCommunities?.communities?.length) {
@@ -241,7 +241,7 @@ export function openMunicipality(feature) {
     $('#community-tags').replaceChildren();
     const pending = document.createElement('span');
     pending.className = 'tag pending';
-    pending.textContent = 'Sem registro municipal nesta extração';
+    pending.textContent = 'Sem registro na Tabela 2';
     $('#community-tags').append(pending);
   }
 
