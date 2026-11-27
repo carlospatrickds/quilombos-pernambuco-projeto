@@ -70,8 +70,18 @@ async function start() {
     return geojson;
   }
 
+  function syncRegionControls(region) {
+    const brazilControl = document.querySelector('#brazil-map-mode');
+    const pernambucoControl = document.querySelector('#pernambuco-map-mode');
+    if (brazilControl) brazilControl.hidden = region !== 'brasil';
+    if (pernambucoControl) pernambucoControl.hidden = region !== 'pernambuco';
+  }
+
   async function changeRegion(region) {
     pendingRegion = region;
+    // Atualiza a interface imediatamente, inclusive durante a inicialização
+    // e antes de qualquer carregamento assíncrono da malha.
+    syncRegionControls(region);
     if (!mapReady || switching) return;
     switching = true;
     setError(false);
