@@ -1,5 +1,17 @@
 # Histórico de alterações
 
+
+### 2026-11-27 — Conferência do Apêndice 1 do IBGE
+- Conferidas as páginas 231–245 do PDF (páginas impressas 229–243), correspondentes ao Apêndice 1 para Pernambuco.
+- Identificados 621 registros de localidades e 566 códigos únicos nacionais distintos de comunidades declaradas.
+- A relação apresenta 514 comunidades com uma ocorrência, 49 com duas e 3 com três ocorrências de localidades (52 comunidades com multiplicidade).
+- Registrada na Base Mestra a regra de manter comunidade e localidade em entidades separadas e preservar os códigos e a ordem de ocorrência.
+- A abrangência territorial intermunicipal permanece como análise separada, dependente do Apêndice 2 e dos atos oficiais de delimitação.
+
+**Arquivo alterado:** `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`.
+**Escopo:** conferência documental e metodológica; sem alteração de indicadores publicados, mapas, geometrias ou lógica cartográfica.
+
+
 ## 2026-11-27
 
 ### v1.4.5 — Estruturação da Base Mestra Quilombola de Pernambuco
