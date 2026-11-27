@@ -4,6 +4,23 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-27
 
+## 2026-11-27
+
+### 00:10 — v1.3.0 — Biblioteca documental integrada
+- Criado o inventário documental com classificação de fontes acadêmicas, bases estatísticas, registros institucionais, legislação e referências visuais.
+- Catalogados 13 registros escritos, com autoria/responsabilidade, instituição, ano ou período, tipo, resumo, finalidade no Atlas, páginas/tabelas, endereço de acesso e situação de conferência.
+- Recuperado e registrado o endereço oficial do PPC da Licenciatura em Educação Escolar Quilombola Nego Bispo (UFPE); mantida a conferência parcial do Quadro 1, pp. 36–37.
+- Registrados os arquivos de trabalho da dissertação de Joana D’Arc Alves Cardoso, com nota sobre a variação interna de referência ao PNLD 2023–2027/2024–2027.
+- Integradas à Biblioteca as fontes do IBGE/SIDRA, FCP, INCRA e marcos normativos educacionais e territoriais.
+- Ampliada a página Biblioteca com a seção “Fontes e documentos”, mantendo a coleção visual Adinkra em seção própria e integrada por navegação interna.
+- Mantidos estados explícitos de conferência parcial e fonte dinâmica; não foram inventados endereços públicos para arquivos acadêmicos internos nem páginas ainda não indexadas.
+
+**Arquivos criados:** `docs/INVENTARIO_DOCUMENTAL.md`.
+**Arquivos alterados:** `biblioteca.html`, `css/biblioteca.css`, `CHANGELOG.md`.
+
+**Preservação:** nenhuma alteração em index.html, JavaScript cartográfico, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica dos mapas. Menu principal e item “Entenda os reconhecimentos” mantidos sem duplicação.
+
+
 ### 23:58 — v1.2.1 — Referência bibliográfica Adinkra
 - Atualizada a Biblioteca visual com a referência completa da obra `Adinkra: sabedoria em símbolos africanos`, 2ª edição, 2022.
 - Identificados Elisa Larkin Nascimento e Luiz Carlos Gá como organizadores; editoras Cobogó e Ipeafro; ISBN 978-65-5691-076-5; classificação catalográfica A183.
