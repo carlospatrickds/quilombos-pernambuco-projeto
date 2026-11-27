@@ -761,3 +761,12 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - A mudança afeta somente o enquadramento inicial e o limite técnico de aproximação; não altera geometrias, dados, camadas, controles ou identidade visual.
 
 **Arquivos alterados:** `js/app.js`, `js/config.js`, `js/mapa.js`, `index.html`, `CHANGELOG.md`.
+
+
+### 16:45 — Ampliação do enquadramento inicial de Pernambuco para zoom 9
+- Elevado de 8,2 para 9,0 o limite de zoom do enquadramento inicial de Pernambuco no desktop.
+- Elevado para 9,0 o limite técnico geral de aproximação do mapa.
+- Mantido o enquadramento inicial móvel em 7,5.
+- Nenhuma alteração em geometrias, dados, camadas, controles ou interações.
+
+**Arquivos alterados:** `js/app.js`, `js/config.js`, `js/mapa.js`, `index.html`, `CHANGELOG.md`.
