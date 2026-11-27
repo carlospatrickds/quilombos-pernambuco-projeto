@@ -4,6 +4,19 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-26
 
+### 23:37 — v1.1.0-rc.5 — Substituição da trama da faixa por referências Adinkra
+- Substituído o padrão de losangos da faixa editorial por uma composição vertical inspirada nos símbolos Sankofa, Nsaa e Nkyinkyim, com base nas referências visuais fornecidas pelo usuário.
+- Mantidos a largura, o posicionamento fixo, a cor terracota de base e a função decorativa da faixa.
+- Criado o vetor `assets/faixa-adinkra.svg`, com traços em marrom escuro e repetição vertical.
+- Atualizada a referência de cache de `css/style.css`.
+
+**Arquivos alterados:** `assets/faixa-adinkra.svg`, `css/style.css`, `index.html`.
+
+**Preservação:** painel lateral, conteúdo, tipografia, mapas, dados, geometrias e controles não foram alterados. Os motivos são uma interpretação vetorial decorativa das referências, não uma reprodução fac-similar do livro.
+
+
+## 2026-11-26
+
 ### 23:18 — v1.1.0-rc.4 — Painel lateral alinhado ao início da faixa editorial
 - O painel lateral passa a ocupar somente a área à direita da faixa vertical terracota, começando exatamente após o limite da faixa.
 - O fundo de escurecimento também respeita a faixa, que permanece visível e fora da área coberta.
