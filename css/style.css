@@ -641,3 +641,47 @@ body::after{
  .map-actions > .tooltip-layer-control { order:3; }
  .map-actions > .search-wrap { order:4; }
 }
+
+
+/* v139 — alinhamento interno uniforme dos grupos de controles do mapa. */
+.map-toolbar { align-items:center; }
+.map-actions { align-items:center; }
+.map-actions > .map-mode-toggle {
+  display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start;
+  gap:5px; height:76px; min-height:76px; box-sizing:border-box; padding:6px 7px;
+}
+.map-actions > .map-mode-toggle .community-layer-label {
+  display:flex; align-items:center; height:12px; min-height:12px;
+  padding:0 3px; line-height:12px; font-size:9px;
+}
+.map-actions > #pernambuco-map-mode::before,
+.map-actions > #brazil-map-mode::before {
+  content:""; display:block; height:12px; min-height:12px;
+}
+.map-actions > .map-mode-toggle .map-toggle-segment {
+  display:flex; align-items:stretch; height:38px; min-height:38px; box-sizing:border-box;
+}
+.map-actions > .map-mode-toggle .map-mode-button,
+.map-actions > #pernambuco-map-mode .map-mode-button,
+.map-actions > #brazil-map-mode .map-mode-button {
+  display:flex; align-items:center; justify-content:center;
+  height:36px; min-height:36px; padding:0 13px; line-height:1; white-space:nowrap;
+}
+.map-actions > #pernambuco-map-mode,
+.map-actions > #brazil-map-mode {
+  display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start;
+  gap:5px; height:76px; min-height:76px; box-sizing:border-box; padding:6px 7px;
+}
+.map-actions > #pernambuco-map-mode .map-mode-button,
+.map-actions > #brazil-map-mode .map-mode-button { flex:1 1 0; }
+.map-actions > .search-wrap { align-self:center; display:flex; align-items:center; min-height:76px; }
+.map-actions > .search-wrap .search-box { height:44px; min-height:44px; box-sizing:border-box; }
+.map-actions > #reset-view { align-self:center; width:44px; height:44px; min-height:44px; }
+@media(max-width:1100px) and (min-width:721px) { .map-actions { align-items:center; } }
+@media(max-width:720px) {
+ .map-actions { align-items:stretch; }
+ .map-actions > .map-mode-toggle, .map-actions > #pernambuco-map-mode,
+ .map-actions > #brazil-map-mode { height:76px; min-height:76px; }
+ .map-actions > .search-wrap { min-height:48px; }
+ .map-actions > #reset-view { align-self:center; }
+}
