@@ -14,6 +14,7 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Integradas à Biblioteca as fontes do IBGE/SIDRA, FCP, INCRA e marcos normativos educacionais e territoriais.
 - Ampliada a página Biblioteca com a seção “Fontes e documentos”, mantendo a coleção visual Adinkra em seção própria e integrada por navegação interna.
 - Mantidos estados explícitos de conferência parcial e fonte dinâmica; não foram inventados endereços públicos para arquivos acadêmicos internos nem páginas ainda não indexadas.
+- Corrigido o fechamento de tags da seção visual ao validar a estrutura HTML da página.
 
 **Arquivos criados:** `docs/INVENTARIO_DOCUMENTAL.md`.
 **Arquivos alterados:** `biblioteca.html`, `css/biblioteca.css`, `CHANGELOG.md`.
