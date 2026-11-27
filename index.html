@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
-  <link href="css/style.css?v=20261127-biblioteca-v120" rel="stylesheet">
+  <link href="css/style.css?v=20261127-censo-editorial-v132" rel="stylesheet">
   <link href="css/mapa.css?v=20261127-etiqueta-mobile-rc6" rel="stylesheet">
   <link href="css/painel.css?v=20261126-painel-alinha-faixa" rel="stylesheet">
   <link href="css/biblioteca.css?v=20261127-biblioteca-v120" rel="stylesheet">
@@ -22,7 +22,6 @@
         <span class="brand-mark">Q</span>
         <span><small>ATLAS TERRITORIAL</small><strong>Quilombos de Pernambuco</strong></span>
       </a>
-      <nav class="recognition-nav" aria-label="Navegação principal"><a href="reconhecimentos.html">Entenda os reconhecimentos</a></nav>
       <div class="topbar-meta" title="Trabalho desenvolvido por Joana Darc Alves Cardoso, no âmbito de pesquisa de mestrado. Material acadêmico em elaboração; não constitui publicação ou base oficial de dados." aria-label="Produto educacional acadêmico, não oficial. Trabalho de Joana Darc Alves Cardoso, desenvolvido no âmbito de pesquisa de mestrado."><span class="status-dot"></span> Produto educacional acadêmico · Não oficial</div>
           <details class="site-menu"><summary aria-label="Abrir menu de navegação"><span></span><span></span><span></span></summary><nav aria-label="Menu principal"><a href="index.html">Atlas territorial</a><a href="reconhecimentos.html">Entenda os reconhecimentos</a><a href="biblioteca.html">Biblioteca visual</a><a href="biblioteca-documental.html">Biblioteca documental</a></nav></details>
 </header>
@@ -43,53 +42,6 @@
       </section>
 
       
-      <section class="regional-dashboard" aria-labelledby="regional-title">
-        <div class="regional-topline">
-          <div class="regional-heading">
-            <span class="section-kicker">CENSO DEMOGRÁFICO 2022 · IBGE</span>
-            <h2 id="regional-title">A população quilombola em números</h2>
-            <p>Uma leitura em três escalas territoriais: Brasil, Nordeste e Pernambuco.</p>
-          </div>
-          <div class="regional-tabs" role="tablist" aria-label="Selecionar recorte territorial">
-            <button class="regional-tab" id="tab-brasil" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="brasil">Brasil</button>
-            <button class="regional-tab" id="tab-nordeste" type="button" role="tab" aria-selected="false" aria-controls="regional-panel" data-region="nordeste">Nordeste</button>
-            <button class="regional-tab active" id="tab-pernambuco" type="button" role="tab" aria-selected="true" aria-controls="regional-panel" data-region="pernambuco">Pernambuco</button>
-          </div>
-        </div>
-        <div class="regional-panel" id="regional-panel" role="tabpanel" aria-labelledby="tab-pernambuco" tabindex="0">
-          <div class="regional-kpis">
-            <article class="regional-kpi regional-kpi-primary">
-              <span>População quilombola</span>
-              <strong id="regional-quilombola">1.330.186</strong>
-              <small>pessoas · Censo 2022</small>
-            </article>
-            <article class="regional-kpi">
-              <span>Participação na pop. residente</span>
-              <strong id="regional-share">0,66%</strong>
-              <small id="regional-share-note">de 203.080.756 hab. no Brasil</small>
-            </article>
-            <article class="regional-kpi">
-              <span>Em territórios delimitados</span>
-              <strong id="regional-inside">167.769</strong>
-              <small id="regional-inside-share">12,61% da pop. quilombola</small>
-            </article>
-            <article class="regional-kpi">
-              <span>Fora de territórios delimitados</span>
-              <strong id="regional-outside">1.162.417</strong>
-              <small id="regional-outside-share">87,39% da pop. quilombola</small>
-            </article>
-          </div>
-          <div class="regional-footnote">
-            <p class="regional-method" id="regional-method">Escala Brasil: explore a distribuição da população quilombola entre as unidades federativas. No mapa, alterne entre as grandes regiões e os estados.</p>
-            <div class="regional-sources">
-              <span>Fontes: IBGE, Censo Demográfico 2022, SIDRA</span>
-              <a href="https://sidra.ibge.gov.br/tabela/9578" target="_blank" rel="noopener">Tabela 9578</a>
-              <a href="https://sidra.ibge.gov.br/tabela/4709" target="_blank" rel="noopener">Tabela 4709</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <details class="census-context">
         <summary class="census-context-summary">
           <span class="census-summary-copy">
@@ -100,8 +52,13 @@
           <span class="census-summary-action" aria-hidden="true">+</span>
         </summary>
         <div class="census-context-content">
+                  <figure class="census-documentary-figure">
+                    <img src="https://www.gov.br/pt-br/noticias/assistencia-social/2023/07/populacao-quilombola-e-de-1-3-milhao-indica-recorte-inedito-do-censo/whatsapp-image-2023-07-27-at-13-29-34.jpeg" alt="Agente do IBGE conversa com uma moradora durante o trabalho de campo do Censo 2022 em uma comunidade quilombola.">
+                    <figcaption>Trabalho de campo do Censo 2022 em comunidade quilombola. <span>Foto: IBGE · registro divulgado pelo Governo Federal.</span></figcaption>
+                  </figure>
                   <div class="census-context-heading">
-                    <p>Em 2022, pela primeira vez, o Censo Demográfico identificou especificamente a população quilombola por meio da autodeclaração. Os resultados ampliam a visibilidade estatística dessas populações e ajudam a compreender sua distribuição pelo território brasileiro.</p>
+                    <h2>Um marco na produção de dados sobre a população quilombola</h2>
+                    <p>Em 2022, pela primeira vez, a população quilombola foi identificada como grupo étnico em um censo demográfico nacional. A identificação ocorreu por meio da autodeclaração, com as perguntas “Você se considera quilombola?” e “Qual o nome da sua comunidade?”. O levantamento tornou possível conhecer sua presença em diferentes municípios e recortes territoriais do país.</p>
                   </div>
                   <div class="census-national-highlight">
                     <div><strong>1.330.186</strong><span>pessoas quilombolas recenseadas no Brasil</span></div>
