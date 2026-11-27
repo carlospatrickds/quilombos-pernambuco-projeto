@@ -1,10 +1,10 @@
 # Base Mestra Quilombola de Pernambuco
 
 **Identificador:** BASE-QUILOMBOLA-PE-01  
-**Versão:** 0.1 — estrutura e protocolo de consolidação  
+**Versão:** 0.2 — conferência das Tabelas de Resultados 01, 02 e 03  
 **Data de início:** 27/11/2026  
 **Responsável pelo projeto:** Atlas Territorial Quilombos de Pernambuco  
-**Situação:** estrutura definida; extração nominal e geoespacial do IBGE pendente.
+**Situação:** quantitativos das Tabelas 01–03 conferidos; extração nominal integral e validação geoespacial ainda pendentes.
 
 ## 1. Objetivo
 
@@ -288,3 +288,84 @@ Para o painel municipal, a presença de localidade vinculada a território inter
 - INCRA — quilombolas: https://www.gov.br/incra/pt-br/assuntos/governanca-fundiaria/quilombolas/
 - ITERPE — território quilombola: https://www.lai.pe.gov.br/iterpe/territorio-quilombola/
 - UFPE — PPC da Licenciatura em Educação Escolar Quilombola Nego Bispo: https://www.ufpe.br/documents/3310313/5819053/PPC_LICENCIATURA%2BEEQ.%2BVERSA~O%2B28.02.2025.1.pdf/2ecab147-23ff-4e59-9678-b8272cc2e1ee
+
+
+## 9.3 Conferência das Tabelas de Resultados 01, 02 e 03 do IBGE
+
+**Arquivos examinados nesta etapa (planilhas XLSX originais fornecidas para análise):**
+- `Tabela_de_resultado_1_Localidades_quilombolas_GR_UF.xlsx`;
+- `Tabela_de_resultado_2_Localidades_quilombolas_Municipios.xlsx`;
+- `Tabela_de_resultado_3_Localidades_quilombolas_TQ.xlsx`.
+
+**Referência institucional:** IBGE, Censo Demográfico 2022, produto *Localidades Quilombolas*, Resultados do Universo. Página oficial: https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/27385-localidades.html?edicao=40668
+
+### 9.3.1 Tabela de Resultado 1 — Grandes Regiões e Unidades da Federação
+
+A linha de Pernambuco (código da UF 26) apresenta:
+- **14** territórios quilombolas oficialmente delimitados;
+- **566** comunidades declaradas e associadas a localidades quilombolas;
+- **621** localidades quilombolas.
+
+Os valores foram lidos diretamente da linha de Pernambuco na planilha XLSX.
+
+### 9.3.2 Tabela de Resultado 2 — Municípios
+
+A planilha contém **72 linhas municipais para Pernambuco**. A soma das colunas de comunidades declaradas e localidades quilombolas nessas 72 linhas resulta, respectivamente, em:
+- **566** comunidades declaradas e associadas a localidades;
+- **621** localidades quilombolas.
+
+Portanto, os totais municipais reconciliam aritmeticamente com a linha estadual da Tabela 1. A Tabela 2 apresenta quantitativos por município; não substitui a relação nominal do Apêndice 1.
+
+### 9.3.3 Tabela de Resultado 3 — Territórios Quilombolas
+
+A filtragem da sigla PE na Tabela 3 retorna **14 territórios** e a soma da coluna de localidades quilombolas é **56**:
+
+| Código do território | Território (grafia da tabela) | Localidades |
+|---:|---|---:|
+| 95 | CONCEIÇÃO DAS CRIOULAS | 5 |
+| 96 | CASTAINHO | 1 |
+| 164 | CONTENDAS | 2 |
+| 165 | SANTANA III | 4 |
+| 367 | TIMBO | 1 |
+| 368 | JATOBÁ | 8 |
+| 409 | MASSAPÃ | 1 |
+| 410 | INHANHUM | 4 |
+| 411 | CRUZ DOS RIACHOS | 2 |
+| 412 | FAZENDA SANTANA | 1 |
+| 413 | TIRIRICA DOS CRIOULOS | 2 |
+| 414 | ÁGUAS DO VELHO CHICO | 14 |
+| 415 | FEIJÃO E POSSE | 3 |
+| 419 | SERROTE | 8 |
+| **Total** | **14 territórios** | **56** |
+
+A grafia “TIMBO” foi preservada como consta na planilha; eventual normalização editorial deverá manter a forma original em campo de origem.
+
+### 9.3.4 Reconciliação e interpretação correta dos universos
+
+As três tabelas apresentam resultados consistentes entre si:
+- Tabela 1: 566 comunidades declaradas, 621 localidades e 14 territórios em Pernambuco;
+- Tabela 2: soma dos 72 municípios igual a 566 comunidades declaradas e 621 localidades;
+- Tabela 3: 14 territórios com 56 localidades associadas.
+
+**As 56 localidades da Tabela 3 são um recorte específico:** correspondem às localidades associadas aos territórios oficialmente delimitados relacionados na tabela. Não representam o total estadual de localidades quilombolas. O total estadual informado nas Tabelas 1 e 2 é 621.
+
+Da mesma forma, os 566 registros são comunidades quilombolas declaradas e associadas a localidades no contexto do Censo 2022. Não equivalem ao número de comunidades certificadas pela Fundação Cultural Palmares nem a um cadastro administrativo atualizado.
+
+A reconciliação das tabelas confirma os quantitativos agregados, mas não substitui:
+- a conferência linha a linha do Apêndice 1;
+- o cruzamento nominal entre Apêndices 1 e 2 pela chave de código municipal da localidade;
+- a inspeção do dicionário de dados e dos arquivos vetoriais;
+- a validação das relações com certificações FCP e processos INCRA/ITERPE.
+
+### 9.3.5 Estado da conferência
+
+| Item | Resultado | Estado |
+|---|---|---|
+| Total estadual da Tabela 1 | 14 / 566 / 621 | Conferido |
+| Soma municipal da Tabela 2 | 72 municípios; 566 / 621 | Conferido |
+| Tabela 3 | 14 territórios / 56 localidades | Conferido |
+| Correspondência nominal integral Apêndice 1 ↔ Apêndice 2 | Etapa de validação linha a linha | Pendente |
+| Geometrias e arquivos vetoriais | Não examinados nesta etapa | Pendente |
+| Certificação FCP e regularização fundiária | Não conciliadas nesta etapa | Pendente |
+
+**Conclusão:** os quantitativos agregados das três planilhas oficiais estão reconciliados. A base nominal e a validação geoespacial continuam em desenvolvimento. Nenhum indicador, mapa ou camada do Atlas deve ser atualizado automaticamente apenas com esta conferência documental.
