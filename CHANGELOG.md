@@ -1,5 +1,17 @@
 ## 2026-11-27
 
+### 08:41 — Substituição dos desenhos vetoriais por imagens Adinkra em PNG transparente
+- Substituídas as três representações provisórias de Sankofa, Nsaa e Nkyinkyim por imagens PNG rasterizadas fornecidas como referência para o projeto.
+- Removidos os fundos brancos e preservadas as transparências e proporções dos desenhos.
+- Padronizadas as imagens em 200 × 200 px, com carregamento tardio e dimensões declaradas no HTML.
+- Pesos finais: Sankofa 10.887 bytes; Nsaa 1.960 bytes; Nkyinkyim 1.384 bytes.
+- Mantidos os textos, significados, referências bibliográficas, organização dos cartões e demais coleções.
+- Atualizada a versão de cache do CSS da Biblioteca visual.
+
+**Arquivos criados:** assets/adinkra/sankofa.png, assets/adinkra/nsaa.png, assets/adinkra/nkyinkyim.png.
+**Arquivos alterados:** biblioteca.html, css/biblioteca.css, CHANGELOG.md.
+**Preservação:** nenhuma alteração nos dados, mapas, GeoJSON, geometrias, projeções, camadas ou lógica cartográfica.
+
 ### 08:33 — Inclusão da fotografia do Censo na Biblioteca visual
 - Adicionado à coleção “Fotografias de comunidades” o registro da imagem de trabalho de campo do Censo Demográfico 2022 já utilizada no Atlas principal.
 - Preservado o endereço original da imagem hospedada no portal gov.br e incluído o link para a publicação de referência.
