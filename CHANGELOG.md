@@ -790,3 +790,12 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Sem alterações em geometrias, dados, controles, camadas ou interações.
 
 **Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
+
+
+### 20:51 — Deslocamento vertical de Pernambuco em 30%
+- Ajustado o enquadramento inicial no desktop para deslocar visualmente a malha de Pernambuco 30% da altura do quadro para cima.
+- O deslocamento é calculado dinamicamente a partir da altura real do mapa, por meio de preenchimento inferior assimétrico.
+- Mantidos zoom máximo 9,0 no desktop, zoom 7,5 no celular e preenchimento móvel centralizado.
+- Nenhuma alteração em geometrias, dados, camadas, controles ou interações.
+
+**Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
