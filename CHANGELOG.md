@@ -1,3 +1,14 @@
+## 2026-11-27
+
+### 08:33 — Inclusão da fotografia do Censo na Biblioteca visual
+- Adicionado à coleção “Fotografias de comunidades” o registro da imagem de trabalho de campo do Censo Demográfico 2022 já utilizada no Atlas principal.
+- Preservado o endereço original da imagem hospedada no portal gov.br e incluído o link para a publicação de referência.
+- Registrados o crédito informado (IBGE), a data da publicação de referência (27/07/2023), a finalidade no Atlas e a ressalva sobre a confirmação das condições de reprodução.
+- Atualizada a contagem da coleção de fotografias.
+
+**Arquivo alterado:** biblioteca.html.
+**Preservação:** nenhuma alteração na imagem do Atlas principal, nos textos do Censo, nos dados, mapas, geometrias, projeções, camadas ou lógica cartográfica.
+
 # Histórico de alterações
 
 ### 2026-11-27 — Base municipal estruturada a partir da Tabela de Resultado 2
