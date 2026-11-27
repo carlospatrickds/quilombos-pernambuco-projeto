@@ -669,3 +669,9 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Nenhuma geometria, coordenada, projeção, enquadramento ou camada cartográfica foi modificada.
 
 **Arquivos alterados:** `index.html`, `js/app.js`, `js/mapa.js`, `css/style.css`, `CHANGELOG.md`.
+
+
+### 15:22 — Sincronização do estado dos controles ao sair de Pernambuco
+- Ajustado o estado visual dos botões Mostrar/Ocultar quando o usuário muda para Brasil ou Nordeste, evitando que a interface preserve uma seleção incompatível com a camada desativada.
+- Corrigida a expressão de normalização Unicode da busca para remover acentos com a faixa de caracteres combinantes.
+- Atualizadas novamente as versões de cache do aplicativo e do módulo cartográfico.
