@@ -946,7 +946,8 @@ body::after{
   .map-actions{
     display:grid;
     grid-template-columns:minmax(0,1fr) 48px;
-    grid-template-rows:auto auto auto 46px;
+    grid-template-rows:none;
+    grid-auto-rows:auto;
     align-items:stretch;
     gap:8px;
     width:100%;
@@ -1012,7 +1013,7 @@ body::after{
   }
   .map-actions>.search-wrap{
     grid-column:1;
-    grid-row:4;
+    grid-row:auto;
     width:100%;
     min-width:0;
     max-width:none;
@@ -1030,7 +1031,7 @@ body::after{
   .map-actions .search-box input{font-size:13px}
   .map-actions>#reset-view{
     grid-column:2;
-    grid-row:4;
+    grid-row:auto;
     justify-self:stretch;
     align-self:stretch;
     width:48px;
