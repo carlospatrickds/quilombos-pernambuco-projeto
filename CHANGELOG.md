@@ -2,6 +2,20 @@
 
 Registro cronológico das mudanças implementadas no projeto. Os horários seguem o fuso de Brasília (UTC−03:00).
 
+## 2026-11-27
+
+### 00:02 — v1.1.0-rc.6 — Faixa fixa, repetição compacta e etiqueta móvel
+- Movida a faixa decorativa para um pseudo-elemento fixo do documento, independente da altura/rolagem do contêiner principal, para evitar trechos em que a faixa desaparece.
+- Reduzido o intervalo vertical da estampa Adinkra de 210 px para 170 px, mantendo os três símbolos e a paleta aprovada, para diminuir o vazio entre os grupos.
+- Reorganizado o espaço interno da etiqueta do mapa: o título agora respeita uma área reservada ao botão de fechar, quebra nomes longos sem sobreposição e mantém o botão de abertura do painel em largura adequada ao celular.
+- Mantido o painel lateral iniciando exatamente após a faixa terracota, conforme aprovado.
+- Atualizadas as referências de cache dos dois arquivos CSS.
+
+**Arquivos alterados:** `css/style.css`, `css/mapa.css`, `index.html`.
+
+**Preservação:** não foram alterados HTML estrutural, JavaScript, mapas, geometrias, camadas, dados, enquadramento ou lógica cartográfica.
+
+
 ## 2026-11-26
 
 ### 23:37 — v1.1.0-rc.5 — Substituição da trama da faixa por referências Adinkra
