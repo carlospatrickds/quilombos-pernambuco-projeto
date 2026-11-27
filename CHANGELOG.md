@@ -1,5 +1,17 @@
 ## 2026-11-27
 
+### 09:06 — Correção do cabeçalho desktop e fidelidade dos símbolos Adinkra na faixa lateral
+- Reorganizado o cabeçalho em telas desktop para manter marca, identificação acadêmica e menu sanduíche na mesma faixa, com espaçamentos e tipografia responsivos.
+- Removido o deslocamento automático do menu que concorria com a identificação institucional.
+- Substituídos os três desenhos vetoriais esquemáticos da faixa terracota por referências às imagens PNG transparentes já catalogadas na Biblioteca visual: Sankofa, Nsaa e Nkyinkyim.
+- Mantidos o tom terracota da faixa, a tonalidade escura dos símbolos, a transparência, a repetição vertical e a largura da faixa.
+- Atualizada a versão de cache do CSS principal.
+
+**Arquivos alterados:** `css/style.css`, `assets/faixa-adinkra.svg`, `index.html`, `CHANGELOG.md`.
+**Preservação:** nenhuma alteração em dados, mapas, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica. As imagens PNG originais da Biblioteca visual foram reutilizadas, sem modificar seus arquivos.
+
+## 2026-11-27
+
 ### 08:41 — Substituição dos desenhos vetoriais por imagens Adinkra em PNG transparente
 - Substituídas as três representações provisórias de Sankofa, Nsaa e Nkyinkyim por imagens PNG rasterizadas fornecidas como referência para o projeto.
 - Removidos os fundos brancos e preservadas as transparências e proporções dos desenhos.
