@@ -162,6 +162,13 @@ export function addMunicipalLayer(map, geojson) {
       pitch: CONFIG.pitch,
       bearing: CONFIG.bearing
     });
+
+    // No desktop, aproxima o enquadramento inicial em cerca de 0,7 nível
+    // de zoom (escala gráfica próxima de 300 km, em vez de 500 km).
+    // O enquadramento móvel permanece inalterado.
+    if (window.matchMedia('(min-width: 701px)').matches) {
+      map.setZoom(Math.min(map.getZoom() + 0.7, CONFIG.maxZoom));
+    }
   }
 }
 
