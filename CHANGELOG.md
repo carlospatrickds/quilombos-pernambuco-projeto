@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-27
 
+### v1.4.1 — Ajuste da capa em telas verticais
+- Reduzida a altura da capa do guia em celulares para evitar que a fotografia ocupe quase toda a primeira tela.
+- Reposicionado o foco da imagem e substituído o sombreado lateral por gradiente inferior, melhorando o contraste do título.
+- Redimensionados título, subtítulo e espaçamentos para a leitura em largura estreita.
+- Mantida a composição editorial da versão desktop.
+
+**Arquivos alterados:** `css/guia.css`, `CHANGELOG.md`.
+
+
+
 ### v1.4.0 — Guia “Como ler o Atlas” e registro fotográfico do Quilombo Lambedor
 - Criada a página independente “Como ler o Atlas”, com guia de navegação, leitura dos indicadores, distinção entre comunidades, população e territórios, interpretação crítica e fontes/metodologia.
 - Adicionada ao menu sanduíche do Atlas e das bibliotecas a entrada “Como ler o Atlas”.
