@@ -12,7 +12,7 @@
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
   <link href="css/style.css?v=20261127-adinkra-embutido-v135" rel="stylesheet">
   <link href="css/mapa.css?v=20261127-etiqueta-mobile-rc6" rel="stylesheet">
-  <link href="css/painel.css?v=20261127-ibge-comunidades-v121" rel="stylesheet">
+  <link href="css/painel.css?v=20261127-ficha-comunidades-v122" rel="stylesheet">
   <link href="css/biblioteca.css?v=20261127-biblioteca-v120" rel="stylesheet">
 </head>
 <body>
@@ -251,8 +251,9 @@
         </article>
       </div>
 
-      <section class="panel-section">
+      <section class="panel-section communities-panel-section">
         <div class="section-heading"><span>01</span><h3>Comunidades quilombolas</h3></div>
+        <p class="community-section-intro">Presença comunitária, localidades associadas e registros disponíveis no Censo Demográfico 2022.</p>
         <div class="community-census-indicators">
           <article class="community-census-card">
             <span>Comunidades declaradas</span>
@@ -268,7 +269,9 @@
         <p id="communities-copy">Os quantitativos municipais do Censo 2022 serão apresentados após integração da base.</p>
         <details id="community-list-details" class="community-list-details" hidden>
           <summary>Consultar relação nominal</summary>
+          <div class="community-list-head" aria-hidden="true"><span>Comunidade declarada</span><span>Localidades</span><span>Moradores</span></div>
           <ul id="community-list"></ul>
+          <p class="community-population-caveat">A população quilombola está disponível no recorte municipal, mas a base consultada não informa o número de moradores individualizado por comunidade. Por isso, esse dado não é estimado nem distribuído entre os registros.</p>
         </details>
         <div id="community-tags" class="community-tags"><span class="tag pending">Relação nominal em validação</span></div>
       </section>
