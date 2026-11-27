@@ -4,6 +4,20 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-27
 
+### 00:35 — v1.3.1 — Separação das bibliotecas visual e documental
+- Separadas as coleções em duas páginas independentes: Biblioteca visual (biblioteca.html) e Biblioteca documental (biblioteca-documental.html).
+- Mantida a coleção Adinkra e os registros visuais na biblioteca visual.
+- Transferidos os 13 registros escritos para a biblioteca documental, preservando categorias, metadados, links e estados de conferência.
+- Atualizado o menu principal do Atlas e das duas páginas para permitir acesso direto a ambas as bibliotecas.
+- Incluídos links cruzados entre os dois acervos, sem misturar seus conteúdos.
+
+**Arquivos criados:** biblioteca-documental.html.
+**Arquivos alterados:** biblioteca.html, index.html, CHANGELOG.md.
+
+**Preservação:** nenhuma alteração em CSS cartográfico, JavaScript cartográfico, GeoJSON, geometrias, projeções, enquadramentos, camadas ou dados territoriais.
+
+## 2026-11-27
+
 ## 2026-11-27
 
 ### 00:10 — v1.3.0 — Biblioteca documental integrada
