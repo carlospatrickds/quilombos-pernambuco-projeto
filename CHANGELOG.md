@@ -770,3 +770,14 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Nenhuma alteração em geometrias, dados, camadas, controles ou interações.
 
 **Arquivos alterados:** `js/app.js`, `js/config.js`, `js/mapa.js`, `index.html`, `CHANGELOG.md`.
+
+
+## 2026-11-27
+
+### 16:54 — Reposicionamento vertical do mapa inicial de Pernambuco
+- Ajustado o enquadramento desktop da escala Pernambuco com preenchimento assimétrico: 42 px no topo e laterais e 344 px na base.
+- O preenchimento inferior desloca o centro visual do território para a faixa superior do quadro do mapa, correspondente à área indicada pelo usuário.
+- Mantidos zoom máximo 9,0, duração da transição, enquadramento móvel e todos os controles.
+- Alteração restrita ao enquadramento visual; sem mudanças em geometrias, dados, projeções, camadas ou interações.
+
+**Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
