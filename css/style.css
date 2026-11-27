@@ -719,3 +719,10 @@ body::after{
   line-height:1.15;
   white-space:nowrap;
 }
+
+
+/* v141 — respeita o atributo hidden nos seletores das escalas territoriais. */
+.map-actions > #pernambuco-map-mode[hidden],
+.map-actions > #brazil-map-mode[hidden] {
+  display:none !important;
+}
