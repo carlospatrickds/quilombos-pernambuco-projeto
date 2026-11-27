@@ -603,3 +603,17 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - A inspeção dos SHP e a validação espacial das coordenadas continuam pendentes; nenhum ponto foi publicado no mapa.
 
 **Escopo:** extração e conciliação tabular. Sem alteração dos mapas, geometrias existentes ou lógica cartográfica.
+
+
+## 2026-11-27
+
+### 12:33 — Reorganização visual da ficha municipal: destaque para comunidades quilombolas
+- Compactados os cartões dos indicadores demográficos iniciais para reduzir sua altura e liberar espaço visual.
+- Reforçada a seção “Comunidades quilombolas”, com fundo verde-palha, indicadores em verde-oliva e texto introdutório.
+- Reorganizada a relação nominal em três colunas: comunidade declarada, quantidade de localidades associadas e população de moradores.
+- Mantida a quantidade de localidades por comunidade conforme a base nominal do IBGE.
+- A coluna de moradores exibe traço e explicação explícita: a base atualmente integrada não apresenta população individualizada por comunidade; nenhum valor foi estimado ou distribuído a partir do total municipal.
+- Preservados os dados municipais, a relação nominal, os vínculos territoriais e as fontes existentes.
+
+**Arquivos alterados:** `index.html`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
+**Preservação:** nenhuma alteração em dados-fonte, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica.
