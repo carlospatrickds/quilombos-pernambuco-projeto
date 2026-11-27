@@ -1,5 +1,17 @@
 ## 2026-11-27
 
+### 09:45 — Correção definitiva dos arquivos Adinkra e carregamento da faixa
+- Substituído o arquivo PNG corrompido de Nkyinkyim pela imagem original reenviada, com transparência preservada, recorte apenas da margem transparente e proporção integral (200 × 231 px).
+- Recriada a faixa lateral com os três PNGs incorporados como dados no SVG, evitando falha de carregamento de imagens externas dentro de SVG usado como fundo CSS.
+- Mantida a redução aproximada de 20% e a repetição vertical em grupos de três, com reticências entre os grupos.
+- Ajustada a área de exibição de Nkyinkyim na Biblioteca visual para acomodar a proporção vertical completa.
+- Atualizadas as versões de cache do Atlas e da Biblioteca visual.
+
+**Arquivos alterados:** `assets/adinkra/nkyinkyim.png`, `assets/faixa-adinkra.svg`, `css/biblioteca.css`, `index.html`, `biblioteca.html`, `CHANGELOG.md`.
+**Preservação:** nenhum dado, mapa, GeoJSON, geometria, projeção, enquadramento, camada ou lógica cartográfica foi alterado.
+
+## 2026-11-27
+
 ### 09:25 — Ajuste da faixa lateral Adinkra e exibição do Nkyinkyim
 - Reduzido em aproximadamente 20% o tamanho dos três símbolos exibidos na faixa terracota.
 - Criada repetição vertical em grupos de três símbolos, com separador visual de reticências entre os grupos.
