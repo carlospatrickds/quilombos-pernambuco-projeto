@@ -1,5 +1,14 @@
 ## 2026-11-27
 
+### 09:36 — Remove caractere literal entre seções da Biblioteca visual
+- Removida a sequência textual `\\n` que aparecia entre o registro fotográfico e a coleção de símbolos Adinkra.
+- Restaurada a separação normal entre as seções, sem alterar conteúdo, imagens, estilos ou estrutura da Biblioteca.
+
+**Arquivo alterado:** `biblioteca.html`.
+**Preservação:** nenhuma alteração em dados, mapas, GeoJSON, geometrias, projeções, camadas ou lógica cartográfica.
+
+## 2026-11-27
+
 ### 09:45 — Correção definitiva dos arquivos Adinkra e carregamento da faixa
 - Substituído o arquivo PNG corrompido de Nkyinkyim pela imagem original reenviada, com transparência preservada, recorte apenas da margem transparente e proporção integral (200 × 231 px).
 - Recriada a faixa lateral com os três PNGs incorporados como dados no SVG, evitando falha de carregamento de imagens externas dentro de SVG usado como fundo CSS.
