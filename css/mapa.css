@@ -205,3 +205,14 @@
   .atlas-feature-tooltip strong{font-size:15px;line-height:1.2}
   .atlas-tooltip-action{min-height:40px}
 }
+
+
+/* v148 — área cartográfica mobile mais próxima e enquadramento confortável. */
+@media(max-width:720px){
+  .map-stage{
+    height:56vh;
+    min-height:370px;
+    max-height:560px;
+  }
+  .map-footer{padding-top:9px;gap:10px}
+}
