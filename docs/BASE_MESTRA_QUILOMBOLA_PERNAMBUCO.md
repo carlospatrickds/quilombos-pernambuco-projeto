@@ -162,6 +162,45 @@ Os arquivos nominais só serão criados após a extração e inspeção dos arqu
 - conferir os 14 territórios e a distribuição das localidades relacionadas;
 - gerar a primeira base nominal com evidências e estados de conferência.
 
+
+## 9.1 Primeira conferência da relação comunidade–localidade (Apêndice 1)
+
+Foi realizada a extração textual das páginas 231 a 245 do PDF (páginas impressas 229 a 243), filtrando as linhas da UF PE e conferindo a estrutura dos campos do Apêndice 1.
+
+**Resultado da conferência estrutural:**
+- **621 registros de localidades** listados para Pernambuco no Apêndice 1;
+- **566 códigos únicos nacionais de comunidade quilombola declarada** distintos;
+- diferença aritmética: **55 registros de localidade além do primeiro vínculo por comunidade**;
+- **514 comunidades** aparecem com uma ocorrência de localidade;
+- **49 comunidades** aparecem com duas ocorrências;
+- **3 comunidades** aparecem com três ocorrências;
+- portanto, **52 comunidades** têm mais de uma ocorrência de localidade no Apêndice 1.
+
+A soma dos vínculos adicionais é 49 × 1 + 3 × 2 = 55. Assim, nesta extração, a diferença entre 621 linhas de localidades e 566 códigos distintos de comunidade é explicada aritmeticamente por comunidades que aparecem associadas a mais de uma ocorrência de localidade.
+
+**Atenção à terminologia:** o Apêndice 1 intitula-se “Localidades quilombolas, segundo os Municípios”. Cada linha traz o código único nacional da comunidade declarada associada e o código/nome municipal da localidade quilombola, além da ordem de ocorrência e, quando informado, número de processo de identificação e reconhecimento na Fundação Cultural Palmares. A coluna “Nome” à direita é o nome da localidade; o código único nacional é o identificador da comunidade declarada. O Apêndice não autoriza presumir que o nome da localidade seja sempre o nome próprio da comunidade.
+
+**Regra de modelagem confirmada:** a relação deve ser armazenada em tabela própria, com uma linha por ocorrência comunidade–localidade, preservando:
+- UF;
+- geocódigo e nome do município;
+- código único nacional da comunidade declarada;
+- ordem de ocorrência;
+- código municipal da localidade quilombola;
+- nome da localidade;
+- número(s) de processo FCP quando impresso;
+- página do PDF e identificação da tabela/apêndice.
+
+**Limite desta conferência:** a contagem de códigos distintos e ocorrências foi conferida a partir das linhas tabulares extraídas do Apêndice 1. A normalização integral de nomes com quebras de linha, a conferência visual de cada registro e o cruzamento com o Apêndice 2 permanecem como etapas de validação. A multiplicidade observada não deve ser confundida com abrangência territorial intermunicipal; esta última será apurada separadamente com o Apêndice 2 e fontes de delimitação territorial.
+
+### Exemplos de multiplicidade identificados no Apêndice 1
+- Águas Belas: código de comunidade 03867, com duas ocorrências da localidade “MARIA DE NAZARÉ”;
+- Bom Conselho: códigos 00318, 00321 e 00325 aparecem em duas ocorrências cada; o código 03731 aparece em três ocorrências;
+- Salgueiro: código 02004 aparece em três ocorrências de “CONCEIÇÃO DAS CRIOULAS”;
+- Serra Talhada: código 01771 aparece em três ocorrências relacionadas a “CATOLÉ”;
+- Tupanatinga: código 06882 aparece em duas ocorrências de “SÍTIO LOPES”.
+
+Esses exemplos mostram por que não se deve deduplicar as localidades apenas pelo nome textual: códigos de ocorrência distintos precisam ser preservados. A interpretação substantiva de cada repetição será feita com o dicionário de dados e as informações geoespaciais do IBGE.
+
 ## 10. Fontes oficiais e complementares
 
 - IBGE — Localidades Quilombolas, Censo 2022: https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/27385-localidades.html?edicao=40668
