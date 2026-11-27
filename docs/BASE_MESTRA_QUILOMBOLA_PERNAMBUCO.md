@@ -369,3 +369,22 @@ A reconciliação das tabelas confirma os quantitativos agregados, mas não subs
 | Certificação FCP e regularização fundiária | Não conciliadas nesta etapa | Pendente |
 
 **Conclusão:** os quantitativos agregados das três planilhas oficiais estão reconciliados. A base nominal e a validação geoespacial continuam em desenvolvimento. Nenhum indicador, mapa ou camada do Atlas deve ser atualizado automaticamente apenas com esta conferência documental.
+
+
+## 9.4 Arquivo municipal estruturado — Tabela de Resultado 2
+
+Foi estruturado o arquivo `data/base-mestra/indicadores-municipais-localidades-quilombolas-PE-2022.csv`, derivado da Tabela de Resultado 2 original do IBGE.
+
+**Conteúdo:** 72 registros municipais de Pernambuco, com os campos:
+- código da UF e nome da UF;
+- código IBGE do município e nome do município;
+- quantidade de comunidades declaradas e associadas a localidades;
+- quantidade de localidades quilombolas;
+- ano de referência;
+- identificação da fonte.
+
+**Conferência:** 72 linhas de municípios; soma de 566 comunidades declaradas e associadas a localidades e 621 localidades quilombolas. Os totais reconciliam com as Tabelas de Resultado 1 e 2.
+
+**Formato:** CSV UTF-8 com BOM e separador ponto e vírgula, para facilitar abertura em planilhas configuradas para o padrão regional brasileiro.
+
+**Limite de uso:** o arquivo contém quantitativos agregados por município. Não contém nomes individuais de comunidades nem coordenadas; não deve ser utilizado isoladamente para gerar pontos, polígonos ou cadastro nominal. Os dados são do Censo 2022 e não representam atualização administrativa posterior.
