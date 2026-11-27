@@ -610,3 +610,34 @@ body::after{
  .community-layer-control .community-layer-label,.tooltip-layer-control .community-layer-label { font-size:9px; }
  .map-toggle-segment .map-mode-button { flex:1; min-width:0; }
 }
+
+
+/* v137 — ordem editorial dos controles e estados cromáticos explícitos. */
+.map-actions { gap:8px; }
+.map-actions > .community-layer-control { order:1; }
+.map-actions > #pernambuco-map-mode { order:2; }
+.map-actions > .tooltip-layer-control { order:3; }
+.map-actions > .search-wrap { order:4; }
+.map-actions > #reset-view { order:5; }
+.community-toggle-segment .community-show-button.active {
+  background:#68775B; border-color:#68775B; color:#FBF8F1;
+}
+.community-toggle-segment .community-hide-button.active {
+  background:#783F32; border-color:#783F32; color:#FBF8F1;
+}
+.community-toggle-segment .community-show-button:not(.active),
+.community-toggle-segment .community-hide-button:not(.active) {
+  background:transparent; color:#4F3C28;
+}
+.community-toggle-segment .map-mode-button { min-width:76px; }
+@media(max-width:1100px) and (min-width:721px) {
+ .map-actions > .community-layer-control { order:1; }
+ .map-actions > #pernambuco-map-mode { order:2; }
+ .map-actions > .tooltip-layer-control { order:3; }
+}
+@media(max-width:720px) {
+ .map-actions > .community-layer-control { order:1; }
+ .map-actions > #pernambuco-map-mode { order:2; }
+ .map-actions > .tooltip-layer-control { order:3; }
+ .map-actions > .search-wrap { order:4; }
+}
