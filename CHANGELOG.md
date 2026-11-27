@@ -630,3 +630,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 **Arquivos alterados:** `index.html`, `js/app.js`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
 **Preservação:** nenhuma alteração nos dados-fonte, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica.
+
+
+## 2026-11-27
+
+### 12:58 — Prioridade dos dados do IBGE nas etiquetas municipais
+- Atualizada a fonte prioritária dos quantitativos exibidos nas etiquetas do mapa e nos pontos temáticos municipais.
+- Quando houver registro na base nominal do IBGE, a etiqueta passa a exibir a quantidade de comunidades declaradas associadas a localidades, identificada como “IBGE · Censo 2022”.
+- Quando não houver registro correspondente na Tabela de Resultado 2, permanece disponível o quantitativo do levantamento acadêmico da UFPE, identificado explicitamente como fonte complementar.
+- Municípios sem registro em nenhuma das duas bases permanecem sem quantitativo; ausência de registro não é interpretada como zero.
+- Preservada a base acadêmica original e a base censitária, sem soma ou combinação dos quantitativos.
+- Nenhuma alteração em geometrias, coordenadas, projeções, enquadramentos ou desenho das camadas.
+
+**Arquivos alterados:** `js/mapa.js`, `js/app.js`, `CHANGELOG.md`.
