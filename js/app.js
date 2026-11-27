@@ -3,7 +3,7 @@ import {
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, setCommunityLayer, addCommunityPointLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
-} from './mapa.js?v=20261127-toolbar-busca-comunidade-v136';
+} from './mapa.js?v=20261127-toolbar-busca-comunidade-v137';
 import { initPanel, closePanel } from './panel.js?v=20261127-ficha-comunidades-v123';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -200,16 +200,21 @@ async function start() {
       : 'Selecione um estado ou distrito para obter dados';
   }));
 
-  const communityToggle = document.querySelector('#community-layer-toggle');
-  communityToggle?.addEventListener('click', () => {
+  const communityShow = document.querySelector('#community-layer-show');
+  const communityHide = document.querySelector('#community-layer-hide');
+  function setCommunityVisibility(enabled) {
     if (pendingRegion !== 'pernambuco' || !municipalityLoaded) return;
-    communityLayerEnabled = !communityLayerEnabled;
+    communityLayerEnabled = enabled;
     setCommunityLayer(map, communityLayerEnabled, pernambucoMapMode);
-    communityToggle.setAttribute('aria-pressed', String(communityLayerEnabled));
-    communityToggle.textContent = communityLayerEnabled ? 'Ocultar comunidades' : 'Mostrar comunidades';
+    communityShow?.classList.toggle('active', enabled);
+    communityHide?.classList.toggle('active', !enabled);
+    communityShow?.setAttribute('aria-pressed', String(enabled));
+    communityHide?.setAttribute('aria-pressed', String(!enabled));
     const note = document.querySelector('#community-layer-note');
-    if (note) note.hidden = !communityLayerEnabled;
-  });
+    if (note) note.hidden = !enabled;
+  }
+  communityShow?.addEventListener('click', () => setCommunityVisibility(true));
+  communityHide?.addEventListener('click', () => setCommunityVisibility(false));
 
   const tooltipOn = document.querySelector('#map-tooltip-on');
   const tooltipOff = document.querySelector('#map-tooltip-off');
