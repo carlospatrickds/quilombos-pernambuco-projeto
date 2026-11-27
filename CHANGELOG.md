@@ -750,3 +750,14 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Correção restrita ao CSS da barra superior.
 
 **Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
+
+
+## 2026-11-27
+
+### 16:36 — Ampliação do enquadramento inicial de Pernambuco no desktop
+- Ajustado o enquadramento automático da malha municipal na abertura do Atlas para apresentar Pernambuco em escala maior no desktop.
+- O limite de zoom do mapa passou de 7,5 para 8,3; o enquadramento inicial de Pernambuco no desktop passa a admitir zoom até 8,2, com margem interna reduzida para 42 px.
+- No celular, o enquadramento inicial permanece com zoom máximo 7,5 e margem de 65 px.
+- A mudança afeta somente o enquadramento inicial e o limite técnico de aproximação; não altera geometrias, dados, camadas, controles ou identidade visual.
+
+**Arquivos alterados:** `js/app.js`, `js/config.js`, `js/mapa.js`, `index.html`, `CHANGELOG.md`.
