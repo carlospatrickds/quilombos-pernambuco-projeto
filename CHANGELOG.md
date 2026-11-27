@@ -628,5 +628,5 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Renomeado o cabeçalho da coluna para “População”, evitando sugerir que o dado está apenas aguardando carregamento.
 - Preservada a distinção entre população quilombola municipal e população por comunidade; nenhum valor foi estimado ou rateado.
 
-**Arquivos alterados:** `index.html`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
+**Arquivos alterados:** `index.html`, `js/app.js`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
 **Preservação:** nenhuma alteração nos dados-fonte, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica.
