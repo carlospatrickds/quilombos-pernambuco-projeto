@@ -1,6 +1,18 @@
 # Histórico de alterações
 
 
+### 2026-11-27 — Conferência do Apêndice 2 do IBGE
+- Conferidas as páginas 365–368 do PDF (páginas impressas 363–366) e os registros da Tabela 3 relativos a Pernambuco.
+- Identificados 12 territórios com localidades associadas nominalmente no Apêndice 2, totalizando 50 localidades segundo a Tabela 3.
+- Identificados vínculos intermunicipais pelas chaves geográficas das localidades para os territórios CONTENDAS (Terra Nova e Salgueiro) e ÁGUAS DO VELHO CHICO (Orocó e Cabrobó).
+- Registrada pendência de conciliação entre os 14 territórios informados na Tabela 1 e os 12 territórios com localidades listadas na Tabela 3/Apêndice 2.
+- Documentado que a abrangência identificada deriva dos códigos municipais das localidades e ainda não constitui análise espacial das geometrias dos territórios.
+
+**Arquivo alterado:** `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`.
+**Escopo:** análise documental; sem alteração de indicadores publicados, mapas, geometrias ou lógica cartográfica.
+
+
+
 ### 2026-11-27 — Conferência do Apêndice 1 do IBGE
 - Conferidas as páginas 231–245 do PDF (páginas impressas 229–243), correspondentes ao Apêndice 1 para Pernambuco.
 - Identificados 621 registros de localidades e 566 códigos únicos nacionais distintos de comunidades declaradas.
