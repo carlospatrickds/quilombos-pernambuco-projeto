@@ -687,3 +687,15 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Alteração restrita à apresentação CSS; sem mudanças em funcionalidades, dados ou estrutura cartográfica.
 
 **Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
+
+
+## 2026-11-27
+
+### 15:32 — Correção da disposição dos seletores territoriais
+- Restaurada a disposição horizontal dos botões Regiões/Estados e Municípios/Sub-regiões.
+- Removido o espaço superior artificial aplicado aos seletores territoriais na versão anterior.
+- Mantidas as proporções dos botões, com divisão horizontal equilibrada e centralização vertical.
+- Preservadas as dimensões externas dos grupos e os demais controles.
+
+**Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
+**Escopo:** ajuste visual de CSS; nenhuma alteração funcional ou cartográfica.
