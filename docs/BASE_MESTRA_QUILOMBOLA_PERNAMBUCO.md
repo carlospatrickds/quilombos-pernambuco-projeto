@@ -1,10 +1,10 @@
 # Base Mestra Quilombola de Pernambuco
 
 **Identificador:** BASE-QUILOMBOLA-PE-01  
-**Versão:** 0.2 — conferência das Tabelas de Resultados 01, 02 e 03  
+**Versão:** 0.3 — extração nominal do CSV vetorial estadual e conciliação por códigos  
 **Data de início:** 27/11/2026  
 **Responsável pelo projeto:** Atlas Territorial Quilombos de Pernambuco  
-**Situação:** quantitativos das Tabelas 01–03 conferidos; extração nominal integral e validação geoespacial ainda pendentes.
+**Situação:** quantitativos e registros nominais do CSV estadual conferidos por códigos; validação das geometrias SHP e revisão espacial dos pontos pendentes.
 
 ## 1. Objetivo
 
@@ -277,7 +277,7 @@ O código do território no Apêndice 2 não deve ser confundido com código mun
 
 Para o painel municipal, a presença de localidade vinculada a território intermunicipal deverá ser exibida como relação territorial, sem atribuir o território inteiro ao município nem contar o mesmo território como novo em cada município.
 
-**Limite da conferência:** os quantitativos, nomes dos territórios e códigos municipais foram transcritos das tabelas e páginas citadas. A conciliação integral de cada linha com o Apêndice 1, a extração tabular estruturada e a análise espacial das geometrias territoriais ainda precisam ser executadas. A abrangência intermunicipal identificada decorre dos geocódigos das localidades, não de uma análise espacial dos polígonos dos territórios.
+**Limite da conferência:** os quantitativos, nomes dos territórios e códigos municipais foram transcritos das tabelas e páginas citadas. A conciliação nominal dos 56 registros da Tabela 3 com o Apêndice 1 e o CSV vetorial estadual foi executada por código municipal da localidade. A análise espacial das geometrias territoriais continua pendente; a abrangência intermunicipal identificada decorre dos geocódigos das localidades, não de análise espacial dos polígonos.
 
 ## 10. Fontes oficiais e complementares
 
@@ -364,8 +364,8 @@ A reconciliação das tabelas confirma os quantitativos agregados, mas não subs
 | Total estadual da Tabela 1 | 14 / 566 / 621 | Conferido |
 | Soma municipal da Tabela 2 | 72 municípios; 566 / 621 | Conferido |
 | Tabela 3 | 14 territórios / 56 localidades | Conferido |
-| Correspondência nominal integral Apêndice 1 ↔ Apêndice 2 | Etapa de validação linha a linha | Pendente |
-| Geometrias e arquivos vetoriais | Não examinados nesta etapa | Pendente |
+| Correspondência nominal Apêndice 1 ↔ Apêndice 2 e CSV estadual | 56/56 vínculos territoriais por código | Conferido |
+| Coordenadas do CSV estadual | 621/621 preenchidas; geometria SHP ainda não inspecionada | Conferência tabular concluída; validação espacial pendente |
 | Certificação FCP e regularização fundiária | Não conciliadas nesta etapa | Pendente |
 
 **Conclusão:** os quantitativos agregados das três planilhas oficiais estão reconciliados. A base nominal e a validação geoespacial continuam em desenvolvimento. Nenhum indicador, mapa ou camada do Atlas deve ser atualizado automaticamente apenas com esta conferência documental.
@@ -388,3 +388,71 @@ Foi estruturado o arquivo `data/base-mestra/indicadores-municipais-localidades-q
 **Formato:** CSV UTF-8 com BOM e separador ponto e vírgula, para facilitar abertura em planilhas configuradas para o padrão regional brasileiro.
 
 **Limite de uso:** o arquivo contém quantitativos agregados por município. Não contém nomes individuais de comunidades nem coordenadas; não deve ser utilizado isoladamente para gerar pontos, polígonos ou cadastro nominal. Os dados são do Censo 2022 e não representam atualização administrativa posterior.
+
+
+## 9.5 Extração do CSV vetorial estadual e conciliação nominal por códigos
+
+**Arquivo original examinado:** `PE_LQs_CD2022_100724.csv`, disponibilizado no diretório oficial do IBGE em *Localidades Quilombolas 2022 → Arquivos_vetoriais → csv → UF*.
+
+**Dicionário examinado:** `Dicionario_LQs.xlsx`, aba `Localidades_Quilombolas_CD2022`.
+
+### 9.5.1 Estrutura e integridade do arquivo estadual
+
+A leitura do CSV de Pernambuco identificou:
+- **621 linhas** de localidades;
+- **621 códigos CD_LQ distintos**, sem duplicidade;
+- **566 códigos IDCQ0001 distintos**, correspondentes às comunidades declaradas;
+- **72 municípios**;
+- **621 registros com latitude e longitude preenchidas**;
+- **56 registros com CD_TQ preenchido**, distribuídos em **14 códigos de território**;
+- **565 registros sem CD_TQ preenchido**.
+
+As coordenadas estão descritas no dicionário como latitude e longitude em graus decimais. A presença de coordenadas no CSV não equivale, por si só, à validação da posição em relação às geometrias SHP ou à confirmação de precisão de campo.
+
+### 9.5.2 Conciliação integral com o Apêndice 1
+
+O código `CD_LQ` do CSV estadual foi cruzado com o campo `codigo_municipal_localidade_ibge` da extração do Apêndice 1.
+
+**Resultado:**
+- 621/621 códigos do Apêndice 1 encontrados no CSV estadual;
+- 621/621 códigos do CSV estadual encontrados no Apêndice 1;
+- 621/621 correspondências de código municipal do município;
+- 621/621 correspondências da ordem de ocorrência;
+- 621/621 correspondências do identificador nacional da comunidade, após preservar zeros à esquerda na representação textual;
+- 621/621 correspondências dos números de processo FCP informados.
+
+A chave de conciliação foi o código municipal da localidade, não o nome textual. Isso evita que variações de grafia, abreviações ou nomes repetidos produzam vínculos indevidos.
+
+**Observação sobre nomes:** o arquivo CSV recebido contém o cabeçalho `NM_CQ`, enquanto o dicionário apresenta `NM_LQ` para a descrição do nome da comunidade declarada associada à localidade. A divergência de cabeçalho foi registrada e o conteúdo original foi preservado no arquivo derivado, sem renomear semanticamente o campo como se a diferença estivesse resolvida. A extração tabular do Apêndice 1 também contém células vazias na coluna textual de nome; por isso, os nomes não foram utilizados como chave de validação.
+
+### 9.5.3 Conciliação dos territórios
+
+Os 56 registros do CSV com `CD_TQ` foram comparados com os 56 vínculos do cruzamento Apêndice 1–Apêndice 2.
+
+**Resultado: 56/56 correspondências exatas** entre:
+- `CD_LQ` e o código municipal da localidade;
+- `CD_TQ` e o código do território no Apêndice 2;
+- nome e código municipal associados ao registro territorial.
+
+Os 56 registros estão distribuídos nos mesmos 14 territórios já relacionados na seção 9.2. Os 565 registros sem `CD_TQ` não devem ser interpretados como comunidades inexistentes, não reconhecidas ou não certificadas; indicam apenas ausência de vínculo com território oficialmente delimitado nesse campo do produto.
+
+### 9.5.4 Arquivos estruturados derivados
+
+Foram criados três arquivos em `data/base-mestra/`:
+
+1. `localidades-quilombolas-PE-Censo2022.csv` — 621 localidades, códigos, município, coordenadas, atributos territoriais e campos originais preservados;
+2. `comunidades-quilombolas-PE-Censo2022.csv` — 566 códigos nacionais distintos, com nome no campo de origem, município, quantidade de localidades associadas e processos FCP informados;
+3. `relacoes-localidades-territorios-PE-Censo2022.csv` — 56 vínculos entre localidades e territórios, incluindo os códigos de comunidade, município e coordenadas.
+
+Os arquivos estão em CSV UTF-8 com BOM e separador ponto e vírgula. Os nomes dos campos derivados foram explicitados para facilitar leitura; os valores e códigos de origem foram preservados.
+
+### 9.5.5 Limites e próxima validação
+
+Concluída a conciliação tabular, permanecem pendentes:
+- inspeção do conjunto SHP de Pernambuco e seus arquivos auxiliares;
+- leitura do sistema de referência de coordenadas e conferência de geometrias;
+- verificação espacial dos 621 pontos em relação aos limites municipais e, quando aplicável, aos territórios;
+- avaliação da natureza e precisão dos pontos, sem presumir que sejam coordenadas de residência ou limites comunitários;
+- integração futura com FCP, INCRA e ITERPE em bases independentes.
+
+**Regra de publicação:** os CSVs derivados passam a compor a Base Mestra documental, mas não autorizam automaticamente a inclusão de 621 pontos no mapa público. A camada cartográfica dependerá da validação espacial, do tipo de geometria e de uma decisão editorial específica.
