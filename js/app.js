@@ -170,7 +170,7 @@ async function start() {
             // sem alterar as geometrias ou a posição dos dados.
             padding: desktop
               ? { top: 55, right: 55, bottom: 55 + mapHeight * 0.60, left: 55 }
-              : 55,
+              : { top: 28, right: 35, bottom: 28 + mapHeight * 0.20, left: 35 },
             duration: 450,
             maxZoom: desktop ? 9.0 : 7.5
           });
