@@ -1,5 +1,19 @@
 # Histórico de alterações
 
+## 2026-11-27
+
+### v1.4.5 — Estruturação da Base Mestra Quilombola de Pernambuco
+- Criado o documento `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`, definindo entidades independentes para comunidades, localidades e territórios, chaves, relacionamentos, categorias analíticas, protocolo de extração e critérios de publicação.
+- Identificada como fonte censitária principal a publicação do IBGE *Censo Demográfico 2022: Localidades Quilombolas — Resultados do Universo* (2024), com suas Tabelas 01, 02 e 03, Apêndices 01 e 02, arquivos geoespaciais e dicionário.
+- Registrada no inventário documental a fonte E04 e a pendência de extração e conferência dos arquivos originais.
+- Preservado o levantamento acadêmico do Agreste como fonte complementar, sem somá-lo automaticamente aos quantitativos censitários.
+
+**Arquivos criados:** `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`.
+**Arquivos alterados:** `docs/INVENTARIO_DOCUMENTAL.md`, `CHANGELOG.md`.
+
+**Escopo:** etapa documental e de governança. Nenhum dado estatístico publicado, camada, geometria, GeoJSON ou lógica cartográfica foi alterado. A base nominal ainda não foi extraída nem publicada.
+
+
 Registro cronológico das mudanças implementadas no projeto. Os horários seguem o fuso de Brasília (UTC−03:00).
 
 ## 2026-11-27
