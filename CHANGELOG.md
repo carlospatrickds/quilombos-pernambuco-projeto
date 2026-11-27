@@ -1,5 +1,19 @@
 # Histórico de alterações
 
+### 2026-11-27 — v0.2 da Base Mestra: conferência das Tabelas de Resultados 01, 02 e 03 do IBGE
+- Examinadas as três planilhas XLSX oficiais do produto *Localidades Quilombolas*, Censo Demográfico 2022.
+- Tabela 1: confirmados para Pernambuco (UF 26) 14 territórios oficialmente delimitados, 566 comunidades declaradas e associadas a localidades e 621 localidades quilombolas.
+- Tabela 2: identificadas 72 linhas municipais de Pernambuco; a soma municipal reconcilia com 566 comunidades declaradas e 621 localidades.
+- Tabela 3: confirmados 14 territórios e 56 localidades associadas.
+- Explicitada a diferença entre o universo estadual de 621 localidades e o recorte de 56 localidades associadas aos territórios listados na Tabela 3.
+- Registrado que a conferência dos quantitativos agregados não substitui o cruzamento nominal integral dos apêndices nem a validação geoespacial.
+- Atualizada a versão e a situação da Base Mestra.
+
+**Arquivos alterados:** `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`, `CHANGELOG.md`.
+**Escopo:** conferência e documentação de resultados oficiais; sem alteração de indicadores publicados, mapas, geometrias, arquivos GeoJSON ou lógica cartográfica.
+
+# Histórico de alterações
+
 
 ### Correção da conferência do Apêndice 2 — 27/11/2026
 - A leitura foi ampliada às páginas 346 (impressa 344), que contêm os territórios 95 (CONCEIÇÃO DAS CRIOULAS) e 96 (CASTAINHO), ausentes na primeira consulta parcial.
