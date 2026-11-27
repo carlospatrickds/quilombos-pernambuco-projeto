@@ -1,5 +1,17 @@
 ## 2026-11-27
 
+### 11:42 — Aproximação inicial do mapa de Pernambuco no desktop
+- Aumentado em 0,7 nível o zoom após o enquadramento automático dos limites estaduais, buscando escala gráfica inicial próxima de 300 km em vez de 500 km.
+- Ajuste aplicado somente em telas com largura superior a 700 px.
+- Enquadramento inicial móvel mantido sem alteração.
+- Preservados centro calculado pelo território, limites geográficos, geometria, projeção, camadas, controles e interações.
+- Atualizada a versão de cache do módulo cartográfico em `js/app.js`.
+
+**Arquivos alterados:** `js/mapa.js`, `js/app.js`, `CHANGELOG.md`.
+**Validação:** conferida a alteração no bloco de enquadramento inicial e a referência atualizada do módulo. A escala final precisa de conferência visual no navegador, pois depende das dimensões efetivas da janela e do mapa.
+
+## 2026-11-27
+
 ### 11:33 — Integração dos dados de comunidades e localidades do IBGE às fichas municipais
 - Criado o módulo `data/localidades-quilombolas-municipais-censo-2022.js`, derivado dos arquivos já conferidos da Tabela de Resultado 2 e do CSV vetorial estadual.
 - Integrados os quantitativos de comunidades declaradas associadas a localidades e de localidades quilombolas para os 72 municípios com registros na Tabela 2.
