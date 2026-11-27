@@ -738,3 +738,15 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 **Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
 **Escopo:** apresentação da barra de filtros; nenhuma alteração em lógica de busca, dados, geometrias, camadas ou interações do mapa.
+
+
+## 2026-11-27
+
+### 16:12 — Correção do controle de visualização territorial
+- Corrigida a composição do card Municípios/Sub-regiões e Regiões/Estados.
+- O título “Visualização territorial” ocupa uma linha reservada própria.
+- As duas opções passam a ocupar colunas iguais na mesma linha, sem empilhamento ou extravasamento vertical.
+- Mantidas altura externa, paleta, bordas e dimensões gerais dos demais cards.
+- Correção restrita ao CSS da barra superior.
+
+**Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
