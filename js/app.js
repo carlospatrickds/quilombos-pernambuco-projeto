@@ -161,7 +161,14 @@ async function start() {
           else coords.forEach(walk);
         };
         geo.features.forEach(feature => walk(feature.geometry.coordinates));
-        if (!bounds.isEmpty()) map.fitBounds(bounds, { padding: 65, duration: 450, maxZoom: 7.5 });
+        if (!bounds.isEmpty()) {
+          const desktop = window.matchMedia('(min-width: 701px)').matches;
+          map.fitBounds(bounds, {
+            padding: desktop ? 42 : 65,
+            duration: 450,
+            maxZoom: desktop ? 8.2 : 7.5
+          });
+        }
       }
       appliedRegion = region;
       console.info('Escala territorial carregada:', region);
