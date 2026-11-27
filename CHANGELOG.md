@@ -4,6 +4,22 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-27
 
+### v1.2.0 — Biblioteca visual inicial
+- Criada a página `biblioteca.html`, acessível pelo menu de navegação do Atlas.
+- Criada a coleção inicial de três registros Adinkra: Sankofa (p. 28), Nsaa (p. 82) e Nkyinkyim (p. 108), com significados e níveis de validação explicitados conforme as fotografias e referências fornecidas pelo responsável pelo projeto.
+- Incluídas representações vetoriais esquemáticas para organização visual. Elas não são apresentadas como reproduções fiéis das imagens do livro.
+- Registrada a pendência dos dados editoriais completos do livro (título, autoria, edição, editora e ano), necessários para completar as referências bibliográficas.
+- Preparada a estrutura editorial para futura inclusão de fotografias, documentos, mapas e imagens vinculáveis aos painéis municipais/comunitários.
+- Adicionado menu de navegação com acesso ao Atlas, à página de reconhecimentos e à Biblioteca visual.
+
+**Arquivos criados:** `biblioteca.html`, `css/biblioteca.css`.
+**Arquivos alterados:** `index.html`, `CHANGELOG.md`.
+
+**Preservação:** nenhuma geometria, camada, dado ou lógica cartográfica foi alterada. Nenhuma imagem do livro foi reproduzida; os desenhos são esquemáticos e devem ser conferidos com a fonte original.
+
+
+## 2026-11-27
+
 ### 00:02 — v1.1.0-rc.6 — Faixa fixa, repetição compacta e etiqueta móvel
 - Movida a faixa decorativa para um pseudo-elemento fixo do documento, independente da altura/rolagem do contêiner principal, para evitar trechos em que a faixa desaparece.
 - Reduzido o intervalo vertical da estampa Adinkra de 210 px para 170 px, mantendo os três símbolos e a paleta aprovada, para diminuir o vazio entre os grupos.
