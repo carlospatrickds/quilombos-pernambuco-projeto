@@ -675,3 +675,15 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Ajustado o estado visual dos botões Mostrar/Ocultar quando o usuário muda para Brasil ou Nordeste, evitando que a interface preserve uma seleção incompatível com a camada desativada.
 - Corrigida a expressão de normalização Unicode da busca para remover acentos com a faixa de caracteres combinantes.
 - Atualizadas novamente as versões de cache do aplicativo e do módulo cartográfico.
+
+
+## 2026-11-27
+
+### 15:18 — Alinhamento interno dos controles do mapa
+- Padronizada a altura dos grupos de seleção e a área reservada aos rótulos.
+- Alinhadas as linhas dos botões Mostrar/Ocultar, Municípios/Sub-regiões e Ligadas/Desligadas.
+- Ajustados altura, alinhamento vertical e centralização dos campos de busca e reinício em relação aos grupos.
+- Mantida a ordem dos controles e a codificação cromática aprovada: verde para Mostrar e terracota para Ocultar.
+- Alteração restrita à apresentação CSS; sem mudanças em funcionalidades, dados ou estrutura cartográfica.
+
+**Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
