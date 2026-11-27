@@ -245,6 +245,7 @@ export function openMunicipality(feature) {
     $('#community-tags').append(pending);
   }
 
+  content.querySelectorAll('.community-academic-note').forEach(node => node.remove());
   if (agresteRecord) {
     const academicNote = document.createElement('p');
     academicNote.className = 'community-academic-note';
@@ -277,6 +278,7 @@ export function openMunicipality(feature) {
     (populationSource
       ? `População municipal: IBGE, Censo Demográfico 2022, SIDRA tabela 4709, variável 93. População quilombola: IBGE, Censo Demográfico 2022, SIDRA tabela 9578, variável Pessoas quilombolas, localização do domicílio. Consulta: 24/11/2026. Nos recortes dentro/fora, “Não divulgado” identifica dado inibido pelo IBGE (X), não zero. Geometria: malha municipal, edição 2025.`
       : 'A geometria vem da Malha Municipal de Pernambuco. Indicadores demográficos e informações comunitárias ainda não foram conectados.');
+  $('#source-copy').textContent += ' Comunidades declaradas e localidades: IBGE, Censo Demográfico 2022, Localidades Quilombolas, Tabela de Resultado 2 e arquivo vetorial estadual de Pernambuco. A relação nominal reproduz o campo NM_CQ do arquivo; a divergência entre o cabeçalho e o dicionário está documentada na Base Mestra.';
   backdrop.hidden = false;
   requestAnimationFrame(() => panel.classList.add('open'));
   panel.setAttribute('aria-hidden', 'false');
