@@ -615,5 +615,5 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - A coluna de moradores exibe traço e explicação explícita: a base atualmente integrada não apresenta população individualizada por comunidade; nenhum valor foi estimado ou distribuído a partir do total municipal.
 - Preservados os dados municipais, a relação nominal, os vínculos territoriais e as fontes existentes.
 
-**Arquivos alterados:** `index.html`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
+**Arquivos alterados:** `index.html`, `js/app.js`, `js/panel.js`, `css/painel.css`, `CHANGELOG.md`.
 **Preservação:** nenhuma alteração em dados-fonte, GeoJSON, geometrias, projeções, enquadramentos, camadas ou lógica cartográfica.
