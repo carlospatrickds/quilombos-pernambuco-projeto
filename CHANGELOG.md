@@ -4,6 +4,16 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 ## 2026-11-27
 
+### 23:58 — v1.2.1 — Referência bibliográfica Adinkra
+- Atualizada a Biblioteca visual com a referência completa da obra `Adinkra: sabedoria em símbolos africanos`, 2ª edição, 2022.
+- Identificados Elisa Larkin Nascimento e Luiz Carlos Gá como organizadores; editoras Cobogó e Ipeafro; ISBN 978-65-5691-076-5; classificação catalográfica A183.
+- Registrados os créditos editoriais visíveis na ficha fotografada: revisão final de Eduardo Carneiro e projeto gráfico de Thiago Lacaz.
+- Associada a referência completa aos três registros e mantidas as páginas consultadas: Sankofa (28), Nsaa (82) e Nkyinkyim (108).
+
+**Arquivos alterados:** `biblioteca.html`, `css/biblioteca.css`, `CHANGELOG.md`.
+**Preservação:** nenhuma alteração na cartografia, nos dados territoriais ou nos painéis das comunidades.
+
+
 ### v1.2.0 — Biblioteca visual inicial
 - Criada a página `biblioteca.html`, acessível pelo menu de navegação do Atlas.
 - Criada a coleção inicial de três registros Adinkra: Sankofa (p. 28), Nsaa (p. 82) e Nkyinkyim (p. 108), com significados e níveis de validação explicitados conforme as fotografias e referências fornecidas pelo responsável pelo projeto.
