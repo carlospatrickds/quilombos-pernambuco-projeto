@@ -9,7 +9,7 @@ export const CONFIG = {
   zoom: 7.2,
   minZoom: 1.8, // Desktop: permite afastamento nacional amplo, próximo de 5.000 km na escala gráfica.
   mobileMinZoom: 1.5, // Celular: permite afastamento nacional amplo, próximo de 5.000 km na escala gráfica.
-  maxZoom: 8.3, // Permite enquadramento inicial mais próximo de Pernambuco e aproximação detalhada.
+  maxZoom: 9.0, // Permite enquadramento inicial ampliado de Pernambuco no desktop.
   pitch: 0, // Visualização padrão plana (2D).
   bearing: 0,
   extrusion: { base: 0, normal: 28, selected: 180 },
