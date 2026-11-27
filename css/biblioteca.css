@@ -30,5 +30,8 @@
 .symbol-art img{display:block;width:116px;height:116px;object-fit:contain}
 
 
-/* Símbolo Nkyinkyim: área de respiro adicional para exibir o desenho completo. */
-.symbol-art img[src*="nkyinkyim"]{width:104px;height:104px;object-fit:contain}
+
+
+
+/* Nkyinkyim: proporção vertical integral da referência enviada. */
+.symbol-art img[src*="nkyinkyim"]{width:104px;height:150px;object-fit:contain;max-width:100%}
