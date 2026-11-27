@@ -505,3 +505,18 @@ h1,
 
 
 /* v1.1.0-rc.6 — Faixa fixa no viewport e repetição Adinkra mais compacta. */
+
+
+/* v1.3.2 — Fotografia documental no contexto do primeiro Censo Quilombola. */
+.census-documentary-figure{margin:0 0 20px;background:#EDE6D8;border:1px solid rgba(104,115,77,.22)}
+.census-documentary-figure img{display:block;width:100%;max-height:390px;aspect-ratio:16/7;object-fit:cover;object-position:center 43%}
+.census-documentary-figure figcaption{padding:9px 12px;color:#705F4B;font-size:10px;line-height:1.5}
+.census-documentary-figure figcaption span{margin-left:5px;color:#8A7762}
+.census-context-heading h2{margin:0 0 8px;font:500 clamp(22px,2.7vw,30px)/1.2 var(--font-editorial,Georgia,serif);color:var(--brown-deep)}
+.census-context-heading>p{max-width:900px}
+@media(max-width:720px){
+ .census-documentary-figure{margin-bottom:15px}
+ .census-documentary-figure img{aspect-ratio:4/3;max-height:300px;object-position:center center}
+ .census-documentary-figure figcaption{padding:8px 10px;font-size:9px}
+ .census-context-heading h2{font-size:21px}
+}
