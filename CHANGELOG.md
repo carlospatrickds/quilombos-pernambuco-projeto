@@ -699,3 +699,14 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 
 **Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
 **Escopo:** ajuste visual de CSS; nenhuma alteração funcional ou cartográfica.
+
+
+## 2026-11-27
+
+### 15:46 — Correção de controles duplicados entre escalas
+- Corrigida a precedência CSS que fazia os seletores de Brasil e Pernambuco ignorarem o atributo HTML `hidden`.
+- Agora, em Pernambuco, aparece somente “Municípios / Sub-regiões”; em Brasil, somente “Regiões / Estados”.
+- Mantida a disposição horizontal e as proporções dos botões.
+- Nenhuma alteração na lógica territorial, dados ou cartografia.
+
+**Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
