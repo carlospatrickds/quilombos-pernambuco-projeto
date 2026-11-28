@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js?v=20261127-zoom-inicial-pe-v145';
+import { CONFIG } from './config.js?v=20261127-enquadramento-pe-centralizado-v146';
 import { normalizeCollection } from './data.js?v=20261127-caminho-localidades-fix';
 import { openMunicipality, openMesoregion } from './panel.js?v=20261125-vignette-fix-2';
 import { MACROREGIONS_CENSUS_2022 } from '../data/populacao-quilombola-regioes-censo-2022.js';
@@ -164,12 +164,6 @@ export function addMunicipalLayer(map, geojson) {
       bearing: CONFIG.bearing
     });
 
-    // No desktop, aproxima o enquadramento inicial em cerca de 0,7 nível
-    // de zoom (escala gráfica próxima de 300 km, em vez de 500 km).
-    // O enquadramento móvel permanece inalterado.
-    if (window.matchMedia('(min-width: 701px)').matches) {
-      map.setZoom(Math.min(map.getZoom() + 0.7, CONFIG.maxZoom));
-    }
   }
 }
 
