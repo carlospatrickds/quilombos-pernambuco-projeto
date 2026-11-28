@@ -3,7 +3,7 @@ import {
   loadStates, addStateLayer, showStateView, loadMacroRegions, addMacroRegionLayer,
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, setCommunityLayer, addCommunityPointLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
-} from './mapa.js?v=20261127-toolbar-busca-comunidade-v138';
+} from './mapa.js?v=20261127-enquadramento-pe-centralizado-v139';
 import { initPanel, closePanel } from './panel.js?v=20261127-fcp-piloto-v124';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
@@ -163,14 +163,11 @@ async function start() {
         geo.features.forEach(feature => walk(feature.geometry.coordinates));
         if (!bounds.isEmpty()) {
           const desktop = window.matchMedia('(min-width: 701px)').matches;
-          const mapHeight = map.getContainer().clientHeight;
           map.fitBounds(bounds, {
-            // No desktop, desloca visualmente o território 30% para cima.
-            // O padding inferior assimétrico desloca o centro do enquadramento
-            // sem alterar as geometrias ou a posição dos dados.
+            // Enquadramento centralizado, com margem uniforme em todos os lados.
             padding: desktop
-              ? { top: 55, right: 55, bottom: 55 + mapHeight * 0.60, left: 55 }
-              : { top: 28, right: 35, bottom: 28 + mapHeight * 0.20, left: 35 },
+              ? { top: 55, right: 55, bottom: 55, left: 55 }
+              : { top: 28, right: 35, bottom: 28, left: 35 },
             duration: 450,
             maxZoom: desktop ? 9.0 : 7.5
           });
