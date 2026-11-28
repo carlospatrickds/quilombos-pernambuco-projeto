@@ -832,3 +832,14 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Alteração restrita ao CSS responsivo; sem mudanças na apresentação desktop, no mapa, nos dados ou nas interações.
 
 **Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
+
+
+## 2026-11-27
+
+### 22:41 — Restauração do tamanho e da centralização do mapa de Pernambuco
+- Removido o deslocamento vertical produzido pelo preenchimento inferior assimétrico no enquadramento da escala Pernambuco.
+- Restaurada a margem uniforme de 55 px no desktop, mantendo o limite de zoom 9,0; no celular, mantidas as margens de 28 px no topo/base e 35 px nas laterais, com limite 7,5.
+- Removido o acréscimo automático de 0,7 nível de zoom no enquadramento inicial desktop.
+- Alteração restrita ao tamanho e à centralização visual do mapa de Pernambuco. Preservados GeoJSON, geometrias, coordenadas, projeções, dados, camadas, controles e interações.
+
+**Arquivos alterados:** `js/app.js`, `js/mapa.js`, `index.html`, `CHANGELOG.md`.
