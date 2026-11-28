@@ -1,5 +1,18 @@
 ## 2026-11-27
 
+### 22:07 — Cruzamento piloto de certificações FCP em Itacuruba
+- Criado módulo independente com a situação FCP das três comunidades declaradas pelo IBGE em Itacuruba.
+- Negros de Gilú e Poço dos Cavalos aparecem como certificadas, com processo e data da portaria. Associação Santa Clara aparece como “Não localizada na extração consultada”, sem inferir ausência de certificação.
+- A ficha municipal exibe a situação FCP abaixo da denominação censitária, mantendo separados o Censo e o registro administrativo.
+- Incluídos links para a fonte da Fundação Cultural Palmares e atualizada a versão de cache do painel.
+- O cruzamento é piloto; não representa ainda a conciliação integral das 566 comunidades de Pernambuco.
+- Nenhuma geometria, projeção, camada, coordenada, enquadramento ou interação cartográfica foi modificada.
+
+**Arquivos alterados:** `data/certificacoes-fcp-piloto-itacuruba.js`, `js/panel.js`, `js/app.js`, `css/painel.css`, `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`, `CHANGELOG.md`.
+**Validação:** processos de Negros de Gilú e Poço dos Cavalos conferidos na relação oficial da FCP; validação visual após publicação pendente.
+
+## 2026-11-27
+
 ### 11:53 — Compatibilidade com importação antiga do módulo de localidades
 - Criado módulo de compatibilidade em `js/localidades-quilombolas-municipais-censo-2022.js`, correspondente ao caminho antigo que ainda pode ser solicitado por versões de `js/data.js` mantidas em cache.
 - O módulo apenas reexporta os dados de `data/localidades-quilombolas-municipais-censo-2022.js`; não duplica, transforma ou altera a base.
