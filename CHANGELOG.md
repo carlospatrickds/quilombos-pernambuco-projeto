@@ -854,3 +854,10 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Alteração restrita à escala e ao posicionamento visual da malha de Pernambuco; preservados GeoJSON, geometrias, coordenadas, projeções, dados, camadas, controles e interações.
 
 **Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
+
+### 22:50 — Elevação do enquadramento de Pernambuco em 40%
+- Reposicionado o enquadramento desktop para elevar visualmente a malha de Pernambuco em aproximadamente 40% da altura do quadro, usando preenchimento inferior assimétrico calculado pela altura real do mapa.
+- Mantidos o zoom, os limites de aproximação, as margens laterais e o enquadramento móvel.
+- Alteração restrita ao posicionamento visual; preservados GeoJSON, geometrias, coordenadas, projeções, dados, camadas, controles e interações.
+
+**Arquivos alterados:** js/app.js, index.html, CHANGELOG.md.
