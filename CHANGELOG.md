@@ -1,3 +1,18 @@
+## 2026-11-28
+
+### 09:23 — Integração do cruzamento IBGE × FCP às fichas municipais
+- Integrado às fichas municipais o Cadastro Mestre fase 9, usando a chave composta código municipal IBGE + IDCQ0001.
+- Disponibilizados 176 identificadores-base com vínculo: 158 com vínculo por processo em todos os registros, 10 com vínculo misto e 8 com vínculo nominal manual.
+- Os demais identificadores exibem “vínculo não identificado nas bases cruzadas”, com aviso explícito de que isso não significa ausência de certificação.
+- As fichas exibem situação FCP, processos associados e códigos CD_LQ; vínculos nominais e mistos recebem ressalva.
+- A posição administrativa da FCP (14/04/2025) é apresentada separadamente do ano censitário (2022).
+- Preservado o piloto de Itacuruba.
+- Nenhuma geometria, coordenada, projeção, camada, enquadramento ou interação cartográfica foi alterada.
+
+**Arquivos criados:** `data/certificacoes-fcp-cruzamento-pernambuco-2025.js`.
+**Arquivos alterados:** `js/panel.js`, `js/app.js`, `css/painel.css`, `index.html`, `docs/BASE_MESTRA_QUILOMBOLA_PERNAMBUCO.md`, `CHANGELOG.md`.
+**Validação:** 566 identificadores-base conferidos; 176 com vínculo (158 exatos, 10 mistos, 8 nominais) e 390 sem vínculo identificado. Validação visual após publicação pendente.
+
 ## 2026-11-27
 
 ### 22:07 — Cruzamento piloto de certificações FCP em Itacuruba
