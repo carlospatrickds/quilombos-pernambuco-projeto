@@ -163,14 +163,20 @@ async function start() {
         geo.features.forEach(feature => walk(feature.geometry.coordinates));
         if (!bounds.isEmpty()) {
           const desktop = window.matchMedia('(min-width: 701px)').matches;
+          const mapHeight = map.getContainer().clientHeight;
           map.fitBounds(bounds, {
-            // Enquadramento centralizado, com margem uniforme em todos os lados.
+            // No desktop, aproxima Pernambuco para uma escala visual próxima
+            // de 500 km e posiciona o território um pouco abaixo do centro,
+            // mantendo-o na mesma faixa vertical da visualização do Brasil.
             padding: desktop
-              ? { top: 55, right: 55, bottom: 55, left: 55 }
+              ? { top: 55 + mapHeight * 0.25, right: 55, bottom: 55, left: 55 }
               : { top: 28, right: 35, bottom: 28, left: 35 },
             duration: 450,
             maxZoom: desktop ? 9.0 : 7.5
           });
+          if (desktop) {
+            map.setZoom(Math.min(map.getZoom() + 2.5, 9.0));
+          }
         }
       }
       appliedRegion = region;
