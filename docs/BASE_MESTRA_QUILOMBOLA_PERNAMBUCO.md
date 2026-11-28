@@ -504,3 +504,28 @@ Para Poço dos Cavalos, o número do processo coincide entre o arquivo vetorial 
 Este é um piloto, não a conciliação integral das 566 comunidades declaradas no Censo. A relação FCP consultada foi atualizada em 03/06/2024; antes de ampliar o cruzamento, será necessário localizar e arquivar a versão oficial mais recente, registrar data de extração e hash, normalizar campos e conferir processos e homônimos. “Não localizada na extração consultada” não significa “não certificada”. Certificação FCP também não equivale à delimitação ou titulação territorial.
 
 **Arquivo de dados:** `data/certificacoes-fcp-piloto-itacuruba.js`. **Preservação cartográfica:** nenhuma geometria, projeção, camada, coordenada, enquadramento ou interação foi modificada.
+
+
+## 9.8 Integração do cruzamento IBGE × FCP ao Atlas
+
+Em 28/11/2026 foi integrado às fichas municipais o cruzamento constante da aba `Fase9_IDCQ_mestre_566` do Cadastro Mestre.
+
+**Chave de associação na interface:** código municipal IBGE + `IDCQ0001`. A relação é exibida na ficha da comunidade declarada no Censo, sem alterar os dados censitários nem a geometria cartográfica.
+
+### Classificação dos vínculos integrados
+- **Vínculo por processo:** correspondência exata entre o processo informado no registro IBGE e processo constante da relação de certidões expedidas da FCP.
+- **Vínculo misto:** o mesmo identificador-base contém registros com vínculo processual e registros sem vínculo.
+- **Vínculo nominal manual:** associação nominal previamente registrada, sem equivalência a correspondência exata por processo.
+- **Vínculo não identificado:** não foi estabelecida correspondência nas bases cruzadas; não significa ausência de certificação.
+
+### Quantitativos integrados
+- 621 registros cartográficos (`CD_LQ`) no cadastro de origem;
+- 566 identificadores-base (`IDCQ0001`) distintos;
+- 176 identificadores com vínculo: 158 exatos, 10 mistos e 8 nominais manuais;
+- 390 identificadores sem vínculo identificado.
+
+A posição das relações da FCP é **14/04/2025**. A informação não deve ser interpretada como situação atualizada em 2026. Certificações posteriores exigem nova extração e atualização documentada.
+
+**Fonte institucional:** [Dados abertos da Fundação Cultural Palmares](https://www.gov.br/palmares/pt-br/acesso-a-informacao/dados-abertos).
+
+A integração é editorial e cadastral. Não modifica geometrias, coordenadas, projeções, malhas, camadas ou interações do mapa.
