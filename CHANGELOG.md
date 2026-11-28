@@ -843,3 +843,14 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Alteração restrita ao tamanho e à centralização visual do mapa de Pernambuco. Preservados GeoJSON, geometrias, coordenadas, projeções, dados, camadas, controles e interações.
 
 **Arquivos alterados:** `js/app.js`, `js/mapa.js`, `index.html`, `CHANGELOG.md`.
+
+
+## 2026-11-27
+
+### 22:45 — Aproximação e reposicionamento vertical de Pernambuco
+- Ampliado o enquadramento desktop da escala Pernambuco em 2,5 níveis de zoom, limitado ao máximo técnico de 9,0, para aproximar a escala gráfica da referência solicitada de 500 km.
+- Aplicado preenchimento superior adicional equivalente a 25% da altura do mapa, mantendo a margem inferior e laterais, para posicionar Pernambuco um pouco mais abaixo no quadro e aproximar sua altura visual da escala Brasil.
+- Mantido o enquadramento móvel sem alterações.
+- Alteração restrita à escala e ao posicionamento visual da malha de Pernambuco; preservados GeoJSON, geometrias, coordenadas, projeções, dados, camadas, controles e interações.
+
+**Arquivos alterados:** `js/app.js`, `index.html`, `CHANGELOG.md`.
