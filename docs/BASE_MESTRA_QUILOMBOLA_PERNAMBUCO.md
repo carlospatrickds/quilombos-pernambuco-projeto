@@ -475,3 +475,32 @@ Em 27/11/2026, os quantitativos municipais da Tabela de Resultado 2 e a relaçã
 Municípios sem linha na Tabela de Resultado 2 são identificados como sem registro nessa tabela; a interface não os classifica como municípios sem comunidades quilombolas.
 
 **Limite cartográfico:** esta integração é exclusivamente tabular/editorial. Não foram utilizados os campos de latitude e longitude para criar pontos no mapa. A validação dos arquivos SHP, do sistema de referência e da posição dos pontos permanece pendente. Nenhuma geometria, projeção, enquadramento, camada ou interação cartográfica foi modificada.
+
+
+## 9.7 Cruzamento piloto com o cadastro de certificações da Fundação Cultural Palmares
+
+Em 27/11/2026 foi iniciado o cruzamento entre a relação nominal de comunidades declaradas no Censo 2022 e a relação administrativa de comunidades certificadas pela Fundação Cultural Palmares (FCP). A primeira unidade de teste é Itacuruba/PE, onde o Atlas apresenta três comunidades declaradas associadas a quatro localidades.
+
+### Critério de correspondência
+A correspondência prioriza o número do processo FCP informado no registro do IBGE; em seguida, o código IBGE do município e o nome da comunidade, com variantes de grafia apenas como apoio. Semelhança nominal isolada não confirma identidade.
+
+### Resultado do piloto — Itacuruba/PE
+
+| Comunidade declarada no IBGE | Código IBGE | Situação na FCP | Evidência |
+|---|---:|---|---|
+| ASSOCIAÇÃO SANTA CLARA | 446 | Não localizada na extração consultada | Não permite concluir ausência de certificação |
+| NEGROS DE GILÚ | 4349 | Certificada | Processo 01420.000285/2002-71; Portaria 7/2005, publicada em 19/04/2005 |
+| POÇO DOS CAVALOS | 5041 | Certificada | Processo 01420.000170/2006-18; Portaria 08/2006, publicada em 12/05/2006 |
+
+Para Poço dos Cavalos, o número do processo coincide entre o arquivo vetorial estadual do IBGE e o cadastro da FCP. Para Negros de Gilú, a certificação consta na relação oficial da FCP e é corroborada pelo documento técnico da CPRH. Associação Santa Clara permanece sem correspondência localizada na extração consultada; seu estado é pendente, não negativo.
+
+### Fontes do piloto
+- FCP — relação de comunidades certificadas, arquivo CSV disponibilizado em 03/06/2024: https://www.gov.br/palmares/pt-br/midias/arquivos-menu-departamentos/dpa/comunidades-certificadas/crqs-certificadas-03-06-2024.csv/view
+- FCP — página institucional de certificação: https://www.gov.br/palmares/pt-br/departamentos/protecao-preservacao-e-articulacao/certificacao-quilombola
+- CPRH — Relatório Ambiental Simplificado CTR Itaparica, Tabela 20: https://www2.cprh.pe.gov.br/wp-content/uploads/2022/09/RAS-CTR-Itaparica.pdf
+- IBGE — arquivo vetorial estadual de Localidades Quilombolas, Censo 2022, conciliado na seção 9.5.
+
+### Limites e próximas etapas
+Este é um piloto, não a conciliação integral das 566 comunidades declaradas no Censo. A relação FCP consultada foi atualizada em 03/06/2024; antes de ampliar o cruzamento, será necessário localizar e arquivar a versão oficial mais recente, registrar data de extração e hash, normalizar campos e conferir processos e homônimos. “Não localizada na extração consultada” não significa “não certificada”. Certificação FCP também não equivale à delimitação ou titulação territorial.
+
+**Arquivo de dados:** `data/certificacoes-fcp-piloto-itacuruba.js`. **Preservação cartográfica:** nenhuma geometria, projeção, camada, coordenada, enquadramento ou interação foi modificada.
