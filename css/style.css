@@ -1045,3 +1045,58 @@ body::after{
   .map-actions>.tooltip-layer-control[hidden],
   .map-actions>#brazil-map-mode[hidden]{display:none!important}
 }
+
+
+/* v149 — correção de largura dos controles segmentados em telas estreitas.
+   Impede que a largura intrínseca dos botões ultrapasse os cartões. */
+@media(max-width:720px){
+  .map-actions{min-width:0}
+  .map-actions>.community-layer-control,
+  .map-actions>.tooltip-layer-control{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:12px 36px;
+    align-content:center;
+    align-items:stretch;
+    justify-items:stretch;
+    min-width:0;
+    max-width:100%;
+    overflow:hidden;
+  }
+  .map-actions>.community-layer-control .map-toggle-segment,
+  .map-actions>.tooltip-layer-control .map-toggle-segment{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    height:36px;
+    min-height:36px;
+    overflow:hidden;
+  }
+  .map-actions>.community-layer-control .map-toggle-segment .map-mode-button,
+  .map-actions>.tooltip-layer-control .map-toggle-segment .map-mode-button{
+    display:flex;
+    width:auto !important;
+    min-width:0 !important;
+    max-width:100%;
+    flex:initial;
+    padding:0 4px;
+    white-space:nowrap;
+    font-size:11px;
+  }
+  .map-actions>#pernambuco-map-mode,
+  .map-actions>#brazil-map-mode{
+    min-width:0;
+    max-width:100%;
+    overflow:hidden;
+  }
+  .map-actions>#pernambuco-map-mode .map-mode-button,
+  .map-actions>#brazil-map-mode .map-mode-button{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    padding:0 4px;
+    font-size:11px;
+  }
+}
