@@ -4,7 +4,7 @@ import {
   setBrazilMapMode, applyMesorregionColors, addMesorregionBoundaries,
   setPernambucoMapMode, setCommunityLayer, addCommunityPointLayer, addPernambucoNortheastOverlay, setNortheastPeMode, clearTerritorialSelection
 } from './mapa.js?v=20261127-enquadramento-pe-centralizado-v139';
-import { initPanel, closePanel } from './panel.js?v=20261127-fcp-piloto-v124';
+import { initPanel, closePanel } from './panel.js?v=20261128-fcp-integracao-v125';
 import { initRegionalDashboard } from './dados-gerais.js?v=20261125-kpis-compactos';
 import { STATE_CENSUS_2022 } from '../data/populacao-quilombola-estados-censo-2022.js';
 
