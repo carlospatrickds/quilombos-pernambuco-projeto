@@ -1,6 +1,7 @@
 import { MUNICIPAL_DATA } from './data.js?v=20261127-ibge-comunidades-v111';
 import { DATA_STATUS } from './config.js';
-import { FCP_BY_IBGE_COMMUNITY, FCP_CROSSWALK_SOURCE } from '../data/certificacoes-fcp-piloto-itacuruba.js';
+import { FCP_BY_IBGE_COMMUNITY } from '../data/certificacoes-fcp-piloto-itacuruba.js';
+import { FCP_MATCHES_BY_IBGE_COMMUNITY, FCP_MATCHES_SOURCE } from '../data/certificacoes-fcp-cruzamento-pernambuco-2025.js?v=20261128-fcp-base-v1';
 import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
 import { AGRESTE_COMMUNITY_TOTAL, AGRESTE_COMMUNITY_SOURCE, getAgresteMunicipalityCommunityCount, getAgresteSubregionCounts } from '../data/comunidades-agreste.js';
 
@@ -236,18 +237,55 @@ export function openMunicipality(feature) {
       residents.title = 'População individual por comunidade não disponível na base consultada.';
 
       li.append(identity, localities, residents);
-      const fcp = FCP_BY_IBGE_COMMUNITY[id + ':' + item.id];
+      const fcp = FCP_MATCHES_BY_IBGE_COMMUNITY[id + ':' + item.id] || FCP_BY_IBGE_COMMUNITY[id + ':' + item.id];
+      const certification = document.createElement('small');
+      certification.className = 'community-record-fcp';
       if (fcp) {
-        const certification = document.createElement('small');
-        certification.className = 'community-record-fcp ' + (fcp.status === 'certificada' ? 'is-certified' : 'is-unverified');
-        certification.textContent = 'FCP: ' + fcp.label + (fcp.certificationDate ? ' · ' + fcp.certificationDate : '');
+        const isExact = fcp.linkType === 'EXATA_PROCESSO';
+        const isMixed = fcp.linkType === 'MISTO';
+        const isManual = fcp.linkType === 'NOMINAL_MANUAL';
+        const isCertified = fcp.status === 'CERTIFICADA' || fcp.status === 'certificada';
+        certification.classList.add(isCertified ? 'is-certified' : 'is-unverified');
+        if (isManual) certification.classList.add('is-manual');
+        if (isMixed) certification.classList.add('is-mixed');
+        if (fcp.linkType === 'VINCULO_NOMINAL_MANUAL') {
+          certification.textContent = 'FCP: vínculo nominal manual · situação não inferida';
+        } else {
+          certification.textContent = 'FCP: ' + (isCertified ? 'certificada' : (fcp.label || 'situação não identificada')) + ' · posição ' + (fcp.snapshot || '14/04/2025');
+          if (isMixed) certification.textContent += ' · vínculo misto no identificador';
+        }
         li.append(certification);
-        if (fcp.processFcp) {
+        if (fcp.fcpName) {
+          const fcpName = document.createElement('small');
+          fcpName.className = 'community-record-fcp-process';
+          fcpName.textContent = 'Denominação na FCP: ' + fcp.fcpName;
+          li.append(fcpName);
+        }
+        const processes = fcp.processes || fcp.processFcp;
+        if (processes) {
           const process = document.createElement('small');
           process.className = 'community-record-fcp-process';
-          process.textContent = 'Processo FCP: ' + fcp.processFcp;
+          process.textContent = 'Processo(s) FCP: ' + processes;
           li.append(process);
         }
+        if (fcp.cdLq) {
+          const codes = document.createElement('small');
+          codes.className = 'community-record-fcp-process';
+          codes.textContent = 'Registro(s) cartográfico(s) associado(s): ' + fcp.cdLq;
+          li.append(codes);
+        }
+        if (isManual || isMixed) {
+          const caveat = document.createElement('small');
+          caveat.className = 'community-record-fcp-note';
+          caveat.textContent = isManual
+            ? 'Associação nominal manual; não equivale à correspondência exata por número de processo.'
+            : 'O identificador reúne registros com e sem vínculo. Consulte os códigos CD_LQ para distinguir cada ocorrência.';
+          li.append(caveat);
+        }
+      } else {
+        certification.classList.add('is-unverified', 'is-no-match');
+        certification.textContent = 'FCP: vínculo não identificado nas bases cruzadas (posição 14/04/2025). Isso não significa ausência de certificação.';
+        li.append(certification);
       }
       if (item.territories?.length) {
         const territory = document.createElement('small');
@@ -268,15 +306,13 @@ export function openMunicipality(feature) {
     sourceTag.rel = 'noopener';
     sourceTag.textContent = 'Fonte: IBGE · Censo 2022 ↗';
     $('#community-tags').append(sourceTag);
-    if (name === 'Itacuruba') {
-      const fcpTag = document.createElement('a');
-      fcpTag.className = 'tag';
-      fcpTag.href = FCP_CROSSWALK_SOURCE.url;
-      fcpTag.target = '_blank';
-      fcpTag.rel = 'noopener';
-      fcpTag.textContent = 'Fonte: Fundação Cultural Palmares ↗';
-      $('#community-tags').append(fcpTag);
-    }
+    const fcpTag = document.createElement('a');
+    fcpTag.className = 'tag';
+    fcpTag.href = FCP_MATCHES_SOURCE.url;
+    fcpTag.target = '_blank';
+    fcpTag.rel = 'noopener';
+    fcpTag.textContent = 'Fonte: Fundação Cultural Palmares · posição 14/04/2025 ↗';
+    $('#community-tags').append(fcpTag);
   } else {
     listDetails.hidden = true;
     $('#community-tags').replaceChildren();
