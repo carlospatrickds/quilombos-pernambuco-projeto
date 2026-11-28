@@ -810,3 +810,12 @@ Registro cronológico das mudanças implementadas no projeto. Os horários segue
 - Mantida integralmente a apresentação desktop e preservados os controles, dados, geometrias, camadas e interações.
 
 **Arquivos alterados:** `css/style.css`, `css/mapa.css`, `js/app.js`, `index.html`, `CHANGELOG.md`.
+
+
+### 21:36 — Correção dos controles segmentados no celular
+- Corrigida a largura intrínseca dos botões Mostrar/Ocultar e Ligadas/Desligadas, que ultrapassava os limites dos cartões em telas estreitas.
+- Forçada a composição em duas colunas de largura mínima zero, com os botões contidos no espaço disponível.
+- Aplicado o mesmo limite de largura ao seletor Municípios/Sub-regiões.
+- Alteração restrita ao CSS responsivo; sem mudanças na apresentação desktop, no mapa, nos dados ou nas interações.
+
+**Arquivos alterados:** `css/style.css`, `index.html`, `CHANGELOG.md`.
