@@ -1,5 +1,6 @@
 import { MUNICIPAL_DATA } from './data.js?v=20261127-ibge-comunidades-v111';
 import { DATA_STATUS } from './config.js';
+import { FCP_BY_IBGE_COMMUNITY, FCP_CROSSWALK_SOURCE } from '../data/certificacoes-fcp-piloto-itacuruba.js';
 import { MESOREGION_QUILOMBOLA_2022 } from '../data/populacao-quilombola-mesorregioes-censo-2022.js';
 import { AGRESTE_COMMUNITY_TOTAL, AGRESTE_COMMUNITY_SOURCE, getAgresteMunicipalityCommunityCount, getAgresteSubregionCounts } from '../data/comunidades-agreste.js';
 
@@ -235,6 +236,19 @@ export function openMunicipality(feature) {
       residents.title = 'População individual por comunidade não disponível na base consultada.';
 
       li.append(identity, localities, residents);
+      const fcp = FCP_BY_IBGE_COMMUNITY[id + ':' + item.id];
+      if (fcp) {
+        const certification = document.createElement('small');
+        certification.className = 'community-record-fcp ' + (fcp.status === 'certificada' ? 'is-certified' : 'is-unverified');
+        certification.textContent = 'FCP: ' + fcp.label + (fcp.certificationDate ? ' · ' + fcp.certificationDate : '');
+        li.append(certification);
+        if (fcp.processFcp) {
+          const process = document.createElement('small');
+          process.className = 'community-record-fcp-process';
+          process.textContent = 'Processo FCP: ' + fcp.processFcp;
+          li.append(process);
+        }
+      }
       if (item.territories?.length) {
         const territory = document.createElement('small');
         territory.className = 'community-record-territory';
@@ -254,6 +268,15 @@ export function openMunicipality(feature) {
     sourceTag.rel = 'noopener';
     sourceTag.textContent = 'Fonte: IBGE · Censo 2022 ↗';
     $('#community-tags').append(sourceTag);
+    if (name === 'Itacuruba') {
+      const fcpTag = document.createElement('a');
+      fcpTag.className = 'tag';
+      fcpTag.href = FCP_CROSSWALK_SOURCE.url;
+      fcpTag.target = '_blank';
+      fcpTag.rel = 'noopener';
+      fcpTag.textContent = 'Fonte: Fundação Cultural Palmares ↗';
+      $('#community-tags').append(fcpTag);
+    }
   } else {
     listDetails.hidden = true;
     $('#community-tags').replaceChildren();
