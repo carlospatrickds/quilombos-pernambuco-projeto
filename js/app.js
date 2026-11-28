@@ -166,10 +166,10 @@ async function start() {
           const mapHeight = map.getContainer().clientHeight;
           map.fitBounds(bounds, {
             // No desktop, aproxima Pernambuco para uma escala visual próxima
-            // de 500 km e posiciona o território um pouco abaixo do centro,
+            // de 500 km e reposiciona o território 40% para cima no quadro,
             // mantendo-o na mesma faixa vertical da visualização do Brasil.
             padding: desktop
-              ? { top: 55 + mapHeight * 0.25, right: 55, bottom: 55, left: 55 }
+              ? { top: 55, right: 55, bottom: 55 + mapHeight * 0.8, left: 55 }
               : { top: 28, right: 35, bottom: 28, left: 35 },
             duration: 450,
             maxZoom: desktop ? 9.0 : 7.5
