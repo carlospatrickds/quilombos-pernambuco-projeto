@@ -251,7 +251,7 @@ export function openMunicipality(feature) {
         if (fcp.linkType === 'VINCULO_NOMINAL_MANUAL') {
           certification.textContent = 'FCP: vínculo nominal manual · situação não inferida';
         } else {
-          certification.textContent = 'FCP: ' + (isCertified ? 'certificada' : (fcp.label || 'situação não identificada')) + ' · posição ' + (fcp.snapshot || '14/04/2025');
+          certification.textContent = 'FCP: ' + (isCertified ? 'certificada' : (fcp.label || 'situação não identificada')) + (fcp.snapshot ? ' · posição ' + fcp.snapshot : '');
           if (isMixed) certification.textContent += ' · vínculo misto no identificador';
         }
         li.append(certification);
