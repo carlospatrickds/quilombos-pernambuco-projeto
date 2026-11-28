@@ -330,3 +330,7 @@
   .community-census-card strong { font-size:30px; }
   .data-card-wide { padding:9px 11px; }
 }
+
+
+/* Cruzamento documental piloto IBGE × FCP nas fichas municipais. */
+.community-record-fcp{grid-column:1/-1;display:block;margin-top:2px;font-size:10px;line-height:1.45;font-weight:700}.community-record-fcp.is-certified{color:#4F7D3A}.community-record-fcp.is-unverified{color:#8A5A32}.community-record-fcp-process{grid-column:1/-1;display:block;color:#786A59;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
